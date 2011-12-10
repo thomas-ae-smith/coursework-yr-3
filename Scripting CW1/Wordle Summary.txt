@@ -1,0 +1,7 @@
+Wordle Summary
+
+This export plugin allows easy creation of word-cloud summaries. Given a list of documents, it will collate the abstracts and keywords of all of the papers, and submit this data to Wordle, an online word-cloud creation service.
+
+This allows quick and visually interesting summaries to be created for conferences, journals, or even individual researchers. For example, the word-cloud summary for Dr Les Carr is http://users.ecs.soton.ac.uk/taes1g09/images/LesCarr.png , and this is obtained by browsing by author to "Carr, Les" ( http://kanga-taes1g09.ecs.soton.ac.uk/view/creators/Carr=3ALes=3A=3A.html ), and then choosing to export as Wordle Summary. Similarly, by searching for a particular conference, journal or department, summaries can be created for them.
+
+The Wordle web service allows flexibility with the presentation of the word-cloud, through changing the font, layout or colours. The final cloud can then be exported for use in publicity, publications or as a visual aid.
