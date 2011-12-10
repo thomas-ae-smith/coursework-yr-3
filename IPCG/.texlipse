@@ -1,0 +1,13 @@
+#TeXlipse project settings
+#Fri Oct 14 11:32:00 BST 2011
+builderNum=2
+outputDir=Documents/
+makeIndSty=
+bibrefDir=
+outputFormat=pdf
+tempDir=Documents
+mainTexFile=Project Brief.tex
+outputFile=Project Brief.pdf
+langSpell=
+markDer=true
+srcDir=Documents/
