@@ -1,0 +1,56 @@
+This is BibTeX, Version 0.99d (TeX Live 2011)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: Interim Report.aux
+White space in argument---line 6 of file Interim Report.aux
+ : \citation{elements
+ :                    game}
+I'm skipping whatever remains of this command
+The style file: plain.bst
+Database file #1: IPCG.bib
+Warning--I didn't find a database entry for "speedtree"
+Warning--I didn't find a database entry for "hamlet"
+Warning--I didn't find a database entry for "flow"
+Warning--I didn't find a database entry for "valve"
+Warning--empty booktitle in Nitsche:1428967
+You've used 2 entries,
+            2118 wiz_defined-function locations,
+            517 strings with 4512 characters,
+and the built_in function-call counts, 844 in all, are:
+= -- 81
+> -- 40
+< -- 1
++ -- 17
+- -- 14
+* -- 56
+:= -- 137
+add.period$ -- 7
+call.type$ -- 2
+change.case$ -- 13
+chr.to.int$ -- 0
+cite$ -- 3
+duplicate$ -- 36
+empty$ -- 66
+format.name$ -- 14
+if$ -- 181
+int.to.chr$ -- 0
+int.to.str$ -- 2
+missing$ -- 2
+newline$ -- 13
+num.names$ -- 4
+pop$ -- 18
+preamble$ -- 1
+purify$ -- 11
+quote$ -- 0
+skip$ -- 26
+stack$ -- 0
+substring$ -- 43
+swap$ -- 11
+text.length$ -- 1
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 8
+warning$ -- 1
+while$ -- 7
+width$ -- 3
+write$ -- 25
+(There was 1 error message)

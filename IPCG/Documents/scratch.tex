@@ -1,0 +1,111 @@
+\documentclass[12pt,openany]{memoir}
+\usepackage{fullpage}
+\usepackage[compact]{titlesec}
+% \usepackage[parfill]{parskip}
+\chapterstyle{section}
+\begin{document}
+\frontmatter
+\thispagestyle{empty}
+\vspace*{\fill}
+\begin{center}
+
+{\Large Electronics and Computer Science} \\[0.3cm]
+{\Large Faculty of Physical and Applied Sciences} \\[0.3cm]
+{\Large University of Southampton} \\[2cm]
+
+{\Large Thomas A. E. Smith} \\[0.2cm]
+taes1g09@ecs.soton.ac.uk\\[0.3cm]
+{\large \today} \\[1.5cm]
+
+\textbf{\LARGE Intelligent Procedural Content Generation\\[0.2cm] for Computer Games} \\ [5cm]
+
+{\Large Project supervisor: E. Gerding - eg@ecs.soton.ac.uk} \\[0.3cm]
+{\Large Second examiner: C. Cirstea - cc2@ecs.soton.ac.uk} \\[1.5cm]
+
+{\large A project progress report submitted for the award of} \\[0.3cm]
+{\large MEng Computer Science with Artificial Intelligence}
+
+\end{center}
+\vspace*{\fill}
+
+\pagebreak
+\vspace*{\fill}
+\begin{abstract}
+Increasingly, as the demand for ever larger and more varied computer game environments grows, procedural content generation (PCG) is used to ensure that content remains 'fresh'. However, many of the opportunities to use these systems to generated truly personalised content have so far been largely overlooked. When content is generated manually or algorithmically during the design phase of a game, it can only be created according to the designer’s expectations of the players’ needs. By instead generating content during the execution of the game, and using information about the player(s) as one of the system’s inputs, PCG systems should be able to produce more dynamic experiences that can be far more tailored to enhance individual players' experiences than anything manually created. Much has been written about the generation of player models for the purposes of adaptivity or dynamic difficulty adjustment (DDA), and literature exists examining the problem of generating satisfying game environments via challenge adjustment. This project looks at combining these two fields to create an intelligent PCG system (IPCG) that is capable of monitoring players' progress and dynamically generating upcoming challenges to best suit their abilities. 
+
+
+
+
+\end{abstract}
+\vspace*{\fill}
+\pagebreak
+
+\tableofcontents*
+% \pagebreak
+\mainmatter
+\chapter{Project Goals}
+\chapter{Project Background}
+procedural content for many purposes (music strucure enemies textures)
+DDA resident evil
+use in existing games (valve, infintie mario)
+IPCG for difficulty, preference(fun), exploration
+
+
+Procedural Content Generators have been used since the early days of gaming. Elite <one of the first great Y> had <stats>, all procedurallu generated. These technique were required, as it was not possible to store the full data about that many unique planets on the distribution medai that was availabe at the time. As technologies improved; focus shifted more towards hand-crafted environments as it was easier to ensure that thes provided value and did not feel sparse \cite{elements game}. However, with the further progress of technoloy attention has returned to Procedural generation. Modern game worlds contain vast amounts of detail, and procedural content generation algorithms are ideally suited to producing large numbers of variations on a theme \cite{speedtree}, <expand> clouds textures sounds. Producing each of these items individually by hand would take many hours of labour and much disk space, but by definig specifivc sub elements and assmebly rules, variation can be almost endlessly reused. Not only used for cosmetics now either. Minecraft, infinite Mario?
+
+Another facet of game design that has benefited <introduction to DDA> Previously, games had been limited to specific discrete difficulties as defined at production time. However, thes (can have been) considered to be overly restrictive - typically, if a games is begun with a certain difficulty it is difficult to later change; and this also aleinates players that are unfamiliar with the standerrs or uncertain how to classify themselves. Furthermore, since game difficulty is typically a continuous function of multiple parameters <stuff>. Typically, DDA is achieved by altering values that are hidden from the player, such as enemy health, accuracy, or the amount of ammo and helathkits available in the world \cite{hamlet}. Often, the intention is to do this invisibly, and merely ensure that the player remains optimally challenged. By manipulating values behind the scenes, it is possible to ensure that the player is niether overchallenged, leading to frustration, or underchallenged, leading to boredom \cite{flow}. As DDA systems are given more controll over additional aspects of the game environment, they can begin to enter the realm of pcg, fundamentally(?) altering the stucture and pacing of the player's experinece. In the game Left 4 Dead, there is an 'AI Director' that is capable of estimating the <intensity> of each player's situation, and dynamically altering the generation of enimies of various types in order to ensure that the general flow of the game is kept exciting, <following build up, panic and calm phases> \cite{valve}. in Left 4 Dead 2, the director has additional control, adn is able to vary the stucture of the lever (something about the placement of ammo)(possible additnoal cite).
+
+Typically, PCG is used in an offline manner, taking input only from a random seed. DDA, in contrast, uses inforamtion about the players' actions as an ipnput,
+
+\chapter{Proposed System}
+two parts
+adaptable PCG
+ context free grammar
+ wieghted
+ following advantages in cite
+evaluator
+ custom data
+ list of possible data
+ expect to initially be able to use k-means to disretise
+\cite{Hunicke:2005:CDD:1178477.1178573}
+\cite{Nitsche:1428967}
+\chapter{Plan of remaining work}
+\bibliography{IPCG}{}
+\bibliographystyle{plain}
+And if you need to split it up use %\section{section name}
+
+% \appendix
+% \chapter{Appendix}
+
+\end{document}
+
+
+The body of the progress report must not exceed 3,000 words. This is about 10 A4 pages of standard-spaced text.
+
+The progress report should provide:
+
+An enhanced project description (development of the brief above)
+A report on the background research and literature search
+The proposed final design of the system or experiment
+A justification for the approach
+An account of the work to date
+A plan of the remaining work
+An estimate of any support required to complete the project
+A Gantt chart showing the schedule of both completed and remaining work
+The presentation of the progress report must conform with the Project Report Standards shown below.
+
+For electronic submission it is necessary to submit 2 PDF files via the ECS Handin System.
+
+the progress report in PDF format for the Archive.
+shorter version of the progress report in PDF format for Plagiarism Checking.
+Following this, one paper copy of the report and a copy of the electronic submission acknowledgement sheet are submitted to Zepler reception.
+
+Note that early submission of the progress report may be appropriate if a case for significant facilities or financial support needs to be made.
+
+The progress report contributes about 10% of the final assessment.
+
+Failure to submit a progress report in the approved format by the deadline will result in its part of the project mark being subject to a 10% penalty per working day late. A progress report submitted more than 5 days late will result in the relevant part of the project mark being set to zero.
+
+
+
+\end{document}
