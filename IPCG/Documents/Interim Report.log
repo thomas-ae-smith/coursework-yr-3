@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011) (format=pdflatex 2011.7.3)  12 DEC 2011 13:08
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011) (format=pdflatex 2011.7.3)  13 DEC 2011 07:59
 entering extended mode
  restricted \write18 enabled.
  Source specials enabled.
@@ -366,22 +366,81 @@ Package: titlesec 2007/08/12 v2.8 Sectioning titles
 \titlewidthlast=\dimen150
 \titlewidthfirst=\dimen151
 )
+(/usr/local/texlive/2011/texmf-dist/tex/latex/geometry/geometry.sty
+Package: geometry 2010/09/12 v5.6 Page Geometry
+
+(/usr/local/texlive/2011/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
+\KV@toks@=\toks23
+)
+(/usr/local/texlive/2011/texmf-dist/tex/generic/oberdiek/ifvtex.sty
+Package: ifvtex 2010/03/01 v1.5 Switches for detecting VTeX and its modes (HO)
+Package ifvtex Info: VTeX not detected.
+)
+\Gm@cnth=\count138
+\Gm@cntv=\count139
+\c@Gm@tempcnt=\count140
+\Gm@bindingoffset=\dimen152
+\Gm@wd@mp=\dimen153
+\Gm@odd@mp=\dimen154
+\Gm@even@mp=\dimen155
+\Gm@layoutwidth=\dimen156
+\Gm@layoutheight=\dimen157
+\Gm@layouthoffset=\dimen158
+\Gm@layoutvoffset=\dimen159
+\Gm@dimlist=\toks24
+)
 (./Interim Report.aux)
 \openout1 = `"Interim Report.aux"'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 6.
-LaTeX Font Info:    ... okay on input line 6.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 6.
-LaTeX Font Info:    ... okay on input line 6.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 6.
-LaTeX Font Info:    ... okay on input line 6.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 6.
-LaTeX Font Info:    ... okay on input line 6.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 6.
-LaTeX Font Info:    ... okay on input line 6.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 6.
-LaTeX Font Info:    ... okay on input line 6.
- [1
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+*geometry* verbose mode - [ preamble ] result:
+* driver: pdftex
+* paper: a4paper
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: 
+* h-part:(L,W,R)=(99.58464pt, 429.63663pt, 68.2866pt)
+* v-part:(T,H,B)=(68.2866pt, 708.47363pt, 68.2866pt)
+* \paperwidth=597.50787pt
+* \paperheight=845.04684pt
+* \textwidth=429.63663pt
+* \textheight=708.47363pt
+* \oddsidemargin=27.31465pt
+* \evensidemargin=27.31465pt
+* \topmargin=-3.98338pt
+* \headheight=0.0pt
+* \headsep=0.0pt
+* \topskip=12.0pt
+* \footskip=30.0pt
+* \marginparwidth=42.0pt
+* \marginparsep=7.0pt
+* \columnsep=10.0pt
+* \skip\footins=12.0pt plus 4.0pt minus 4.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+[1
 
 
 {/usr/local/texlive/2011/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
@@ -393,7 +452,7 @@ Missing character: There is no Õ in font cmr10!
 Class memoir Warning: The material used in the headers is too large
 (14.49998pt) for the given head height (0.0pt), it is recommended to
 either increase the head height or redesign the header
-(in both cases you will find help in the memoir manual). on input line 42.
+(in both cases you will find help in the memoir manual). on input line 46.
 
 
 Overfull \vbox (14.49998pt too high) has occurred while \output is active []
@@ -410,32 +469,28 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 Overfull \vbox (14.49998pt too high) has occurred while \output is active []
 
 
-[3] [4
-
-]
+[3]
 Overfull \vbox (14.49998pt too high) has occurred while \output is active []
 
 
 [1
 
+
 ]
 
-LaTeX Warning: Citation `elements game' on page 2 undefined on input line 54.
+LaTeX Warning: Citation `elements game' on page 2 undefined on input line 88.
 
 
-LaTeX Warning: Citation `speedtree' on page 2 undefined on input line 54.
+LaTeX Warning: Citation `speedtree' on page 2 undefined on input line 88.
 
 
-LaTeX Warning: Citation `hamlet' on page 2 undefined on input line 56.
+LaTeX Warning: Citation `hamlet' on page 2 undefined on input line 90.
 
 
-LaTeX Warning: Citation `flow' on page 2 undefined on input line 56.
+LaTeX Warning: Citation `flow' on page 2 undefined on input line 90.
 
 
-LaTeX Warning: Citation `valve' on page 2 undefined on input line 56.
-
-
-Underfull \vbox (badness 3623) has occurred while \output is active []
+LaTeX Warning: Citation `valve' on page 2 undefined on input line 90.
 
 
 Overfull \vbox (14.49998pt too high) has occurred while \output is active []
@@ -444,6 +499,13 @@ Overfull \vbox (14.49998pt too high) has occurred while \output is active []
 [2
 
 ]
+
+LaTeX Warning: Citation `flow' on page 3 undefined on input line 94.
+
+
+LaTeX Warning: Citation `valve' on page 3 undefined on input line 94.
+
+
 Overfull \vbox (14.49998pt too high) has occurred while \output is active []
 
 
@@ -453,11 +515,21 @@ Overfull \vbox (14.49998pt too high) has occurred while \output is active []
 
 [4
 
-] (./Interim Report.bbl
+]
 Overfull \vbox (14.49998pt too high) has occurred while \output is active []
 
 
 [5
+
+]
+Overfull \vbox (14.49998pt too high) has occurred while \output is active []
+
+
+[6] (./Interim Report.bbl
+Overfull \vbox (14.49998pt too high) has occurred while \output is active []
+
+
+[7
 
 ]
 bibitemlist
@@ -466,13 +538,13 @@ bibitemlist
 Class memoir Warning: The material used in the headers is too large
 (14.49998pt) for the given head height (0.0pt), it is recommended to
 either increase the head height or redesign the header
-(in both cases you will find help in the memoir manual). on input line 80.
+(in both cases you will find help in the memoir manual). on input line 127.
 
 
 Overfull \vbox (14.49998pt too high) has occurred while \output is active []
 
 
-[6
+[8
 
 ]
 \tf@toc=\write4
@@ -484,23 +556,24 @@ LaTeX Warning: There were undefined references.
 
  ) ) 
 Here is how much of TeX's memory you used:
- 3835 strings out of 493633
- 50549 string characters out of 3143378
- 137193 words of memory out of 3000000
- 7173 multiletter control sequences out of 15000+200000
- 9148 words of font info for 32 fonts, out of 3000000 for 9000
+ 4348 strings out of 493633
+ 58054 string characters out of 3143378
+ 148500 words of memory out of 3000000
+ 7674 multiletter control sequences out of 15000+200000
+ 10063 words of font info for 35 fonts, out of 3000000 for 9000
  831 hyphenation exceptions out of 8191
- 27i,10n,20p,1779b,220s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 27i,10n,28p,1782b,214s stack positions out of 5000i,500n,10000p,200000b,50000s
 </usr/local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.p
 fb></usr/local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pf
+b></usr/local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pf
 b></usr/local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb>
 </usr/local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></
 usr/local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></us
 r/local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on "Interim Report.pdf" (10 pages, 99292 bytes).
+Output written on "Interim Report.pdf" (11 pages, 118315 bytes).
 PDF statistics:
- 61 PDF objects out of 1000 (max. 8388607)
- 42 compressed objects within 1 object stream
+ 68 PDF objects out of 1000 (max. 8388607)
+ 47 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
