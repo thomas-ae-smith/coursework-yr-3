@@ -1,14 +1,11 @@
 \begin{thebibliography}{10}
 
-\bibitem{radiant}
-Radiant story - the elder scrolls wiki.
-
 \bibitem{valve}
-M~Booth.
-\newblock The ai systems of left 4 dead.
+M.~Booth.
+\newblock {The AI systems of Left 4 Dead}.
 \newblock In {\em Keynote, Fifth Artificial Intelligence and Interactive
   Digital Entertainment Conference (AIIDE '09)}, Stanford, CA, October 14 - 16,
-  2009. 2009.
+  2009.
 
 \bibitem{flow}
 Jenova Chen.
@@ -20,14 +17,10 @@ K.~Compton and M.~Mateas.
 \newblock Procedural level design for platform games.
 \newblock 2006.
 
-\bibitem{elite}
-I.~Bell D.~Braben.
-\newblock Elite, 1984.
-
 \bibitem{garmsr}
-K.~Stanley E.~Hastings, R.~Guha.
-\newblock Demonstrating automatic content generation in the galactic arms race
-  video game.
+E.~Hastings, R.~Guha, and K.~Stanley.
+\newblock Demonstrating automatic content generation in the {Galactic Arms
+  Race} video game.
 \newblock In {\em Artificial Intelligence for Interactive Digital Entertainment
   Conference}, 2009.
 
@@ -39,10 +32,17 @@ Erin~J. Hastings, Ratan~K. Guha, and Kenneth~O. Stanley.
 
 \bibitem{hamlet}
 R.~Hunicke and V.~Chapman.
-\newblock Ai for dynamic difficulty adjustment in games.
-\newblock In {\em Papers from the \emph{2004 AAAI Workshop on Challenges in
-  Game Artificial Intelligence}}, volume Technical Report WS-04-04, Menlo Park,
-  CA., 2004. The AAAI Press.
+\newblock {AI} for dynamic difficulty adjustment in games.
+\newblock In {\em Papers from the 2004 AAAI Workshop on Challenges in Game
+  Artificial Intelligence}, volume Technical Report WS-04-04, Menlo Park, CA.,
+  2004. The AAAI Press.
+
+\bibitem{polymorph}
+Martin Jennings-Teats, Gillian Smith, and Noah Wardrip-Fruin.
+\newblock Polymorph: dynamic difficulty adjustment through level generation.
+\newblock In {\em Proceedings of the 2010 Workshop on Procedural Content
+  Generation in Games}, PCGames '10, pages 11:1--11:4, New York, NY, USA, 2010.
+  ACM.
 
 \bibitem{5765665}
 R.~Lopes and R.~Bidarra.
@@ -50,19 +50,23 @@ R.~Lopes and R.~Bidarra.
 \newblock {\em Computational Intelligence and AI in Games, IEEE Transactions
   on}, 3(2):85 --99, june 2011.
 
-\bibitem{rogue}
-K.~Arnold M.~Toy, G.~Wichman and J.~Lane.
-\newblock Rogue, 1983.
-
 \bibitem{charbitat}
 Michael Nitsche, Calvin Ashmore, Will Hankinson, Rob Fitzpatrick, John Kelly,
   and Kurt Margenau.
 \newblock Designing procedural game spaces: A case study.
-\newblock October 2006.
+\newblock In {\em FuturePlay 2006}, October 2006.
 
-\bibitem{mario}
-M~Persson.
-\newblock Infinite mario bros! (online game), 2008.
+\bibitem{shaker2010towards}
+N.~Shaker, G.~Yannakakis, and J.~Togelius.
+\newblock Towards automatic personalized content generation for platform games.
+\newblock 2010.
+
+\bibitem{Smith:2009:RLG:1536513.1536548}
+Gillian Smith, Mike Treanor, Jim Whitehead, and Michael Mateas.
+\newblock Rhythm-based level generation for {2D} platformers.
+\newblock In {\em Proceedings of the 4th International Conference on
+  Foundations of Digital Games}, FDG '09, pages 175--182, New York, NY, USA,
+  2009. ACM.
 
 \bibitem{5940995}
 N.~Sorenson, P.~Pasquier, and S.~DiPaola.
