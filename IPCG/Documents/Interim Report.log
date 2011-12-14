@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011) (format=pdflatex 2011.7.3)  13 DEC 2011 15:35
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011) (format=pdflatex 2011.7.3)  14 DEC 2011 09:53
 entering extended mode
  restricted \write18 enabled.
  Source specials enabled.
@@ -354,6 +354,13 @@ Package: mempatch 2009/07/24 v6.0f Patches for memoir class v1.6180339
 Package: fullpage 1999/02/23 1.1 (PWD)
 \FP@margin=\skip185
 )
+(/usr/local/texlive/2011/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
+
+(/usr/local/texlive/2011/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
+\KV@toks@=\toks22
+)
 (/usr/local/texlive/2011/texmf-dist/tex/latex/graphics/graphics.sty
 Package: graphics 2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
 
@@ -376,41 +383,63 @@ Package: ltxcmds 2011/04/18 v1.20 LaTeX kernel commands for general use (HO)
 )
 \Gread@gobject=\count138
 ))
-(/usr/local/texlive/2011/texmf-dist/tex/latex/titlesec/titlesec.sty
-Package: titlesec 2007/08/12 v2.8 Sectioning titles
-\ttl@box=\box29
-\beforetitleunit=\skip186
-\aftertitleunit=\skip187
-\ttl@plus=\dimen147
-\ttl@minus=\dimen148
-\ttl@toksa=\toks22
-\titlewidth=\dimen149
-\titlewidthlast=\dimen150
-\titlewidthfirst=\dimen151
+\Gin@req@height=\dimen147
+\Gin@req@width=\dimen148
+)
+(/usr/local/texlive/2011/texmf-dist/tex/latex/subfig/subfig.sty
+Package: subfig 2005/06/28 ver: 1.3 subfig package
+
+
+Class memoir Warning: You are using the caption package with the memoir 
+(memoir)              class. This may cause unexpected or inconsistent 
+(memoir)              results if you use any of memoir's captioning facilities.
+
+
+(/usr/local/texlive/2011/texmf-dist/tex/latex/caption/caption.sty
+Package: caption 2010/01/09 v3.1m Customizing captions (AR)
+
+(/usr/local/texlive/2011/texmf-dist/tex/latex/caption/caption3.sty
+Package: caption3 2010/01/14 v3.1m caption3 kernel (AR)
+\captionmargin=\dimen149
+\captionmargin@=\dimen150
+\captionwidth=\dimen151
+\caption@indent=\dimen152
+\caption@parindent=\dimen153
+\caption@hangindent=\dimen154
+)
+\c@ContinuedFloat=\count139
+)
+\c@KVtest=\count140
+\sf@farskip=\skip186
+\sf@captopadj=\dimen155
+\sf@capskip=\skip187
+\sf@nearskip=\skip188
+\c@subfigure=\count141
+\c@subfigure@save=\count142
+\c@subtable=\count143
+\c@subtable@save=\count144
+\sf@top=\skip189
+\sf@bottom=\skip190
 )
 (/usr/local/texlive/2011/texmf-dist/tex/latex/geometry/geometry.sty
 Package: geometry 2010/09/12 v5.6 Page Geometry
 
-(/usr/local/texlive/2011/texmf-dist/tex/latex/graphics/keyval.sty
-Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
-\KV@toks@=\toks23
-)
 (/usr/local/texlive/2011/texmf-dist/tex/generic/oberdiek/ifvtex.sty
 Package: ifvtex 2010/03/01 v1.5 Switches for detecting VTeX and its modes (HO)
 Package ifvtex Info: VTeX not detected.
 )
-\Gm@cnth=\count139
-\Gm@cntv=\count140
-\c@Gm@tempcnt=\count141
-\Gm@bindingoffset=\dimen152
-\Gm@wd@mp=\dimen153
-\Gm@odd@mp=\dimen154
-\Gm@even@mp=\dimen155
-\Gm@layoutwidth=\dimen156
-\Gm@layoutheight=\dimen157
-\Gm@layouthoffset=\dimen158
-\Gm@layoutvoffset=\dimen159
-\Gm@dimlist=\toks24
+\Gm@cnth=\count145
+\Gm@cntv=\count146
+\c@Gm@tempcnt=\count147
+\Gm@bindingoffset=\dimen156
+\Gm@wd@mp=\dimen157
+\Gm@odd@mp=\dimen158
+\Gm@even@mp=\dimen159
+\Gm@layoutwidth=\dimen160
+\Gm@layoutheight=\dimen161
+\Gm@layouthoffset=\dimen162
+\Gm@layoutvoffset=\dimen163
+\Gm@dimlist=\toks23
 )
 (./Interim Report.aux)
 \openout1 = `"Interim Report.aux"'.
@@ -430,17 +459,17 @@ LaTeX Font Info:    ... okay on input line 12.
 
 (/usr/local/texlive/2011/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count142
-\scratchdimen=\dimen160
-\scratchbox=\box30
-\nofMPsegments=\count143
-\nofMParguments=\count144
-\everyMPshowfont=\toks25
-\MPscratchCnt=\count145
-\MPscratchDim=\dimen161
-\MPnumerator=\count146
-\makeMPintoPDFobject=\count147
-\everyMPtoPDFconversion=\toks26
+\scratchcounter=\count148
+\scratchdimen=\dimen164
+\scratchbox=\box29
+\nofMPsegments=\count149
+\nofMParguments=\count150
+\everyMPshowfont=\toks24
+\MPscratchCnt=\count151
+\MPscratchDim=\dimen165
+\MPnumerator=\count152
+\makeMPintoPDFobject=\count153
+\everyMPtoPDFconversion=\toks25
 ) (/usr/local/texlive/2011/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
 Package: pdftexcmds 2011/04/22 v0.16 Utilities of pdfTeX for LuaTeX (HO)
 Package pdftexcmds Info: LuaTeX not detected.
@@ -479,6 +508,11 @@ G,.JBIG2,.JB2,.eps]
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
+Package caption Info: Begin \AtBeginDocument code.
+Package caption3 Info: subfig package 1.2 or 1.3 is loaded.
+LaTeX Info: Redefining \subref on input line 12.
+Package caption Info: End \AtBeginDocument code.
+
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
 *geometry* verbose mode - [ preamble ] result:
@@ -517,15 +551,11 @@ e
 
 
 {/usr/local/texlive/2011/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-Missing character: There is no Õ in font cmr10!
-Missing character: There is no Õ in font cmr10!
-Missing character: There is no Õ in font cmr10!
-
 
 Class memoir Warning: The material used in the headers is too large
 (14.49998pt) for the given head height (0.0pt), it is recommended to
 either increase the head height or redesign the header
-(in both cases you will find help in the memoir manual). on input line 48.
+(in both cases you will find help in the memoir manual). on input line 44.
 
 
 Overfull \vbox (14.49998pt too high) has occurred while \output is active []
@@ -554,29 +584,12 @@ Overfull \vbox (14.49998pt too high) has occurred while \output is active []
 
 
 [2]
-
-LaTeX Warning: Citation `elements game' on page 3 undefined on input line 94.
-
-
-LaTeX Warning: Citation `speedtree' on page 3 undefined on input line 94.
-
-
-LaTeX Warning: Citation `hamlet' on page 3 undefined on input line 96.
-
-
-LaTeX Warning: Citation `flow' on page 3 undefined on input line 96.
-
-
 Overfull \vbox (14.49998pt too high) has occurred while \output is active []
 
 
 [3
 
 ]
-
-LaTeX Warning: Citation `flow' on page 4 undefined on input line 100.
-
-
 Overfull \vbox (14.49998pt too high) has occurred while \output is active []
 
 
@@ -594,7 +607,7 @@ wed
 <system.pdf, id=34, 308.05087pt x 180.675pt>
 File: system.pdf Graphic file (type pdf)
  <use system.pdf>
-Package pdftex.def Info: system.pdf used on input line 111.
+Package pdftex.def Info: system.pdf used on input line 108.
 (pdftex.def)             Requested size: 308.05011pt x 180.67455pt.
 
 Overfull \vbox (14.49998pt too high) has occurred while \output is active []
@@ -602,29 +615,40 @@ Overfull \vbox (14.49998pt too high) has occurred while \output is active []
 
 [6
 
- <./system.pdf>]
+ <./system.pdf>] <done.pdf, id=79, 597.23125pt x 845.1575pt>
+File: done.pdf Graphic file (type pdf)
+ <use done.pdf>
+Package pdftex.def Info: done.pdf used on input line 153.
+(pdftex.def)             Requested size: 204.94936pt x 472.10548pt.
 
-LaTeX Warning: Citation `Hunicke:2005:CDD:1178477.1178573' on page 7 undefined 
-on input line 138.
+<todo.png, id=81, 1306.8825pt x 379.4175pt>
+File: todo.png Graphic file (type png)
+ <use todo.png>
+Package pdftex.def Info: todo.png used on input line 160.
+(pdftex.def)             Requested size: 602.22482pt x 189.70828pt.
 
+Overfull \hbox (19.44853pt too wide) in paragraph at lines 145--164
+[][][]   [] 
+ []
 
+(./Interim Report.bbl
 Overfull \vbox (14.49998pt too high) has occurred while \output is active []
 
 
-[7] (./Interim Report.bbl
+[7]
 Overfull \vbox (14.49998pt too high) has occurred while \output is active []
 
 
 [8
 
-]
+ <./done.pdf> <./todo.png>]
 bibitemlist
 )
 
 Class memoir Warning: The material used in the headers is too large
 (14.49998pt) for the given head height (0.0pt), it is recommended to
 either increase the head height or redesign the header
-(in both cases you will find help in the memoir manual). on input line 150.
+(in both cases you will find help in the memoir manual). on input line 171.
 
 
 Overfull \vbox (14.49998pt too high) has occurred while \output is active []
@@ -636,30 +660,27 @@ Overfull \vbox (14.49998pt too high) has occurred while \output is active []
 \tf@toc=\write4
 \openout4 = `"Interim Report.toc"'.
 
- (./Interim Report.aux)
-
-LaTeX Warning: There were undefined references.
-
- ) ) 
+ (./Interim Report.aux) ) ) 
 Here is how much of TeX's memory you used:
- 5503 strings out of 493633
- 75362 string characters out of 3143378
- 172813 words of memory out of 3000000
- 8778 multiletter control sequences out of 15000+200000
+ 6384 strings out of 493633
+ 92130 string characters out of 3143378
+ 190434 words of memory out of 3000000
+ 9648 multiletter control sequences out of 15000+200000
  10063 words of font info for 35 fonts, out of 3000000 for 9000
  831 hyphenation exceptions out of 8191
- 44i,10n,28p,1782b,264s stack positions out of 5000i,500n,10000p,200000b,50000s
-</usr/local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.p
-fb></usr/local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pf
-b></usr/local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pf
-b></usr/local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb>
-</usr/local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></
-usr/local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></us
-r/local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on "Interim Report.pdf" (12 pages, 125491 bytes).
+ 49i,10n,42p,1565b,343s stack positions out of 5000i,500n,10000p,200000b,50000s
+</usr/local/texlive/2011/texmf-dist/fonts/type1/publ
+ic/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/publi
+c/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/public
+/amsfonts/cm/cmcsc10.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/public
+/amsfonts/cm/cmr10.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/public/a
+msfonts/cm/cmr12.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmr17.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/public/amsfo
+nts/cm/cmti12.pfb>
+Output written on "Interim Report.pdf" (12 pages, 238305 bytes).
 PDF statistics:
- 113 PDF objects out of 1000 (max. 8388607)
- 90 compressed objects within 1 object stream
+ 139 PDF objects out of 1000 (max. 8388607)
+ 106 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
- 6 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 28 words of extra memory for PDF output out of 10000 (max. 10000000)
 
