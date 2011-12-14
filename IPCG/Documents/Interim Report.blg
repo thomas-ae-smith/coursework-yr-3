@@ -1,56 +1,62 @@
 This is BibTeX, Version 0.99d (TeX Live 2011)
 Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: Interim Report.aux
-White space in argument---line 9 of file Interim Report.aux
- : \citation{elements
- :                    game}
-I'm skipping whatever remains of this command
 The style file: plain.bst
 Database file #1: IPCG.bib
-Warning--I didn't find a database entry for "speedtree"
-Warning--I didn't find a database entry for "hamlet"
-Warning--I didn't find a database entry for "flow"
-Warning--I didn't find a database entry for "Hunicke:2005:CDD:1178477.1178573"
-Warning--empty booktitle in Nitsche:1428967
-You've used 2 entries,
+Warning--entry type for "radiant" isn't style-file defined
+--line 12 of file IPCG.bib
+Warning--entry type for "elite" isn't style-file defined
+--line 47 of file IPCG.bib
+Warning--entry type for "rogue" isn't style-file defined
+--line 55 of file IPCG.bib
+Warning--entry type for "mario" isn't style-file defined
+--line 63 of file IPCG.bib
+Name 1 in "M. Toy, G. Wichman, K. Arnold, and J. Lane" has a comma at the end for entry rogue
+while executing---line 1049 of file plain.bst
+Warning--to sort, need author or key in radiant
+Warning--empty journal in compton2006procedural
+Name 1 in "M. Toy, G. Wichman, K. Arnold, and J. Lane" has a comma at the end for entry rogue
+while executing---line 1090 of file plain.bst
+Warning--empty booktitle in charbitat
+You've used 13 entries,
             2118 wiz_defined-function locations,
-            515 strings with 4474 characters,
-and the built_in function-call counts, 653 in all, are:
-= -- 53
-> -- 40
-< -- 0
-+ -- 17
-- -- 14
-* -- 45
-:= -- 118
-add.period$ -- 6
-call.type$ -- 2
-change.case$ -- 13
+            569 strings with 5801 characters,
+and the built_in function-call counts, 3521 in all, are:
+= -- 324
+> -- 157
+< -- 1
++ -- 65
+- -- 50
+* -- 219
+:= -- 591
+add.period$ -- 35
+call.type$ -- 13
+change.case$ -- 64
 chr.to.int$ -- 0
-cite$ -- 3
-duplicate$ -- 27
-empty$ -- 53
-format.name$ -- 14
-if$ -- 130
+cite$ -- 16
+duplicate$ -- 137
+empty$ -- 317
+format.name$ -- 50
+if$ -- 736
 int.to.chr$ -- 0
-int.to.str$ -- 2
-missing$ -- 2
-newline$ -- 13
-num.names$ -- 4
-pop$ -- 22
+int.to.str$ -- 13
+missing$ -- 9
+newline$ -- 63
+num.names$ -- 24
+pop$ -- 93
 preamble$ -- 1
-purify$ -- 11
+purify$ -- 51
 quote$ -- 0
-skip$ -- 12
+skip$ -- 97
 stack$ -- 0
-substring$ -- 11
-swap$ -- 2
-text.length$ -- 0
+substring$ -- 153
+swap$ -- 14
+text.length$ -- 1
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 8
-warning$ -- 1
-while$ -- 4
-width$ -- 3
-write$ -- 22
-(There was 1 error message)
+type$ -- 52
+warning$ -- 3
+while$ -- 30
+width$ -- 15
+write$ -- 127
+(There were 2 error messages)

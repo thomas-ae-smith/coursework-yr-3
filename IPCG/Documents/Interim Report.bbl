@@ -1,4 +1,7 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
+
+\bibitem{radiant}
+Radiant story - the elder scrolls wiki.
 
 \bibitem{valve}
 M~Booth.
@@ -7,10 +10,65 @@ M~Booth.
   Digital Entertainment Conference (AIIDE '09)}, Stanford, CA, October 14 - 16,
   2009. 2009.
 
-\bibitem{Nitsche:1428967}
+\bibitem{flow}
+Jenova Chen.
+\newblock Flow in games (and everything else).
+\newblock {\em Commun. ACM}, 50:31--34, April 2007.
+
+\bibitem{compton2006procedural}
+K.~Compton and M.~Mateas.
+\newblock Procedural level design for platform games.
+\newblock 2006.
+
+\bibitem{elite}
+I.~Bell D.~Braben.
+\newblock Elite, 1984.
+
+\bibitem{garmsr}
+K.~Stanley E.~Hastings, R.~Guha.
+\newblock Demonstrating automatic content generation in the galactic arms race
+  video game.
+\newblock In {\em Artificial Intelligence for Interactive Digital Entertainment
+  Conference}, 2009.
+
+\bibitem{Hastings:2009:IEP:1650356.1650369}
+Erin~J. Hastings, Ratan~K. Guha, and Kenneth~O. Stanley.
+\newblock Interactive evolution of particle systems for computer graphics and
+  animation.
+\newblock {\em Trans. Evol. Comp}, 13:418--432, April 2009.
+
+\bibitem{hamlet}
+R.~Hunicke and V.~Chapman.
+\newblock Ai for dynamic difficulty adjustment in games.
+\newblock In {\em Papers from the \emph{2004 AAAI Workshop on Challenges in
+  Game Artificial Intelligence}}, volume Technical Report WS-04-04, Menlo Park,
+  CA., 2004. The AAAI Press.
+
+\bibitem{5765665}
+R.~Lopes and R.~Bidarra.
+\newblock Adaptivity challenges in games and simulations: A survey.
+\newblock {\em Computational Intelligence and AI in Games, IEEE Transactions
+  on}, 3(2):85 --99, june 2011.
+
+\bibitem{rogue}
+K.~Arnold M.~Toy, G.~Wichman and J.~Lane.
+\newblock Rogue, 1983.
+
+\bibitem{charbitat}
 Michael Nitsche, Calvin Ashmore, Will Hankinson, Rob Fitzpatrick, John Kelly,
   and Kurt Margenau.
 \newblock Designing procedural game spaces: A case study.
 \newblock October 2006.
+
+\bibitem{mario}
+M~Persson.
+\newblock Infinite mario bros! (online game), 2008.
+
+\bibitem{5940995}
+N.~Sorenson, P.~Pasquier, and S.~DiPaola.
+\newblock A generic approach to challenge modeling for the procedural creation
+  of video game levels.
+\newblock {\em Computational Intelligence and AI in Games, IEEE Transactions
+  on}, 3(3):229 --244, sept. 2011.
 
 \end{thebibliography}
