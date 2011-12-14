@@ -1,16 +1,18 @@
 \contentsline {chapter}{\chapternumberline {1}Project Description}{1}
-\contentsline {section}{\numberline {1.1}Requirements}{1}
-\contentsline {subsection}{\numberline {1.1.1}Functional}{1}
-\contentsline {subsection}{\numberline {1.1.2}Non-Functional}{1}
+\contentsline {section}{\numberline {1.1}Introduction}{1}
+\contentsline {section}{\numberline {1.2}Requirements}{2}
+\contentsline {subsection}{\numberline {1.2.1}Functional}{2}
+\contentsline {subsection}{\numberline {1.2.2}Non-Functional}{2}
 \contentsline {chapter}{\chapternumberline {2}Project Background}{3}
 \contentsline {section}{\numberline {2.1}Procedural Content Generation}{3}
 \contentsline {section}{\numberline {2.2}Existing IPGC Systems}{3}
 \contentsline {subsection}{\numberline {2.2.1}Valve's `AI Director'}{3}
-\contentsline {subsection}{\numberline {2.2.2}Bethesda's Radiant Story}{3}
+\contentsline {subsection}{\numberline {2.2.2}Bethesda's Radiant Story}{4}
 \contentsline {subsection}{\numberline {2.2.3}GAR's Weapon Evolution}{4}
 \contentsline {section}{\numberline {2.3}Dynamic Difficulty Adjustment}{4}
 \contentsline {chapter}{\chapternumberline {3}Literature Review}{5}
-\contentsline {section}{\numberline {3.1}}{5}
+\contentsline {section}{\numberline {3.1}Polymorph: DDA Through Level Generation}{5}
+\contentsline {section}{\numberline {3.2}Adaptivity Challenges in Games and Simulations: A Survey}{5}
 \contentsline {chapter}{\chapternumberline {4}Proposed System}{6}
 \contentsline {section}{\numberline {4.1}Overview}{6}
 \contentsline {subsection}{\numberline {4.1.1}Game Base}{6}
@@ -20,6 +22,6 @@
 \contentsline {section}{\numberline {4.3}Justification}{7}
 \contentsline {section}{\numberline {4.4}Possible Extensions}{7}
 \contentsline {chapter}{\chapternumberline {5}Gantt Charts}{8}
-\contentsline {section}{5.1 Completed}{8}
-\contentsline {section}{5.2 Remaining}{8}
+\contentsline {section}{5.1 Work Completed}{8}
+\contentsline {section}{5.2 Work Remaining}{8}
 \contentsline {chapter}{Bibliography}{9}

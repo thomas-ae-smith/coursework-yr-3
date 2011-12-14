@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011) (format=pdflatex 2011.7.3)  14 DEC 2011 09:53
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011) (format=pdflatex 2011.7.3)  14 DEC 2011 13:11
 entering extended mode
  restricted \write18 enabled.
  Source specials enabled.
@@ -604,30 +604,30 @@ Overfull \vbox (14.49998pt too high) has occurred while \output is active []
 pdfTeX warning: /usr/local/texlive/2011/bin/x86_64-darwin/pdflatex (file ./syst
 em.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allo
 wed
-<system.pdf, id=34, 308.05087pt x 180.675pt>
+<system.pdf, id=35, 308.05087pt x 180.675pt>
 File: system.pdf Graphic file (type pdf)
  <use system.pdf>
-Package pdftex.def Info: system.pdf used on input line 108.
-(pdftex.def)             Requested size: 308.05011pt x 180.67455pt.
+Package pdftex.def Info: system.pdf used on input line 122.
+(pdftex.def)             Requested size: 251.14478pt x 112.38817pt.
 
 Overfull \vbox (14.49998pt too high) has occurred while \output is active []
 
 
 [6
 
- <./system.pdf>] <done.pdf, id=79, 597.23125pt x 845.1575pt>
+ <./system.pdf>] <done.pdf, id=82, 597.23125pt x 845.1575pt>
 File: done.pdf Graphic file (type pdf)
  <use done.pdf>
-Package pdftex.def Info: done.pdf used on input line 153.
+Package pdftex.def Info: done.pdf used on input line 169.
 (pdftex.def)             Requested size: 204.94936pt x 472.10548pt.
 
-<todo.png, id=81, 1306.8825pt x 379.4175pt>
+<todo.png, id=84, 1306.8825pt x 379.4175pt>
 File: todo.png Graphic file (type png)
  <use todo.png>
-Package pdftex.def Info: todo.png used on input line 160.
+Package pdftex.def Info: todo.png used on input line 176.
 (pdftex.def)             Requested size: 602.22482pt x 189.70828pt.
 
-Overfull \hbox (19.44853pt too wide) in paragraph at lines 145--164
+Overfull \hbox (19.44853pt too wide) in paragraph at lines 161--180
 [][][]   [] 
  []
 
@@ -648,7 +648,7 @@ bibitemlist
 Class memoir Warning: The material used in the headers is too large
 (14.49998pt) for the given head height (0.0pt), it is recommended to
 either increase the head height or redesign the header
-(in both cases you will find help in the memoir manual). on input line 171.
+(in both cases you will find help in the memoir manual). on input line 187.
 
 
 Overfull \vbox (14.49998pt too high) has occurred while \output is active []
@@ -663,12 +663,12 @@ Overfull \vbox (14.49998pt too high) has occurred while \output is active []
  (./Interim Report.aux) ) ) 
 Here is how much of TeX's memory you used:
  6384 strings out of 493633
- 92130 string characters out of 3143378
- 190434 words of memory out of 3000000
+ 92178 string characters out of 3143378
+ 190430 words of memory out of 3000000
  9648 multiletter control sequences out of 15000+200000
  10063 words of font info for 35 fonts, out of 3000000 for 9000
  831 hyphenation exceptions out of 8191
- 49i,10n,42p,1565b,343s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 49i,10n,42p,1565b,345s stack positions out of 5000i,500n,10000p,200000b,50000s
 </usr/local/texlive/2011/texmf-dist/fonts/type1/publ
 ic/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/publi
 c/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/public
@@ -677,10 +677,10 @@ c/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/public
 msfonts/cm/cmr12.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/public/ams
 fonts/cm/cmr17.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/public/amsfo
 nts/cm/cmti12.pfb>
-Output written on "Interim Report.pdf" (12 pages, 238305 bytes).
+Output written on "Interim Report.pdf" (12 pages, 243297 bytes).
 PDF statistics:
- 139 PDF objects out of 1000 (max. 8388607)
- 106 compressed objects within 2 object streams
+ 141 PDF objects out of 1000 (max. 8388607)
+ 107 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
- 28 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 34 words of extra memory for PDF output out of 10000 (max. 10000000)
 
