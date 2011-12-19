@@ -5,7 +5,7 @@
 \contentsline {subsection}{\numberline {1.2.2}Non-Functional}{2}
 \contentsline {chapter}{\chapternumberline {2}Project Background}{3}
 \contentsline {section}{\numberline {2.1}Procedural Content Generation}{3}
-\contentsline {section}{\numberline {2.2}Existing IPGC Systems}{3}
+\contentsline {section}{\numberline {2.2}Existing IPCG Systems}{3}
 \contentsline {subsection}{\numberline {2.2.1}Valve's `AI Director'}{3}
 \contentsline {subsection}{\numberline {2.2.2}Bethesda's Radiant Story}{4}
 \contentsline {subsection}{\numberline {2.2.3}GAR's Weapon Evolution}{4}
