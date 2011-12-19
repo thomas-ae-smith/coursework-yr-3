@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011) (format=pdflatex 2011.7.3)  14 DEC 2011 13:11
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011) (format=pdflatex 2011.7.3)  14 DEC 2011 14:36
 entering extended mode
  restricted \write18 enabled.
  Source specials enabled.
@@ -547,6 +547,12 @@ Package caption Info: End \AtBeginDocument code.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <12> on input line 28.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 28.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 28.
 [1
 
 
@@ -555,20 +561,13 @@ Package caption Info: End \AtBeginDocument code.
 Class memoir Warning: The material used in the headers is too large
 (14.49998pt) for the given head height (0.0pt), it is recommended to
 either increase the head height or redesign the header
-(in both cases you will find help in the memoir manual). on input line 44.
+(in both cases you will find help in the memoir manual). on input line 47.
 
 
 Overfull \vbox (14.49998pt too high) has occurred while \output is active []
 
 
-[2] (./Interim Report.toc
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 1.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 1.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 1.
-)
+[2] (./Interim Report.toc)
 Overfull \vbox (14.49998pt too high) has occurred while \output is active []
 
 
@@ -607,7 +606,7 @@ wed
 <system.pdf, id=35, 308.05087pt x 180.675pt>
 File: system.pdf Graphic file (type pdf)
  <use system.pdf>
-Package pdftex.def Info: system.pdf used on input line 122.
+Package pdftex.def Info: system.pdf used on input line 125.
 (pdftex.def)             Requested size: 251.14478pt x 112.38817pt.
 
 Overfull \vbox (14.49998pt too high) has occurred while \output is active []
@@ -618,16 +617,16 @@ Overfull \vbox (14.49998pt too high) has occurred while \output is active []
  <./system.pdf>] <done.pdf, id=82, 597.23125pt x 845.1575pt>
 File: done.pdf Graphic file (type pdf)
  <use done.pdf>
-Package pdftex.def Info: done.pdf used on input line 169.
+Package pdftex.def Info: done.pdf used on input line 172.
 (pdftex.def)             Requested size: 204.94936pt x 472.10548pt.
 
 <todo.png, id=84, 1306.8825pt x 379.4175pt>
 File: todo.png Graphic file (type png)
  <use todo.png>
-Package pdftex.def Info: todo.png used on input line 176.
+Package pdftex.def Info: todo.png used on input line 179.
 (pdftex.def)             Requested size: 602.22482pt x 189.70828pt.
 
-Overfull \hbox (19.44853pt too wide) in paragraph at lines 161--180
+Overfull \hbox (19.44853pt too wide) in paragraph at lines 164--183
 [][][]   [] 
  []
 
@@ -648,7 +647,7 @@ bibitemlist
 Class memoir Warning: The material used in the headers is too large
 (14.49998pt) for the given head height (0.0pt), it is recommended to
 either increase the head height or redesign the header
-(in both cases you will find help in the memoir manual). on input line 187.
+(in both cases you will find help in the memoir manual). on input line 190.
 
 
 Overfull \vbox (14.49998pt too high) has occurred while \output is active []
@@ -668,7 +667,7 @@ Here is how much of TeX's memory you used:
  9648 multiletter control sequences out of 15000+200000
  10063 words of font info for 35 fonts, out of 3000000 for 9000
  831 hyphenation exceptions out of 8191
- 49i,10n,42p,1565b,345s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 49i,10n,42p,1567b,345s stack positions out of 5000i,500n,10000p,200000b,50000s
 </usr/local/texlive/2011/texmf-dist/fonts/type1/publ
 ic/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/publi
 c/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/public
@@ -677,7 +676,7 @@ c/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/public
 msfonts/cm/cmr12.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/public/ams
 fonts/cm/cmr17.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/public/amsfo
 nts/cm/cmti12.pfb>
-Output written on "Interim Report.pdf" (12 pages, 243297 bytes).
+Output written on "Interim Report.pdf" (12 pages, 243403 bytes).
 PDF statistics:
  141 PDF objects out of 1000 (max. 8388607)
  107 compressed objects within 2 object streams
