@@ -1,0 +1,2 @@
+gcc -o main main.cpp utils.cpp stylesBase.cpp -I/usr/cslib/include -L/usr/cslib/lib -lglfw -lGL -lXrandr -lGLEW
+
