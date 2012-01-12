@@ -2,16 +2,25 @@
 #ifndef GAMEFRAME_H
 #define GAMEFRAME_H
 
+#include <vector>
 #include "AbstractObject.h"
 
-class gameFrame : public abstractObject
-{
+
+#include "TODOsphere.h"
+
+using namespace std;
+
+class gameFrame: public abstractObject {
+
 	private:
-		std::vector<abstractObject> v;
+		vector<abstractObject> items;
+		TODOsphere *blob;
 
 	public:
 		gameFrame();
 		~gameFrame();
+		void update(double t);
+		void render();
 
 		/* data */
 };
