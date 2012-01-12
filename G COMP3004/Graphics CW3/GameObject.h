@@ -20,8 +20,9 @@ class gameObject : public abstractObject
 
 
 	public:
-		gameObject();
-		~gameObject();
+		gameObject() {};
+		virtual ~gameObject() {};
 		glm::mat4 get_abs_loc();
+
 
 };

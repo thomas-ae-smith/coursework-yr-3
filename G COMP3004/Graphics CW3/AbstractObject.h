@@ -10,9 +10,12 @@ render()	(everything can render, even if only for debug)
 
 class abstractObject {
 	protected:
-		abstractObject* parent;
+		abstractObject *parent;
+
+	public:
 		virtual void update(double t);
 		virtual void render();
+		virtual ~abstractObject();
 		
 };
 
