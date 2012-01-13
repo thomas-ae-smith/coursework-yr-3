@@ -1,9 +1,5 @@
 /*
-
-*parent
-update(time t)
-render()	(everything can render, even if only for debug)
-
+Abstract class, hence functions do nothing.
 */
 
 #include "AbstractObject.h"

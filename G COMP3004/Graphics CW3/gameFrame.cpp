@@ -2,9 +2,9 @@
 #include "GameFrame.h"
 #include "TODOsphere.h"
 
-gameFrame::gameFrame() {
-	adam = new TODOsphere(-1.f);
-	bob = new TODOsphere(0.5f);
+gameFrame::gameFrame(abstractObject* parent) : abstractObject(parent) {
+	adam = new TODOsphere(this, -1.f);
+	bob = new TODOsphere(this, 0.5f);
 }
 
 gameFrame::~gameFrame() {}

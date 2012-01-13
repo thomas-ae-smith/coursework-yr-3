@@ -18,18 +18,18 @@ layout(line_strip, max_vertices = 8) out;
  
  void main()
  {
-          // simple iterator
-     int i;
-    
-    // Create our original primitive
-    for (i=0; i < gl_in.length(); i++)
-    {
-        gl_Position = mvpmatrix * vec4(gl_in[i].gl_Position.xyz, 1.0); 
-        ex_Color = geom_Color[i];
-        EmitVertex();
-    }
+		  // simple iterator
+	 int i;
+	
+	// Create our original primitive
+	for (i=0; i < gl_in.length(); i++)
+	{
+		gl_Position = mvpmatrix * vec4(gl_in[i].gl_Position.xyz, 1.0); 
+		ex_Color = geom_Color[i];
+		EmitVertex();
+	}
 	gl_Position = mvpmatrix * vec4(gl_in[0].gl_Position.xyz, 1.0); 
-        ex_Color = geom_Color[0];
-        EmitVertex();
-    EndPrimitive();
+		ex_Color = geom_Color[0];
+		EmitVertex();
+	EndPrimitive();
 }

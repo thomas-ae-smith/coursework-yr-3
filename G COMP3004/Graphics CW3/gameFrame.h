@@ -18,7 +18,7 @@ class gameFrame: public abstractObject {
 		TODOsphere *bob;
 
 	public:
-		gameFrame();
+		gameFrame(abstractObject* parent);
 		~gameFrame();
 		void update(double t);
 		void render();
