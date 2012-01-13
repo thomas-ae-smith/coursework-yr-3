@@ -1,16 +1,16 @@
 /* inherits UIFrame*/
-#ifndef GAMEFRAME_H
-#define GAMEFRAME_H
+#ifndef _GAMEFRAME_H_
+#define _GAMEFRAME_H_
 
 #include <vector>
-#include "AbstractObject.h"
+#include "UIFrame.h"
 
 
 #include "TODOsphere.h"
 
 using namespace std;
 
-class gameFrame: public abstractObject {
+class gameFrame: public UIFrame {
 
 	private:
 		vector<abstractObject> items;
@@ -26,4 +26,4 @@ class gameFrame: public abstractObject {
 		/* data */
 };
 
-#endif
+#endif /* #ifndef _GAMEFRAME_H_ */

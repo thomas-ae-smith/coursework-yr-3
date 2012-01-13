@@ -1,3 +1,5 @@
+// This is terrible code, largely hacekd together from various bits of my CW1
+
 #include "TODOsphere.h"
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>

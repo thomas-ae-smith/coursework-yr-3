@@ -3,16 +3,18 @@ All objects can refer to their parent.
 All objects can update internal stat based on elapsed time,
  render, and optionally show/report debug information
 */
-
-#ifndef ABSTRACTOBJECT_H
-#define ABSTRACTOBJECT_H
+// Protection against multiple definitions
+#ifndef _ABSTRACTOBJECT_H_
+#define _ABSTRACTOBJECT_H_
 
 class abstractObject {
 	protected:
 		abstractObject* parent;
 
 	public:
+		// Using inline syntax to define simple constructor
 		abstractObject(abstractObject* parent) {this->parent = parent;};
+		// Virtual functions will all be overridden
 		virtual void update(double t);
 		virtual void render();
 		virtual void debug();
@@ -20,4 +22,4 @@ class abstractObject {
 		
 };
 
-#endif //ABSTRACTOBJECT_H
+#endif /* #ifndef _ABSTRACTOBJECT_H) */

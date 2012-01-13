@@ -1,3 +1,1 @@
-/* inherits GameObj
-*/
-
+// Not yet implemented
