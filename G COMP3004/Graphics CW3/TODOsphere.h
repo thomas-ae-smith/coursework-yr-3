@@ -18,6 +18,9 @@ class TODOsphere: public gameObject
         static GLuint wireshader;
         typedef union { GLdouble pos[3]; struct { GLdouble x; GLdouble y; GLdouble z; }; } vertex;
         vertex* sphere;
+        
+        static GLfloat viewerPosition[3];
+        static GLfloat reflectance[3];
 	
 	public:
 		TODOsphere();

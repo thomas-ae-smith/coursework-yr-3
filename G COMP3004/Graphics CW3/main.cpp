@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <GL/glew.h>
 #include <GL/glfw.h>
+#include "GameFrame.h"
 #include "Utils.h"
 
 void init();
@@ -27,11 +28,12 @@ void init() {
 }
 
 void drawLoop() {
+    gameFrame *game = new gameFrame();
     int quit = false;
     double tick, lasttick;		//TODO I don't like this nomenclature
     while (!quit) {
         tick = glfwGetTime();
-
+        game->render();
         glfwSwapBuffers();
         quit = glfwGetKey( GLFW_KEY_ESC ) || glfwGetKey('Q') || glfwGetKey('q') || !glfwGetWindowParam( GLFW_OPENED );
         lasttick = tick;
