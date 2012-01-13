@@ -120,6 +120,11 @@ reflectance = {  0.1f, 0.4f, 6.0f };
 	MVP = Projection * View * Model;
 }
 
+TODOsphere::~TODOsphere() {
+	printf("Deleted a TODOsphere.\n");
+	delete sphere;
+}
+
 void TODOsphere::update(double t) {};
 
 void TODOsphere::render() {

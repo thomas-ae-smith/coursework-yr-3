@@ -40,6 +40,7 @@ void drawLoop() {
 		quit = glfwGetKey( GLFW_KEY_ESC ) || glfwGetKey('Q') || glfwGetKey('q') || !glfwGetWindowParam( GLFW_OPENED );
 		lasttick = tick;
 	}
+	delete game;
 }
 
 void shutdown(int exit_status) {
