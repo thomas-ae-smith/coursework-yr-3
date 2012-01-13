@@ -14,7 +14,8 @@ class gameFrame: public abstractObject {
 
 	private:
 		vector<abstractObject> items;
-		TODOsphere *blob;
+		TODOsphere *adam;
+		TODOsphere *bob;
 
 	public:
 		gameFrame();

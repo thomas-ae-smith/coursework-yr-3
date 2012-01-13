@@ -3,7 +3,8 @@
 #include "TODOsphere.h"
 
 gameFrame::gameFrame() {
-	blob = new TODOsphere();
+	adam = new TODOsphere(-1.f);
+	bob = new TODOsphere(0.5f);
 }
 
 gameFrame::~gameFrame() {}
@@ -13,5 +14,6 @@ void gameFrame::update(double t) {
 }
 
 void gameFrame::render() {
-	blob->render();
+	adam->render();
+	bob->render();
 }

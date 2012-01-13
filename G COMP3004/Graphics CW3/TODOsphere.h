@@ -9,21 +9,21 @@ class TODOsphere: public gameObject
 {
 
 	protected:
-        static GLuint vertexshader, fragmentshader;
-        static GLfloat drawColour[3];
-        static glm::mat4 MVP;
+        GLuint vertexshader, fragmentshader;
+        GLfloat drawColour[3];
+        glm::mat4 MVP;
         GLuint shaderprogram;
-        static GLuint vbo[1];
+        GLuint vbo[1];
 
-        static GLuint wireshader;
+        GLuint wireshader;
         typedef union { GLdouble pos[3]; struct { GLdouble x; GLdouble y; GLdouble z; }; } vertex;
         vertex* sphere;
-        
-        static GLfloat viewerPosition[3];
-        static GLfloat reflectance[3];
+
+    	GLfloat viewerPosition[3];
+        GLfloat reflectance[3];
 	
 	public:
-		TODOsphere();
+		TODOsphere(float offset);
 		~TODOsphere() {delete sphere;};
 		void update(double t);
 		void render();
