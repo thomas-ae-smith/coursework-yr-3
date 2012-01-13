@@ -2,13 +2,15 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
+#include <stdio.h>
 
 #include "Utils.h"
 GLuint TODOsphere::vertexshader, TODOsphere::fragmentshader;
 GLfloat TODOsphere::drawColour[3] = {  1.0f, 1.0f, 1.0f };
 glm::mat4 TODOsphere::MVP;
 GLuint TODOsphere::vbo[1];
-
+GLfloat TODOsphere::viewerPosition[3] = {  0.0f, 0.0f, -1.0f };
+GLfloat TODOsphere::reflectance[3] = {  0.1f, 0.4f, 6.0f };
 GLuint TODOsphere::wireshader;
 
 TODOsphere::TODOsphere() {
@@ -17,15 +19,15 @@ TODOsphere::TODOsphere() {
    // DrawStyles::setupShaders(); //create a new shaderprogram and attach the first two shaders
    //create the first two shaders if they do not already exist
     //if (!vertexshader) {
-        //printf("Create vertex shader\n");
-        const GLchar *vertexsource = filetobuf("base.vert");
+        printf("Create vertex shader\n");
+        const GLchar *vertexsource = filetobuf("shaded.vert");
         vertexshader = glCreateShader(GL_VERTEX_SHADER);
         glShaderSource(vertexshader, 1, (const GLchar**)&vertexsource, 0);
         glCompileShader(vertexshader);
     //} else { printf("Vertex shader already exists\n"); }
     //if (!fragmentshader) {
-        //printf("Create fragment shader\n");
-        const GLchar* fragmentsource = filetobuf("base.frag");
+        printf("Create fragment shader\n");
+        const GLchar* fragmentsource = filetobuf("shaded.frag");
         fragmentshader = glCreateShader(GL_FRAGMENT_SHADER);
         glShaderSource(fragmentshader, 1, (const GLchar**)&fragmentsource, 0);
         glCompileShader(fragmentshader);
@@ -37,13 +39,13 @@ TODOsphere::TODOsphere() {
     glBindAttribLocation(shaderprogram, 0, "in_Position");
     glUniform3fv(glGetUniformLocation(shaderprogram, "in_Colour"), 1, drawColour);
     //if (!vbo[0]) {
-        //printf("Create vertex buffer object\n");
+        printf("Create vertex buffer object\n");
         glGenBuffers(1, vbo);
         glBindBuffer(GL_ARRAY_BUFFER, vbo[0]);
     //} else { printf("Vertex buffer object already exists\n"); }
     //if (!wireshader) {
-//        printf("Create wireframe geometry shader\n");
-        const GLchar* wiresource = filetobuf("sphere_wireframe.geom");
+        printf("Create wireframe geometry shader\n");
+        const GLchar* wiresource = filetobuf("sphere_shaded.geom");
         wireshader = glCreateShader(GL_GEOMETRY_SHADER);
         glShaderSource(wireshader, 1, (const GLchar**)&wiresource, 0);
         glCompileShader(wireshader);
@@ -54,6 +56,8 @@ TODOsphere::TODOsphere() {
     glUseProgram(shaderprogram);
     glUniform3fv(glGetUniformLocation(shaderprogram, "in_Colour"), 1, drawColour);
 
+        glUniform3fv(glGetUniformLocation(shaderprogram, "viewer"), 1, viewerPosition);
+    glUniform3fv(glGetUniformLocation(shaderprogram, "K"), 1, reflectance);
 
 //setupgeometry
 	int spherevertexes = divisions * divisions;
@@ -104,7 +108,7 @@ TODOsphere::TODOsphere() {
             v_num++;
             circ_arc+=arc;
         }
-        //printf("vertexes count: %d\n", v_num);
+        printf("vertexes count: %d\n", v_num);
     }
 
 
@@ -126,6 +130,7 @@ TODOsphere::TODOsphere() {
     glm::mat4 View = glm::mat4(1.);
     View = glm::translate(View, glm::vec3(0.f, 0.f, -5.0f));
     glm::mat4 Model = glm::mat4(1.0);
+    Model = glm::translate(Model, glm::vec3(0.f, -1.f, 0.f));
     MVP = Projection * View * Model;
 }
 
