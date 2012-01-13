@@ -5,15 +5,18 @@
 #include <stdio.h>
 
 #include "Utils.h"
-GLuint TODOsphere::vertexshader, TODOsphere::fragmentshader;
-GLfloat TODOsphere::drawColour[3] = {  1.0f, 1.0f, 1.0f };
-glm::mat4 TODOsphere::MVP;
-GLuint TODOsphere::vbo[1];
-GLfloat TODOsphere::viewerPosition[3] = {  0.0f, 0.0f, -1.0f };
-GLfloat TODOsphere::reflectance[3] = {  0.1f, 0.4f, 6.0f };
-GLuint TODOsphere::wireshader;
+TODOsphere::TODOsphere(float offset) {
+// GLuint TODOsphere::vertexshader, TODOsphere::fragmentshader;
+// GLfloat TODOsphere::drawColour[3] = {  1.0f, 1.0f, 1.0f };
+drawColour = {  1.0f, 1.0f, 1.0f };
+// glm::mat4 TODOsphere::MVP;
+// GLuint TODOsphere::vbo[1];
+// GLfloat TODOsphere::viewerPosition[3] = {  0.0f, 0.0f, -1.0f };
+// GLfloat TODOsphere::reflectance[3] = {  0.1f, 0.4f, 6.0f };
+viewerPosition = {  0.0f, 0.0f, -1.0f };
+reflectance = {  0.1f, 0.4f, 6.0f };
+// GLuint TODOsphere::wireshader;
 
-TODOsphere::TODOsphere() {
 	int divisions = 12;
 //setupshaders
    // DrawStyles::setupShaders(); //create a new shaderprogram and attach the first two shaders
@@ -130,7 +133,7 @@ TODOsphere::TODOsphere() {
     glm::mat4 View = glm::mat4(1.);
     View = glm::translate(View, glm::vec3(0.f, 0.f, -5.0f));
     glm::mat4 Model = glm::mat4(1.0);
-    Model = glm::translate(Model, glm::vec3(0.f, -1.f, 0.f));
+    Model = glm::translate(Model, glm::vec3(offset, 0.f, 0.f));
     MVP = Projection * View * Model;
 }
 
@@ -141,6 +144,6 @@ void TODOsphere::render() {
     //MVP = glm::rotate(MVP, (float)delta * -10.0f, glm::vec3(1.f, 0.f, 0.f));
 
     glUniformMatrix4fv(glGetUniformLocation(shaderprogram, "mvpmatrix"), 1, GL_FALSE, glm::value_ptr(MVP));
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+   // glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glDrawArrays(GL_TRIANGLE_STRIP, 0, (144));
  }

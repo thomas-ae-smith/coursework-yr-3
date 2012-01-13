@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <GL/glew.h>
 #include <GL/glfw.h>
+#include "shaderManager.h"
 #include "GameFrame.h"
 #include "Utils.h"
 
@@ -41,6 +42,7 @@ void drawLoop() {
 }
 
 void shutdown(int exit_status) {
+    if (shaderManager::get()) delete shaderManager::get();
     glfwTerminate();
     exit(exit_status);
 }

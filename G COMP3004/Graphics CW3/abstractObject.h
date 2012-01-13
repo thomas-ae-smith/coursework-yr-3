@@ -15,6 +15,7 @@ class abstractObject {
 	public:
 		virtual void update(double t);
 		virtual void render();
+		virtual void debug();
 		virtual ~abstractObject();
 		
 };
