@@ -8,11 +8,13 @@
 #include "GameFrame.h"
 #include "Utils.h"
 
+// Forward declarations
 void init();
 void drawLoop();
 void shutdown(int exit_status);
 int main(int argc, char const *argv[]);
 
+// Set everything up
 void init() {
 	if( !glfwInit() ) {
 		shutdown( EXIT_FAILURE );
@@ -24,14 +26,13 @@ void init() {
 	glfwSetWindowTitle("taes1g09 - COMP3004 C/W 3");
 	glewInit();
 	glEnable(GL_DEPTH_TEST);
-	//glClearColor(0.0, 0.0, 0.0, 1.0);
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);//one of these is redundant TODO
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
 
 void drawLoop() {
 	gameFrame *game = new gameFrame(NULL);
 	int quit = false;
-	double tick, lasttick;		//TODO I don't like this nomenclature
+	double tick, lasttick;
 	while (!quit) {
 		tick = glfwGetTime();
 		game->render();

@@ -1,12 +1,21 @@
-/* inherits UIFrame
-*/
-#include "AbstractObject.h"
+/* inherits abstractObject*/
+#ifndef _UIFRAME_H_
+#define _UIFRAME_H_
 
-class UIFrame : public abstractObject
-{
-public:
-	UIFrame(arguments);
-	~UIFrame();
+#include <vector>
+#include "abstractObject.h"
 
-	/* data */
+
+#include "TODOsphere.h"
+
+using namespace std;
+
+class UIFrame: public abstractObject {
+
+	public:
+		UIFrame(abstractObject* parent) : abstractObject(parent) {};
+		~UIFrame() {};
+
 };
+
+#endif /* #ifndef _UIFRAME_H_ */

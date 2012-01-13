@@ -1,13 +1,17 @@
-/* inherits UIFrame*/
+/* inherits UIFrame */
 #include "GameFrame.h"
 #include "TODOsphere.h"
 
-gameFrame::gameFrame(abstractObject* parent) : abstractObject(parent) {
+gameFrame::gameFrame(abstractObject* parent) : UIFrame(parent) {
+	// Testing objects
 	adam = new TODOsphere(this, -1.f);
 	bob = new TODOsphere(this, 0.5f);
 }
 
-gameFrame::~gameFrame() {}
+gameFrame::~gameFrame() {
+	if (adam) delete adam;
+	if (bob) delete bob;
+}
 
 void gameFrame::update(double t) {
 	

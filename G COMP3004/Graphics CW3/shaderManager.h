@@ -1,5 +1,5 @@
-#ifndef SHADERMANAGER_H
-#define SHADERMANAGER_H
+#ifndef _SHADERMANAGER_H_
+#define _SHADERMANAGER_H_
 
 #include <GL/glew.h>
 #include <vector>
@@ -21,7 +21,6 @@ class shaderManager: abstractObject
 		GLuint getShader(const char* vert, const char* frag, const char* geom);
 		~shaderManager();
 
-		/* data */
 };
 
-#endif //SHADERMANAGER_H
+#endif /* #ifndef _SHADERMANAGER_H_ */

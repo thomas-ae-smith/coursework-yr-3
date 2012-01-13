@@ -1,4 +1,4 @@
-/* temp sphere */
+/* temp sphere, terrible code*/
 #ifndef SPHERE_H
 #define SPHERE_H value
 
