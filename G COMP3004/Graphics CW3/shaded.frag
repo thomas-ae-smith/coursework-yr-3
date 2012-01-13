@@ -16,6 +16,6 @@ float specular() {
 }
 
 void main(void) {
-     gl_FragColor = vec4(ex_Color + in_Colour * specular(),1.0);
-     //gl_FragColor = vec4(normalize(normal), 1.0);
+	 gl_FragColor = vec4(ex_Color + in_Colour * specular(),1.0);
+	 //gl_FragColor = vec4(normalize(normal), 1.0);
 }

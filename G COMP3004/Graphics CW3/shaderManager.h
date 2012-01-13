@@ -14,7 +14,7 @@ class shaderManager: abstractObject
 		static shaderManager *manager;
 		vector<const char*> names;
 		vector<GLuint> shaders;
-		shaderManager();
+		shaderManager(abstractObject* parent);
 		
 	public:
 		static shaderManager* get();
