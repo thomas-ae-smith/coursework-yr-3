@@ -24,7 +24,7 @@ class TODOsphere: public gameObject
 	
 	public:
 		TODOsphere(abstractObject* parent, float offset);
-		~TODOsphere() {delete sphere;};
+		~TODOsphere();
 		void update(double t);
 		void render();
 

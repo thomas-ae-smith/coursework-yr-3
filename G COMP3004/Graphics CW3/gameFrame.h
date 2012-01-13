@@ -17,6 +17,10 @@ class gameFrame: public UIFrame {
 		TODOsphere *adam;
 		TODOsphere *bob;
 
+		void render_item(abstractObject item) {item.render();};
+		void update_item(abstractObject item){};
+		void debug_item(abstractObject item){};
+
 	public:
 		gameFrame(abstractObject* parent);
 		~gameFrame();
