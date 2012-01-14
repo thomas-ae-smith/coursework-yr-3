@@ -22,9 +22,9 @@ class TODOsphere: public gameObject
 		GLfloat reflectance[3];
 	
 	public:
-		TODOsphere(abstractObject* parent, float offset);
+		TODOsphere(abstractObject* parent, float init);
 		~TODOsphere();
-		void update(double t);
+		void update(double delta);
 		void render();
 
 		/* data */

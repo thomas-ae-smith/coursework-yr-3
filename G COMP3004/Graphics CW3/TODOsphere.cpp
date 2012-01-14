@@ -7,7 +7,7 @@
 #include <stdio.h>
 
 
-TODOsphere::TODOsphere(abstractObject* parent, float offset) : gameObject(parent) {
+TODOsphere::TODOsphere(abstractObject* parent, float init) : gameObject(parent) {
 // GLuint TODOsphere::vertexshader, TODOsphere::fragmentshader;
 // GLfloat TODOsphere::drawColour[3] = {  1.0f, 1.0f, 1.0f };
 drawColour = {  1.0f, 1.0f, 1.0f };
@@ -24,7 +24,7 @@ reflectance = {  0.1f, 0.4f, 6.0f };
 	// DrawStyles::setupShaders(); //create a new shaderprogram and attach the first two shaders
 	//create the first two shaders if they do not already exist
 	//if (!vertexshader) {
-	if (offset > 0) {
+	if (init > 0) {
 		shaderprogram = shaders->getShader("shaded.vert", "shaded.frag", "sphere_shaded.geom");
 	} else {
 		shaderprogram = shaders->getShader("base.vert", "base.frag", "sphere_wireframe.geom");        
@@ -115,16 +115,16 @@ reflectance = {  0.1f, 0.4f, 6.0f };
 	// glm::mat4 Projection = glm::perspective(45.0f, 1.0f, 0.1f, 100.0f);
 	// glm::mat4 View = glm::mat4(1.);
 	// View = glm::translate(View, glm::vec3(0.f, 0.f, -5.0f));
-	if (offset == 0) m.size = 0.75f;
+	if (init == 0) m.size = 0.75f;
 	else m.size = 1.f;
-	m.orbit = offset;
+	m.orbit = init;
 	// M = glm::mat4(1.0);
-	// M = glm::translate(M, glm::vec3(offset, 0.f, 0.f));
+	// M = glm::translate(M, glm::vec3(init, 0.f, 0.f));
 
 	// v = glm::mat4(1.0);
-	// v = glm::translate(v, glm::vec3(-offset*0.01, 0.f, 0.f));
-	v.angle = -offset*10.f;
-	v.rot = offset*5.f;
+	// v = glm::translate(v, glm::vec3(-init*0.01, 0.f, 0.f));
+	v.angle = -init*10.f;
+	v.rot = init*5.f;
 
 	// MVP = Projection * View * Model;
 	printf("Created a TODOsphere.\n");
@@ -157,8 +157,9 @@ void TODOsphere::update(double delta) {
 	M = glm::rotate(M, m.angle, glm::vec3(0.f, 0.f, 1.f));
 	M = glm::translate(M, glm::vec3(m.orbit, 0.f, 0.f));
 	M = glm::rotate(M, -m.angle, glm::vec3(0.f, 0.f, 1.f));
+	print(M);
 	M = glm::rotate(M, m.inc, glm::vec3(1.f, 0.f, 0.f));
-	M = glm::rotate(M, m.rot, glm::vec3(0.f, 0.f, 1.f));
+	// M = glm::rotate(M, m.rot, glm::vec3(0.f, 0.f, 1.f));
 //	M = glm::scale(M, glm::vec3(m.size));
 
 	// M = glm::translate(M, glm::vec3((float)(v*delta)[0][3], 0.f, 0.f));
@@ -170,7 +171,12 @@ void TODOsphere::update(double delta) {
 void TODOsphere::render() {
 	//rotate around the model based on delta-time
 	//MVP = glm::rotate(MVP, (float)delta * -10.0f, glm::vec3(1.f, 0.f, 0.f));
-	glm::mat4 MVP = *VP * M;
+	R = glm::mat4(1.f);
+	R = glm::rotate(R, m.rot, glm::vec3(0.f, 0.f, 1.f));
+	R = glm::scale(R, glm::vec3(m.size));
+	// M = glm::rotate(M, m.rot, glm::vec3(0.f, 0.f, 1.f));
+	// M = glm::scale(M, glm::vec3(m.size));
+	glm::mat4 MVP = *VP * M * R;
 	glUseProgram(shaderprogram);
 	glUniformMatrix4fv(glGetUniformLocation(shaderprogram, "mvpmatrix"), 1, GL_FALSE, glm::value_ptr(MVP));
 	// glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
