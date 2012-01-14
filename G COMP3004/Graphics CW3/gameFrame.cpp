@@ -11,6 +11,8 @@
 gameFrame::gameFrame(abstractObject* parent) : UIFrame(parent) {
 	// Testing objects
 	TODOsphere* sun = new TODOsphere(this, 0.f);
+	// camera = new camera(sun);
+	// items.push_back(camera);
 	items.push_back(sun);
 	items.push_back(new TODOsphere(sun, 2.5f));
 	TODOsphere* earth = new TODOsphere(sun, 4.4f);
