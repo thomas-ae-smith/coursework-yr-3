@@ -21,7 +21,7 @@ shaderManager::~shaderManager() {
 
 GLuint shaderManager::getShader(const char* vert, const char* frag, const char* geom){
 // Unfinished code
-	string shadername = string(vert).push_back('-').append(frag).push_back('-').append(geom);
+	string shadername = string(vert).append("-").append(frag).append("-").append(geom);
 	for (vector<string>::iterator name = names.begin();
                            name != names.end();
                            ++name) {

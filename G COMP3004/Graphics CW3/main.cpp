@@ -35,9 +35,11 @@ void drawLoop() {
 	double tick, lasttick;
 	while (!quit) {
 		tick = glfwGetTime();
+		game->update(tick-lasttick);
 		game->render();
 		glfwSwapBuffers();
 		quit = glfwGetKey( GLFW_KEY_ESC ) || glfwGetKey('Q') || glfwGetKey('q') || !glfwGetWindowParam( GLFW_OPENED );
+		printf("%f FPS\n", 1/(tick-lasttick));
 		lasttick = tick;
 	}
 	delete game;

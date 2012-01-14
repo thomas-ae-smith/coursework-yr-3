@@ -11,7 +11,6 @@ class TODOsphere: public gameObject
 	protected:
 		GLuint vertexshader, fragmentshader;
 		GLfloat drawColour[3];
-		glm::mat4 MVP;
 		GLuint shaderprogram;
 		GLuint vbo[1];
 

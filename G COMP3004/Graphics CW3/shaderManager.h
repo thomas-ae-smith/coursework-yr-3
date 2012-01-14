@@ -22,6 +22,8 @@ class shaderManager: abstractObject
 		GLuint getShader(const char* vert, const char* frag, const char* geom);
 		~shaderManager();
 		void update(double delta) {};
+		void render() {};
+		void debug() {};
 
 };
 

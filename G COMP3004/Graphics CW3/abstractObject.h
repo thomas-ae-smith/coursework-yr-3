@@ -15,10 +15,10 @@ class abstractObject {
 		// Using inline syntax to define simple constructor
 		abstractObject(abstractObject* parent) {this->parent = parent;};
 		// Virtual functions will all be overridden
-		virtual void update(double t) = 0;
-		virtual void render();
-		virtual void debug();
-		virtual ~abstractObject();
+		virtual void update(double delta) = 0;
+		virtual void render() = 0;
+		virtual void debug() = 0;
+		virtual ~abstractObject() {};
 		
 };
 
