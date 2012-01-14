@@ -23,9 +23,9 @@ class TODOsphere: public gameObject
 	
 	public:
 		TODOsphere(abstractObject* parent, float init);
-		~TODOsphere();
-		void update(double delta);
-		void render();
+		virtual ~TODOsphere();
+		virtual void update(double delta);
+		virtual void render();
 
 		/* data */
 };

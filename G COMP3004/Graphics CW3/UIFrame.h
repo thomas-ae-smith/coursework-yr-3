@@ -14,7 +14,7 @@ class UIFrame: public abstractObject {
 
 	public:
 		UIFrame(abstractObject* parent) : abstractObject(parent) {};
-		~UIFrame() {};
+		virtual ~UIFrame();
 
 };
 

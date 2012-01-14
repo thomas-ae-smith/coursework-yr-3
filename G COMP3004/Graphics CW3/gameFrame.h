@@ -5,7 +5,7 @@
 #include <vector>
 #include "UIFrame.h"
 
-
+#include "camera.h"
 #include "TODOsphere.h"
 
 using namespace std;
@@ -14,15 +14,15 @@ class gameFrame: public UIFrame {
 
 	private:
 		vector<abstractObject*> items;
-		//camera* camera;
-		glm::mat4 VP;
+		glm::mat4 VP, V;
+		camera* cam;
 
 	public:
 		gameFrame(abstractObject* parent);
-		~gameFrame();
-		void update(double delta);
-		void render();
-		void debug() {};
+		virtual ~gameFrame();
+		virtual void update(double delta);
+		virtual void render();
+		virtual void debug() {};
 
 		/* data */
 };

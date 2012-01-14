@@ -1,4 +1,4 @@
-CFLAGS=-I/usr/cslib/include
+CFLAGS=-I/usr/cslib/include -Wall -g
 LDFLAGS=-L/usr/cslib/lib -lglfw -lGL -lXrandr -lGLEW
 
 all: *.cpp 
