@@ -1,15 +1,16 @@
-#ifndef _CAMERA_H_
-#define _CAMERA_H_ 
+// #ifndef _CAMERA_H_
+// #define _CAMERA_H_ 
 
-#include "gameObject.h"
+// #include "gameObject.h"
 
-class camera : public gameObject
-{
+// class camera : //public gameObject FIXME
+// {
+// 	protected:
 
-	public:
-		camera();
-		~camera();
+// 	public:
+// 		camera(abstractObject* parent);
+// 		~camera();
 
-		/* data */
-};
-#endif /* #ifndef _CAMERA_H_ */
+// 		/* data */
+// };
+// #endif /* #ifndef _CAMERA_H_ */

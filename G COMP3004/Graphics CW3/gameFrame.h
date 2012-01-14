@@ -15,6 +15,7 @@ class gameFrame: public UIFrame {
 	private:
 		vector<abstractObject*> items;
 		//camera* camera;
+		glm::mat4 VP;
 
 	public:
 		gameFrame(abstractObject* parent);
