@@ -13,13 +13,7 @@ using namespace std;
 class gameFrame: public UIFrame {
 
 	private:
-		vector<abstractObject> items;
-		TODOsphere *adam;
-		TODOsphere *bob;
-
-		void render_item(abstractObject item) {item.render();};
-		void update_item(abstractObject item){};
-		void debug_item(abstractObject item){};
+		vector<abstractObject*> items;
 
 	public:
 		gameFrame(abstractObject* parent);
