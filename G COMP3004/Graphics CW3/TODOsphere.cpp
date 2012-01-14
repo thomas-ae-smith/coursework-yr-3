@@ -159,7 +159,7 @@ void TODOsphere::update(double delta) {
 	M = glm::rotate(M, -m.angle, glm::vec3(0.f, 0.f, 1.f));
 	M = glm::rotate(M, m.inc, glm::vec3(1.f, 0.f, 0.f));
 	M = glm::rotate(M, m.rot, glm::vec3(0.f, 0.f, 1.f));
-	M = glm::scale(M, glm::vec3(m.size));
+//	M = glm::scale(M, glm::vec3(m.size));
 
 	// M = glm::translate(M, glm::vec3((float)(v*delta)[0][3], 0.f, 0.f));
 	// print(((M-v)*delta)+M);

@@ -22,7 +22,7 @@ class gameObject : public abstractObject
 	protected:
 		static shaderManager* shaders;
 		static glm::mat4* VP;
-		glm::mat4 M;
+		glm::mat4 M, R;
 		struct space_data
 		{
 			float angle;

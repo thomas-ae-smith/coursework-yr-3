@@ -14,6 +14,7 @@ class gameFrame: public UIFrame {
 
 	private:
 		vector<abstractObject*> items;
+		//camera* camera;
 
 	public:
 		gameFrame(abstractObject* parent);
