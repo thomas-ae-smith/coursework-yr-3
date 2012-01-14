@@ -10,7 +10,7 @@
 
 gameFrame::gameFrame(abstractObject* parent) : UIFrame(parent) {
 	// Testing objects
-	TODOsphere* sun = new TODOsphere(this, 0.f);
+	TODOsphere* sun = new TODOsphere(NULL, 0.f);
 	cam = new camera(sun);
 	items.push_back(cam);
 	items.push_back(sun);
@@ -38,7 +38,7 @@ void gameFrame::update(double delta) {
                            ++item) {
     	(*item)->update(delta);
     }
-    
+
 }
 
 void gameFrame::render() {

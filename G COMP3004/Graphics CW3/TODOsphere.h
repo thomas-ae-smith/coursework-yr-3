@@ -2,7 +2,8 @@
 #ifndef SPHERE_H
 #define SPHERE_H value
 
-#include "GameObject.h"
+#include "gameObject.h"
+#include "behaviours.h"
 #include <GL/glew.h>
 
 class TODOsphere: public gameObject
@@ -20,12 +21,15 @@ class TODOsphere: public gameObject
 
 		GLfloat viewerPosition[3];
 		GLfloat reflectance[3];
+		behaviour* loc;
 	
 	public:
 		TODOsphere(abstractObject* parent, float init);
 		virtual ~TODOsphere();
 		virtual void update(double delta);
 		virtual void render();
+
+		virtual glm::mat4 get_abs_loc();
 
 		/* data */
 };
