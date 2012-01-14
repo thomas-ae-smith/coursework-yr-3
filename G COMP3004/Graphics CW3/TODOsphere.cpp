@@ -24,11 +24,11 @@ reflectance = {  0.1f, 0.4f, 6.0f };
 	// DrawStyles::setupShaders(); //create a new shaderprogram and attach the first two shaders
 	//create the first two shaders if they do not already exist
 	//if (!vertexshader) {
-	if (init > 0) {
-		shaderprogram = shaders->getShader("shaded.vert", "shaded.frag", "sphere_shaded.geom");
-	} else {
+	//if (init > 0) {
+	//	shaderprogram = shaders->getShader("shaded.vert", "shaded.frag", "sphere_shaded.geom");
+	//} else {
 		shaderprogram = shaders->getShader("base.vert", "base.frag", "sphere_wireframe.geom");        
-	}
+	//}
 	
 	//if (!vbo[0]) {
 		//printf("Create vertex buffer object\n");
@@ -159,13 +159,7 @@ void TODOsphere::update(double delta) {
 	M = glm::rotate(M, -m.angle, glm::vec3(0.f, 0.f, 1.f));
 	print(M);
 	M = glm::rotate(M, m.inc, glm::vec3(1.f, 0.f, 0.f));
-	// M = glm::rotate(M, m.rot, glm::vec3(0.f, 0.f, 1.f));
-//	M = glm::scale(M, glm::vec3(m.size));
-
-	// M = glm::translate(M, glm::vec3((float)(v*delta)[0][3], 0.f, 0.f));
-	// print(((M-v)*delta)+M);
-	//printf("%f\n",(float)(v*delta)[0][3]);
-	// M = (((M-v)*delta)+M); 
+	
 };
 
 void TODOsphere::render() {
@@ -173,12 +167,9 @@ void TODOsphere::render() {
 	//MVP = glm::rotate(MVP, (float)delta * -10.0f, glm::vec3(1.f, 0.f, 0.f));
 	R = glm::mat4(1.f);
 	R = glm::rotate(R, m.rot, glm::vec3(0.f, 0.f, 1.f));
-	R = glm::scale(R, glm::vec3(m.size));
-	// M = glm::rotate(M, m.rot, glm::vec3(0.f, 0.f, 1.f));
-	// M = glm::scale(M, glm::vec3(m.size));
+	R = glm::scale(R, glm::vec3(1.f,1.f,0.02f*m.size));
 	glm::mat4 MVP = *VP * M * R;
 	glUseProgram(shaderprogram);
 	glUniformMatrix4fv(glGetUniformLocation(shaderprogram, "mvpmatrix"), 1, GL_FALSE, glm::value_ptr(MVP));
-	// glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glDrawArrays(GL_TRIANGLE_STRIP, 0, (144));
  }

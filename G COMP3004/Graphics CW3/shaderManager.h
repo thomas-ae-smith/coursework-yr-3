@@ -20,10 +20,10 @@ class shaderManager: abstractObject
 	public:
 		static shaderManager* get();
 		GLuint getShader(const char* vert, const char* frag, const char* geom);
-		~shaderManager();
-		void update(double delta) {};
-		void render() {};
-		void debug() {};
+		virtual ~shaderManager();
+		virtual void update(double delta) {};
+		virtual void render() {};
+		virtual void debug() {};
 
 };
 
