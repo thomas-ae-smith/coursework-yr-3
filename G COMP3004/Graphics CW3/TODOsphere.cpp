@@ -31,7 +31,7 @@ reflectance = {  0.1f, 0.4f, 6.0f };
 	}
 	
 	//if (!vbo[0]) {
-		printf("Create vertex buffer object\n");
+		//printf("Create vertex buffer object\n");
 		glGenBuffers(1, vbo);
 		glBindBuffer(GL_ARRAY_BUFFER, vbo[0]);
 	//} else { printf("Vertex buffer object already exists\n"); }
@@ -94,7 +94,7 @@ reflectance = {  0.1f, 0.4f, 6.0f };
 			v_num++;
 			circ_arc+=arc;
 		}
-		printf("vertexes count: %d\n", v_num);
+		// printf("vertexes count: %d\n", v_num);
 	}
 
 
@@ -118,6 +118,7 @@ reflectance = {  0.1f, 0.4f, 6.0f };
 	glm::mat4 Model = glm::mat4(1.0);
 	Model = glm::translate(Model, glm::vec3(offset, 0.f, 0.f));
 	MVP = Projection * View * Model;
+	printf("Created a TODOsphere.\n");
 }
 
 TODOsphere::~TODOsphere() {

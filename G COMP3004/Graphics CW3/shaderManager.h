@@ -3,6 +3,7 @@
 
 #include <GL/glew.h>
 #include <vector>
+#include <string>
 
 #include "abstractObject.h"
 
@@ -12,7 +13,7 @@ class shaderManager: abstractObject
 {
 	private:
 		static shaderManager *manager;
-		vector<const char*> names;
+		vector<string> names;
 		vector<GLuint> shaders;
 		shaderManager(abstractObject* parent);
 		
@@ -20,6 +21,7 @@ class shaderManager: abstractObject
 		static shaderManager* get();
 		GLuint getShader(const char* vert, const char* frag, const char* geom);
 		~shaderManager();
+		void update(double delta) {};
 
 };
 
