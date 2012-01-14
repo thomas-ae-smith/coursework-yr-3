@@ -1,6 +1,7 @@
 // This is terrible code, largely hacekd together from various bits of my CW1
 
 #include "TODOsphere.h"
+#include "behaviours.h"
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
@@ -117,13 +118,8 @@ reflectance = {  0.1f, 0.4f, 6.0f };
 	// View = glm::translate(View, glm::vec3(0.f, 0.f, -5.0f));
 	if (init == 0) m.size = 0.75f;
 	else m.size = 1.f;
-	m.orbit = init;
-	// M = glm::mat4(1.0);
-	// M = glm::translate(M, glm::vec3(init, 0.f, 0.f));
-
-	// v = glm::mat4(1.0);
-	// v = glm::translate(v, glm::vec3(-init*0.01, 0.f, 0.f));
-	v.angle = -init*10.f;
+	
+	loc = new orbitBehaviour(this, (gameObject*)parent, 0.f, init, -init*10.f);
 	v.rot = init*5.f;
 
 	// MVP = Projection * View * Model;
@@ -148,23 +144,17 @@ void print(glm::mat4 p){
 		printf("\n");
 }
 void TODOsphere::update(double delta) { 
-	// m.orbit += v.orbit * delta;
-	m.angle += v.angle * delta;
+	loc->update(delta);
 	m.rot += v.rot * delta;
 	//printf("%f\n", m.orbit);
-	if (m.orbit == 0.f) M = glm::mat4(1.0);
-	else M = ((gameObject*)parent)->get_abs_loc();
-	M = glm::rotate(M, m.angle, glm::vec3(0.f, 0.f, 1.f));
-	M = glm::translate(M, glm::vec3(m.orbit, 0.f, 0.f));
-	M = glm::rotate(M, -m.angle, glm::vec3(0.f, 0.f, 1.f));
-	print(M);
-	M = glm::rotate(M, m.inc, glm::vec3(1.f, 0.f, 0.f));
+	// TODO M = glm::rotate(M, m.inc, glm::vec3(1.f, 0.f, 0.f));
 	
 };
 
 void TODOsphere::render() {
 	//rotate around the model based on delta-time
 	//MVP = glm::rotate(MVP, (float)delta * -10.0f, glm::vec3(1.f, 0.f, 0.f));
+	M = get_abs_loc(); //HACK
 	R = glm::mat4(1.f);
 	R = glm::rotate(R, m.rot, glm::vec3(0.f, 0.f, 1.f));
 	R = glm::scale(R, glm::vec3(1.f,1.f,0.02f*m.size));
@@ -172,4 +162,9 @@ void TODOsphere::render() {
 	glUseProgram(shaderprogram);
 	glUniformMatrix4fv(glGetUniformLocation(shaderprogram, "mvpmatrix"), 1, GL_FALSE, glm::value_ptr(MVP));
 	glDrawArrays(GL_TRIANGLE_STRIP, 0, (144));
- }
+}
+
+
+glm::mat4 TODOsphere::get_abs_loc() { 
+	return loc->get_abs_loc();
+}
