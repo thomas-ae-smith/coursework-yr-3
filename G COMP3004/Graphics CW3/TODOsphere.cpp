@@ -112,12 +112,21 @@ reflectance = {  0.1f, 0.4f, 6.0f };
 
 
 	// void DrawStyles::setupCamera() {
-	glm::mat4 Projection = glm::perspective(45.0f, 1.0f, 0.1f, 100.0f);
-	glm::mat4 View = glm::mat4(1.);
-	View = glm::translate(View, glm::vec3(0.f, 0.f, -5.0f));
-	glm::mat4 Model = glm::mat4(1.0);
-	Model = glm::translate(Model, glm::vec3(offset, 0.f, 0.f));
-	MVP = Projection * View * Model;
+	// glm::mat4 Projection = glm::perspective(45.0f, 1.0f, 0.1f, 100.0f);
+	// glm::mat4 View = glm::mat4(1.);
+	// View = glm::translate(View, glm::vec3(0.f, 0.f, -5.0f));
+	if (offset == 0) m.size = 0.75f;
+	else m.size = 1.f;
+	m.orbit = offset;
+	// M = glm::mat4(1.0);
+	// M = glm::translate(M, glm::vec3(offset, 0.f, 0.f));
+
+	// v = glm::mat4(1.0);
+	// v = glm::translate(v, glm::vec3(-offset*0.01, 0.f, 0.f));
+	v.angle = -offset*10.f;
+	v.rot = offset*5.f;
+
+	// MVP = Projection * View * Model;
 	printf("Created a TODOsphere.\n");
 }
 
@@ -126,11 +135,42 @@ TODOsphere::~TODOsphere() {
 	delete sphere;
 }
 
-void TODOsphere::update(double t) {};
+void print(glm::mat4 p){
+	for (int i = 0; i < 4; ++i)
+	{
+		for (int j = 0; j < 4; ++j)
+		{
+			printf("%f\t", p[i][j]);
+		}
+		printf("\n");
+	}
+		printf("\n");
+		printf("\n");
+}
+void TODOsphere::update(double delta) { 
+	// m.orbit += v.orbit * delta;
+	m.angle += v.angle * delta;
+	m.rot += v.rot * delta;
+	//printf("%f\n", m.orbit);
+	if (m.orbit == 0.f) M = glm::mat4(1.0);
+	else M = ((gameObject*)parent)->get_abs_loc();
+	M = glm::rotate(M, m.angle, glm::vec3(0.f, 0.f, 1.f));
+	M = glm::translate(M, glm::vec3(m.orbit, 0.f, 0.f));
+	M = glm::rotate(M, -m.angle, glm::vec3(0.f, 0.f, 1.f));
+	M = glm::rotate(M, m.inc, glm::vec3(1.f, 0.f, 0.f));
+	M = glm::rotate(M, m.rot, glm::vec3(0.f, 0.f, 1.f));
+	M = glm::scale(M, glm::vec3(m.size));
+
+	// M = glm::translate(M, glm::vec3((float)(v*delta)[0][3], 0.f, 0.f));
+	// print(((M-v)*delta)+M);
+	//printf("%f\n",(float)(v*delta)[0][3]);
+	// M = (((M-v)*delta)+M); 
+};
 
 void TODOsphere::render() {
 	//rotate around the model based on delta-time
 	//MVP = glm::rotate(MVP, (float)delta * -10.0f, glm::vec3(1.f, 0.f, 0.f));
+	glm::mat4 MVP = *VP * M;
 	glUseProgram(shaderprogram);
 	glUniformMatrix4fv(glGetUniformLocation(shaderprogram, "mvpmatrix"), 1, GL_FALSE, glm::value_ptr(MVP));
 	// glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);

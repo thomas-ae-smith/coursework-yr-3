@@ -18,8 +18,9 @@ class gameFrame: public UIFrame {
 	public:
 		gameFrame(abstractObject* parent);
 		~gameFrame();
-		void update(double t);
+		void update(double delta);
 		void render();
+		void debug() {};
 
 		/* data */
 };
