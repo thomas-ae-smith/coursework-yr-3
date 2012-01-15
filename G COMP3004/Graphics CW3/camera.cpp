@@ -5,8 +5,8 @@
 
 camera::camera(abstractObject* parent) : gameObject(parent) {
 	M = glm::mat4(1.);
-	M = glm::translate(M, glm::vec3(0.f, 0.f, 0.2f));
-	// loc = new moveBehaviour(this, glm::vec4(0.f, 0.f, 1.f, 1.f), 1.f);
+	M = glm::translate(M, glm::vec3(0.f, 0.f, 0.0f));
+	loc = new controlBehaviour(this, 1.f);
 	target[2] = 1.f;
 	// M = glm::lookAt(glm::vec3(0.f, -2.f, 1.0f), target.xyz, glm::vec3(0.f, 0.f, 1.f));
 	phi = 0;
@@ -14,7 +14,7 @@ camera::camera(abstractObject* parent) : gameObject(parent) {
 }
 
 void camera::update(double delta) {
-	// loc->update(delta);
+	loc->update(delta);
 	// M = loc->get_abs_loc();
 	printf("target:\t%f\t%f\t%f\t%f\n", target[0], target[1], target[2], target[3]);
 	printf("M:\t%f\t%f\t%f\t%f\n", M[3][0], M[3][1], M[3][2], M[3][3]);
