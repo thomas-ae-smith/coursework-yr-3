@@ -8,8 +8,6 @@ class camera : public gameObject
 {
 	protected:
 		behaviour* loc;
-		glm::vec4 target;
-		float phi, theta;
 
 	public:
 		camera(abstractObject* parent);
