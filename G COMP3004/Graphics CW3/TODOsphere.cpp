@@ -117,8 +117,8 @@ reflectance = {  0.1f, 0.4f, 6.0f };
 	if (init == 0) m.size = 0.75f;
 	else m.size = 1.f;
 	
-	// loc = new orbitBehaviour(this, (gameObject*)parent, 0.f, init, -init*10.f);
-	loc = new staticBehaviour(this, glm::vec3(init));
+	loc = new orbitBehaviour(this, (gameObject*)parent, 0.f, init, -init*10.f);
+	// loc = new staticBehaviour(this, glm::vec3(init));
 	v.rot = init*5.f;
 
 	// MVP = Projection * View * Model;

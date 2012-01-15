@@ -10,15 +10,15 @@
 
 gameFrame::gameFrame(abstractObject* parent) : UIFrame(parent) {
 	// Testing objects
-	TODOtri* sun = new TODOtri(NULL, 0.f);
+	staticBehaviour* sun = new staticBehaviour(NULL, glm::vec3(0.f));
 	cam = new camera(sun);
 	items.push_back(cam);
 	items.push_back(sun);
-	items.push_back(new TODOsphere(sun, 2.5f));
+	items.push_back(new planet(sun, 2.5f));
 	items.push_back(new planet(sun, 1.f));
-	TODOsphere* earth = new TODOsphere(sun, 4.4f);
+	planet* earth = new planet(sun, 4.4f);
 	items.push_back(earth);
-	TODOsphere* moon = new TODOsphere(earth, -1.5f);
+	planet* moon = new planet(earth, -1.5f);
 	items.push_back(moon);
 
 	// V = glm::mat4(1.);

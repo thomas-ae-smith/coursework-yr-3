@@ -5,7 +5,6 @@
 #include <glm/gtc/type_ptr.hpp>
 #include <stdio.h>
 
-
 TODOtri::TODOtri(abstractObject* parent, float init) : gameObject(parent) {
 // GLuint TODOtri::vertexshader, TODOtri::fragmentshader;
 // GLfloat TODOtri::drawColour[3] = {  1.0f, 1.0f, 1.0f };
@@ -26,7 +25,7 @@ reflectance = {  0.1f, 0.4f, 6.0f };
 	//if (init > 0) {
 	//	shaderprogram = shaders->getShader("shaded.vert", "shaded.frag", "tri_shaded.geom");
 	//} else {
-		shaderprogram = shaders->getShader("base.vert", "base.frag", "sphere_wireframe.geom");        
+		shaderprogram = shaders->getShader("base.vert", "base.frag", "spheresubd.geom");        
 	//}
 	
 	//if (!vbo[0]) {
@@ -45,7 +44,7 @@ reflectance = {  0.1f, 0.4f, 6.0f };
 
 //setupgeometry
 	int trivertexes = divisions * divisions;
-	tri = new vertex[trivertexes];
+	tri = new vertex[24];
 	// generatetriVertexes(divisions);
 
 
@@ -63,18 +62,35 @@ reflectance = {  0.1f, 0.4f, 6.0f };
 	GLdouble z = cos(height_arc);
 	double r = sin(height_arc);
 	// generate the first ring. These can't look back, and are each duplicated
-	for ( int i = 0; i < divisions; i++) {
+	// for ( int i = 0; i < divisions; i++) {
+	// 	tri[v_num].x = 0.0;
+	// 	tri[v_num].y = 0.0;
+	// 	tri[v_num].z = 1.0;
+	// 	v_num++;
+	// 	tri[v_num].x = 0.0;
+	// 	tri[v_num].y = 1.0;
+	// 	tri[v_num].z = 0.0;
+	// 	v_num++;
+	// 	tri[v_num].x = 1.0;
+	// 	tri[v_num].y = 0.0;
+	// 	tri[v_num].z = 0.0;
+	// 	v_num++;
+	// }
+	for (int i = 0; i < 8; i++) {
 		tri[v_num].x = 0.0;
 		tri[v_num].y = 0.0;
-		tri[v_num].z = 1.0;
+		tri[v_num].z = ((i % 2) == 0)? -1. : 1.;
+		printf("%f", tri[v_num].z);
 		v_num++;
 		tri[v_num].x = 0.0;
-		tri[v_num].y = 1.0;
+		tri[v_num].y = ((i & 0x2) == 0)? -1. : 1.;
 		tri[v_num].z = 0.0;
+		printf("%f", tri[v_num].y);
 		v_num++;
-		tri[v_num].x = 1.0;
+		tri[v_num].x = ((i & 0x4) == 0)? -1. : 1.;
 		tri[v_num].y = 0.0;
 		tri[v_num].z = 0.0;
+		printf("%f\n", tri[v_num].x);
 		v_num++;
 	}
 	
@@ -86,9 +102,9 @@ reflectance = {  0.1f, 0.4f, 6.0f };
 
 
 
-	glBufferData ( GL_ARRAY_BUFFER, trivertexes * sizeof ( vertex ), tri, GL_STATIC_DRAW );
-	glVertexAttribPointer ( ( GLuint ) 0, 3, GL_DOUBLE, GL_FALSE, sizeof ( vertex ), ( const GLvoid* ) 0 );
-	glEnableVertexAttribArray(0);
+	// glBufferData ( GL_ARRAY_BUFFER, trivertexes * sizeof ( vertex ), tri, GL_STATIC_DRAW );
+	// glVertexAttribPointer ( ( GLuint ) 0, 3, GL_DOUBLE, GL_FALSE, sizeof ( vertex ), ( const GLvoid* ) 0 );
+	// glEnableVertexAttribArray(0);
 
 
 
@@ -129,12 +145,19 @@ void TODOtri::render() {
 	R = glm::rotate(R, m.rot, glm::vec3(0.f, 0.f, 1.f));
 	//R = glm::scale(R, glm::vec3(1.f,1.f,0.02f*m.size));
 	glm::mat4 MVP = *VP * M * R;
-	glBufferData ( GL_ARRAY_BUFFER, 12 * sizeof ( vertex ), tri, GL_STATIC_DRAW );
+	glBufferData ( GL_ARRAY_BUFFER, 24 * sizeof ( vertex ), tri, GL_STATIC_DRAW );
 	glVertexAttribPointer ( ( GLuint ) 0, 3, GL_DOUBLE, GL_FALSE, sizeof ( vertex ), ( const GLvoid* ) 0 );
 	glEnableVertexAttribArray(0);
 	glUseProgram(shaderprogram);
+	// glm::vec3 colour(1.f, .5f, .15f);
+	// glUniform3fv(glGetUniformLocation(shaderprogram, "Color"), 1, (GLfloat*)&colour);
+	// glm::vec3 radius(.5f, 1.f, 5.f);
+	// glUniform3fv(glGetUniformLocation(shaderprogram, "Radius"), 1, (GLfloat*)&radius);
+	// glm::vec3 fplevel(0.f, 0.f, 10.f);
+	// glUniform3fv(glGetUniformLocation(shaderprogram, "FpLevel"), 1, (GLfloat*)&fplevel);
+
 	glUniformMatrix4fv(glGetUniformLocation(shaderprogram, "mvpmatrix"), 1, GL_FALSE, glm::value_ptr(MVP));
-	glDrawArrays(GL_TRIANGLE_STRIP, 0, 12);
+	glDrawArrays(GL_TRIANGLE_STRIP, 0, 24);
 }
 
 

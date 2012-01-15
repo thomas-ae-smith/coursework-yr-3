@@ -36,7 +36,7 @@ controlBehaviour::controlBehaviour(abstractObject* parent,
 
 	this->active = true;
 	R = glm::mat4(1.);	//R is used as actual location
-	R = glm::translate(R, glm::vec3(0.f, 0.f, 0.f));
+	R = glm::translate(R, glm::vec3(-3.f, 0.f, 0.f));
 	phi = 0;
 	theta = 1.5707963268;
 }

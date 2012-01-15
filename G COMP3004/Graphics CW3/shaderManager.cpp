@@ -62,6 +62,15 @@ GLuint shaderManager::getShader(const char* vert, const char* frag, const char* 
 	glLinkProgram(shaderprogram);
 	names.push_back( shadername );
 	shaders.push_back(shaderprogram);
+
+
+    char text[1000];
+    int length;
+
+    glGetProgramInfoLog(shaderprogram, 1000, &length, text);
+    if(length>0)
+        fprintf(stderr, "Validate Shader Program\n%s\n",text );
+	
 	printf("Added new shader: %s\tTotal stored: %d\n", names.back().c_str(), (int)(names.size()));
 	return shaderprogram;
 }
