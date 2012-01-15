@@ -8,7 +8,6 @@ model? TODO
 #ifndef _GAMEOBJECT_H_
 #define _GAMEOBJECT_H_
 
-#include <glm/glm.hpp>
 #include <stdio.h>
 #include "AbstractObject.h"
 #include "shaderManager.h"

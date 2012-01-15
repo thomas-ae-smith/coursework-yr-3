@@ -7,6 +7,10 @@ All objects can update internal stat based on elapsed time,
 #ifndef _ABSTRACTOBJECT_H_
 #define _ABSTRACTOBJECT_H_
 
+#define GLM_SWIZZLE_XYZW 
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+
 class abstractObject {
 	protected:
 		abstractObject* parent;
