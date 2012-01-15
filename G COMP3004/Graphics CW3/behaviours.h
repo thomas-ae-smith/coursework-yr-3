@@ -11,7 +11,14 @@ class behaviour : public gameObject {
 		behaviour(abstractObject* parent) : gameObject(parent) {};
 		virtual ~behaviour() {};
 		virtual void update(double delta) = 0;
-		virtual void render() = 0;
+		virtual void render() {};
+};
+
+class staticBehaviour : public behaviour {
+	public:
+		staticBehaviour(abstractObject* parent, glm::vec3 loc = glm::vec3(0.f));
+		virtual ~staticBehaviour() {};
+		virtual void update(double delta) {};
 };
 
 class orbitBehaviour : public behaviour {
@@ -29,7 +36,6 @@ class orbitBehaviour : public behaviour {
 							float omega);
 		virtual ~orbitBehaviour() {};
 		virtual void update(double delta);
-		virtual void render() {};
 };
 
 class controlBehaviour : public behaviour {
@@ -43,7 +49,6 @@ class controlBehaviour : public behaviour {
 		controlBehaviour(abstractObject* parent, float max_speed);
 		virtual ~controlBehaviour() {};
 		virtual void update(double delta);
-		virtual void render() {};
 };
 
 class moveBehaviour : public behaviour {
@@ -57,7 +62,6 @@ class moveBehaviour : public behaviour {
 							float max_speed);
 		virtual ~moveBehaviour() {};
 		virtual void update(double delta);
-		virtual void render() {};
 };
 
 #endif /* #ifndef _BEHAVIOURS_H_ */

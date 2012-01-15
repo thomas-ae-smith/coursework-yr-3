@@ -39,7 +39,7 @@ void drawLoop() {
 		game->render();
 		glfwSwapBuffers();
 		quit = glfwGetKey( GLFW_KEY_ESC ) || glfwGetKey('Q') || !glfwGetWindowParam( GLFW_OPENED );
-		printf("%f FPS\n", (tick-lasttick));
+		// printf("%f FPS\n", 1/(tick-lasttick));
 		lasttick = tick;
 	}
 	delete game;

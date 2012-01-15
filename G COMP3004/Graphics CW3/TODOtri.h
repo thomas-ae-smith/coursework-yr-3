@@ -1,31 +1,29 @@
-/* temp sphere, terrible code*/
-#ifndef SPHERE_H
-#define SPHERE_H value
+/* temp tri, terrible code*/
+#ifndef TRI_H
+#define TRI_H value
 
 #include "gameObject.h"
 #include "behaviours.h"
 #include <GL/glew.h>
 
-class TODOsphere: public gameObject
+class TODOtri: public gameObject
 {
 
 	protected:
-		GLuint vertexshader, fragmentshader;
 		GLfloat drawColour[3];
 		GLuint shaderprogram;
 		GLuint vbo[1];
 
-		GLuint wireshader;
 		typedef union { GLdouble pos[3]; struct { GLdouble x; GLdouble y; GLdouble z; }; } vertex;
-		vertex* sphere;
+		vertex* tri;
 
 		GLfloat viewerPosition[3];
 		GLfloat reflectance[3];
 		behaviour* loc;
 	
 	public:
-		TODOsphere(abstractObject* parent, float init);
-		virtual ~TODOsphere();
+		TODOtri(abstractObject* parent, float init);
+		virtual ~TODOtri();
 		virtual void update(double delta);
 		virtual void render();
 
@@ -34,4 +32,4 @@ class TODOsphere: public gameObject
 		/* data */
 };
 
-#endif //SPHERE_H
+#endif //TRI_H

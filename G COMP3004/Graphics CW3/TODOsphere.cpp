@@ -18,7 +18,7 @@ viewerPosition = {  0.0f, 0.0f, -1.0f };
 reflectance = {  0.1f, 0.4f, 6.0f };
 // GLuint TODOsphere::wireshader;
 
-	int divisions = 12;
+	int divisions = 118;
 //setupshaders
 	// DrawStyles::setupShaders(); //create a new shaderprogram and attach the first two shaders
 	//create the first two shaders if they do not already exist
@@ -103,9 +103,9 @@ reflectance = {  0.1f, 0.4f, 6.0f };
 
 
 
-	glBufferData ( GL_ARRAY_BUFFER, spherevertexes * sizeof ( vertex ), sphere, GL_STATIC_DRAW );
-	glVertexAttribPointer ( ( GLuint ) 0, 3, GL_DOUBLE, GL_FALSE, sizeof ( vertex ), ( const GLvoid* ) 0 );
-	glEnableVertexAttribArray(0);
+	// glBufferData ( GL_ARRAY_BUFFER, spherevertexes * sizeof ( vertex ), sphere, GL_STATIC_DRAW );
+	// glVertexAttribPointer ( ( GLuint ) 0, 3, GL_DOUBLE, GL_FALSE, sizeof ( vertex ), ( const GLvoid* ) 0 );
+	// glEnableVertexAttribArray(0);
 
 
 
@@ -117,7 +117,8 @@ reflectance = {  0.1f, 0.4f, 6.0f };
 	if (init == 0) m.size = 0.75f;
 	else m.size = 1.f;
 	
-	loc = new orbitBehaviour(this, (gameObject*)parent, 0.f, init, -init*10.f);
+	// loc = new orbitBehaviour(this, (gameObject*)parent, 0.f, init, -init*10.f);
+	loc = new staticBehaviour(this, glm::vec3(init));
 	v.rot = init*5.f;
 
 	// MVP = Projection * View * Model;
@@ -157,9 +158,12 @@ void TODOsphere::render() {
 	R = glm::rotate(R, m.rot, glm::vec3(0.f, 0.f, 1.f));
 	R = glm::scale(R, glm::vec3(1.f,1.f,0.02f*m.size));
 	glm::mat4 MVP = *VP * M * R;
+	glBufferData ( GL_ARRAY_BUFFER, 118*118 * sizeof ( vertex ), sphere, GL_STATIC_DRAW );
+	glVertexAttribPointer ( ( GLuint ) 0, 3, GL_DOUBLE, GL_FALSE, sizeof ( vertex ), ( const GLvoid* ) 0 );
+	glEnableVertexAttribArray(0);
 	glUseProgram(shaderprogram);
 	glUniformMatrix4fv(glGetUniformLocation(shaderprogram, "mvpmatrix"), 1, GL_FALSE, glm::value_ptr(MVP));
-	glDrawArrays(GL_TRIANGLE_STRIP, 0, (144));
+	glDrawArrays(GL_TRIANGLE_STRIP, 0, (118*118));
 }
 
 
