@@ -10,12 +10,10 @@ class TODOsphere: public gameObject
 {
 
 	protected:
-		GLuint vertexshader, fragmentshader;
 		GLfloat drawColour[3];
 		GLuint shaderprogram;
 		GLuint vbo[1];
 
-		GLuint wireshader;
 		typedef union { GLdouble pos[3]; struct { GLdouble x; GLdouble y; GLdouble z; }; } vertex;
 		vertex* sphere;
 

@@ -4,15 +4,18 @@
 #include <stdio.h>
 #include "GameFrame.h"
 #include "TODOsphere.h"
+#include "TODOtri.h"
+#include "planets.h"
 
 
 gameFrame::gameFrame(abstractObject* parent) : UIFrame(parent) {
 	// Testing objects
-	TODOsphere* sun = new TODOsphere(NULL, 0.f);
+	TODOtri* sun = new TODOtri(NULL, 0.f);
 	cam = new camera(sun);
 	items.push_back(cam);
 	items.push_back(sun);
 	items.push_back(new TODOsphere(sun, 2.5f));
+	items.push_back(new planet(sun, 1.f));
 	TODOsphere* earth = new TODOsphere(sun, 4.4f);
 	items.push_back(earth);
 	TODOsphere* moon = new TODOsphere(earth, -1.5f);

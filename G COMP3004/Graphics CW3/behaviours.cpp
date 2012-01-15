@@ -2,6 +2,11 @@
 
 #include <GL/glfw.h>
 
+staticBehaviour::staticBehaviour(abstractObject* parent, glm::vec3 loc) : behaviour(parent) {
+	M = glm::translate(glm::mat4(1.f), loc);
+	// M = glm::mat4(1.f);
+}
+
 orbitBehaviour::orbitBehaviour(abstractObject* parent, 
 								gameObject* target, 
 								float angle, 

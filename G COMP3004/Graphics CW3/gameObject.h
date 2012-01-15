@@ -37,7 +37,7 @@ class gameObject : public abstractObject
 		virtual ~gameObject() {};
 		virtual glm::mat4 get_abs_loc() { return M;};
 
-		virtual void update(double delta) {};// { printf("%f\n",delta);M = (v*delta)*M; };
+		virtual void update(double delta) {};
 		virtual void debug() {};	//need to implement this at this level
 
 		static void setVP(glm::mat4* VP) {gameObject::VP = VP;};
