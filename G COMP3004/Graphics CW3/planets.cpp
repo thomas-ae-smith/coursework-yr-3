@@ -39,6 +39,7 @@ planet::planet(abstractObject* parent, float size) : gameObject(parent) {
 	this->size = size;
 	loc = new staticBehaviour(this);
 
+
 	printf("Created a planet.\n");
 }
 
@@ -75,6 +76,7 @@ void planet::render() {
 
 void planet::setBehaviour(behaviour* loc) {
 	if (this->loc) delete this->loc;
+	this->loc = loc;
 }
 
 
