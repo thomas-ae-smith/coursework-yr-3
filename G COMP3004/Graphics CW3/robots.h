@@ -4,20 +4,19 @@
 #include "gameObject.h"
 #include "behaviours.h"
 
-class robot : public gameObject
-{
+class robot : public abstractObject {
 	protected:
 		float* value;
 		float startValue;
-		float endValue;
+		float* endValue;
 		float duration;
 
 		float elapsed;
 
-		boolean active;
+		bool active;
 
 	public:
-		robot(abstractObject* parent, float* value, endValue, duration);
+		robot(abstractObject* parent, float* value, float* endValue, float duration);
 		virtual ~robot() {};
 		virtual void update(double delta);
 		virtual void render() {};

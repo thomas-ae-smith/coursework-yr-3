@@ -4,13 +4,17 @@
 #include <stdio.h>
 
 staticBehaviour::staticBehaviour(abstractObject* parent, glm::vec3 loc) : behaviour(parent) {
-	M = glm::translate(glm::mat4(1.f), loc);
+	R = glm::translate(glm::mat4(1.f), loc);
 	// M = glm::mat4(1.f);
 }
 
 staticBehaviour::staticBehaviour(abstractObject* parent, glm::mat4 loc) : behaviour(parent) {
-	M = loc;
+	R = loc;
 	// M = glm::mat4(1.f);
+}
+
+void staticBehaviour::update(double delta) {
+	M = ((parent)? ((gameObject*)parent)->get_abs_loc() : glm::mat4(1.f)) * R;
 }
 
 orbitBehaviour::orbitBehaviour(abstractObject* parent, 
@@ -67,12 +71,6 @@ void managedBehaviour::update(double delta){
 	
 }
 
-void managedBehaviour::setTarget(abstractObject* target) {		//should be done with robots
-	glm::vec3 dirvec( glm::normalize((target->get_abs_loc() - R).xyz) );		//rework this class so that it can work with target *or* phi, theta
-	phi = arctanf(dirvec[1]/dirvec[0]);
-	theta = arccosf(dirvec[2]);
-}
-
 controlBehaviour::controlBehaviour(abstractObject* parent,
 							float max_speed) : managedBehaviour(parent, max_speed) {};
 
@@ -86,39 +84,39 @@ void controlBehaviour::update(double delta) {
 	managedBehaviour::update(delta);
 
 	if (glfwGetKey( GLFW_KEY_PAGEUP ) ) {
-		printf("PgUp pressed.");
+		// printf("PgUp pressed.");
 		R[3][2] += 1*delta;
 	}
 	if (glfwGetKey( GLFW_KEY_PAGEDOWN ) ) {
-		printf("PgDown pressed.");
+		// printf("PgDown pressed.");
 		R[3][2] -= 1*delta;
 	}
 	if (glfwGetKey( GLFW_KEY_UP ) ) {
-		printf("Up pressed.");
+		// printf("Up pressed.");
 		speed += 1* delta;
 	}
 	if (glfwGetKey( GLFW_KEY_DOWN ) ) {
-		printf("Down pressed.");
+		// printf("Down pressed.");
 		speed -= 1* delta;
 	}
 	if (glfwGetKey( GLFW_KEY_HOME ) ) {
-		printf("Home pressed.");
+		// printf("Home pressed.");
 		theta -= 1* delta;
 	}
 	if (glfwGetKey( GLFW_KEY_END ) ) {
-		printf("End pressed.");
+		// printf("End pressed.");
 		theta += 1* delta;
 	}
 	if (glfwGetKey( GLFW_KEY_LEFT ) ) {
-		printf("Left pressed.");
+		// printf("Left pressed.");
 		phi += 1* delta;
 	}
 	if (glfwGetKey( GLFW_KEY_RIGHT ) ) {
-		printf("Right pressed.");
+		// printf("Right pressed.");
 		phi -= 1* delta;
 	}
 	if (glfwGetKey( GLFW_KEY_SPACE ) ) {
-		printf("Space pressed.");
+		// printf("Space pressed.");
 		speed = 0.f;
 	}
 }

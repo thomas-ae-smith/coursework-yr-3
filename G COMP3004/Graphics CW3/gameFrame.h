@@ -17,6 +17,7 @@ class gameFrame: public UIFrame {
 		glm::mat4 VP, V;
 		tour* camTour;
 		camera* cam;
+		bool T, P;
 
 	public:
 		gameFrame(abstractObject* parent);

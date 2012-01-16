@@ -21,8 +21,10 @@ class staticBehaviour : public behaviour {
 		staticBehaviour(abstractObject* parent, glm::vec3 loc);
 		staticBehaviour(abstractObject* parent, glm::mat4 loc = glm::mat4(1.f));
 		virtual ~staticBehaviour() {};
-		virtual void update(double delta) {};
-		virtual glm::mat4 getR() {return glm::mat4(0.f);};	
+		virtual void update(double delta);
+		virtual glm::mat4 getR() {return glm::mat4(0.f);};
+		virtual glm::mat4 get_abs_loc() {return M;};
+			
 };
 
 class orbitBehaviour : public behaviour {
@@ -46,10 +48,10 @@ class orbitBehaviour : public behaviour {
 class managedBehaviour : public behaviour {
 	protected:
 		float max_speed;
-		float speed;
-		float phi, theta;
 
 	public:
+		float speed;
+		float phi, theta;
 		glm::vec4 vec;	//TODO this needs to be private with getters and setters
 		managedBehaviour(abstractObject* parent, float max_speed);
 		managedBehaviour(abstractObject* parent, glm::mat4 loc, float max_speed);

@@ -14,13 +14,13 @@ using namespace std;
 class waypoint: public abstractObject
 {
 	protected:
-		behaviour* loc;
-		float phi, theta;
-		float duration;
 	public:
+		behaviour* loc;
+		float duration;
+		float phi, theta;
 		waypoint(abstractObject* parent, behaviour* loc, float phi, float theta, float duration);
 		virtual ~waypoint() {};
-		virtual void update(double delta) {};
+		virtual void update(double delta);
 		virtual void render() {};
 		virtual void debug() {};
 		virtual glm::mat4 get_abs_loc();
@@ -34,7 +34,7 @@ class tour: public abstractObject
 		vector<robot*> robots;
 		bool active;
 		// behaviour* loc;
-		// float elapsed;
+		float elapsed;
 		int index;	
 		camera* slave;
 		
@@ -47,7 +47,8 @@ class tour: public abstractObject
 		virtual void start(camera* slave);	//TODO this should be a gameObject, which should all have setBehaviour
 		virtual waypoint get(int i) {return *(points.at(i));};
 		virtual void push_back(waypoint* w) {points.push_back(w);}
-		virtual void finished(robot* done);
+		virtual void setupRobots(camera* cam, waypoint* point);
+		// virtual void finished(robot* done);
 
 };
 #endif /* #ifndef _TOUR_H_ */
