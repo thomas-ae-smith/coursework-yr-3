@@ -9,8 +9,8 @@ planet::planet(abstractObject* parent, float size) : gameObject(parent) {
 	glGenBuffers(1, vbo);
 	glBindBuffer(GL_ARRAY_BUFFER, vbo[0]);
 	
-	glBindAttribLocation(shaderprogram, 0, "in_Position");
-	glUseProgram(shaderprogram);
+	// glBindAttribLocation(shaderprogram, 0, "in_Position");
+	// glUseProgram(shaderprogram);
 
 	model = new vertex[24];
 	int v_num = 0;
@@ -31,6 +31,8 @@ planet::planet(abstractObject* parent, float size) : gameObject(parent) {
 		printf("%f\n", model[v_num][0]);
 		v_num++;
 	}
+	glBufferData ( GL_ARRAY_BUFFER, 24 * sizeof ( vertex ), model, GL_STATIC_DRAW );
+
 	// for (int i = 0; i < 3; ++i)
 	// {
 	// 	model[i][i] = 1.f;
@@ -64,11 +66,13 @@ void planet::render() {
 	// R = glm::rotate(R, /**/, glm::vec3(0.f, 0.f, 1.f));
 	R = glm::scale(R, glm::vec3(size));
 	glm::mat4 MVP = *VP * M * R;
-	glBufferData ( GL_ARRAY_BUFFER, 24 * sizeof ( vertex ), model, GL_STATIC_DRAW );
-	glVertexAttribPointer ( ( GLuint ) 0, 3, GL_DOUBLE, GL_FALSE, sizeof ( vertex ), ( const GLvoid* ) 0 );
+	// glBufferData ( GL_ARRAY_BUFFER, 24 * sizeof ( vertex ), model, GL_STATIC_DRAW );
+	glBindBuffer(GL_ARRAY_BUFFER, vbo[0]);
 	glEnableVertexAttribArray(0);
+	glVertexAttribPointer ( ( GLuint ) 0, 3, GL_DOUBLE, GL_FALSE, sizeof ( vertex ), ( const GLvoid* ) 0 );
 	glUseProgram(shaderprogram);
-	//glUseProgram(0);
+	glm::vec3 drawColour(1.f);
+	glUniform3fv(glGetUniformLocation(shaderprogram, "in_Colour"), 1, (GLfloat*)&drawColour);
 	glUniformMatrix4fv(glGetUniformLocation(shaderprogram, "mvpmatrix"), 1, GL_FALSE, glm::value_ptr(MVP));
 
 	glDrawArrays(GL_TRIANGLE_STRIP, 0, 24);
