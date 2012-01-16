@@ -4,7 +4,7 @@
 #include <stdio.h>
 
 
-planet::planet(abstractObject* parent, float size) : gameObject(parent) {
+planet::planet(abstractObject* parent, float size, GLfloat colour[]) : gameObject(parent) {
 	shaderprogram = shaders->getShader("base.vert", "base.frag", "spheresubd.geom");        
 	glGenBuffers(1, vbo);
 	glBindBuffer(GL_ARRAY_BUFFER, vbo[0]);
@@ -39,6 +39,9 @@ planet::planet(abstractObject* parent, float size) : gameObject(parent) {
 	// }
 
 	this->size = size;
+	this->colour[0] = colour[0];
+	this->colour[1] = colour[1];
+	this->colour[2] = colour[2];
 	loc = new staticBehaviour(this);
 
 
@@ -71,8 +74,8 @@ void planet::render() {
 	glEnableVertexAttribArray(0);
 	glVertexAttribPointer ( ( GLuint ) 0, 3, GL_DOUBLE, GL_FALSE, sizeof ( vertex ), ( const GLvoid* ) 0 );
 	glUseProgram(shaderprogram);
-	glm::vec3 drawColour(1.f);
-	glUniform3fv(glGetUniformLocation(shaderprogram, "in_Colour"), 1, (GLfloat*)&drawColour);
+	glm::vec3 drawColour(1.f, 1.f, 0.f);
+	glUniform3fv(glGetUniformLocation(shaderprogram, "in_Colour"), 1, colour);
 	glUniformMatrix4fv(glGetUniformLocation(shaderprogram, "mvpmatrix"), 1, GL_FALSE, glm::value_ptr(MVP));
 
 	glDrawArrays(GL_TRIANGLE_STRIP, 0, 24);

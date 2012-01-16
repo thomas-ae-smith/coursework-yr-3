@@ -2,6 +2,9 @@
 
 #include <algorithm>
 #include <stdio.h>
+#include <GL/glew.h>
+#include <GL/glfw.h>
+
 #include "GameFrame.h"
 #include "TODOsphere.h"
 #include "TODOtri.h"
@@ -15,21 +18,22 @@ struct planets {
 	float omega;	//speed
 	float inc;		//polar inlination
 	float rot;		//rotational speed
+	GLfloat r,g,b;//colour
 	const char* vert;
 	const char* frag;
 	const char* geom;
 } pdat[] =
-{//	parent	size	angle	orbit 	omega	inc 	rot 	vert 	frag 	geom
-	{0, 	10.f, 	0.f, 	0.f, 	1.f,	0.f,	0.f,	"",		"",		""},//sun
-	{0, 	.24f, 	0.f, 	3.8f,	.24f,	7.f,	0.f,	"",		"",		""},//mercury
-	{0, 	.60f, 	0.f, 	7.2f,	.62f,	3.4f,	0.f,	"",		"",		""},//venus
-	{0, 	.63f, 	0.f, 	10.f,	1.f,	0.f,	0.f,	"",		"",		""},//earth
-	{0, 	.33f, 	0.f, 	15.2f,	1.8f,	0.f,	0.f,	"",		"",		""},//mars
-	{0, 	7.14f,	0.f,	52.f, 	11.8f,	0.f,	0.f, 	"", 	"", 	""},//jupiter
-	{0, 	6.02f, 	0.f, 	95.f, 	29.5f,	0.f,	0.f,	"", 	"", 	""},//saturn
-	{0,		2.6f,	0.f, 	191.f,	84.f,	0.f,	0.f,	"", 	"", 	""},//uranus
-	{0, 	2.5f, 	0.f, 	300.f,	164.f, 	0.f, 	0.f,	"", 	"", 	""},//neptune
-	{0, 	.11f, 	0.f, 	394.f, 	248.f,	0.f, 	0.f, 	"", 	"", 	""}//pluto
+{//	parent	size	angle	orbit 	omega	inc 	rot 	colour			vert 	frag 	geom
+	{0, 	10.f, 	0.f, 	0.f, 	1.f,	0.f,	0.f,	1.f, 1.f, 0.f,	"",		"",		""},//sun
+	{0, 	.24f, 	0.f, 	3.8f,	.24f,	7.f,	0.f,	1.f, 1.f, 0.f,	"",		"",		""},//mercury
+	{0, 	.60f, 	0.f, 	7.2f,	-0.62f,	3.4f,	0.f,	1.f, 1.f, 0.f,	"",		"",		""},//venus
+	{0, 	.63f, 	0.f, 	10.f,	1.f,	0.f,	0.f,	0.f, 0.f, 1.f,	"",		"",		""},//earth
+	{0, 	.33f, 	0.f, 	15.2f,	1.8f,	0.f,	0.f,	1.f, 0.f, 0.f,	"",		"",		""},//mars
+	{0, 	7.14f,	0.f,	52.f, 	11.8f,	0.f,	0.f, 	1.f, .5f, 0.f,	"", 	"", 	""},//jupiter
+	{0, 	6.02f, 	0.f, 	95.f, 	29.5f,	0.f,	0.f,	.5f, .5f, 0.f,	"", 	"", 	""},//saturn
+	{0,		2.6f,	0.f, 	191.f,	84.f,	0.f,	0.f,	.8f, .8f, 1.f,	"", 	"", 	""},//uranus
+	{0, 	2.5f, 	0.f, 	300.f,	164.f, 	0.f, 	0.f,	.5f, .5f, 1.f,	"", 	"", 	""},//neptune
+	{0, 	.11f, 	0.f, 	394.f, 	248.f,	0.f, 	0.f, 	0.f, 0.f, .5f,	"", 	"", 	""}//pluto
 };
 
 
@@ -42,6 +46,8 @@ gameFrame::gameFrame(abstractObject* parent) : UIFrame(parent) {
 
 
 	staticBehaviour* sun = new staticBehaviour(NULL, glm::vec3(0.f));
+	camTour = new tour(sun);
+	items.push_back(camTour);
  	cam = new camera(sun);
  	items.push_back(cam);
  // 	items.push_back(sun);
@@ -55,11 +61,13 @@ gameFrame::gameFrame(abstractObject* parent) : UIFrame(parent) {
 	planet* all_p[10];
 	// planet* one_p;
 	for (int p = 0; p < 10; p++) {
-		all_p[p] = new planet(all_p[pdat[p].parent], pdat[p].size/5);
+		all_p[p] = new planet(all_p[pdat[p].parent], pdat[p].size/5, &pdat[p].r);
 		all_p[p]->setBehaviour(new orbitBehaviour(all_p[p], all_p[pdat[p].parent], pdat[p].angle, pdat[p].orbit/2., 2./pdat[p].omega));
 		items.push_back(all_p[p]);
 	}
 
+	camTour->push_back(new waypoint(camTour, new staticBehaviour(NULL, glm::vec3(-.7f, 0.f, 3.f)), 0.f, 1.9, 0.f));
+	camTour->push_back(new waypoint(camTour, new staticBehaviour(all_p[3], glm::vec3(.0f, 0.f, .7f)), 0.f, 1.9, 5.f));
 	// for (int p = 0; p < 1; p++) {
 	// 	one_p = new planet(sun, 2.f);
 	// 	one_p->setBehaviour(new orbitBehaviour(one_p, one_p, 0.f, 0.f, 0.f));
@@ -81,6 +89,7 @@ gameFrame::gameFrame(abstractObject* parent) : UIFrame(parent) {
 	// glm::mat4 Projection = glm::perspective(45.0f, 1.0f, 0.1f, 100.0f);
 	// VP = Projection * V;
 	// gameObject::setVP(&VP);
+	printf("Created a gameFrame.\n");
 }
 
 gameFrame::~gameFrame() {
@@ -88,11 +97,22 @@ gameFrame::~gameFrame() {
 }
 
 void gameFrame::update(double delta) {
+	// printf("updating gameFrame\n");
     for (vector<abstractObject*>::iterator item = items.begin();
                            item != items.end();
                            ++item) {
     	(*item)->update(delta);
     }
+    if (glfwGetKey( 'P' ) ) {
+		printf("P pressed.");
+		cam->setBehaviour(new staticBehaviour(cam, cam->get_abs_loc()));
+		//new controlBehaviour(cam, camTour->get(0).get_abs_loc(), 1.f));
+	}
+	if (glfwGetKey( 'T' ) ) {
+		printf("T pressed.");
+		camTour->start(cam);
+	}
+
 
 }
 

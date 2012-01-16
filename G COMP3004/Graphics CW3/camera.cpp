@@ -14,3 +14,8 @@ void camera::update(double delta) {
 	R = Projection * M;
 	gameObject::setVP(&R);
 }
+
+void camera::setBehaviour(behaviour* loc) {
+	if (this->loc) delete this->loc;
+	this->loc = loc;
+}

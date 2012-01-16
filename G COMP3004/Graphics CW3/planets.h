@@ -17,10 +17,12 @@ class planet: public gameObject
 		vertex* model;
 		float size;
 
+		GLfloat colour[3];
+
 		behaviour* loc;	// TODO: refactor this (look down)
 	
 	public:
-		planet(abstractObject* parent, float size);
+		planet(abstractObject* parent, float size, GLfloat colour[]);
 		virtual ~planet();
 		virtual void update(double delta);
 		virtual void render();

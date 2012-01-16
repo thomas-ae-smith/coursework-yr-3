@@ -15,6 +15,8 @@ class camera : public gameObject
 		virtual void update(double delta);
 		virtual void render() {};
 		virtual void debug() {};
+		virtual void setBehaviour(behaviour* loc);
+		virtual behaviour* getBehaviour() {return loc;};
 
 		/* data */
 };
