@@ -10,7 +10,7 @@ camera::camera(abstractObject* parent) : gameObject(parent) {
 void camera::update(double delta) {
 	loc->update(delta);
 	M = loc->get_abs_loc();
-	glm::mat4 Projection = glm::perspective(45.0f, 1.0f, 0.1f, 100.0f);
+	glm::mat4 Projection = glm::perspective(45.0f, 1.0f, 0.1f, 1000.0f);
 	R = Projection * M;
 	gameObject::setVP(&R);
 }

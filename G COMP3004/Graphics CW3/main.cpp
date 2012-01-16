@@ -33,6 +33,7 @@ void drawLoop() {
 	gameFrame *game = new gameFrame(NULL);
 	int quit = false;
 	double tick, lasttick;
+	printf("%s\n", (const char*) glGetString(GL_VERSION));
 	while (!quit) {
 		tick = glfwGetTime();
 		game->update(tick-lasttick);

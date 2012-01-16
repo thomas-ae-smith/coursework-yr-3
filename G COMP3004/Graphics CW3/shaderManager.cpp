@@ -70,7 +70,11 @@ GLuint shaderManager::getShader(const char* vert, const char* frag, const char* 
     glGetProgramInfoLog(shaderprogram, 1000, &length, text);
     if(length>0)
         fprintf(stderr, "Validate Shader Program\n%s\n",text );
-	
+
+	glUseProgram(shaderprogram);
+
+glBindAttribLocation(shaderprogram, 0, "in_Position");
+
 	printf("Added new shader: %s\tTotal stored: %d\n", names.back().c_str(), (int)(names.size()));
 	return shaderprogram;
 }
