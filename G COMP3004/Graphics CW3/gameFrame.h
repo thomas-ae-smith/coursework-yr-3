@@ -6,7 +6,7 @@
 #include "UIFrame.h"
 
 #include "camera.h"
-#include "TODOsphere.h"
+#include "tour.h"
 
 using namespace std;
 
@@ -15,6 +15,7 @@ class gameFrame: public UIFrame {
 	private:
 		vector<abstractObject*> items;
 		glm::mat4 VP, V;
+		tour* camTour;
 		camera* cam;
 
 	public:

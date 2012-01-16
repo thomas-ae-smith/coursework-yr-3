@@ -9,7 +9,7 @@ layout(triangles) in;
 
 // Declare what type of primitives we are creating and the maximum amount of vertices we will output per use of the geometry shader.
 // We will be outputting 6 vertices per use of this shader, creating 2 triangles.
-layout(line_strip, max_vertices = 124) out;
+layout(triangle_strip, max_vertices = 124) out;
 
 // Inputs to geometry shaders are always as arrays in the quantity of the incoming primitive
 // In our case this value is 3, since triangles have 3 vertices

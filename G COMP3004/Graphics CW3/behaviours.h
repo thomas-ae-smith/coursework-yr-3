@@ -12,13 +12,17 @@ class behaviour : public gameObject {
 		virtual ~behaviour() {};
 		virtual void update(double delta) = 0;
 		virtual void render() {};
+		virtual void setM(glm::mat4 M){this->M = M;};	//TODO:
+		virtual glm::mat4 getR() = 0;				// these are horribly hacky
 };
 
 class staticBehaviour : public behaviour {
 	public:
-		staticBehaviour(abstractObject* parent, glm::vec3 loc = glm::vec3(0.f));
+		staticBehaviour(abstractObject* parent, glm::vec3 loc);
+		staticBehaviour(abstractObject* parent, glm::mat4 loc = glm::mat4(1.f));
 		virtual ~staticBehaviour() {};
 		virtual void update(double delta) {};
+		virtual glm::mat4 getR() {return glm::mat4(0.f);};	
 };
 
 class orbitBehaviour : public behaviour {
@@ -36,9 +40,10 @@ class orbitBehaviour : public behaviour {
 							float omega);
 		virtual ~orbitBehaviour() {};
 		virtual void update(double delta);
+		virtual glm::mat4 getR() {return glm::mat4(0.f);};	
 };
 
-class controlBehaviour : public behaviour {
+class managedBehaviour : public behaviour {
 	protected:
 		float max_speed;
 		float speed;
@@ -46,9 +51,20 @@ class controlBehaviour : public behaviour {
 
 	public:
 		glm::vec4 vec;	//TODO this needs to be private with getters and setters
+		managedBehaviour(abstractObject* parent, float max_speed);
+		managedBehaviour(abstractObject* parent, glm::mat4 loc, float max_speed);
+		virtual ~managedBehaviour() {};
+		virtual void update(double delta);
+		virtual glm::mat4 getR() {return glm::mat4(0.f);};	
+};
+
+class controlBehaviour : public managedBehaviour{
+	public:
 		controlBehaviour(abstractObject* parent, float max_speed);
+		controlBehaviour(abstractObject* parent, glm::mat4 loc, float max_speed);
 		virtual ~controlBehaviour() {};
 		virtual void update(double delta);
+		virtual glm::mat4 getR() {return R;};				//TODO these are horribly hacky
 };
 
 class moveBehaviour : public behaviour {
@@ -62,6 +78,7 @@ class moveBehaviour : public behaviour {
 							float max_speed);
 		virtual ~moveBehaviour() {};
 		virtual void update(double delta);
+		virtual glm::mat4 getR() {return glm::mat4(0.f);};	
 };
 
 #endif /* #ifndef _BEHAVIOURS_H_ */
