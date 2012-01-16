@@ -11,6 +11,10 @@ waypoint::waypoint(abstractObject* parent, behaviour* loc, float phi, float thet
 	this->duration = duration;
 }
 
+void waypoint::update(double delta) {
+	loc->update(delta);
+}
+
 glm::mat4 waypoint::get_abs_loc() {
 	return loc->get_abs_loc();
 }
@@ -31,28 +35,68 @@ void tour::start(camera* slave) {
 }
 
 tour::~tour() {
-	if (loc) delete loc;
+	// if (loc) delete loc;
+}
+
+void tour::setupRobots(camera* cam, waypoint* point) {
+	managedBehaviour* loc = ((managedBehaviour*)cam->getBehaviour());
+	loc->speed = 0.f;
+	robots.push_back(new robot(this, &(loc->phi), &(point->phi), point->duration/5));
+	robots.push_back(new robot(this, &(loc->theta), &(point->theta), point->duration/5));
+	// robots.push_back(new robot(this, &(loc->phi), &(point->phi), point->duration/5, 4*point->duration/5));
+	// robots.push_back(new robot(this, &(loc->theta), &(point->theta), point->duration/5, 4*point->duration/5));
+	robots.push_back(new robot(this, &(loc->R[3][0]), &(point->loc->M[3][0]), point->duration));
+	robots.push_back(new robot(this, &(loc->R[3][1]), &(point->loc->M[3][1]), point->duration));
+	robots.push_back(new robot(this, &(loc->R[3][2]), &(point->loc->M[3][2]), point->duration));
 }
 
 void tour::update(double delta) {
 	// printf("updating tour.\n");
+	for (vector<waypoint*>::iterator item = points.begin();
+                           item != points.end();
+                           ++item) {
+    	(*item)->update(delta);
+    }
 	if (active) {
-		// loc->setM(loc->get_abs_loc() + (points.at(index)->get_abs_loc() - loc->get_abs_loc()) * ((points.at(index)->getDuration() - elapsed)/delta));
-		// elapsed += delta;
-
+		if (robots.size() == 0)	setupRobots(slave, points.at(index));
+		elapsed += delta;
+		for (vector<robot*>::iterator item = robots.begin();
+                           item != robots.end();
+                           ++item) {
+    		(*item)->update(delta);
+    	}
 
 
 		if (elapsed > points.at(index)->getDuration()) {
-			elapsed -= points.at(index)->getDuration();
+			// elapsed -= points.at(index)->getDuration();
+			elapsed = 0.f;
 			index++;
+			for (vector<robot*>::iterator item = robots.begin();
+                           item != robots.end();
+                           ++item) {
+                delete *item;
+    		}
+    		robots.clear();
 		}
 		if (glfwGetKey( 'E' ) || index == (int)points.size()) {
-			printf("E pressed.");
+			printf("E pressed.\n");
 			active = false;
-			loc->setM(points.back()->get_abs_loc());
-			slave->setBehaviour(new controlBehaviour(slave, loc->get_abs_loc(), 1.f));
+			// slave->setBehaviour(new controlBehaviour(slave, loc->get_abs_loc(), 1.f));
 								//new controlBehaviour(slave, get(0).get_abs_loc(), 1.f));
 		}
 	}
 }
+
+
+
 //need to store camera
+
+// void tour::finished(robot* done){
+// 	int i = 0;
+// 	for(; i < (int)robots.size(); i++) {
+// 		if (robots.at(i) == done) break;
+// 	}
+// 	if (done) delete done;
+// 	robots.erase(i);
+// }
+

@@ -30,9 +30,9 @@ class gameObject : public abstractObject
 			float size;
 		};
 		struct space_data m, v;
-		glm::mat4 R, M;
 
 	public:
+		glm::mat4 R, M;
 		gameObject(abstractObject* parent);
 		virtual ~gameObject() {};
 		virtual glm::mat4 get_abs_loc() { return M;};

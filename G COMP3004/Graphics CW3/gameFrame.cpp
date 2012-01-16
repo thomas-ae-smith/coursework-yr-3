@@ -9,6 +9,7 @@
 #include "TODOsphere.h"
 #include "TODOtri.h"
 #include "planets.h"
+#include "robots.h"
 
 struct planets {
 	int parent; //index to
@@ -34,6 +35,7 @@ struct planets {
 	{0,		2.6f,	0.f, 	191.f,	84.f,	0.f,	0.f,	.8f, .8f, 1.f,	"", 	"", 	""},//uranus
 	{0, 	2.5f, 	0.f, 	300.f,	164.f, 	0.f, 	0.f,	.5f, .5f, 1.f,	"", 	"", 	""},//neptune
 	{0, 	.11f, 	0.f, 	394.f, 	248.f,	0.f, 	0.f, 	0.f, 0.f, .5f,	"", 	"", 	""}//pluto
+	{3, 	.17f, 	0.f, 	.25f, 	.07.f,	0.f, 	0.f, 	0.5f, 0.5f, .5f,	"", 	"", 	""}//pluto
 };
 
 
@@ -66,8 +68,8 @@ gameFrame::gameFrame(abstractObject* parent) : UIFrame(parent) {
 		items.push_back(all_p[p]);
 	}
 
-	camTour->push_back(new waypoint(camTour, new staticBehaviour(NULL, glm::vec3(-.7f, 0.f, 3.f)), 0.f, 1.9, 0.f));
-	camTour->push_back(new waypoint(camTour, new staticBehaviour(all_p[3], glm::vec3(.0f, 0.f, .7f)), 0.f, 1.9, 5.f));
+	camTour->push_back(new waypoint(camTour, new staticBehaviour(NULL, glm::vec3(-.7f, 0.f, 3.f)), 0.f, 1.9, 0.5f));
+	camTour->push_back(new waypoint(camTour, new staticBehaviour(all_p[3], glm::vec3(.0f, 0.f, .7f)), 0.f, 2.5f, 5.f));
 	// for (int p = 0; p < 1; p++) {
 	// 	one_p = new planet(sun, 2.f);
 	// 	one_p->setBehaviour(new orbitBehaviour(one_p, one_p, 0.f, 0.f, 0.f));
@@ -89,6 +91,8 @@ gameFrame::gameFrame(abstractObject* parent) : UIFrame(parent) {
 	// glm::mat4 Projection = glm::perspective(45.0f, 1.0f, 0.1f, 100.0f);
 	// VP = Projection * V;
 	// gameObject::setVP(&VP);
+
+	T = P = false;
 	printf("Created a gameFrame.\n");
 }
 
@@ -103,16 +107,23 @@ void gameFrame::update(double delta) {
                            ++item) {
     	(*item)->update(delta);
     }
-    if (glfwGetKey( 'P' ) ) {
-		printf("P pressed.");
-		cam->setBehaviour(new staticBehaviour(cam, cam->get_abs_loc()));
-		//new controlBehaviour(cam, camTour->get(0).get_abs_loc(), 1.f));
+    if (P && !glfwGetKey( 'P' ) ) {
+    	P = false;
+		printf("P pressed.\n");
+		cam->setBehaviour(//new staticBehaviour(cam, cam->get_abs_loc()));
+		new controlBehaviour(cam, camTour->get(0).get_abs_loc(), 1.f));
 	}
-	if (glfwGetKey( 'T' ) ) {
-		printf("T pressed.");
+	if (T && !glfwGetKey( 'T' ) ) {
+		T = false;
+		printf("T pressed.\n");
+		//items.push_back(new robot(this, &(((managedBehaviour*)cam->getBehaviour())->phi), 20., 5.));
+
+
 		camTour->start(cam);
 	}
 
+	T = glfwGetKey( 'T' );
+	P = glfwGetKey( 'P' );
 
 }
 
