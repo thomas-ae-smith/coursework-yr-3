@@ -20,7 +20,7 @@ class gameFrame: public UIFrame {
 		glm::mat4 VP, V;
 		tour* camTour;
 		camera* cam;
-		bool R, T, P, H;
+		bool Y, U, R, T, P, H;
 		planet* all_p[PLANET_NUM];
 
 	public:

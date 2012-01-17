@@ -4,6 +4,7 @@
 #include <GL/glfw.h>
 
 camera::camera(abstractObject* parent) : gameObject(parent) {
+	//printf("Happening\n");
 	loc = new controlBehaviour(this, 1.f);
 }
 

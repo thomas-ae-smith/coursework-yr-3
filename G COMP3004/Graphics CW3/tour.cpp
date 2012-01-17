@@ -31,7 +31,7 @@ void tour::start(camera* slave) {
 	//slave->setBehaviour(loc);
 
 	// robots.push_back(new robot(this))
-	printf("Starting tour.\n");
+	// printf("Starting tour.\n");
 }
 
 tour::~tour() {

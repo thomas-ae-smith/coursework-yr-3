@@ -48,11 +48,11 @@ planet::planet(abstractObject* parent, float size, float height, GLfloat colour[
 
 	elapsed = 0.f;
 
-	printf("Created a planet.\n");
+	//printf("Created a planet.\n");
 }
 
 planet::~planet() {
-	printf("Deleted a planet.\n");
+	//printf("Deleted a planet.\n");
 	if (model) delete model;
 	if (loc) delete loc;
 }
@@ -89,7 +89,7 @@ void planet::render() {
 }
 
 void planet::setBehaviour(behaviour* loc) {
-	if (this->loc) delete this->loc;
+	//if (this->loc) delete this->loc;
 	this->loc = loc;
 }
 
