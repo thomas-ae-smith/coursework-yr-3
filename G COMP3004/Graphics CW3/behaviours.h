@@ -67,6 +67,25 @@ class controlBehaviour : public managedBehaviour{
 		virtual ~controlBehaviour() {};
 		virtual void update(double delta);
 		virtual glm::mat4 getR() {return R;};				//TODO these are horribly hacky
+		virtual void elevate();
+		virtual void delevate();
+		virtual void speedup();
+		virtual void slow();
+		virtual void up();
+		virtual void down();
+		virtual void left();
+		virtual void right();
+		virtual void stop();
+
+		bool belevate;
+		bool bdelevate;
+		bool bspeedup;
+		bool bslow;
+		bool bup;
+		bool bdown;
+		bool bleft;
+		bool bright;
+		bool bstop;
 };
 
 class moveBehaviour : public behaviour {

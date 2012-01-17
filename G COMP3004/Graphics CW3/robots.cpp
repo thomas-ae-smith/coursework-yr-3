@@ -4,7 +4,7 @@
 #include <stdio.h>
 
 robot::robot(abstractObject* parent, float* value, float* endValue, float duration) : abstractObject(parent) {
-	printf("%p robot created.\n", this);
+	// printf("%p robot created.\n", this);
 	this->value = value;
 	this->startValue = *value;
 	this->endValue = endValue;
@@ -15,7 +15,7 @@ robot::robot(abstractObject* parent, float* value, float* endValue, float durati
 }
 
 robot::robot(abstractObject* parent, float* value, float endValue, float duration) : abstractObject(parent) {
-	printf("%p robot created.\n", this);
+	// printf("%p robot created.\n", this);
 	this->value = value;
 	this->startValue = *value;
 	this->endValue = new float(endValue);
@@ -32,7 +32,7 @@ void robot::update(double delta) {
 	if (elapsed >= duration) {
 		*value = *endValue;
 		active = false;
-		printf("%p robot finished at %f.\n", this, *endValue);
+		// printf("%p robot finished at %f.\n", this, *endValue);
 		// if (parent) ((tour*)parent)->finished(this);	//dangerous hack
 	} else {
 		*value = startValue + (elapsed/duration) * (*endValue - startValue);

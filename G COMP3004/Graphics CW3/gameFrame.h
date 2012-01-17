@@ -7,6 +7,9 @@
 
 #include "camera.h"
 #include "tour.h"
+#include "planets.h"
+
+#define PLANET_NUM 18
 
 using namespace std;
 
@@ -17,7 +20,8 @@ class gameFrame: public UIFrame {
 		glm::mat4 VP, V;
 		tour* camTour;
 		camera* cam;
-		bool T, P;
+		bool R, T, P, H;
+		planet* all_p[PLANET_NUM];
 
 	public:
 		gameFrame(abstractObject* parent);
@@ -25,6 +29,7 @@ class gameFrame: public UIFrame {
 		virtual void update(double delta);
 		virtual void render();
 		virtual void debug() {};
+		virtual void resetPlanets();
 
 		/* data */
 };
