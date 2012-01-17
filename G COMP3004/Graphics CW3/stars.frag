@@ -139,25 +139,40 @@ float snoise(vec4 v)
 
   }
 
-
+float rand(vec2 n)
+{
+  return 0.5 + 0.5 * fract(sin(dot(n.xy, vec2(12.9898, 78.233)))* 43758.5453);
+}
 
 
 
 void main(void) {
 float noiseScale;
-  float intensity = 2.0 * cos( 2.0 * snoise(vec4(vert_pos,1.0))) - 1.2
-  //0.5 * snoise(vec4(vert_pos,1.0) * 4.0)
-   + 0.25 * snoise(vec4(vert_pos,1.0) * 8.0)
+  float intensity = 2.0 * snoise(vec4(vert_pos,1.0) * 0.5)
+  + snoise(vec4(vert_pos,1.0))
+   //+ 0.5 * snoise(vec4(vert_pos,1.0) * 4.0)
+   //+ 0.25 * snoise(vec4(vert_pos,1.0) * 8.0)
    //+ 0.125 * snoise(vec4(vert_pos,1.0) * 16.0)
-   + 0.0625 * snoise(vec4(vert_pos,1.0) * 32.0)
-   + 0.03125 * snoise(vec4(vert_pos,1.0) * 64.0)
-   ;
+   //+ 0.0625 * snoise(vec4(vert_pos,1.0) * 32.0)
+   // + 0.03125 * snoise(vec4(vert_pos,1.0) * 64.0)
+    + 0.3;
+    intensity = intensity / 20.0;
+    intensity    = clamp(intensity, 0.0, 1.0);
+    //  intensity = rand(vert_pos.xy);
+    if (0.4 * snoise(vec4(vert_pos.xzy,0.7)*64) + 0.4 < intensity)
+    {
+      //weight = random(0,1) * local_density[x,y]
+      //size = weight * max_size
+      //brightness = weight * max_brightness
 
-  intensity    = clamp(intensity, 0.0, 1.0);
-    vec3 color   = mix( vec3(0.75, 0.5, 0.1), vec3(.1, .1, 0.0), intensity);
-    gl_FragColor = vec4(color, .5);
-
-  //gl_FragColor = vec4(ex_Color,1.0);
+      //draw_star(x, y, size, brightness)
+      intensity = 1.0;// + snoise(vec4(vert_pos.xzy,0.7)*32);
+          gl_FragColor = vec4(intensity);
+          return;
+    }
+intensity    = clamp(intensity, 0.0, 1.0);
+    //vec3 color   = mix( vec3(.0), vec3(.1), intensity) *2;
+    gl_FragColor = vec4(intensity);
 
 }
 

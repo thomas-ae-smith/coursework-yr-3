@@ -145,7 +145,7 @@ float snoise(vec4 v)
 
 void main(void) {
 float noiseScale;
-  float intensity = 2.0 * cos( 2.0 * snoise(vec4(vert_pos,1.0))) - 1.2
+  float intensity = abs( 2.0 * cos( 2.0 * snoise(vec4(vert_pos,1.0)*1.5)) -1.0)
   //0.5 * snoise(vec4(vert_pos,1.0) * 4.0)
    + 0.25 * snoise(vec4(vert_pos,1.0) * 8.0)
    //+ 0.125 * snoise(vec4(vert_pos,1.0) * 16.0)
@@ -154,10 +154,8 @@ float noiseScale;
    ;
 
   intensity    = clamp(intensity, 0.0, 1.0);
-    vec3 color   = mix( vec3(0.75, 0.5, 0.1), vec3(.1, .1, 0.0), intensity);
+    vec3 color   = mix( vec3(.3), vec3(.1, .1, 0.0), intensity);
     gl_FragColor = vec4(color, .5);
-
-  //gl_FragColor = vec4(ex_Color,1.0);
 
 }
 
