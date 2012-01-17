@@ -7,6 +7,7 @@
 
 #include "camera.h"
 #include "tour.h"
+#include "planets.h"
 
 using namespace std;
 
@@ -25,7 +26,7 @@ class gameFrame: public UIFrame {
 		virtual void update(double delta);
 		virtual void render();
 		virtual void debug() {};
-
+		virtual planet** setupPlanets(planet** all_p);
 		/* data */
 };
 
