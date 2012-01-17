@@ -24,10 +24,10 @@ struct planets {
 	const char* frag;
 } pdat[] =
 {//	parent	size	height	orbit 	omega	inc 	angle 	colour			lod 	frag
-	{0, 	10.f, 	1.f, 	0.f, 	1.f,	0.f,	0.f,	1.f, 1.f, 0.f,	8,		"base.frag"},//sun
+	{0, 	10.f, 	1.f, 	0.f, 	1.f,	0.f,	0.f,	1.f, 1.f, 0.f,	8,		"crag.frag"},//sun
 	{0, 	.24f, 	1.f, 	4.8f,	.24f,	7.f,	0.f,	1.f, 1.f, 0.f,	4,		"base.frag"},//mercury
 	{0, 	.60f, 	1.f, 	7.2f,	-0.62f,	3.4f,	0.f,	1.f, 1.f, 0.f,	4,		"base.frag"},//venus
-	{0, 	.63f, 	1.f, 	10.f,	1.f,	0.f,	0.f,	0.f, 0.f, 1.f,	5,		"base.frag"},//earth
+	{0, 	.63f, 	1.f, 	10.f,	1.f,	0.f,	0.f,	0.f, 0.f, 1.f,	5,		"earth.frag"},//earth
 	{0, 	.33f, 	1.f, 	15.2f,	1.8f,	0.f,	0.f,	1.f, 0.f, 0.f,	3,		"base.frag"},//mars
 	{0, 	7.14f,	1.f,	52.f, 	11.8f,	0.f,	0.f, 	1.f, .5f, 0.f,	6, 		"base.frag"},//jupiter
 	{0, 	6.02f,	1.f, 	95.f, 	29.5f,	0.f,	0.f,	.5f, .5f, 0.f,	6, 		"base.frag"},//saturn
