@@ -14,30 +14,35 @@
 struct planets {
 	int parent; //index to
 	float size;	//uh...
-	float angle;	//ditto
+	float height;	//ditto
 	float orbit;	//1 unit = 10% AU
 	float omega;	//speed
 	float inc;		//polar inlination
-	float rot;		//rotational speed
+	float angle;	//initial angle
 	GLfloat r,g,b;//colour
-	const char* vert;
+	int lod;
 	const char* frag;
-	const char* geom;
 } pdat[] =
-{//	parent	size	angle	orbit 	omega	inc 	rot 	colour			vert 	frag 	geom
-	{0, 	10.f, 	0.f, 	0.f, 	1.f,	0.f,	0.f,	1.f, 1.f, 0.f,	"",		"",		""},//sun
-	{0, 	.24f, 	0.f, 	3.8f,	.24f,	7.f,	0.f,	1.f, 1.f, 0.f,	"",		"",		""},//mercury
-	{0, 	.60f, 	0.f, 	7.2f,	-0.62f,	3.4f,	0.f,	1.f, 1.f, 0.f,	"",		"",		""},//venus
-	{0, 	.63f, 	0.f, 	10.f,	1.f,	0.f,	0.f,	0.f, 0.f, 1.f,	"",		"",		""},//earth
-	{0, 	.33f, 	0.f, 	15.2f,	1.8f,	0.f,	0.f,	1.f, 0.f, 0.f,	"",		"",		""},//mars
-	{0, 	7.14f,	0.f,	52.f, 	11.8f,	0.f,	0.f, 	1.f, .5f, 0.f,	"", 	"", 	""},//jupiter
-	{0, 	6.02f, 	0.f, 	95.f, 	29.5f,	0.f,	0.f,	.5f, .5f, 0.f,	"", 	"", 	""},//saturn
-	{0,		2.6f,	0.f, 	191.f,	84.f,	0.f,	0.f,	.8f, .8f, 1.f,	"", 	"", 	""},//uranus
-	{0, 	2.5f, 	0.f, 	300.f,	164.f, 	0.f, 	0.f,	.5f, .5f, 1.f,	"", 	"", 	""},//neptune
-	{0, 	.11f, 	0.f, 	394.f, 	248.f,	0.f, 	0.f, 	0.f, 0.f, .5f,	"", 	"", 	""}//pluto
-	{3, 	.17f, 	0.f, 	.25f, 	.07.f,	0.f, 	0.f, 	0.5f, 0.5f, .5f,	"", 	"", 	""}//pluto
+{//	parent	size	height	orbit 	omega	inc 	angle 	colour			lod 	frag
+	{0, 	10.f, 	1.f, 	0.f, 	1.f,	0.f,	0.f,	1.f, 1.f, 0.f,	8,		"base.frag"},//sun
+	{0, 	.24f, 	1.f, 	4.8f,	.24f,	7.f,	0.f,	1.f, 1.f, 0.f,	4,		"base.frag"},//mercury
+	{0, 	.60f, 	1.f, 	7.2f,	-0.62f,	3.4f,	0.f,	1.f, 1.f, 0.f,	4,		"base.frag"},//venus
+	{0, 	.63f, 	1.f, 	10.f,	1.f,	0.f,	0.f,	0.f, 0.f, 1.f,	5,		"base.frag"},//earth
+	{0, 	.33f, 	1.f, 	15.2f,	1.8f,	0.f,	0.f,	1.f, 0.f, 0.f,	3,		"base.frag"},//mars
+	{0, 	7.14f,	1.f,	52.f, 	11.8f,	0.f,	0.f, 	1.f, .5f, 0.f,	6, 		"base.frag"},//jupiter
+	{0, 	6.02f,	1.f, 	95.f, 	29.5f,	0.f,	0.f,	.5f, .5f, 0.f,	6, 		"base.frag"},//saturn
+	{0,		2.6f,	1.f, 	191.f,	84.f,	0.f,	0.f,	.8f, .8f, 1.f,	4,	 	"base.frag"},//uranus
+	{0, 	2.5f, 	1.f, 	300.f,	164.f, 	0.f, 	0.f,	.5f, .5f, 1.f,	4, 		"base.frag"},//neptune
+	{0, 	.11f, 	1.f, 	394.f, 	248.f,	0.f, 	0.f, 	0.f, 0.f, .5f,	3, 		"base.frag"},//pluto
+	{3, 	.17f, 	1.f, 	.4f, 	.07f,	0.f, 	0.f, 	.5f, .5f, .5f,	3, 		"base.frag"},//moon
+	{6, 	14.f, 	.02f, 	0.f, 	1.f,	0.f, 	45.f,	.5f, .5f, .5f,	6, 		"base.frag"},//saturn's rings
+	{0, 	.2f, 	.5f, 	10.f, 	0.f,	0.f, 	90.f,	.01f,.01f,.01f,	1, 		"base.frag"},//UFO
+	{12, 	.1f, 	.5f, 	.12f, 	.01f,	0.f, 	0.f,	.01f,.01f,.01f,	1, 		"base.frag"},//UFO baby
+	{12, 	.1f, 	.5f, 	.12f, 	.01f,	0.f, 	90.f,	.01f,.01f,.01f,	1, 		"base.frag"},//UFO baby
+	{12, 	.1f, 	.5f, 	.12f, 	.01f,	0.f, 	180.f,	.01f,.01f,.01f,	1, 		"base.frag"},//UFO baby
+	{12, 	.1f, 	.5f, 	.12f, 	.01f,	0.f, 	270.f,	.01f,.01f,.01f,	1, 		"base.frag"}//UFO baby
 };
-
+#define PLANET_NUM 17
 
 gameFrame::gameFrame(abstractObject* parent) : UIFrame(parent) {
 	// Testing objects
@@ -46,7 +51,7 @@ gameFrame::gameFrame(abstractObject* parent) : UIFrame(parent) {
 	// items.push_back(cam);
 	// items.push_back(sun);
 
-
+	gameObject::neg_lod = 1.f;
 	staticBehaviour* sun = new staticBehaviour(NULL, glm::vec3(0.f));
 	camTour = new tour(sun);
 	items.push_back(camTour);
@@ -60,11 +65,16 @@ gameFrame::gameFrame(abstractObject* parent) : UIFrame(parent) {
 
 
 
-	planet* all_p[10];
+	planet* all_p[PLANET_NUM];
 	// planet* one_p;
-	for (int p = 0; p < 10; p++) {
-		all_p[p] = new planet(all_p[pdat[p].parent], pdat[p].size/5, &pdat[p].r);
-		all_p[p]->setBehaviour(new orbitBehaviour(all_p[p], all_p[pdat[p].parent], pdat[p].angle, pdat[p].orbit/2., 2./pdat[p].omega));
+	for (int p = 0; p < PLANET_NUM; p++) {
+		all_p[p] = new planet(all_p[pdat[p].parent], pdat[p].size/5, pdat[p].height, &pdat[p].r, pdat[p].lod, pdat[p].frag);
+		if (pdat[p].omega != 0.f) all_p[p]->setBehaviour(new orbitBehaviour(all_p[p], all_p[pdat[p].parent], pdat[p].angle, pdat[p].orbit/2., 2./pdat[p].omega));
+		else {
+			glm::mat4 R = glm::rotate(glm::mat4(1.f), pdat[p].angle, glm::vec3(0.f,0.f,1.f)) * glm::translate(glm::mat4(1.0), glm::vec3(0.f, pdat[p].orbit/2.f, 0.f));
+			printf("R:\t%f\t%f\t%f\t%f\n", R[3][0], R[3][1], R[3][2], R[3][3]);
+			all_p[p]->setBehaviour(new staticBehaviour(all_p[pdat[p].parent], R[3].xyz));
+		}
 		items.push_back(all_p[p]);
 	}
 
@@ -112,6 +122,7 @@ void gameFrame::update(double delta) {
 		printf("P pressed.\n");
 		cam->setBehaviour(//new staticBehaviour(cam, cam->get_abs_loc()));
 		new controlBehaviour(cam, camTour->get(0).get_abs_loc(), 1.f));
+		items.push_back(new robot(this, &(gameObject::neg_lod), .1f, 10.));
 	}
 	if (T && !glfwGetKey( 'T' ) ) {
 		T = false;

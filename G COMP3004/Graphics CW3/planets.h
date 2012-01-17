@@ -16,13 +16,15 @@ class planet: public gameObject
 		typedef GLdouble vertex[3];	//FIXME this isn't very nice
 		vertex* model;
 		float size;
+		float height;
+		int lod;
 
 		GLfloat colour[3];
 
 		behaviour* loc;	// TODO: refactor this (look down)
 	
 	public:
-		planet(abstractObject* parent, float size, GLfloat colour[]);
+		planet(abstractObject* parent, float size, float height, GLfloat colour[], int lod, const char* frag);
 		virtual ~planet();
 		virtual void update(double delta);
 		virtual void render();
