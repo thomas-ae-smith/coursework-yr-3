@@ -1,6 +1,12 @@
 taes1g09 - COMP3004 C/W 3
 readme
 
+--Last minute bug: camera starts in sun. Press P to escape--
+
+Solar system. 	All spheres are generated in the geometry shader from an original octahedron.
+				All textures are generated using simplex noise, using a GLSL library found here: 
+						https://github.com/ashima/webgl-noise
+						Used under the MIT license.
 
 Interaction:
 The following controls may be used to interact with the demo.
