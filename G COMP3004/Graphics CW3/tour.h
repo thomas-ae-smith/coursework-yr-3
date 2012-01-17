@@ -49,6 +49,7 @@ class tour: public abstractObject
 		virtual void push_back(waypoint* w) {points.push_back(w);}
 		virtual void setupRobots(camera* cam, waypoint* point);
 		// virtual void finished(robot* done);
+		virtual bool getActive() {return active;}
 
 };
 #endif /* #ifndef _TOUR_H_ */

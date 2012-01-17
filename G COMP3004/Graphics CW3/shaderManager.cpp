@@ -12,11 +12,11 @@ shaderManager* shaderManager::get(){
 };
 
 shaderManager::shaderManager(abstractObject* parent) : abstractObject(parent) {
-	printf("Created shaderManager\n");
+	//printf("Created shaderManager\n");
 }
 
 shaderManager::~shaderManager() {
-	printf("Unloaded shaderManager\n");
+	//printf("Unloaded shaderManager\n");
 }
 
 GLuint shaderManager::getShader(const char* vert, const char* frag, const char* geom){
@@ -26,7 +26,7 @@ GLuint shaderManager::getShader(const char* vert, const char* frag, const char* 
                            name != names.end();
                            ++name) {
     	if (shadername.compare(*name) == 0) { //this shader already exists
-    		printf("Returning existing shader %s\n", shadername.c_str());
+    		//printf("Returning existing shader %s\n", shadername.c_str());
     		// delete shadername;
     		//get the distance between current position of name and beginnings
     		return shaders.at(name-names.begin()); 
@@ -75,6 +75,6 @@ GLuint shaderManager::getShader(const char* vert, const char* frag, const char* 
 
 glBindAttribLocation(shaderprogram, 0, "in_Position");
 
-	printf("Added new shader: %s\tTotal stored: %d\n", names.back().c_str(), (int)(names.size()));
+	//printf("Added new shader: %s\tTotal stored: %d\n", names.back().c_str(), (int)(names.size()));
 	return shaderprogram;
 }

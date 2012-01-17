@@ -75,51 +75,103 @@ controlBehaviour::controlBehaviour(abstractObject* parent,
 							float max_speed) : managedBehaviour(parent, max_speed) {};
 
 controlBehaviour::controlBehaviour(abstractObject* parent, glm::mat4 loc,
-							float max_speed) : managedBehaviour(parent, loc, max_speed) {printf("Located controlBehaviour constructed.");};
+							float max_speed) : managedBehaviour(parent, loc, max_speed) {/*printf("Located controlBehaviour constructed.");*/};
 
 void controlBehaviour::update(double delta) {
 	// printf("M:\t%f\t%f\t%f\t%f\n", M[3][0], M[3][1], M[3][2], M[3][3]);
-	// printf("R:\t%f\t%f\t%f\t%f\n", R[3][0], R[3][1], R[3][2], R[3][3]);
-	// printf("theta:\t%f\n", theta);
+//	if (glfwGetKey( 'H' ) ) {
+		// printf("PgUp pressed.");
+//	 printf("R:\t%f\t%f\t%f\t%f\n", R[3][0], R[3][1], R[3][2], R[3][3]);
+//	 printf("theta:\t%f\t\tphi:\t%f\n", theta, phi);
+//	}
 	managedBehaviour::update(delta);
 
-	if (glfwGetKey( GLFW_KEY_PAGEUP ) ) {
-		// printf("PgUp pressed.");
+	if (belevate) {
+		belevate = false;
 		R[3][2] += 1*delta;
 	}
-	if (glfwGetKey( GLFW_KEY_PAGEDOWN ) ) {
+	if (bdelevate ) {
+		bdelevate = false;
 		// printf("PgDown pressed.");
 		R[3][2] -= 1*delta;
 	}
-	if (glfwGetKey( GLFW_KEY_UP ) ) {
+	if (bspeedup) {
+		bspeedup = false;
 		// printf("Up pressed.");
 		speed += 1* delta;
 	}
-	if (glfwGetKey( GLFW_KEY_DOWN ) ) {
+	if (bslow ) {
+		bslow = false;
 		// printf("Down pressed.");
 		speed -= 1* delta;
 	}
-	if (glfwGetKey( GLFW_KEY_HOME ) ) {
+	if (bup ) {
+		bup = false;
 		// printf("Home pressed.");
 		theta -= 1* delta;
 	}
-	if (glfwGetKey( GLFW_KEY_END ) ) {
+	if (bdown ) {
+		bdown = false;
 		// printf("End pressed.");
 		theta += 1* delta;
 	}
-	if (glfwGetKey( GLFW_KEY_LEFT ) ) {
+	if (bleft ) {
+		bleft = false;
 		// printf("Left pressed.");
 		phi += 1* delta;
 	}
-	if (glfwGetKey( GLFW_KEY_RIGHT ) ) {
+	if (bright ) {
+		bright = false;
 		// printf("Right pressed.");
 		phi -= 1* delta;
 	}
-	if (glfwGetKey( GLFW_KEY_SPACE ) ) {
+	if (bstop ) {
+		bstop = false;
 		// printf("Space pressed.");
 		speed = 0.f;
 	}
 }
+
+void controlBehaviour::elevate() {
+	belevate = true;
+}
+
+void controlBehaviour::delevate() {
+	bdelevate = true;
+}
+
+void controlBehaviour::speedup() {
+	bspeedup = true;
+}
+
+void controlBehaviour::slow() {
+	bslow = true;
+}
+
+void controlBehaviour::up() {
+	bup = true;
+}
+
+void controlBehaviour::down() {
+	bdown = true;
+}
+
+void controlBehaviour::left() {
+	bleft = true;
+}
+
+void controlBehaviour::right() {
+	bright = true;
+}
+
+void controlBehaviour::stop() {
+	bstop = true;
+}
+
+
+
+
+
 
 moveBehaviour::moveBehaviour(abstractObject* parent, 
 							glm::vec4 vec,
