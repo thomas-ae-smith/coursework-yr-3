@@ -3,6 +3,7 @@
 precision highp float;
 
 uniform mat4 mvpmatrix;
+uniform int iter;
 
 // Declare what type of incoming primitive our geometry shader is receiving
 layout(triangles) in;
@@ -32,7 +33,7 @@ layout(triangle_strip, max_vertices = 124) out;
  	V02 = (gl_in[2].gl_Position - gl_in[0].gl_Position).xyz;
  	V0 = gl_in[0].gl_Position.xyz;
 
- 	int iter  = 5;
+ 	//int iter  = 5;
 
  	float dt = 1./float(iter);
 

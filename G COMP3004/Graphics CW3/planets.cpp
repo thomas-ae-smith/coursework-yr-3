@@ -4,8 +4,8 @@
 #include <stdio.h>
 
 
-planet::planet(abstractObject* parent, float size, GLfloat colour[]) : gameObject(parent) {
-	shaderprogram = shaders->getShader("base.vert", "base.frag", "spheresubd.geom");        
+planet::planet(abstractObject* parent, float size, float height, GLfloat colour[], int lod, const char* frag) : gameObject(parent) {
+	shaderprogram = shaders->getShader("base.vert", frag, "spheresubd.geom");        
 	glGenBuffers(1, vbo);
 	glBindBuffer(GL_ARRAY_BUFFER, vbo[0]);
 	
@@ -18,17 +18,17 @@ planet::planet(abstractObject* parent, float size, GLfloat colour[]) : gameObjec
 		model[v_num][0] = 0.0;
 		model[v_num][1]= 0.0;
 		model[v_num][2] = ((i % 2) == 0)? -1. : 1.;
-		printf("%f", model[v_num][2]);
+		// printf("%f", model[v_num][2]);
 		v_num++;
 		model[v_num][0] = 0.0;
 		model[v_num][1] = ((i & 0x2) == 0)? -1. : 1.;
 		model[v_num][2] = 0.0;
-		printf("%f", model[v_num][1]);
+		// printf("%f", model[v_num][1]);
 		v_num++;
 		model[v_num][0] = ((i & 0x4) == 0)? -1. : 1.;
 		model[v_num][1] = 0.0;
 		model[v_num][2] = 0.0;
-		printf("%f\n", model[v_num][0]);
+		// printf("%f\n", model[v_num][0]);
 		v_num++;
 	}
 	glBufferData ( GL_ARRAY_BUFFER, 24 * sizeof ( vertex ), model, GL_STATIC_DRAW );
@@ -39,9 +39,11 @@ planet::planet(abstractObject* parent, float size, GLfloat colour[]) : gameObjec
 	// }
 
 	this->size = size;
+	this->height = height;
 	this->colour[0] = colour[0];
 	this->colour[1] = colour[1];
 	this->colour[2] = colour[2];
+	this->lod = lod;
 	loc = new staticBehaviour(this);
 
 
@@ -67,7 +69,7 @@ void planet::render() {
 	M = get_abs_loc(); //HACK
 	R = glm::mat4(1.f);
 	// R = glm::rotate(R, /**/, glm::vec3(0.f, 0.f, 1.f));
-	R = glm::scale(R, glm::vec3(size));
+	R = glm::scale(R, glm::vec3(size, size, size*height));
 	glm::mat4 MVP = *VP * M * R;
 	// glBufferData ( GL_ARRAY_BUFFER, 24 * sizeof ( vertex ), model, GL_STATIC_DRAW );
 	glBindBuffer(GL_ARRAY_BUFFER, vbo[0]);
@@ -75,7 +77,9 @@ void planet::render() {
 	glVertexAttribPointer ( ( GLuint ) 0, 3, GL_DOUBLE, GL_FALSE, sizeof ( vertex ), ( const GLvoid* ) 0 );
 	glUseProgram(shaderprogram);
 	glm::vec3 drawColour(1.f, 1.f, 0.f);
+	int curr_lod = ceil(((float)lod) * neg_lod);
 	glUniform3fv(glGetUniformLocation(shaderprogram, "in_Colour"), 1, colour);
+	glUniform1i(glGetUniformLocation(shaderprogram, "iter"), curr_lod);
 	glUniformMatrix4fv(glGetUniformLocation(shaderprogram, "mvpmatrix"), 1, GL_FALSE, glm::value_ptr(MVP));
 
 	glDrawArrays(GL_TRIANGLE_STRIP, 0, 24);

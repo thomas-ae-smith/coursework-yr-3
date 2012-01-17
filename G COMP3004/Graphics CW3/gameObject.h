@@ -32,6 +32,7 @@ class gameObject : public abstractObject
 		struct space_data m, v;
 
 	public:
+		static float neg_lod; //TODO hack
 		glm::mat4 R, M;
 		gameObject(abstractObject* parent);
 		virtual ~gameObject() {};

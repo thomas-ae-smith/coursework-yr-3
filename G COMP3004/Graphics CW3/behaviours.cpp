@@ -14,7 +14,7 @@ staticBehaviour::staticBehaviour(abstractObject* parent, glm::mat4 loc) : behavi
 }
 
 void staticBehaviour::update(double delta) {
-	M = ((parent)? ((gameObject*)parent)->get_abs_loc() : glm::mat4(1.f)) * R;
+	M = ((parent)? ((gameObject*)parent)->get_abs_loc() : glm::mat4(1.f)) * R;	//TODO: refactor, this should use target
 }
 
 orbitBehaviour::orbitBehaviour(abstractObject* parent, 

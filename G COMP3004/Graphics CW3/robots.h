@@ -14,10 +14,12 @@ class robot : public abstractObject {
 		float elapsed;
 
 		bool active;
+		bool owner;
 
 	public:
 		robot(abstractObject* parent, float* value, float* endValue, float duration);
-		virtual ~robot() {};
+		robot(abstractObject* parent, float* value, float endValue, float duration);
+		virtual ~robot();
 		virtual void update(double delta);
 		virtual void render() {};
 		virtual void debug() {};
