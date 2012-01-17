@@ -45,22 +45,6 @@ struct planets {
 };
 #define PLANET_NUM 18
 
-
-planet** gameFrame::setupPlanets(planet** all_p_p) {		//this is horrific. I should be shot.
-	planet* all_p = *all_p_p;
-	for (int p = 0; p < PLANET_NUM; p++) {
-		all_p[p] = new planet(all_p[pdat[p].parent], pdat[p].size/5, pdat[p].height, &pdat[p].r, pdat[p].lod, pdat[p].frag);
-		if (pdat[p].omega != 0.f) all_p[p]->setBehaviour(new orbitBehaviour(all_p[p], all_p[pdat[p].parent], pdat[p].angle, pdat[p].orbit/2., 2./pdat[p].omega));
-		else {
-			glm::mat4 R = glm::rotate(glm::mat4(1.f), pdat[p].angle, glm::vec3(0.f,0.f,1.f)) * glm::translate(glm::mat4(1.0), glm::vec3(0.f, pdat[p].orbit/2.f, 0.f));
-			printf("R:\t%f\t%f\t%f\t%f\n", R[3][0], R[3][1], R[3][2], R[3][3]);
-			all_p[p]->setBehaviour(new staticBehaviour(all_p[pdat[p].parent], R[3].xyz));
-		}
-		items.push_back(all_p[p]);
-	}
-	return &all_p
-}
-
 gameFrame::gameFrame(abstractObject* parent) : UIFrame(parent) {
 	// Testing objects
 	// planet* sun = new planet(NULL, 1.f);
@@ -84,17 +68,16 @@ gameFrame::gameFrame(abstractObject* parent) : UIFrame(parent) {
 
 	planet* all_p[PLANET_NUM];
 	// planet* one_p;
-	// for (int p = 0; p < PLANET_NUM; p++) {
-	// 	all_p[p] = new planet(all_p[pdat[p].parent], pdat[p].size/5, pdat[p].height, &pdat[p].r, pdat[p].lod, pdat[p].frag);
-	// 	if (pdat[p].omega != 0.f) all_p[p]->setBehaviour(new orbitBehaviour(all_p[p], all_p[pdat[p].parent], pdat[p].angle, pdat[p].orbit/2., 2./pdat[p].omega));
-	// 	else {
-	// 		glm::mat4 R = glm::rotate(glm::mat4(1.f), pdat[p].angle, glm::vec3(0.f,0.f,1.f)) * glm::translate(glm::mat4(1.0), glm::vec3(0.f, pdat[p].orbit/2.f, 0.f));
-	// 		printf("R:\t%f\t%f\t%f\t%f\n", R[3][0], R[3][1], R[3][2], R[3][3]);
-	// 		all_p[p]->setBehaviour(new staticBehaviour(all_p[pdat[p].parent], R[3].xyz));
-	// 	}
-	// 	items.push_back(all_p[p]);
-	// }
-	setupPlanets(&all_p);
+	for (int p = 0; p < PLANET_NUM; p++) {
+		all_p[p] = new planet(all_p[pdat[p].parent], pdat[p].size/5, pdat[p].height, &pdat[p].r, pdat[p].lod, pdat[p].frag);
+		if (pdat[p].omega != 0.f) all_p[p]->setBehaviour(new orbitBehaviour(all_p[p], all_p[pdat[p].parent], pdat[p].angle, pdat[p].orbit/2., 2./pdat[p].omega));
+		else {
+			glm::mat4 R = glm::rotate(glm::mat4(1.f), pdat[p].angle, glm::vec3(0.f,0.f,1.f)) * glm::translate(glm::mat4(1.0), glm::vec3(0.f, pdat[p].orbit/2.f, 0.f));
+			printf("R:\t%f\t%f\t%f\t%f\n", R[3][0], R[3][1], R[3][2], R[3][3]);
+			all_p[p]->setBehaviour(new staticBehaviour(all_p[pdat[p].parent], R[3].xyz));
+		}
+		items.push_back(all_p[p]);
+	}
 
 	camTour->push_back(new waypoint(camTour, new staticBehaviour(NULL, glm::vec3(-.7f, 0.f, 3.f)), 0.f, 1.9, 0.5f));
 	camTour->push_back(new waypoint(camTour, new staticBehaviour(all_p[3], glm::vec3(.0f, 0.f, .7f)), 0.f, 2.5f, 5.f));
