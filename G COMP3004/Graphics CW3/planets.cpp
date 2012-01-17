@@ -46,6 +46,7 @@ planet::planet(abstractObject* parent, float size, float height, GLfloat colour[
 	this->lod = lod;
 	loc = new staticBehaviour(this);
 
+	elapsed = 0.f;
 
 	printf("Created a planet.\n");
 }
@@ -58,6 +59,7 @@ planet::~planet() {
 
 void planet::update(double delta) { 
 	loc->update(delta);
+	elapsed += delta;
 	// m.rot += v.rot * delta;
 	// TODO M = glm::rotate(M, m.inc, glm::vec3(1.f, 0.f, 0.f));
 	
@@ -80,6 +82,7 @@ void planet::render() {
 	int curr_lod = ceil(((float)lod) * neg_lod);
 	glUniform3fv(glGetUniformLocation(shaderprogram, "in_Colour"), 1, colour);
 	glUniform1i(glGetUniformLocation(shaderprogram, "iter"), curr_lod);
+	glUniform1f(glGetUniformLocation(shaderprogram, "time"), elapsed);
 	glUniformMatrix4fv(glGetUniformLocation(shaderprogram, "mvpmatrix"), 1, GL_FALSE, glm::value_ptr(MVP));
 
 	glDrawArrays(GL_TRIANGLE_STRIP, 0, 24);

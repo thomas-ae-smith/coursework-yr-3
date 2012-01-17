@@ -19,6 +19,8 @@ class planet: public gameObject
 		float height;
 		int lod;
 
+		float elapsed;
+
 		GLfloat colour[3];
 
 		behaviour* loc;	// TODO: refactor this (look down)

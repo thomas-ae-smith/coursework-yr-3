@@ -145,17 +145,22 @@ float snoise(vec4 v)
 
 void main(void) {
 	float noiseScale;
-	float tim = time * 0.1;
-	float intensity = abs( 0.5 * snoise(vec4(vert_pos,tim) * 4.0))
-   + abs( 0.25 * snoise(vec4(vert_pos,tim) * 8.0))
-   + abs( 0.125 * snoise(vec4(vert_pos,tim) * 16.0))
-   + abs( 0.0625 * snoise(vec4(vert_pos,tim) * 32.0))
-   + abs( 0.03125 * snoise(vec4(vert_pos,tim) * 64.0));
+	float tim = time * 0.05;
+  float e_intensity = 4.0 *snoise(vec4(vert_pos,1.) * 1.5)
+   + 0.25 * snoise(vec4(vert_pos,1.) * 8.0)
+   + 0.125 * snoise(vec4(vert_pos,1.) * 16.0)
+   + 0.0625 * snoise(vec4(vert_pos,1.) * 32.0) + 0.6;
 
-	intensity    = clamp(intensity * 6.0, 0.0, 1.0);
-    vec3 color   = mix( vec3(0.6, 0.1, 0.0), vec3(0.8, 0.7, 0.0), intensity) * 1.5;
-    gl_FragColor = vec4(color, .5);
+  
+	float c_intensity = 0.5 * snoise(vec4(vert_pos,tim)*2.0) + 0.25
+   + 0.125 * snoise(vec4(vert_pos,1.) * 16.0)
+   + 0.0625 * snoise(vec4(vert_pos,1.) * 32.0) - 0.1;
 
-	//gl_FragColor = vec4(ex_Color,1.0);
+  e_intensity    = clamp(e_intensity * 7, 0.0, 1.0);
+	c_intensity    = clamp(c_intensity * 7, 0.0, 1.0);
+    vec3 e_colour   = mix( vec3(0., .6, 0.0), vec3(0., 0., .8), e_intensity);
+    vec4 c_colour   = mix( vec4(.8), vec4(0.), c_intensity);
+    gl_FragColor = vec4(e_colour,1.0) + c_colour;
+
 }
 

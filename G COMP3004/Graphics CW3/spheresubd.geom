@@ -16,14 +16,15 @@ layout(triangle_strip, max_vertices = 124) out;
 // In our case this value is 3, since triangles have 3 vertices
  out vec3 ex_Color;
  in vec3 geom_Color[3];
- 
+ out vec3 vert_pos;
  vec3 V0, V01, V02;
 
  void makeVert(float s, float t)
  {
- 	vec3 v = V0 + s*V01 + t*V02;
- 	v = normalize(v);
- 	gl_Position = mvpmatrix * vec4(v, 1.);
+ 	vert_pos = V0 + s*V01 + t*V02;
+ 	vert_pos = normalize(vert_pos);
+
+ 	gl_Position = mvpmatrix * vec4(vert_pos, 1.);
  	EmitVertex();
  }
 
