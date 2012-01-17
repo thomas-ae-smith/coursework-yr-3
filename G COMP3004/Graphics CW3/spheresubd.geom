@@ -23,7 +23,7 @@ layout(triangle_strip, max_vertices = 124) out;
  {
  	vert_pos = V0 + s*V01 + t*V02;
  	vert_pos = normalize(vert_pos);
-
+ex_Color = geom_Color[0];
  	gl_Position = mvpmatrix * vec4(vert_pos, 1.);
  	EmitVertex();
  }

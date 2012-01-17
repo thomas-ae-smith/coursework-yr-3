@@ -29,10 +29,10 @@ struct planets {
 	{0, 	.60f, 	1.f, 	7.2f,	-0.62f,	3.4f,	100.f,	1.f, 1.f, 0.f,	4,		"venus.frag"},//venus
 	{0, 	.63f, 	1.f, 	10.f,	1.f,	0.f,	-30.f,	0.f, 0.f, 1.f,	5,		"earth.frag"},//earth
 	{0, 	.33f, 	1.f, 	15.2f,	1.8f,	0.f,	15.f,	1.f, 0.f, 0.f,	3,		"base.frag"},//mars
-	{0, 	7.14f,	1.f,	52.f, 	11.8f,	0.f,	-27.f, 	1.f, .5f, 0.f,	6, 		"base.frag"},//jupiter
-	{0, 	6.02f,	1.f, 	95.f, 	29.5f,	0.f,	22.f,	.5f, .5f, 0.f,	6, 		"base.frag"},//saturn
-	{0,		2.6f,	1.f, 	191.f,	84.f,	0.f,	270.f,	.8f, .8f, 1.f,	4,	 	"base.frag"},//uranus
-	{0, 	2.5f, 	1.f, 	300.f,	164.f, 	0.f, 	80.f,	.5f, .5f, 1.f,	4, 		"base.frag"},//neptune
+	{0, 	7.14f,	1.f,	52.f, 	11.8f,	0.f,	-27.f, 	1.f, .5f, 0.f,	6, 		"gasgiant.frag"},//jupiter
+	{0, 	6.02f,	1.f, 	95.f, 	29.5f,	0.f,	22.f,	.5f, .5f, 0.f,	6, 		"gasgiant.frag"},//saturn
+	{0,		2.6f,	1.f, 	191.f,	84.f,	0.f,	270.f,	.8f, .8f, 1.f,	4,	 	"gasgiant.frag"},//uranus
+	{0, 	2.5f, 	1.f, 	300.f,	164.f, 	0.f, 	80.f,	.5f, .5f, 1.f,	4, 		"gasgiant.frag"},//neptune
 	{0, 	.11f, 	1.f, 	394.f, 	248.f,	0.f, 	127.f, 	0.f, 0.f, .5f,	3, 		"base.frag"},//pluto
 	{3, 	.17f, 	1.f, 	.4f, 	.07f,	0.f, 	0.f, 	.5f, .5f, .5f,	3, 		"moon.frag"},//moon
 	{6, 	14.f, 	.02f, 	0.f, 	1.f,	0.f, 	45.f,	.5f, .5f, .5f,	6, 		"base.frag"},//saturn's rings
@@ -93,9 +93,9 @@ gameFrame::gameFrame(abstractObject* parent) : UIFrame(parent) {
 	// 	one_p->setBehaviour(new orbitBehaviour(one_p, one_p, 0.f, 0.f, 0.f));
 	// 	items.push_back(one_p);
 	// // }
-
+// printf("cap%p\n", cam);
 	cam->setBehaviour(//new staticBehaviour(cam, cam->get_abs_loc()));
-			new controlBehaviour(cam, camTour->get(0).get_abs_loc(), 1.f));
+			new controlBehaviour(cam, camTour->get(1).get_abs_loc(), 1.f));
 
 	// planet* jupiter = new planet(sun, 2.5f);
 	// jupiter->setBehaviour(new orbitBehaviour(jupiter, sun, 0.f, 5.f, 5.f));
@@ -113,7 +113,7 @@ gameFrame::gameFrame(abstractObject* parent) : UIFrame(parent) {
 	// VP = Projection * V;
 	// gameObject::setVP(&VP);
 
-	R = H = T = P = false;
+	Y = U = R = H = T = P = false;
 	//printf("Created a gameFrame.\n");
 }
 
@@ -125,14 +125,12 @@ void gameFrame::resetPlanets() {
 	planet* all_p[PLANET_NUM];
 	// planet* one_p;
 	for (int p = 0; p < PLANET_NUM; p++) {
-		all_p[p] = new planet(all_p[pdat[p].parent], pdat[p].size/5, pdat[p].height, &pdat[p].r, pdat[p].lod, pdat[p].frag);
 		if (pdat[p].omega != 0.f) all_p[p]->setBehaviour(new orbitBehaviour(all_p[p], all_p[pdat[p].parent], pdat[p].angle, pdat[p].orbit/2., 2./pdat[p].omega));
 		else {
 			glm::mat4 R = glm::rotate(glm::mat4(1.f), pdat[p].angle, glm::vec3(0.f,0.f,1.f)) * glm::translate(glm::mat4(1.0), glm::vec3(0.f, pdat[p].orbit/2.f, 0.f));
 			//printf("R:\t%f\t%f\t%f\t%f\n", R[3][0], R[3][1], R[3][2], R[3][3]);
 			all_p[p]->setBehaviour(new staticBehaviour(all_p[pdat[p].parent], R[3].xyz));
 		}
-		items.push_back(all_p[p]);
 	}
 	
 }
@@ -155,14 +153,31 @@ void gameFrame::update(double delta) {
 		}
 		P = glfwGetKey( 'P' );
 
-		if (R && !glfwGetKey( 'R' ) ) {
-	    	R = false;
+		if (Y && !glfwGetKey( 'Y' ) ) {
+	    	Y = false;
 			// printf("P pressed.\n");
 			cam->setBehaviour(//new staticBehaviour(cam, cam->get_abs_loc()));
-			new controlBehaviour(cam, camTour->get(0).get_abs_loc(), 1.f));
+			new controlBehaviour(cam, camTour->get(5).get_abs_loc(), 1.f));
 			// items.push_back(new robot(this, &(gameObject::neg_lod), .1f, 10.));
 		}
-		R = glfwGetKey( 'R' );
+		Y = glfwGetKey( 'Y' );
+
+		if (U && !glfwGetKey( 'U' ) ) {
+	    	U = false;
+			// printf("P pressed.\n");
+			cam->setBehaviour(//new staticBehaviour(cam, cam->get_abs_loc()));
+			new controlBehaviour(cam, camTour->get(8).get_abs_loc(), 1.f));
+			// items.push_back(new robot(this, &(gameObject::neg_lod), .1f, 10.));
+		}
+		U = glfwGetKey( 'U' );
+
+		// if (R && !glfwGetKey( 'R' ) ) {
+	 //    	R = false;
+		// 	// printf("P pressed.\n");
+		// 	resetPlanets();
+		// 	// items.push_back(new robot(this, &(gameObject::neg_lod), .1f, 10.));
+		// }
+		// R = glfwGetKey( 'R' );
 
 		if (T && !glfwGetKey( 'T' ) ) {
 			T = false;
@@ -178,7 +193,7 @@ void gameFrame::update(double delta) {
 			H = false;
 			printf("Demo help:\n - Arrow keys control the camera\n - PGUP, PGDOWN control elevation\n");
 			printf(" - HOME, END control inclination\n - SPACE halts all camera movement\n - T starts the tour, E to quit\n");
-			printf(" - R to reset positions\n - P, Y, U to visit particular locations\n");
+			printf(/* - R to reset positions\n*/" - P, Y, U to visit particular locations\n");
 		}
 		H = glfwGetKey( 'H' );
 

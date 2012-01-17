@@ -43,13 +43,14 @@ void orbitBehaviour::update(double delta) {
 managedBehaviour::managedBehaviour(abstractObject* parent,
 							float max_speed) : behaviour(parent) {
 	this->max_speed = max_speed;
-
+// printf("happening\n");
 	this->active = true;
 	R = glm::mat4(1.);	//R is used as actual location
 	R = glm::translate(R, glm::vec3(-.7f, 0.f, 3.f));
 	phi = 0;
 	theta = 1.9;
 	this->speed = 0.f;
+	// printf("happened\n");
 }
 
 managedBehaviour::managedBehaviour(abstractObject* parent, glm::mat4 loc,
@@ -103,7 +104,7 @@ void controlBehaviour::update(double delta) {
 	if (bslow ) {
 		bslow = false;
 		// printf("Down pressed.");
-		speed -= 1* delta;
+		speed = (0.f > speed - 1* delta)?0.f: speed - 1* delta;
 	}
 	if (bup ) {
 		bup = false;
@@ -118,12 +119,12 @@ void controlBehaviour::update(double delta) {
 	if (bleft ) {
 		bleft = false;
 		// printf("Left pressed.");
-		phi += 1* delta;
+		phi += 2* delta;
 	}
 	if (bright ) {
 		bright = false;
 		// printf("Right pressed.");
-		phi -= 1* delta;
+		phi -= 2* delta;
 	}
 	if (bstop ) {
 		bstop = false;
