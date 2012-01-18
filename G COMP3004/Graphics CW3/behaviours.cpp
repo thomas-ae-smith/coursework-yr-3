@@ -65,9 +65,9 @@ managedBehaviour::managedBehaviour(abstractObject* parent, glm::mat4 loc,
 }
 
 void managedBehaviour::update(double delta){
-	glm::vec4 dirvec(sinf(theta)*cosf(phi),sinf(theta)*sinf(phi),cosf(theta), 1.f);
+	glm::vec4 dirvec(sinf(theta)*cosf(phi),cosf(theta),sinf(theta)*sinf(phi), 1.f);
 	glm::vec3 t1(R[3][0],R[3][1],R[3][2]);
-	glm::vec4 t2 = glm::translate(glm::mat4(1.f), t1) * dirvec;
+	glm::vec4 t2 = glm::translate(glm::mat4(1.f), t1) * glm::vec4(dirvec[0], dirvec[2], dirvec[1], 1.f);
 	M = glm::lookAt(t1, glm::vec3(t2[0], t2[1], t2[2]), glm::vec3(0.f, 0.f, 1.f));
 
 	R = glm::translate(R, glm::vec3(dirvec[0]*delta*speed, dirvec[2]*delta*speed, dirvec[1]*delta*speed));
