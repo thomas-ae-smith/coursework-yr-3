@@ -22,6 +22,7 @@ class robot : public abstractObject {
 		robot(abstractObject* parent, float* value, float* endValue, float duration);
 		robot(abstractObject* parent, float* value, float endValue, float duration);
 		robot(abstractObject* parent, float* value, float endValue, float duration, float delay);
+		robot(abstractObject* parent, float* value, float endValue, float duration, float delay, float startValue);
 		virtual ~robot();
 		virtual void update(double delta);
 		virtual void render() {};

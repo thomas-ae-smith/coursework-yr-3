@@ -61,7 +61,7 @@ void planet::update(double delta) {
 	loc->update(delta);
 	elapsed += delta;
 	if (size < 0.03f) {
-		colour[0] = 1.01f - neg_lod;
+		colour[0] = 1.01f - neg_lod + (amoeba*0.8);
 		colour[1] = 1.01f - neg_lod;
 		colour[2] = 1.01f - neg_lod;
 	}
@@ -86,9 +86,11 @@ void planet::render() {
 	glUseProgram(shaderprogram);
 	// glm::vec3 drawColour(1.f, 1.f, 0.f);
 	int curr_lod = (size<100.)? ceil(((float)lod) * neg_lod) : lod;
+	float curr_am = (lod==10)? amoeba : 0.0;
 	glUniform3fv(glGetUniformLocation(shaderprogram, "in_Colour"), 1, colour);
 	glUniform1i(glGetUniformLocation(shaderprogram, "iter"), curr_lod);
 	glUniform1f(glGetUniformLocation(shaderprogram, "time"), elapsed);
+	glUniform1f(glGetUniformLocation(shaderprogram, "amoeba"), curr_am);
 	glUniformMatrix4fv(glGetUniformLocation(shaderprogram, "mvpmatrix"), 1, GL_FALSE, glm::value_ptr(MVP));
 	glUniformMatrix4fv(glGetUniformLocation(shaderprogram, "sunrel"), 1, GL_FALSE, glm::value_ptr(sunrel));
 
