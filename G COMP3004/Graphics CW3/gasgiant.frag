@@ -3,6 +3,7 @@ precision highp float;
 in vec3 ex_Color;
 in vec3 vert_pos;
 out vec4 gl_FragColor;
+uniform mat4 sunrel;
 
 uniform float time;
 
@@ -145,17 +146,18 @@ float snoise(vec4 v)
 
 void main(void) {
 float noiseScale;
-  float intensity = 5 * snoise(vec4(vert_pos.x, vert_pos.y, vert_pos.z * 20,1.0))
-  //0.5 * snoise(vec4(vert_pos,1.0) * 4.0)
-  // + 0.25 * snoise(vec4(vert_pos,1.0) * 8.0)
-   //+ 0.125 * snoise(vec4(vert_pos,1.0) * 16.0)
-  // + 0.0625 * snoise(vec4(vert_pos,1.0) * 32.0)
-  // + 0.03125 * snoise(vec4(vert_pos,1.0) * 64.0)
+  float intensity =  snoise(vec4(vert_pos.x/5, vert_pos.y/5, vert_pos.z*12,1.0)) + .5
+  + 0.5 * snoise(vec4(vert_pos.x/5, vert_pos.y/5, vert_pos.z*1.5,1.0) * 4.0)
+  + 0.25 * snoise(vec4(vert_pos.x/20, vert_pos.y/20, vert_pos.z*1.5,1.0) * 8.0)
+   + 0.125 * snoise(vec4(vert_pos,1.0) * 16.0)
+   + 0.0625 * snoise(vec4(vert_pos,1.0) * 32.0)
+   + 0.5 * snoise(vec4(vert_pos,1.0) * 256.0)
    ;
 
   intensity    = clamp(intensity, 0.0, 1.0);
-    vec3 color   = mix( vec3(0.75, 0.5, 0.1), vec3(0.75, 0.4, 0.1), intensity);
+    vec3 color   = mix( vec3(0., 0., 0.5), vec3(0., 0., 0.3), intensity) * 0.75;
     gl_FragColor = vec4(color, .5);
+    gl_FragColor = gl_FragColor * 0.2 + gl_FragColor * 0.8 * vec4(.8) * dot(normalize(vert_pos), -1 * normalize( (sunrel*vec4(vert_pos,1.)).xyz) );
 
   //gl_FragColor = vec4(ex_Color,1.0);
 

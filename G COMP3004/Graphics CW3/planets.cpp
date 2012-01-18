@@ -78,6 +78,7 @@ void planet::render() {
 	// R = glm::rotate(R, /**/, glm::vec3(0.f, 0.f, 1.f));
 	R = glm::scale(R, glm::vec3(size, size, size*height));
 	glm::mat4 MVP = *VP * M * R;
+	glm::mat4 sunrel = M * R;
 	// glBufferData ( GL_ARRAY_BUFFER, 24 * sizeof ( vertex ), model, GL_STATIC_DRAW );
 	glBindBuffer(GL_ARRAY_BUFFER, vbo[0]);
 	glEnableVertexAttribArray(0);
@@ -89,6 +90,7 @@ void planet::render() {
 	glUniform1i(glGetUniformLocation(shaderprogram, "iter"), curr_lod);
 	glUniform1f(glGetUniformLocation(shaderprogram, "time"), elapsed);
 	glUniformMatrix4fv(glGetUniformLocation(shaderprogram, "mvpmatrix"), 1, GL_FALSE, glm::value_ptr(MVP));
+	glUniformMatrix4fv(glGetUniformLocation(shaderprogram, "sunrel"), 1, GL_FALSE, glm::value_ptr(sunrel));
 
 	glDrawArrays(GL_TRIANGLE_STRIP, 0, 24);
 }

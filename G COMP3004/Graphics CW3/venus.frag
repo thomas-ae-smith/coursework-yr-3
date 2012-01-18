@@ -3,7 +3,7 @@ precision highp float;
 in vec3 ex_Color;
 in vec3 vert_pos;
 out vec4 gl_FragColor;
-
+uniform mat4 sunrel;
 uniform float time;
 
 
@@ -141,20 +141,18 @@ float snoise(vec4 v)
 
 
 
-
-
 void main(void) {
 float noiseScale;
-  float intensity = abs( 2.0 * cos( 2.0 * snoise(vec4(vert_pos,1.0)*1.5)) -1.0)
-  //0.5 * snoise(vec4(vert_pos,1.0) * 4.0)
+  float intensity = -1.5 * snoise(vec4(vert_pos,1.0))
+   + 2.0 * snoise(vec4(vert_pos.x, vert_pos.y, vert_pos.z * 20,1.0))
    + 0.25 * snoise(vec4(vert_pos,1.0) * 8.0)
-   //+ 0.125 * snoise(vec4(vert_pos,1.0) * 16.0)
-   + 0.0625 * snoise(vec4(vert_pos,1.0) * 32.0)
-   + 0.03125 * snoise(vec4(vert_pos,1.0) * 64.0)
+   + 0.125 * snoise(vec4(vert_pos,1.0) * 16.0)
+   //+ 0.0625 * snoise(vec4(vert_pos,1.0) * 32.0)
+   //+ 0.03125 * snoise(vec4(vert_pos,1.0) * 64.0)
    ;
 
-  intensity    = clamp(intensity, 0.0, 1.0);
-    vec3 color   = mix( vec3(.3), vec3(.1, .1, 0.0), intensity);
+  intensity    = clamp(intensity + 1, 0.0, 1.0);
+    vec3 color   = mix(vec3(0.8, 0.6, 0.2), vec3(1., .8, .4), intensity) * 0.75;
     gl_FragColor = vec4(color, .5);
 
 }

@@ -8,11 +8,13 @@ uniform vec3 in_Colour;
 uniform mat4 mvpmatrix;
 
 out vec3 geom_Color;
+out vec3 geom_norm;
 void main(void) {
 // Multiply the mvp matrix by the vertex to obtain our final vertex position
 
 //gl_Position = mvpmatrix * vec4(in_Position, 1.0); 
 gl_Position = vec4(in_Position, 1.0);
 geom_Color = in_Colour;
+geom_norm = normalize(in_Position);
  }
 
