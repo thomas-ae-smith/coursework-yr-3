@@ -4,6 +4,7 @@ in vec3 ex_Color;
 in vec3 vert_pos;
 out vec4 gl_FragColor;
 
+uniform mat4 sunrel;
 uniform float time;
 
 
@@ -156,6 +157,7 @@ float noiseScale;
   intensity    = clamp(intensity, 0.0, 1.0);
     vec3 color   = mix( vec3(0.75, 0.5, 0.1), vec3(.1, .1, 0.0), intensity);
     gl_FragColor = vec4(color, .5);
+    gl_FragColor = gl_FragColor * 0.2 + gl_FragColor * 0.8 * vec4(.8) * dot(normalize(vert_pos), -1 * normalize( (sunrel*vec4(vert_pos,1.)).xyz) );
 
   //gl_FragColor = vec4(ex_Color,1.0);
 

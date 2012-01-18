@@ -5,6 +5,8 @@ in vec3 vert_pos;
 out vec4 gl_FragColor;
 
 uniform float time;
+uniform mat4 mvpmatrix;
+uniform mat4 sunrel;
 
 
 
@@ -156,11 +158,11 @@ void main(void) {
    + 0.125 * snoise(vec4(vert_pos,1.) * 16.0)
    + 0.0625 * snoise(vec4(vert_pos,1.) * 32.0) - 0.1;
 
-  e_intensity    = clamp(e_intensity * 7, 0.0, 1.0);
-	c_intensity    = clamp(c_intensity * 7, 0.0, 1.0);
+  e_intensity    = clamp(e_intensity * 2, 0.0, 1.0);
+	c_intensity    = clamp(c_intensity * 4, 0.0, 1.0);
     vec3 e_colour   = mix( vec3(0., .6, 0.0), vec3(0., 0., .8), e_intensity);
     vec4 c_colour   = mix( vec4(.8), vec4(0.), c_intensity);
     gl_FragColor = vec4(e_colour,1.0) + c_colour;
-
+    gl_FragColor = gl_FragColor * 0.2 + gl_FragColor * 0.8 * vec4(.8) * dot(normalize(vert_pos), -1 * normalize( (sunrel*vec4(vert_pos,1.)).xyz) );
 }
 

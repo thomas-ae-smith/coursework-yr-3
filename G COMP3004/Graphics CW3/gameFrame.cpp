@@ -28,14 +28,14 @@ struct planets {
 	{0, 	.24f, 	1.f, 	5.8f,	.24f,	7.f,	0.f,	1.f, 1.f, 0.f,	4,		"merc.frag"},//mercury
 	{0, 	.60f, 	1.f, 	7.2f,	-0.62f,	3.4f,	100.f,	1.f, 1.f, 0.f,	4,		"venus.frag"},//venus
 	{0, 	.63f, 	1.f, 	10.f,	1.f,	0.f,	-30.f,	0.f, 0.f, 1.f,	5,		"earth.frag"},//earth
-	{0, 	.33f, 	1.f, 	15.2f,	1.8f,	0.f,	15.f,	1.f, 0.f, 0.f,	3,		"base.frag"},//mars
-	{0, 	7.14f,	1.f,	52.f, 	11.8f,	0.f,	-27.f, 	1.f, .5f, 0.f,	6, 		"gasgiant.frag"},//jupiter
-	{0, 	6.02f,	1.f, 	95.f, 	29.5f,	0.f,	22.f,	.5f, .5f, 0.f,	6, 		"gasgiant.frag"},//saturn
+	{0, 	.33f, 	1.f, 	15.2f,	1.8f,	0.f,	15.f,	1.f, 0.f, 0.f,	3,		"mars.frag"},//mars
+	{0, 	7.14f,	1.f,	52.f, 	11.8f,	0.f,	-27.f, 	1.f, .5f, 0.f,	6, 		"jupiter.frag"},//jupiter
+	{0, 	6.02f,	1.f, 	95.f, 	29.5f,	0.f,	22.f,	.5f, .5f, 0.f,	6, 		"saturn.frag"},//saturn
 	{0,		2.6f,	1.f, 	191.f,	84.f,	0.f,	270.f,	.8f, .8f, 1.f,	4,	 	"gasgiant.frag"},//uranus
 	{0, 	2.5f, 	1.f, 	300.f,	164.f, 	0.f, 	80.f,	.5f, .5f, 1.f,	4, 		"gasgiant.frag"},//neptune
 	{0, 	.11f, 	1.f, 	394.f, 	248.f,	0.f, 	127.f, 	0.f, 0.f, .5f,	3, 		"base.frag"},//pluto
 	{3, 	.17f, 	1.f, 	.4f, 	.07f,	0.f, 	0.f, 	.5f, .5f, .5f,	3, 		"moon.frag"},//moon
-	{6, 	14.f, 	.02f, 	0.f, 	1.f,	0.f, 	45.f,	.5f, .5f, .5f,	6, 		"base.frag"},//saturn's rings
+	{6, 	14.f, 	.02f, 	0.f, 	1.f,	0.f, 	45.f,	.5f, .5f, .5f,	6, 		"rings.frag"},//saturn's rings
 	{0, 	.2f, 	.5f, 	12.5f, 	0.f,	0.f, 	90.f,	.01f,.01f,.01f,	1, 		"base.frag"},//UFO
 	{12, 	.1f, 	.5f, 	.12f, 	.01f,	0.f, 	0.f,	.01f,.01f,.01f,	1, 		"base.frag"},//UFO baby
 	{12, 	.1f, 	.5f, 	.12f, 	.01f,	0.f, 	90.f,	.01f,.01f,.01f,	1, 		"base.frag"},//UFO baby
@@ -98,13 +98,13 @@ gameFrame::gameFrame(abstractObject* parent) : UIFrame(parent) {
 // printf("cap%p\n", cam);
 
 	// glm::mat4 R = cam->getBehaviour()->R;
-		 printf("constrR:\t%f\t%f\t%f\t%f\n", cam->getBehaviour()->R[3][0], cam->getBehaviour()->R[3][1], cam->getBehaviour()->R[3][2], cam->getBehaviour()->R[3][3]);
+		 // printf("constrR:\t%f\t%f\t%f\t%f\n", cam->getBehaviour()->R[3][0], cam->getBehaviour()->R[3][1], cam->getBehaviour()->R[3][2], cam->getBehaviour()->R[3][3]);
 
 
 	// cam->setBehaviour(//new staticBehaviour(cam, cam->get_abs_loc()));
 	// 		new controlBehaviour(cam, camTour->get(1).get_abs_loc(), 1.f));
 
-		 printf("afterconstrR:\t%f\t%f\t%f\t%f\n", cam->getBehaviour()->R[3][0], cam->getBehaviour()->R[3][1], cam->getBehaviour()->R[3][2], cam->getBehaviour()->R[3][3]);
+		 // printf("afterconstrR:\t%f\t%f\t%f\t%f\n", cam->getBehaviour()->R[3][0], cam->getBehaviour()->R[3][1], cam->getBehaviour()->R[3][2], cam->getBehaviour()->R[3][3]);
 	// planet* jupiter = new planet(sun, 2.5f);
 	// jupiter->setBehaviour(new orbitBehaviour(jupiter, sun, 0.f, 5.f, 5.f));
 	// items.push_back(jupiter);

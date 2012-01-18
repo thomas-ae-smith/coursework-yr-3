@@ -75,18 +75,17 @@ void managedBehaviour::update(double delta){
 }
 
 controlBehaviour::controlBehaviour(abstractObject* parent,
-							float max_speed) : managedBehaviour(parent, max_speed) {printf("startR:\t%f\t%f\t%f\t%f\n", R[3][0], R[3][1], R[3][2], R[3][3]);
-	 printf("theta:\t%f\t\tphi:\t%f\n", theta, phi);};
+							float max_speed) : managedBehaviour(parent, max_speed) {};
 
 controlBehaviour::controlBehaviour(abstractObject* parent, glm::mat4 loc,
 							float max_speed) : managedBehaviour(parent, loc, max_speed) {/*printf("Located controlBehaviour constructed.");*/};
 
 void controlBehaviour::update(double delta) {
 	// printf("M:\t%f\t%f\t%f\t%f\n", M[3][0], M[3][1], M[3][2], M[3][3]);
-	if (glfwGetKey( 'H' ) ) {
-	 printf("R:\t%f\t%f\t%f\t%f\n", R[3][0], R[3][1], R[3][2], R[3][3]);
-	 printf("theta:\t%f\t\tphi:\t%f\n", theta, phi);
-	}
+	// if (glfwGetKey( 'H' ) ) {
+	//  printf("R:\t%f\t%f\t%f\t%f\n", R[3][0], R[3][1], R[3][2], R[3][3]);
+	//  printf("theta:\t%f\t\tphi:\t%f\n", theta, phi);
+	// }
 	managedBehaviour::update(delta);
 
 	if (belevate) {
@@ -106,7 +105,7 @@ void controlBehaviour::update(double delta) {
 	if (bslow ) {
 		bslow = false;
 		// printf("Down pressed.");
-		speed = (0.f > speed - 1* delta)?0.f: speed - 1* delta;
+		speed = (-800.f > speed - 1* delta)?0.f: speed - 1* delta;
 	}
 	if (bup ) {
 		bup = false;
