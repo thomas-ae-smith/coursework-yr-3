@@ -105,7 +105,7 @@ void controlBehaviour::update(double delta) {
 	if (bslow ) {
 		bslow = false;
 		// printf("Down pressed.");
-		speed = (-800.f > speed - 1* delta)?0.f: speed - 1* delta;
+		speed = (0.f > speed - 1* delta)?0.f: speed - 1* delta;
 	}
 	if (bup ) {
 		bup = false;
