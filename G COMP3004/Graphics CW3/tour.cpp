@@ -31,7 +31,7 @@ void tour::start(camera* slave) {
 	//slave->setBehaviour(loc);
 
 	// robots.push_back(new robot(this))
-	// printf("Starting tour.\n");
+	printf("Starting tour.\n");
 }
 
 tour::~tour() {
@@ -79,7 +79,7 @@ void tour::update(double delta) {
     		robots.clear();
 		}
 		if (glfwGetKey( 'E' ) || index == (int)points.size()) {
-			printf("E pressed.\n");
+			printf("Free control returned.\n");
 			active = false;
 			// slave->setBehaviour(new controlBehaviour(slave, loc->get_abs_loc(), 1.f));
 								//new controlBehaviour(slave, get(0).get_abs_loc(), 1.f));
