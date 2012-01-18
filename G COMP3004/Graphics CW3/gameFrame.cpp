@@ -36,7 +36,7 @@ struct planets {
 	{0, 	.11f, 	1.f, 	394.f, 	248.f,	0.f, 	127.f, 	0.f, 0.f, .5f,	3, 		"base.frag"},//pluto
 	{3, 	.17f, 	1.f, 	.4f, 	.07f,	0.f, 	0.f, 	.5f, .5f, .5f,	3, 		"moon.frag"},//moon
 	{6, 	14.f, 	.02f, 	0.f, 	1.f,	0.f, 	45.f,	.5f, .5f, .5f,	6, 		"base.frag"},//saturn's rings
-	{0, 	.2f, 	.5f, 	12.5f, 	0.f,	0.f, 	90.f,	1.f,1.f,1.f,	1, 		"base.frag"},//UFO
+	{0, 	.2f, 	.5f, 	12.5f, 	0.f,	0.f, 	90.f,	.01f,.01f,.01f,	1, 		"base.frag"},//UFO
 	{12, 	.1f, 	.5f, 	.12f, 	.01f,	0.f, 	0.f,	.01f,.01f,.01f,	1, 		"base.frag"},//UFO baby
 	{12, 	.1f, 	.5f, 	.12f, 	.01f,	0.f, 	90.f,	.01f,.01f,.01f,	1, 		"base.frag"},//UFO baby
 	{12, 	.1f, 	.5f, 	.12f, 	.01f,	0.f, 	180.f,	.01f,.01f,.01f,	1, 		"base.frag"},//UFO baby
@@ -85,9 +85,11 @@ gameFrame::gameFrame(abstractObject* parent) : UIFrame(parent) {
 	camTour->push_back(new waypoint(camTour, new staticBehaviour(NULL, glm::vec3(-6.25f, -2.72f, 8.9f)), 0.23f, 2.33, 5.f));	//wait
 	camTour->push_back(new waypoint(camTour, new staticBehaviour(all_p[3], glm::vec3(-1.5f, 0.f, 0.35f)), 0.23f, 2.f, 5.f));		//head to earth
 	camTour->push_back(new waypoint(camTour, new staticBehaviour(all_p[3], glm::vec3(-1.5f, 0.f, 0.3f)), 0.f, 1.57f, 5.f));		//precede it
-	camTour->push_back(new waypoint(camTour, new staticBehaviour(all_p[12], glm::vec3(0.f, 1.5f, 0.375f)), 0.2f, 1.9f, 5.f));		// reveal ufo
-	camTour->push_back(new waypoint(camTour, new staticBehaviour(all_p[12], glm::vec3(0.f, 1.5f, 0.375f)), 0.2f, 1.9f, 2.f));		// hover
+	camTour->push_back(new waypoint(camTour, new staticBehaviour(NULL, glm::vec3(-7.75f, 0.f, 0.375f)), 0.2f, 1.9f, 5.f));		// reveal ufo
+	camTour->push_back(new waypoint(camTour, new staticBehaviour(NULL, glm::vec3(-7.75f, 0.f, 0.375f)), 0.2f, 1.9f, 2.f));		// hover
 	camTour->push_back(new waypoint(camTour, new staticBehaviour(NULL, glm::vec3(-7.895f, -.308f, 0.339f)), 0.289f, 1.59f, 5.f));	//get a good view
+	//start fading neg_lod
+	camTour->push_back(new waypoint(camTour, new staticBehaviour(NULL, glm::vec3(-7.895f, -.308f, 0.339f)), 0.289f, 1.59f, 10.f));	//get a good view
 	// for (int p = 0; p < 1; p++) {
 	// 	one_p = new planet(sun, 2.f);
 	// 	one_p->setBehaviour(new orbitBehaviour(one_p, one_p, 0.f, 0.f, 0.f));
@@ -155,6 +157,7 @@ void gameFrame::update(double delta) {
 			// printf("P pressed.\n");
 			cam->setBehaviour(//new staticBehaviour(cam, cam->get_abs_loc()));
 			new controlBehaviour(cam, camTour->get(0).get_abs_loc(), 1.f));
+    		gameObject::neg_lod = 1.f;
 			// items.push_back(new robot(this, &(gameObject::neg_lod), .1f, 10.));
 		}
 		P = glfwGetKey( 'P' );
@@ -163,7 +166,8 @@ void gameFrame::update(double delta) {
 	    	Y = false;
 			// printf("P pressed.\n");
 			cam->setBehaviour(//new staticBehaviour(cam, cam->get_abs_loc()));
-			new controlBehaviour(cam, camTour->get(8).get_abs_loc(), 1.f));
+			new controlBehaviour(cam, camTour->get(5).get_abs_loc(), 1.f));
+    		gameObject::neg_lod = 1.f;
 			// items.push_back(new robot(this, &(gameObject::neg_lod), .1f, 10.));
 		}
 		Y = glfwGetKey( 'Y' );
@@ -173,6 +177,7 @@ void gameFrame::update(double delta) {
 			// printf("P pressed.\n");
 			cam->setBehaviour(//new staticBehaviour(cam, cam->get_abs_loc()));
 			new controlBehaviour(cam, camTour->get(6).get_abs_loc(), 1.f));
+    		gameObject::neg_lod = .1f;
 			// items.push_back(new robot(this, &(gameObject::neg_lod), .1f, 10.));
 		}
 		U = glfwGetKey( 'U' );
@@ -189,6 +194,7 @@ void gameFrame::update(double delta) {
 			T = false;
 			// printf("T pressed.\n");
 			//items.push_back(new robot(this, &(((managedBehaviour*)camloc)->phi), 20., 5.));
+    		gameObject::neg_lod = 1.f;
 
 
 			camTour->start(cam);

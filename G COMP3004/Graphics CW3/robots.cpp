@@ -9,6 +9,7 @@ robot::robot(abstractObject* parent, float* value, float* endValue, float durati
 	this->startValue = *value;
 	this->endValue = endValue;
 	this->duration = duration;
+	this->delay = 0.;
 	elapsed = 0.;
 	active = true;
 	owner = false;
@@ -20,6 +21,19 @@ robot::robot(abstractObject* parent, float* value, float endValue, float duratio
 	this->startValue = *value;
 	this->endValue = new float(endValue);
 	this->duration = duration;
+	this->delay = 0.;
+	elapsed = 0.;
+	active = true;
+	owner = true;
+}
+
+robot::robot(abstractObject* parent, float* value, float endValue, float duration, float delay) : abstractObject(parent) {
+	// printf("%p robot created.\n", this);
+	this->value = value;
+	this->startValue = *value;
+	this->endValue = new float(endValue);
+	this->duration = duration;
+	this->delay = delay;
 	elapsed = 0.;
 	active = true;
 	owner = true;
@@ -28,6 +42,10 @@ robot::robot(abstractObject* parent, float* value, float endValue, float duratio
 void robot::update(double delta) {
 	if (active == false) return;
 	//printf("%p robot updating.\n", this);
+	if (delay > 0.f) {
+		delay -= delta;
+		return;
+	}
 	elapsed += delta;
 	if (elapsed >= duration) {
 		*value = *endValue;

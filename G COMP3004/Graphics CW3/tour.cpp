@@ -3,6 +3,8 @@
 
 #include <GL/glfw.h>
 
+#define EFFECT_ROBOTS 1
+
 waypoint::waypoint(abstractObject* parent, behaviour* loc, float phi, float theta, float duration) : abstractObject(parent) 
 {
 	this->loc = loc;
@@ -31,6 +33,9 @@ void tour::start(camera* slave) {
 	//slave->setBehaviour(loc);
 
 	// robots.push_back(new robot(this))
+
+	robots.push_back(new robot(this, &(gameObject::neg_lod), .02f, 10., 47.));
+
 	printf("Starting tour.\n");
 }
 
@@ -58,7 +63,7 @@ void tour::update(double delta) {
     	(*item)->update(delta);
     }
 	if (active) {
-		if (robots.size() == 0)	setupRobots(slave, points.at(index));
+		if (robots.size() <= EFFECT_ROBOTS)	setupRobots(slave, points.at(index));
 		elapsed += delta;
 		for (vector<robot*>::iterator item = robots.begin();
                            item != robots.end();
@@ -71,15 +76,22 @@ void tour::update(double delta) {
 			// elapsed -= points.at(index)->getDuration();
 			elapsed = 0.f;
 			index++;
+			for (vector<robot*>::iterator item = robots.begin()+EFFECT_ROBOTS;
+                           item != robots.end();
+                           ++item) {
+                delete *item;
+    		}
+    		robots.erase(robots.begin()+EFFECT_ROBOTS, robots.end());
+		}
+		if (glfwGetKey( 'E' ) || index == (int)points.size()) {
+			printf("Free control returned.\n");
 			for (vector<robot*>::iterator item = robots.begin();
                            item != robots.end();
                            ++item) {
                 delete *item;
     		}
     		robots.clear();
-		}
-		if (glfwGetKey( 'E' ) || index == (int)points.size()) {
-			printf("Free control returned.\n");
+    		// gameObject::neg_lod = 1.f;
 			active = false;
 			// slave->setBehaviour(new controlBehaviour(slave, loc->get_abs_loc(), 1.f));
 								//new controlBehaviour(slave, get(0).get_abs_loc(), 1.f));

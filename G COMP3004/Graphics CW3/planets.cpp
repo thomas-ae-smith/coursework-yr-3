@@ -60,6 +60,11 @@ planet::~planet() {
 void planet::update(double delta) { 
 	loc->update(delta);
 	elapsed += delta;
+	if (size < 0.03f) {
+		colour[0] = 1.01f - neg_lod;
+		colour[1] = 1.01f - neg_lod;
+		colour[2] = 1.01f - neg_lod;
+	}
 	// m.rot += v.rot * delta;
 	// TODO M = glm::rotate(M, m.inc, glm::vec3(1.f, 0.f, 0.f));
 	
@@ -78,8 +83,8 @@ void planet::render() {
 	glEnableVertexAttribArray(0);
 	glVertexAttribPointer ( ( GLuint ) 0, 3, GL_DOUBLE, GL_FALSE, sizeof ( vertex ), ( const GLvoid* ) 0 );
 	glUseProgram(shaderprogram);
-	glm::vec3 drawColour(1.f, 1.f, 0.f);
-	int curr_lod = ceil(((float)lod) * neg_lod);
+	// glm::vec3 drawColour(1.f, 1.f, 0.f);
+	int curr_lod = (size<100.)? ceil(((float)lod) * neg_lod) : lod;
 	glUniform3fv(glGetUniformLocation(shaderprogram, "in_Colour"), 1, colour);
 	glUniform1i(glGetUniformLocation(shaderprogram, "iter"), curr_lod);
 	glUniform1f(glGetUniformLocation(shaderprogram, "time"), elapsed);
