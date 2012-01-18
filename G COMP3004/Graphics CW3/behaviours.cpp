@@ -65,8 +65,10 @@ managedBehaviour::managedBehaviour(abstractObject* parent, glm::mat4 loc,
 }
 
 void managedBehaviour::update(double delta){
-	glm::vec4 dirvec(sinf(theta)*cosf(phi),cosf(theta),sinf(theta)*sinf(phi), 1.f);
-	M = glm::lookAt(R[3].xyz, (glm::translate(glm::mat4(1.f), R[3].xyz) * dirvec.xzyw).xyz, glm::vec3(0.f, 0.f, 1.f));
+	glm::vec4 dirvec(sinf(theta)*cosf(phi),sinf(theta)*sinf(phi),cosf(theta), 1.f);
+	glm::vec3 t1(R[3][0],R[3][1],R[3][2]);
+	glm::vec4 t2 = glm::translate(glm::mat4(1.f), t1) * dirvec;
+	M = glm::lookAt(t1, glm::vec3(t2[0], t2[1], t2[2]), glm::vec3(0.f, 0.f, 1.f));
 
 	R = glm::translate(R, glm::vec3(dirvec[0]*delta*speed, dirvec[2]*delta*speed, dirvec[1]*delta*speed));
 	
@@ -188,11 +190,11 @@ moveBehaviour::moveBehaviour(abstractObject* parent,
 }
 
 void moveBehaviour::update(double delta) {
-	float length = glm::length(vec.xyz);
-	if (length > max_speed) {
-		printf("Speed too high. Restricting");
-		vec = glm::scale(glm::mat4(1.f), glm::vec3(max_speed/length)) * vec;
-	}
+	// float length = glm::length(vec.xyz);
+	// if (length > max_speed) {
+	// 	printf("Speed too high. Restricting");
+	// 	vec = glm::scale(glm::mat4(1.f), glm::vec3(max_speed/length)) * vec;
+	// }
 	if (glfwGetKey( GLFW_KEY_UP ) ) {
 		printf("Up pressed.");
 		// loc->vec = 
@@ -240,5 +242,5 @@ void moveBehaviour::update(double delta) {
 	}
 
 	printf("vec:\t%f\t%f\t%f\t%f\n", vec[0], vec[1], vec[2], vec[3]);
-	M = glm::translate(M, (glm::scale(glm::mat4(1.f), glm::vec3(delta)) * vec).xyz); //TODO need to get delta in here somehow
+	// M = glm::translate(M, (glm::scale(glm::mat4(1.f), glm::vec3(delta)) * vec).xyz); //TODO need to get delta in here somehow
 }

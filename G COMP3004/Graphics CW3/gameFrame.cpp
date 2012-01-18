@@ -74,7 +74,7 @@ gameFrame::gameFrame(abstractObject* parent) : UIFrame(parent) {
 		else {
 			glm::mat4 R = glm::rotate(glm::mat4(1.f), pdat[p].angle, glm::vec3(0.f,0.f,1.f)) * glm::translate(glm::mat4(1.0), glm::vec3(0.f, pdat[p].orbit/2.f, 0.f));
 			//printf("R:\t%f\t%f\t%f\t%f\n", R[3][0], R[3][1], R[3][2], R[3][3]);
-			all_p[p]->setBehaviour(new staticBehaviour(all_p[pdat[p].parent], R[3].xyz));
+			all_p[p]->setBehaviour(new staticBehaviour(all_p[pdat[p].parent], R));
 		}
 		items.push_back(all_p[p]);
 	}
@@ -129,7 +129,7 @@ void gameFrame::resetPlanets() {
 		else {
 			glm::mat4 R = glm::rotate(glm::mat4(1.f), pdat[p].angle, glm::vec3(0.f,0.f,1.f)) * glm::translate(glm::mat4(1.0), glm::vec3(0.f, pdat[p].orbit/2.f, 0.f));
 			//printf("R:\t%f\t%f\t%f\t%f\n", R[3][0], R[3][1], R[3][2], R[3][3]);
-			all_p[p]->setBehaviour(new staticBehaviour(all_p[pdat[p].parent], R[3].xyz));
+			all_p[p]->setBehaviour(new staticBehaviour(all_p[pdat[p].parent], R));
 		}
 	}
 	

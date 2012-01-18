@@ -1,6 +1,6 @@
 #include "planets.h"
 #include "behaviours.h"
-#include <glm/gtc/type_ptr.hpp>	//TODO take a look at why this is here
+#include "glm/gtc/type_ptr.hpp"	//TODO take a look at why this is here
 #include <stdio.h>
 
 

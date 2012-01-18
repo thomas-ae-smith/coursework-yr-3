@@ -1,5 +1,5 @@
-CFLAGS=-I/usr/cslib/include -Wall -g
-LDFLAGS=-L/usr/cslib/lib -lglfw -lGL -lXrandr -lGLEW
+CFLAGS=-I/usr/local/include -I/usr/include -Wall -g
+LDFLAGS=-L/usr/local/lib -L/usr/lib -lglfw -framework OpenGL -lGLEW
 
 all: *.cpp 
 	g++ -o taes1g09CW3 $^ $(CFLAGS) $(LDFLAGS) 
