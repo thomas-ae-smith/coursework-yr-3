@@ -33,6 +33,7 @@ class gameObject : public abstractObject
 
 	public:
 		static float neg_lod; //TODO hack
+		static float amoeba;  //TODO also hack
 		glm::mat4 R, M;
 		gameObject(abstractObject* parent);
 		virtual ~gameObject() {};

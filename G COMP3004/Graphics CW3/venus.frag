@@ -154,6 +154,6 @@ float noiseScale;
   intensity    = clamp(intensity + 1, 0.0, 1.0);
     vec3 color   = mix(vec3(0.8, 0.6, 0.2), vec3(1., .8, .4), intensity) * 0.75;
     gl_FragColor = vec4(color, .5);
-
+    gl_FragColor = gl_FragColor * 0.2 + gl_FragColor * 0.8 * vec4(.8) * dot(normalize(vert_pos), -1 * normalize( (sunrel*vec4(vert_pos,1.)).xyz) );
 }
 

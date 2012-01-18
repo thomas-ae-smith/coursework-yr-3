@@ -3,7 +3,7 @@
 
 #include <GL/glfw.h>
 
-#define EFFECT_ROBOTS 1
+#define EFFECT_ROBOTS 3
 
 waypoint::waypoint(abstractObject* parent, behaviour* loc, float phi, float theta, float duration) : abstractObject(parent) 
 {
@@ -34,7 +34,9 @@ void tour::start(camera* slave) {
 
 	// robots.push_back(new robot(this))
 
-	robots.push_back(new robot(this, &(gameObject::neg_lod), .02f, 10., 47.));
+	robots.push_back(new robot(this, &(gameObject::amoeba), 1.f, 10., 47.));
+	robots.push_back(new robot(this, &(gameObject::amoeba), .0f, 10., 62., 1.f));
+	robots.push_back(new robot(this, &(gameObject::neg_lod), .02f, 10., 72.));
 
 	printf("Starting tour.\n");
 }
@@ -63,6 +65,7 @@ void tour::update(double delta) {
     	(*item)->update(delta);
     }
 	if (active) {
+		// printf("%f\n", gameObject::amoeba);
 		if (robots.size() <= EFFECT_ROBOTS)	setupRobots(slave, points.at(index));
 		elapsed += delta;
 		for (vector<robot*>::iterator item = robots.begin();
@@ -92,6 +95,7 @@ void tour::update(double delta) {
     		}
     		robots.clear();
     		// gameObject::neg_lod = 1.f;
+    		gameObject::amoeba = 0.0;
 			active = false;
 			// slave->setBehaviour(new controlBehaviour(slave, loc->get_abs_loc(), 1.f));
 								//new controlBehaviour(slave, get(0).get_abs_loc(), 1.f));

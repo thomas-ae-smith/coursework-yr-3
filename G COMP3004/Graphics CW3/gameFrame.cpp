@@ -89,7 +89,7 @@ gameFrame::gameFrame(abstractObject* parent) : UIFrame(parent) {
 	camTour->push_back(new waypoint(camTour, new staticBehaviour(NULL, glm::vec3(-7.75f, 0.f, 0.375f)), 0.2f, 1.9f, 2.f));		// hover
 	camTour->push_back(new waypoint(camTour, new staticBehaviour(NULL, glm::vec3(-7.895f, -.308f, 0.339f)), 0.289f, 1.59f, 5.f));	//get a good view
 	//start fading neg_lod
-	camTour->push_back(new waypoint(camTour, new staticBehaviour(NULL, glm::vec3(-7.895f, -.308f, 0.339f)), 0.289f, 1.59f, 10.f));	//get a good view
+	camTour->push_back(new waypoint(camTour, new staticBehaviour(NULL, glm::vec3(-7.895f, -.308f, 0.339f)), 0.289f, 1.59f, 35.f));	//get a good view
 	// for (int p = 0; p < 1; p++) {
 	// 	one_p = new planet(sun, 2.f);
 	// 	one_p->setBehaviour(new orbitBehaviour(one_p, one_p, 0.f, 0.f, 0.f));
