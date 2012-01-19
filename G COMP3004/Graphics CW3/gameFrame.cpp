@@ -6,8 +6,6 @@
 #include <GL/glfw.h>
 
 #include "GameFrame.h"
-#include "TODOsphere.h"
-#include "TODOtri.h"
 #include "planets.h"
 #include "robots.h"
 
