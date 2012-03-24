@@ -1,3 +1,4 @@
+//refactor into acivepart class, with internal list of members
 import java.awt.Point;
 
 public interface Active {

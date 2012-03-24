@@ -1,28 +1,51 @@
+// needs to own a Canvas, the player and all of the other essentials. possibly be runnable...
 import java.awt.Graphics2D;
 import java.awt.Point;
-import java.util.ArrayList;
 
-public class Level implements Drawable, Collideable {
 
-	private ArrayList<Pattern> patterns;
+public class Level extends GameCollection<Pattern> {
+
+	public Level() {
+		elements.add(new SimplePattern());
+	}
 	
 	@Override
-	public void cInit() { cObjs.add(this); }
-
-	@Override
-	public Point collide(Active a) {
+	public void tweak() {
 		// TODO Auto-generated method stub
-		return null;
+		
 	}
 
 	@Override
-	public void dInit() { dObjs.add(this); }
+	public float rate() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 
 	@Override
-	public void render(Graphics2D g2d) { 
-		for (Pattern p : patterns) {
-			p.render(g2d);
-		}
+	public Point collide(Player p) {
+		boolean collided = false;
+//		for (ActivePart a : ActivePart.all) {
+//			if (collided = (a.collide(p) != null)) break;
+//		}
+		
+		if (collided) return new Point();	// TODO some displacement back to origin
+		
+		Point delta;
+//		System.out.println(super.collide(p));
+		if ((delta = super.collide(p)) != null) p.translate(delta);
+		return null;
+	}
+
+	public void update(float delta) {
+//		for (ActivePart a : ActivePart.all) {
+//			if (collided = (a.collide(p) != null)) break;
+//		}
+	}
+
+	@Override
+	public void render(Graphics2D g2d) {
+		super.render(g2d);
+		if (Constants.DEBUG) debugRender(g2d, 4);
 	}
 	
 }

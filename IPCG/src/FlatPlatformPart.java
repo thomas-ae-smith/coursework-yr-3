@@ -1,19 +1,15 @@
 import java.awt.Graphics2D;
 import java.awt.Point;
 
-public class FlatPlatformPart implements Part {
-
-	Point start, end;
+public class FlatPlatformPart extends Part {
 	
-	public FlatPlatformPart(int start, int length, int height) {
-		this.start = new Point(start, height);
-		this.end = new Point(start + length, height);
-		cInit();
-		dInit();
+	public FlatPlatformPart(Point start, int length) {
+		this.start = start;
+		this.end = new Point(start.x + length, start.y);
 	}
 	
 	@Override
-	public float getDifficultyRating() {
+	public float rate() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
@@ -23,10 +19,10 @@ public class FlatPlatformPart implements Part {
 	}
 
 	@Override
-	public Point collide(Active a) {
-		Point aLoc = a.getLoc();
+	public Point collide(Player p) {
+		Point aLoc = p.getLoc();
 //		System.out.println("aloc: " + aLoc);
-		int aRad = a.getRadius();
+		int aRad = p.getRadius();
 		Point vec = new Point(aLoc.x - start.x, aLoc.y - start.y);
 		if(aLoc.x < start.x && vec.x*vec.x + vec.y*vec.y < aRad*aRad ){
 			//magnitude of vec
@@ -51,15 +47,15 @@ public class FlatPlatformPart implements Part {
 	}
 
 	@Override
-	public void cInit() { cObjs.add(this); }
+	public void tweak() {
+		// TODO 
+		
+	}
 
 	@Override
-	public void dInit() { dObjs.add(this); }
-
-	@Override
-	public Point getStartPoint() { return start; }
-
-	@Override
-	public Point getEndPoint() { return end; }
+	public Object clone() {
+		// TODO 
+		return null;
+	}
 	
 }
