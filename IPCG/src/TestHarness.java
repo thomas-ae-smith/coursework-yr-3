@@ -1,6 +1,7 @@
+// tests the collisions with a flatplatformpart
 import java.awt.Point;
 
-public class TestHarness implements Active {
+public class TestHarness extends Player {
 	
 	Point loc;
 	int radius;
@@ -10,7 +11,8 @@ public static void main(String[] args) {
 }
 
 public TestHarness() {
-	Part plat = new FlatPlatformPart(10, 10, 10);
+	super(10,10);//cruft
+	GameObject plat = new FlatPlatformPart(new Point(10, 10), 10);
 	radius = 10;
 	System.out.println("Starting Testing");
 	System.out.println("Collisions:");

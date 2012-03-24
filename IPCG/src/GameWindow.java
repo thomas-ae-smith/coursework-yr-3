@@ -15,8 +15,6 @@ import javax.swing.JFrame;
 public class GameWindow extends JFrame implements KeyListener {
 
 	private static final long serialVersionUID = -8255319694373975038L;
-	public static final int WINDOW_WIDTH = 1024;
-	public static final int WINDOW_HEIGHT = 320;
 	private Canvas canvas;
 	private BufferedImage buffer;
 	private BufferStrategy bufferStrategy;
@@ -26,8 +24,7 @@ public class GameWindow extends JFrame implements KeyListener {
 	
 	FlatPlatformPart plat, plat2;
 	Player player;
-//	ArrayList<Drawable> drawables;
-//	ArrayList<Collideable> collideables;
+	Level level;
 
 	public GameWindow() {
 	
@@ -38,7 +35,7 @@ public class GameWindow extends JFrame implements KeyListener {
 	
 		this.canvas = new Canvas();
 		this.canvas.setIgnoreRepaint(true);
-		this.canvas.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
+		this.canvas.setSize(Constants.WINDOW_WIDTH, Constants.WINDOW_HEIGHT);
 		this.add(this.canvas);
 		this.setFocusable(true);
 		this.pack();
@@ -55,21 +52,13 @@ public class GameWindow extends JFrame implements KeyListener {
 	    GraphicsConfiguration gc = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration();
 
 	    // Create off-screen drawing surface
-	    buffer = gc.createCompatibleImage( WINDOW_WIDTH, WINDOW_HEIGHT );
+	    buffer = gc.createCompatibleImage( Constants.WINDOW_WIDTH, Constants.WINDOW_HEIGHT );
 
 	    background = Color.LIGHT_GRAY;
 	    
-//	    collideables = new ArrayList<Collideable>();
-//	    drawables = new ArrayList<Drawable>();
 	    
-	    plat = new FlatPlatformPart(20, 640, 140);
-	    plat2 = new FlatPlatformPart(600, 960, 180);
-//	    collideables.add(plat);
-//	    collideables.add(plat2);
-//	    drawables.add(plat);
-//	    drawables.add(plat2);
-	    player = new Player(Collideable.cObjs);
-//	    drawables.add(player);
+	    player = new Player(65, 65);
+	    level = new Level();
 	}
 	
 	public void run() {
@@ -94,40 +83,30 @@ public class GameWindow extends JFrame implements KeyListener {
 	    		++frames;
 
 	    		// clear back buffer...
-	    			g2D = buffer.createGraphics();
-	    			g2D.setColor( background );
-	    			g2D.fillRect( 0, 0, WINDOW_WIDTH, WINDOW_HEIGHT );
+	    		g2D = buffer.createGraphics();
+	    		g2D.setColor( background );
+	    		g2D.fillRect( 0, 0, Constants.WINDOW_WIDTH, Constants.WINDOW_HEIGHT );
 
-	    			// draw some rectangles...
-//	    			for( int i = 0; i < 20; ++i ) {
-//	    				int r = rndGen.nextInt(256);
-//	    				int g = rndGen.nextInt(256);
-//	    				int b = rndGen.nextInt(256);
-//	    				g2D.setColor( new Color(r,g,b) );
-//	    				int x = rndGen.nextInt( WINDOW_WIDTH );
-//	    				int y = rndGen.nextInt( WINDOW_HEIGHT );
-//	    				int w = rndGen.nextInt( WINDOW_WIDTH );
-//	    				int h = rndGen.nextInt( WINDOW_HEIGHT );
-//	    				g2D.fillRect( x, y, w, h );
-//	    			}
 
-	    			// display frames per second...
-	    			g2D.setFont( new Font( "Courier New", Font.PLAIN, 12 ) );
-	    			g2D.setColor( Color.GREEN );
-	    			g2D.drawString( String.format( "FPS: %s", fps ), 20, 20 );
+	    		// display frames per second...
+	    		g2D.setFont( new Font( "Courier New", Font.PLAIN, 12 ) );
+	    		g2D.setColor( Color.GREEN );
+	    		g2D.drawString( String.format( "FPS: %s", fps ), 20, 20 );
 
-	    			g2D.setColor( Color.DARK_GRAY );
-//	    			g2D.fillOval(20, 20, 40, 40);
-	    			
-	    			player.update(curTime - lastTime);
-	    			for (Drawable c : Drawable.dObjs) {
-						c.render(g2D);
-					}
-//	    			plat.render(g2D);
-//	    			System.out.println(plat.collide(player));
-//	    			player.render(g2D);
-	    		//}
+	    		g2D.setColor( Color.DARK_GRAY );
+	    		//	    			g2D.fillOval(20, 20, 40, 40);
 	    		
+	    		float delta = curTime - lastTime;
+//	    		player.update(delta);
+//	    		for (Active a : Active.aObjs) {
+//	    			a.update(delta);
+//	    		}
+	    		level.update(delta);
+	    		player.update(delta);
+	    		level.collide(player);
+	    		level.render(g2D);
+	    		player.render(g2D);
+
 	    		// Blit image and flip...
 	    		graphics = bufferStrategy.getDrawGraphics();
 	    		graphics.drawImage( buffer, 0, 0, null );
@@ -146,6 +125,7 @@ public class GameWindow extends JFrame implements KeyListener {
 	    }
 	}
 
+	//refactor to use keys[], possibly
 	@Override
 	public void keyPressed(KeyEvent e) {
 		if(e.getKeyCode() == KeyEvent.VK_RIGHT ) player.right = true;
