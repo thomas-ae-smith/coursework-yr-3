@@ -45,7 +45,7 @@ taes1g09@ecs.soton.ac.uk\\[0.3cm]
 \pagebreak
 \vspace*{\fill}
 \begin{abstract} %not more than 200 words
-Increasingly, as the demand for ever larger and more varied computer game environments grows, procedural content generation (PCG) is used to ensure that content remains `fresh'. However, many of the opportunities to use these systems to generate truly personalised content have so far been largely overlooked. When content is generated manually or algorithmically during the design phase of a game, it can only be created according to the designers' expectations of the players' needs. By instead generating content during the execution of the game, and using information about the player(s) as one of the system's inputs, PCG systems should be able to produce more varied content that can be far more tailored to enhance individual players' experiences than anything manually created. Much has been written about the generation of player models from observed data, including for the purposes of adaptivity or dynamic difficulty adjustment (DDA), and literature exists examining the problem of generating satisfying game environments via challenge adjustment. This project looks at combining these fields to create an intelligent PCG system (IPCG) that is capable of monitoring players' progress and dynamically generating upcoming challenges to best suit their abilities. TODO: specify that this is a prototype, investigating a specific aspect of the many that IPCG is able to cover.
+Increasingly, as the demand for ever larger and more varied computer game environments grows, procedural content generation (PCG) is used to ensure that content remains `fresh'. However, many of the opportunities to use these systems to generate truly personalised content have so far been largely overlooked. When content is generated manually or algorithmically during the design phase of a game, it can only be created according to the designers' expectations of the players' needs. By instead generating content during the execution of the game, and using information about the player(s) as one of the system's inputs, PCG systems should be able to produce more varied content that can be far more tailored to enhance individual players' experiences than anything manually created. In a reated field, much has been written about the generation of player models from observed data, including for the purposes of adaptivity or dynamic difficulty adjustment (DDA), and literature exists examining the problem of generating satisfying game environments via challenge adjustment. This project looks at combining these fields to create a prototype 'intelligent' PCG system (IPCG) that is capable of monitoring players' progress and fully dynamically generating upcoming challenges to best suit their abilities. TODO: specify that this is a prototype, investigating a specific aspect of the many that IPCG is able to cover.
 \end{abstract}
 \vspace*{\fill}
 \vspace*{\fill}
@@ -76,11 +76,22 @@ However, one of the strengths of modern procedurally generated content (PCG) is 
 As shown later in the literature review and background research sections, IPCG techniques can be applied to many different scenarios, for many reasons. For the purposes of this project, the prototype will be restricted to using IPCG for dynamic difficulty adjustment (DDA) in basic 2D platformer levels.
 \subsection*{Definitions:}
 \subsubsection{Procedural Content Generation}
+Given the variety of mechanisms used by games to serve content to players, it can be difficult to define exactly what PCG is and is not. Togelius \textit{et. al.} define PCG as ``\textit{the algorithmical creation of game content with limited or indirect user input}'' \cite{TogeliusPCGdef}. <TODO: more here>
 \subsubsection{Dynamic Difficulty Adjustment}
-\subsubsection{Intelligent Procedural Content Generation} 
+DDA is another broad term that could be applied to wildy differing systems in various games. In general, DDA is often viewed as the process of altering aspects of a game based on the performance of the player, normally with the intention of maintaining their ability to remain within a state of `flow' \cite{flow}. It can range from the simple `rubber-banding' used in basic racing games, to the more subtle alterations of timing, item placement and enemy frequency used by FPS games such as Silent Hill \cite{something that mentions silent hill}
+\subsubsection{Intelligent Procedural Content Generation}
+Intelligent Procedural Content Generation is an extension of typical PCG in that it forms a model of some aspect of the player, and then uses this as an input to an adaptive (parameterised) PCG system that modifies the generated output appropriately. Often this is done for the purposes of DDA (in contrast to typical non-PCG DDA, which generally makes minor adjustments to existing content, rather than generating new content), though it can also be applied for a range of other purposes, from providing more of the type of content a player favours \cite{GAR}, to directing the player towards unexplored areas \cite{radiant}. <TODO use non- literature examples>
 \section{Literature and Existing Systems}
+Though the focus of this project centres on the topic of IPCG, it can be seen from the definitions above that the fields of PCG and to a lesser extent DDA are closely related. An IPCG system cannot work without some mechanism existing to generate content appropriate for the model of the player that it has constructed, and even if the purpose of the system is customisation of a game aspect completely unrelated to challenge, the techniques and systems developed for the field of DDA are often relevant when attempting to model some aspect of the player. <TODO: write about the fact that PCG and DDA are mature fields, with plenty of academeic literature, example systems and many commercial game product that use these techniques>
+
 \section{Prototype}
+One of the aims of this project is to contruct a minimal prototype demonstrating the use of an IPCG system. By combining ideas from existing literature on PCG and DDA systems, it should be posible to construct a limited system that performs all of the <> necessary for it to function as an example of IPCG. That is, it should form a conceptual model of some aspect of the player, and then use that model in order to generate content tailored to the particular player in some way.
+<TODO: more stuffs> 
+
 \section{Goals}
+The aim of this project is to investigate the use of intelligent procedural content generation (IPCG) in computer games, by looking at existing products, research in related areas and constructing a minimal prototype. <TODO: fill out, listitems>
+
+
 
 \chapter{Project Background}
 % 2. a chapter reviewing approaches/literature
@@ -95,9 +106,12 @@ TODO: mention occupancy regulated expansion / extension
 
 \section{Dynamic Difficulty Adjustment}
 Another game design concept receiving increasing attention is dynamic difficulty adjustment (DDA). Typically, challenge adjustment within video games has consisted of user choice between one or more discrete challenge settings that have been painstakingly balanced at production time. However, this solution is far from ideal - typically, if a game is begun with a certain difficulty it is difficult to later change; and this upfront decision also alienates players that are unfamiliar with the terminology or expectations, or uncertain how to classify themselves\cite{5765665}. Furthermore, since game difficulty is typically a continuous function of multiple parameters, it should be possible to precisely match each player to their ideal level of challenge rather than enforcing adherence to low-resolution skill profiles. Typically, DDA is achieved by altering values that are hidden from the player, such as enemy health, accuracy, or the amount of ammo and health-kits available in the world \cite{hamlet}. Often, the intention is to do this invisibly, and merely ensure that the player remains optimally challenged. By manipulating values behind the scenes, it is possible to ensure that the player is neither overchallenged (leading to frustration), or underchallenged (leading to boredom)\cite{flow}. As DDA systems are given more control over additional aspects of the game environment, they can begin to enter the realm of PCG, fundamentally altering the structure and pacing of the player's experience. 
+
 \subsection{Existing DDA systems}
 
 \section{Intelligent Procedural Content Generation}
+Though mechanisms fulfilling the definitions of IPCG systems have already started appearing in games, little has so far been written specifically on the subject - ``personalized and player-adaptive PCG \ldots is a new research direction''\cite{shaker2010towards}. However, existing literature in related areas borders on the topic: in some cases DDA algorithms are being used to generate entire levels; thus qualifying as IPCG. One of the most thorough papers on this area is ``Polymorph: Dynamic Difficulty Adjustment Through Level Generation'', by Jennings-Teats \emph{et al.} \cite{polymorph}, which generates 2D platformer levels on-the-fly. Approaching the topic of IPCG from another direction, Lopes' and Bidarra's ``Adaptivity Challenges in Games and Simulations: A Survey'' investigates the use of adaptivity in general in order to combat static and predictable content\cite{5765665}, including via PCG.
+
 \subsection{Existing IPCG Systems}
 IPCG can be (and has been) used for a wide range of purposes, almost as varied as PCG itself. Three very different such uses are detailed below. It is unsurprising that many of the existing applications of IPCG are used to tackle some of the current key challenges in game design: maintaining players' engagement with the game via enhancing immersion and controlling flow\cite{flow}. 
 \subsubsection{Valve's `AI Director'}
@@ -107,22 +121,21 @@ Another recent example of IPCG is the Radiant Story system used in Bethesda's Sk
 \subsubsection{GAR's Weapon Evolution}
 Finally, the weapon evolution mechanism in the game Galactic Arms Race\cite{garmsr} is an unconventional application of an IPCG system, as it tracks only which weapons the players prefer, and then uses small neural networks to evolve new variations on the favourite weapons, which themselves are all simply procedurally generated particle systems\cite{Hastings:2009:IEP:1650356.1650369}.
 
+\subsection{IPCG Academic Literature}
 
-\section{Problem Specification}
-An analysis and specification of the solution to the problem
 
-% \section{lit review}
-Though mechanisms fulfilling the definitions of IPCG systems have already started appearing in games, little has so far been written specifically on the subject - ``personalized and player-adaptive PCG \ldots is a new research direction''\cite{shaker2010towards}. However, existing literature in related areas borders on the topic: in some cases DDA algorithms are being used to generate entire levels; thus qualifying as IPCG. One of the most thorough papers on this area is ``Polymorph: Dynamic Difficulty Adjustment Through Level Generation'', by Jennings-Teats \emph{et al.} \cite{polymorph}, which generates 2D platformer levels on-the-fly. Approaching the topic of IPCG from another direction, Lopes' and Bidarra's ``Adaptivity Challenges in Games and Simulations: A Survey'' investigates the use of adaptivity in general in order to combat static and predictable content\cite{5765665}, including via PCG.
 
-\subsection{Polymorph: DDA Through Level Generation}
+\subsubsection{Polymorph: DDA Through Level Generation}
 %alters game during play, intensive more than jsut tweaking pervasive across level disign/stucture. Level generation and machine learning to understand component difficulty an player skill. 2D platformer with on-the-fly. Statistical model of difficulty in the level along with model of players current skill level. Machine learning from play traces from 'game-like tool'. This is an advance on prior work in dynamic difficulty adjustment, which has for the most part avoided adaptive level design, and in procedural level generation, which has mainly focused on creating full levels for replayability. Design for flow. Balancing takes effort. not possible 100\% coverage. DDA is typically numeric. this structural. Infinite mario not fly, this is. PCG typically more granular. rhythm. data collection tool. recognise shortcomings - and skew: critic modules. learn ranking - combination of component difficultie
 Polymorph is a progression of prior work in both DDA and PCG: like previous DDA systems it alters challenge during play, and as with traditional PCG for 2D platformers it generates levels algorithmically. However, the DDA is effected via structural differences in the level design rather than `numerical tweaking', and the level is generated `online' out of small rhythm segments\cite{Smith:2009:RLG:1536513.1536548}, rather than fully ahead of time. The authors present an interesting statistical model of difficulty, along with some of the issues and solutions found while evaluating the system.
  \cite{polymorph}
-\subsection{Adaptivity Challenges in Games and Simulations: A Survey}
+\subsubsection{Adaptivity Challenges in Games and Simulations: A Survey}
 % purposes: against static. worlds, scenarios and quests. low resolution stereotypes. indiviuality, diferent needs/desires. player-centered adaptivity. go beyond challenge as a steering purpose. training?. Purpose, then targets. traditionally AI
 The survey is an investigation of present research into and existing commercial implementations of adaptivity in games. The topic is broken down into three areas: purpose, target and method, with a wide range of examples given for each point raised. In contrast to other papers on the subject, the authors look beyond challenge as the sole steering purpose for adaptivity, and then discuss the wide range of types of content that may be adapted or generated algorithmically. Finally, they look at the methods by which content may be adapted or generated, and conclude that PCG is one of the most promising for offline generation, and also may increasingly be suited to online adaptation.
 \cite{5765665}
 
+\section{Problem Specification}
+An analysis and specification of the solution to the problem
 
 \chapter{Proposed System}
 % 3. a chapter introducing final approach
@@ -147,18 +160,20 @@ Initially, a multi-class classifier. Given the varied inputs from the Base modul
 \subsection{Approach}
 The modules above are presented in logical order of development: none of the IPCG system will be testable without the Base program (which can be tested standalone if given a hand-crafted level), but the PCG may be run and tested using specimen models, and finally the Evaluator can be tested once the other systems are in place.
 \subsubsection{Classifier Training}
- The development of the classifier will involve initially collecting data on as many potentially relevant features of the player's performance as possible, and then performing principle component analysis (PCA) upon the data-set in order to identify the maximally variant features. These can then be retained and used as the input to a K-means discretisation algorithm, which can finally be used to train a One-vs-All SVM classifier. 
+ The development of the classifier will involve initially collecting data on as many potentially relevant features of the player's performance as possible, and then performing principle component analysis (PCA) upon the data-set in order to identify the maximally variant features. These can then be retained and used as the input to a K-means discretisation algorithm, which can finally be used to train a One-vs-All SVM classifier.
+\subsubsection{Evaluation}
+In order to perform retrospective evaluation of the system, it would be useful to integrate some facility for users to provide deliberate feedback outside of the player modelling system.
 \subsection{Justification}
 An alternative approach to the problem of generating a 2D platforming environment for use with DDA is presented by Sorenson \emph{et al.}\cite{5940995}, who detail a more general top-down approach using genetic algorithms. However, their system is also more complex and provides an unneeded degree of generality for this project. This system as proposed should be able to fulfill the requirements given, and demonstrate intelligent variation in output based upon the skill of the player.
 TODO: mention the other student's one, with cannons 
 
 \section{Requirements}
-The main aim of the project requirements will be to constrain the problem to an achievable scale, and inform future evaluation of the final solution. In this instance, the functional requirements are generic to any IPCG system (with refinements specific to this problem in brackets, like so), while the non-functional requirements are constraints that should serve to encourage feasibility and quality.
+The main aim of the project requirements will be to constrain the problem to an achievable scale, and inform future evaluation of the final solution. The 'functional' requirements that follow specify functionality that the system must provide. The majority of them are generic to any IPCG system, as this project intends to cover that alone, and refinements specific to this project are specified where necessary. The 'non-functional' requirements define qualities that the system must adhere to, and in general are constraints that should serve to encourage feasibility and quality.
 
 \subsection{Functional}
 In order to properly implement IPCG, the system should:
 \begin{itemize}[-]
-\item present the user with an interactive game environment (basic 2D platformer)
+\item \textbf{present the user with an interactive game environment} (basic 2D platformer)
 \item record data on the player's behaviour (in this case, performance)
 \item evaluate this data according to specific criteria (a trained classifier)
 \item form a model of some aspect of the player (skill relative to current difficulty)
@@ -277,6 +292,7 @@ One drawback of the system as proposed is that it must still reduce all of the d
 \renewcommand{\chapternamenum}{ }
 \renewcommand{\printchapternum}{\chapnumfont \thechapter: }
 %   \renewcommand{\afterchapternum}{: }
+
 
 \chapter{Project Brief}
 % \include{Project Brief}
