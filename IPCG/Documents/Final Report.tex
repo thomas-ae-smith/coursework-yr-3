@@ -257,16 +257,77 @@ o How does this show in your plan?
 o Why did you choose this process? 
 o How well did it work out for you?
 
+chose to use an agile development programme, in order ot increase flexibility in case of unforseen difficulties. Did some research into 'Scrum-for-one' <cite something hopefully>
+had problems when makeing things too general: specifically collisoin. initially worked on a general collision algorithim cor colliding the player (a circle) with a platform of arbritary angle. this turned out to be superfluous, as for simplicity the control physics does not deal with movement on non-horizontal surfaces, and the generator does not generate them to reduce complexity. This could be the subject of a future extension however. Confining all platforms to be horisontal greatly simpligfied the collision algorithms, though there are still difficult cases there the player si potentially colliding simultaneosly with two contiguous platforms: in these cases the results of the two collisions are compared and whichever results in a greater y-displacement is accepted: due to the horizontality restriction on the platforms, this guarantees the player is no longer intersecting weither possible collision (TODO no it doesn't, will have to look into this\ldots well, it does for contiguous platforms, but not for disjoint ones: %_- gah.)
 TODO: mention Java
 
 \chapter{System Implementation}
 % - The implementation
 see testing
+Discuss use of java
+
+\section{Overview}
+The system should be written as a java applet. this has the advantage that it will be able to be run online, making recieving feedback easier. There will be two primary types of interface: game segments drawn on Canvas objects using active rendering, and JPanels containing feedback/instructive segments created using Swing. The Java <object managemen system> facilitates swapping out these two types of elements
+\section{Game Segments}
+\subsection{Game Base}
+discuss physics, sonic, simplification
+discuss heirarchical approach. Everything is a GameObject, and has the following interface:
+Game collections have the adition of an internal collection
+
+final objects such as platforms and jusmp, these are 'parts'
+grouped into obstacles, or 'components'
+components are built up into repeating patterns
+multiple patterns make a level.
+this is the structure as recommended by \cite{comptonandmateas}
+
+in terms of implementation, a level owns a canvas, which can be added to the parent applicatoin
+more accurately, a level is the highest item in the model, and the canvas is a game segment that also has a view and a controller.
+
+\subsection{Generator}
+ties into the data strcture discussed above. each part or collection can return it's difficulty. this can be queried at any point in the heirarchy. parts return a difficulty that is a function of their size (quote formulas here). The larger collections all caluculate their difficulties affording to some function of the objects that they contain, and occasionally how late in the level they are.
+Need to also specify the probablistic grammar that is used, and explain how the probabilities are weighted based upon the desired difficulty
+\cite{launchpad}, which uses a grammar based generator too
+
+\subsection{interactions}
+detail callbacks, I dunno?
+Descrbe the enire quintuple model view controller system. I've already done this once somewher, If I can find it. Don't know whether to put this in design, or as a realisation
+\section{Evaluator}
+Monitors this list of features about the player's behaviour:
+\begin{description}
+\item[stuff]
+\end{description}
+and also these features of the current level:
+\begin{description}
+\item[moar stuff]
+\end{description}
+then, do something with these features
+
+\section{Player Feedback}
+One of the advantages of using Java is that it provides the Swing GUI widget toolkit, which makes creating a simple interface allowing player feedback relatively simple. Four custom layouts are needed: 
+\begin{description}
+\item[Introductory text.] Used for the welcome screen with a breief overview of the experiment. Re-used for the interaction instructions. Reused again for the final thanks. <TODO: specify gridbag layout, forward and back buttons>
+\item[Introductory questions.] Initial mini-questionnaire containing two labelled five-point likert items to query the participants familiarity with games and 2d platform games <todo specify layout and forward back buttons
+\item[Level evaluation questions.] Used after each of the four levels to request player feedback. A single seven-point likert item with label and fluff text, possibly stats <TODO: you know the drill>
+\item[Final review and submission.] Penultimate screen. Provides a non-editable textbox containing all data to be submitted, and a final 'Submit' button.
+\end{description}
+
+discuss justification for using likert items, advantages of symmetry. hopefully cite something?
+
+\section{Logging \& submission}
+All of the player feeback and evaluator input and conclusions will need to be logged <if user permissions permit, to a file-backed steam of some kind>. The system itself can provide a global function for this. A YAML-like simple parseable format should be sufficient to represent the types of data needed. On the penultimate screen, users will be given a chance to review the data that has been logged, before submission. On submission, the applet will attempt to POST the data to a php script hosted on my personal webspace on ECS systems, which will save the data to a file. In case of error, the system will also attempt to save the data to a local file, and provide instuctions on how to upload the file anonymously.
+\subsection{Web Service}
+In order to recieve data from participants running the system remotely and anonymously, a simple .php script will be running at a hard-coded location on the ECS servers. This will be able to recieve POST data from the system, and after sanitising it save it to a file in a directory on the server. In case POST submission has failed, the script will also be linked to by a page that allows data file uplaod though a simple html form.
+\subsection{Analysis}
+In order to make use of the data collected, simple scripting can be used to parse the files into participant feedback data and participant interaction data. The feedback data can then be analysed using a mathematical tool such as Octave in order to evaluate the effectiveness of the system. Time permitting, the interaction data can be used to updat the calibration data of the evaluator in ordaer to improve its performance in preparation for a potential second survey. If necessary, it can also be inspected to determine the cause of any suspected anomalous feedback, or to give further insight into the veracity or cause of the results of analysis. 
+
+\section{approach}
+I used an agile methodology, with regular milestones and refactoring, and an aim of always haveing a working protoype at the end of each coding session. The overall system development intention was to follow a waterfall approach with regards to completing each module before moving onto the next, this proved to be fairly optimistic and na•ve, as for that to work the modules would have to be completely independent. While generality of that kind is desirable, there were practical limits to the amount of time available, and higher-priority featuers, and so development of the three modules each started independently but ended up being developed togethoer roughly in parallel, particularly the generator ant the game base. In MVC terminology, the model is shared through the system, and then there are two views and two controllers. The game base's view renders the level to the screen, through the GameObject's \texttt{render()} function. In response, the player provides input to the system, handled by the game base's controller which applies gravity and collision checking, and occasionally calls upon the IPCG system to populate the model with more content. Within the IPCG system, the evaluator can be seen as a pure-data non-visual view, which queries the model using the GameObject's\texttt{rate()} function. Based on it's classification, it passes input to the aPCG, which can be seen as a controller that modifies the model.
 
 
 \chapter{System Testing}
 % - Testing strategy and results
 see appendix 
+I used test-driven-development for the collisions, as these were tricky and I wanted to be certain of getting it right. Thoughut develoment I had to use regular integration testing in order to ensure that new features and fuctionality was compatible with existing code. Write about agile development and continuous unit and integration testing. possibly fold this chapter into the evaluation one, will be short otherwise.
 
 \chapter{System Evaluation}
 % n-1. a chapter reviewing progress and results
@@ -276,6 +337,25 @@ o Comparative evaluation(cf.competition)
 Ð performance graphs, feature lists
 o Criticalevaluation
 Ð with respect to your project goals and plan
+
+Personal evaluation of system:
+simpler than I would have desired, due to time constraints. Features that I would have liked to have included: investigation into whether (and how) placement of the player within the play surface affectis difficulty, based on look-ahead time. i.e  %|_o__ --| vs. |_  _o__|
+angled platforms
+loopback cells (major effect on difficulty, don't die just return)
+death penalty: return to start of component, pattern or level
+
+Wider evaluation of system: look at whether participant feedback matches expected:
+items:
+Levels 1 \& 2: familar players should report that they experienced less challenge than unfamiliar players
+Levels 1 \& 2: all (most) players should report that 2 was more difficult than 1
+Levels 3 \& 4: there should be less variance in the reported difficulties than for 1 \& 2
+Levels 3 \& 4: all (most) players should report that 4 was more difficult than 3
+
+Comparative evaluation with competition:
+difficult. closest competition is Polymorph; can look at similaries and differences
+Critical evaluation:
+has fulfilled all (most?) requirements. However, many desired features missing
+important question: has it demonstrated working IPCG? If so, are there interesting comments that can be made 'even with an environment this simple/restricted, it it possible to make meaningful changes that impact the player's experience of challenge'. If not, why not? was the system too simple, or is it purely bad calibration. In either case, is it possible to improve the calibration? if there's time, can the wider evaluation be run again with a better-calibrated version using the first survey's data, and does this give interesting results to be used in the viva?
 
 \chapter{Project Evaluation}
 % Ð comparative and critical evaluation Ð reflection
@@ -289,6 +369,50 @@ o Reflection
 Ð were your goals and plan sensible?
 Ð how could you have done it better/differently?
 
+% Project Management and Planning
+% o You should account for your time
+% Ð this is the major expense for most projects
+% o Compare your initial plan with how things actually went
+% Ð perhaps include project diary as an appendix
+% o If you fell behind how did you catch up Ð or decide which features to drop
+% o Did you consider and allow for risks Ð illness, equipment failure or delays
+
+
+Critical evaluation:
+have achieved all (most) of the project goals. Have conducted a thorough review of academic literature relating to systems that could be described as IPCG, as well as <background> techonologies that are important to the development, such as PCG and DDA.
+Have constucted a system that provides something akin to a minimum working demostration of IPCG
+However: there are many interesting questoins left unanswered. Even within the relatively simple 2D platforming environment, restricted to jumps, obstacles and movement, there are many gameplay variations left uninvestigated. The original requirements were not restrictive enough; c.f loopback, moving at varied speeds, varied lookahead, non-horizontal platforms, death penalties etc
+Though the plan turned out to be na•eve in many respects, it did provide a useful starting point for guiding the overall structure of the implementation process. 
+
+Reflection
+Tool use was sensible. Mercurial for version control and eclipse as an IDE were both fairly invisible. One major advantage of eclipse is that it also provides latex authoring functionality through a plugin, allowing development of both system and report in a single familiar environment. 
+Techniques - no idea currently. I lied: constant refactoring was a definite boon. Not being afraid to rewrite entire sections made the code more flexible, and I had to ensure I didn't become too attached/committed to a particular way of doing things. 
+Metrics -gut instinct. Actually attempted to minimise LOC as much as possible, improves maintainablility. Had initial false start where rather than using a class heirarchy for GameObject was using an interface- and static collection-based pseudo-component system. This might have worked in a language with multiple-inheritance, but in java I discovered that I was near-duplicating too much code. The scene-graph-like heirarchical approach results in on average deeper (and therefore more numerous) function calls, as to render individual parts the call digs down through the level, pattern and component. however, the approach is more flexible in that it allows render- and collision-culling at any granularity, and is also easier to debug and maintain. A vestige of the old collection-based approach is apparent in the obstacle (or is it active?) interface with static collection, where the independent collection of obstacles for pre-collision checking was too valuable to lose. CRC was largely instinct also: when it became obvious that the Level class which owned the drawing Canvas had too many responsiblilties, refactored it into the GameSector class that contained the level, and split out the view and controller classes explicitly.
+Methods: using generics in the GameCollection class allowed very easy extension. Following the MVC architecture has simplified the separation of concerns, naturally leading to code that is more cohesive and less coupled. A certain degree of coupling has been unavoidable, as in the GameObject heirarchy, but it has transpired that the complete generality and independance called for by the schedule was both unnecessary and counterproductive.
+
+Things I learnt: don't be afraid to throw out the current approach and rewrite it. Similarly, don't be afraid to ignore/rewrite the plan when it becomes apparent that it doesn't match the actuality of development. Don't reinvent the wheel! see engine mistake later. Don't plan for the ideal; accept the practicalities of the project at hand.
+
+Goals and plan:
+Goals were in the main sensible, though probably not well enough defined. 'Investigate' is too vague: research was done with an eye specifically towards papers, examples and techniques that would aid in developing a demonstration system. This resulted initally in a very broad search. Mothers were mentioned. by which I mean perlin noise generators. thereafter honed in on PCG and DDA for 2D platformers, was forced to remain more general for IPCG as there is comparatively little literature.
+However (back on topic) there is scope for a far more detailed review and comparison of the literature than that provided here; particularly in investigateing ways that various approaches could work together.
+Plan was initially sensible, but suffered from becoming to broad and general throughout. More on this later.
+How could I have done it better differently? Could write 5000 words on this alone. Brief list:
+Earlier investigatoin on the difficulties of sending java post data. Have done a small amount of investigation on this in the past, but partly owing to schedule slippo=ing on other items, did not allow properly enough time for this.
+Pick a simpler testbed. Initial research showed a lot of PCG, DDA and even some IPCG literature applicable to the problem of 2D platfoming. As this is generally considered fairly basic, seemed appropriate to follow suit. However, the goal was to create a minimal working demonstartion. Partway through implementation discovered \cite{ipcgcannons}, which would have been an even simpler testbed
+If must 2D, then should have picked mature code. The IPCG system is quite demanding in that it must be tied into the engine at a level that allows it to monitor game state and provide upcoming content. At an early stage in the project, I investigated the availaility of open-source engines, particularly in java, but found none that were simple enough to require a large time investment to learn the codebase, and were structured in a way that would not prevent the IPCG system from working well. Had I found one, it would have saved time designing and implementing the game base module, albiet at the cost of having to integrate the design and implementation of the IPCG system with potentially complex existing code. However, none of the open-source engines that I found were usable, and as the game base was intended to be deliberately simple it appeared it would be quicker to write it myself (see the physics mistake). However, I later discovered that I had fallen prey to the generality mistake again: by looking simply for an open source engine, I had missed Infinite Mario by Notch Persson - an open source 2D platformer engine with inbuilt PCG system. If I had used that as an original code base, I would have been saved from many non-relevant project difficulties.
+Be more specific with requirements. Too much ambiguity leads to abmition and then dissapointment. 
+
+Generality mistakes:
+Modules too general: designed and intended to operate fully independantly. Unrealistic and uneccesary
+Initial research too general: many PCG techniques not directly applicable to 2D platformer
+Collision too general: arbitary angles
+Location too general: ended up constricted to tiles
+Requirements unintentionally general: vague.
+
+The physics mistake: writing the physics for a 2D platformer, even one as restricted as this has ended up being, turns out to be decidedly non-trivial. There are so many possibly variations in terms of realism, amplitude and sensetivity. initially folloewed the sonic collision guide, which was recommended as a good starting point. in terms of the game base alone, this was fine as it resulted in solid, satisfying physics. However, turned out to be taking separation of concerns too far, as the nature of the physics and freedom of movement has a significant impact on the evaluation of challenge of a particular jump or obstacle. Ended up stripping out a lot of the more advanced features such as acceleration and variable jump responsiveness, in order to simplify the challenge evaluation.
+
+Things could have done differently: used the infinite mario codebase. Been more specific with requirements
+
 Project Management and Planning
 o You should account for your time
 Ð this is the major expense for most projects
@@ -297,14 +421,24 @@ o Compare your initial plan with how things actually went
 o If you fell behind how did you catch up Ð or decide which features to drop
 o Did you consider and allow for risks Ð illness, equipment failure or delays
 
+Majority of the time spent in the initial reading phase on very broad subject background.
+First semester was more directed research, design work, interim report and what could loosely be called preparatory activities.
+Second semester moved onto implementation, to some extent according to the second gantt chart
+did not allow time for: ethics sumbission. Player feedback implementation. Submission system implementation and difficulties. Na•vely separarted modules. Timetabled testing as a separate activity: due to nature of agile methodology, testing was a continuous and integrated process.
+Definitely fell behind. Did not *exactly* end up dropping features: due to the unhelpful vagueness of the initial requirements, all of the functionality that was cut were investigatory topics that were not initially specified. The worst result from the lack of time was that the paricipant feedback is necessarily also fairly simple, reducing the number of interesting conclusions that can be drawn from it to simply whether or not the system works. If I had allowed more time for the wider testing phase, it would also have been interesting to perform a second study with a more accurately-calibrated system using the feedback from the first study, athough possibly I will still be able to do this in time for the viva.
+At the time of writing, I thought that the plan was fairly generous. I was also fortunate in that I had no other academic cousework commitments during the second semester, and so believed that I would be able to stick to schedule uninterrupted. However, this proved difficult in the face of non-academic commitments, and was further hindered by the fact that the direction<> of actual development did not match the clean separation indicated in the original plan, leading to the use of ad-hoc milestones unde the agile system. I believe that this flexibility was ultimately necessary, as making the individual modules general and robust enough to match the separate implementation indicated in the schedule would actually have taken far more time than the schedule allowed for. However, this same flexibility made it more difficult to reconcile the <actual> milestones with those indicated by the schedule, making it difficult to judge progress. 
+Scheduling aside, equipment failure would have been mitigated by the use of a cross-platform programming language, IDE and report-writing environment, and having all files (including bibtex file for references) backed up and under version control, allowing development to continue close-to-seamlessly on another machine. In retrospect, one weakness of this approach is the number of bookmarked resources and potential references that would have been lost if equipment failed.
+Scheduling allowed for a sensible mix of project work and other non-academic commitments, however expectations in this area proved unrealistic. During the research phase, ongoing reading took place alongside other commitments. During the implementation phase, it proved much more difficult to maintain continuous application to the project, partially due to the necessary wind-up time needed for effective codin, in comparison to the relative ease of quickly reading one or more potentially relevant papers. This resulted in the most effective coding taking place during irregular sprints - ideally suited to the agile methodology, but resulting in time lost to re-acquaintance overheads. 
+%intensely educational experience
+
 \begin{figure}[ht]
 \begin{minipage}[b]{0.5\linewidth}
 \centering
 \vspace{-5cm}
 \section{Gantt Charts}
 
-\addcontentsline{toc}{section}{5.1 Work Completed}
-\addcontentsline{toc}{section}{5.2 Work Remaining}
+% \addcontentsline{toc}{section}{5.1 Work Completed}
+% \addcontentsline{toc}{section}{5.2 Work Remaining}
 
      \includegraphics[scale=0.7, trim = 12mm 30mm 95mm 30mm, clip]{done}
 \caption{Work Completed}
@@ -325,9 +459,13 @@ o Did you consider and allow for risks Ð illness, equipment failure or delays
 % - Conclusions and future work
 % Ð future work
 % Ð summary and conclusions
-\section{Possible Extensions}
-One drawback of the system as proposed is that it must still reduce all of the data about the player's performance into a single discrete decision: whether to continue generating the level at the current difficulty, increase the difficulty, or decrease it. There is no opportunity for granularity representing player aptitude at a particular type of challenge. One possible extension would be to divide the obstacles by type (stationary hazard, timed hazard, projectile etc.), and evaluate the player's skill on particular classes individually, then use this more detailed model to inform a slightly more sophisticated PCG module. This approach would be an ideal candidate for a collaborative filtering algorithm, which with a large enough dataset would further allow the system to predict a player's aptitude at obstacle types that had not yet been seen by that player.
 
+Overall, the project has met (the majority of) its stated goals, and so can be considered to some extent sucessful. However, in many ways more valuable have been the lessons learned from the mistakes made during the project. Certainly the most damaging mistake, made repeatedly, though in differnt contexts, was the desire for, specification of and implementation of overly general sytems, without regards to the practicalities of the problem at hand 
+\section{Future Work}
+\subsection{Possible Extensions}
+One drawback of the system as proposed is that it must still reduce all of the data about the player's performance into a single discrete decision: <TODO: make this clear wearlier when talking about the evaluator> whether to continue generating the level at the current difficulty, increase the difficulty, or decrease it. There is no opportunity for granularity representing player aptitude at a particular type of challenge. One possible extension would be to divide the obstacles by type (stationary hazard, timed hazard, projectile etc.), and evaluate the player's skill on particular classes individually, then use this more detailed model to inform a slightly more sophisticated PCG module. This approach would be an ideal candidate for a collaborative filtering algorithm, which with a large enough dataset would further allow the system to predict a player's aptitude at obstacle types that had not yet been seen by that player.
+
+\section{Summary}
 
 
 \bibliography{IPCG}{}
