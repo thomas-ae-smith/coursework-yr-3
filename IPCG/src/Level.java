@@ -10,16 +10,10 @@ public class Level extends GameCollection<Pattern> {
 	}
 	
 	@Override
-	public void tweak() {
-		// TODO Auto-generated method stub
-		
-	}
+	public void tweak() { }
 
 	@Override
-	public float rate() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+	public float rate() { return 0; }
 
 	@Override
 	public Point collide(Player p) {
@@ -31,12 +25,11 @@ public class Level extends GameCollection<Pattern> {
 		if (collided) return new Point();	// TODO some displacement back to origin
 		
 		Point delta;
-//		System.out.println(super.collide(p));
 		if ((delta = super.collide(p)) != null) p.translate(delta);
 		return null;
 	}
 
-	public void update(float delta) {
+	public void update(double delta) {
 //		for (ActivePart a : ActivePart.all) {
 //			if (collided = (a.collide(p) != null)) break;
 //		}
