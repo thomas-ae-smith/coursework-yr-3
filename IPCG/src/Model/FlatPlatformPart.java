@@ -1,3 +1,6 @@
+package Model;
+
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Point;
 
@@ -5,7 +8,7 @@ public class FlatPlatformPart extends Part {
 	
 	public FlatPlatformPart(Point start, int length) {
 		this.start = start;
-		this.end = new Point(start.x + length, start.y);
+		this.end = new Point(start.x + length * Constants.TILE_WIDTH, start.y);
 	}
 	
 	@Override
@@ -15,6 +18,7 @@ public class FlatPlatformPart extends Part {
 	}
 	@Override
 	public void render(Graphics2D g2D) {
+		g2D.setColor(Color.BLACK);
 		g2D.drawLine(start.x, start.y, end.x, end.y);
 	}
 
@@ -53,9 +57,10 @@ public class FlatPlatformPart extends Part {
 	}
 
 	@Override
-	public Object clone() {
-		// TODO 
-		return null;
+	public Object clone(boolean placeAtEnd) {
+		int length = this.getEndPoint().x - this.getStartPoint().x;
+		if (placeAtEnd)	return new FlatPlatformPart(this.getEndPoint(), length);
+		return new FlatPlatformPart(this.getStartPoint(), length);
 	}
 	
 }

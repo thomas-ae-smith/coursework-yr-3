@@ -1,5 +1,7 @@
+package Model;
 // tests the collisions with a flatplatformpart
 import java.awt.Point;
+
 
 public class TestHarness extends Player {
 	

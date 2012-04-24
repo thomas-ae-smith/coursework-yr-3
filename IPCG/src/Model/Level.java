@@ -1,0 +1,53 @@
+package Model;
+// needs to own a Canvas, the player and all of the other essentials. possibly be runnable...
+
+import java.awt.Graphics2D;
+import java.awt.Point;
+
+
+
+public class Level extends GameCollection<Pattern> {
+
+	public Level() {
+		elements.add(new SimplePattern(new ObstacleComponent(new Point(0, Constants.WINDOW_HEIGHT/2))));
+	}
+	
+	@Override
+	public void tweak() { }
+
+	@Override
+	public float rate() { return 0; }
+
+	@Override
+	public Point collide(Player p) {
+		boolean collided = false;
+		for (ObstaclePart a : ObstaclePart.all) {
+			if (collided = (a.collide(p) != null)) break;
+		}
+		
+		if (collided) p.reset();
+		
+		Point delta_l;
+		if ((delta_l = super.collide(p)) != null) p.translate(delta_l);
+		return null;
+	}
+
+	public void update(double delta_t) {
+		for (ObstaclePart o : ObstaclePart.all) {
+			o.update(delta_t);
+		}
+	}
+
+	@Override
+	public void render(Graphics2D g2d) {
+		super.render(g2d);
+		if (Constants.DRAW_DEBUG) debugRender(g2d, 4);
+	}
+
+	@Override
+	public Object clone(boolean b) {
+		// Level should be uncloneable
+		return null;
+	}
+	
+}
