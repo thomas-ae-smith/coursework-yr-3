@@ -1,3 +1,4 @@
+package Model;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.util.ArrayList;
@@ -8,6 +9,14 @@ public abstract class GameCollection<T extends GameObject> extends GameObject {
 	
 	public GameCollection() {
 		elements = new ArrayList<T>();
+	}
+	
+	public void add(T t) {
+		elements.add(t);
+	}
+	
+	protected T getLast() {
+		return elements.get(elements.size()-1);
 	}
 	
 	@Override
@@ -48,11 +57,11 @@ public abstract class GameCollection<T extends GameObject> extends GameObject {
 		}
 	}
 
-	@Override
-	public Object clone() {
-		// TODO
-		return null;
-	}
+//	@Override
+//	public Object clone() {
+//		// TODO
+//		return null;
+//	}
 
 	@Override
 	public Point getStartPoint() {

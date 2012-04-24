@@ -2,13 +2,17 @@ import java.awt.Component;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import Model.Model;
+
 public class Controller implements Runnable, KeyListener{
+	private Generator generator;
 	private Model model;
 	private View view;
 
 	public Controller() {
 		this.model = new Model();
 		this.view = new View();
+		this.generator = new Generator();
 	}
 
 	@Override
@@ -23,13 +27,10 @@ public class Controller implements Runnable, KeyListener{
 				lastTime = curTime;
 				curTime = System.currentTimeMillis();
 
-				float delta = curTime - lastTime;
-				//	    		player.update(delta);
-				//	    		for (Active a : Active.aObjs) {
-				//	    			a.update(delta);
-				//	    		}
-				model.update(delta); //TODO: temporary
-				view.update(delta);
+				float delta_t = curTime - lastTime;
+				generator.update(delta_t);
+				model.update(delta_t);
+				view.update(delta_t);
 
 
 				// Let the OS have a little time...
@@ -74,6 +75,7 @@ public class Controller implements Runnable, KeyListener{
 
 	public void init() {
 		view.init(model);		
+		generator.init(model);
 	}
 
 }
