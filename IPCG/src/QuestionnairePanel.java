@@ -1,10 +1,10 @@
-import java.awt.Button;
 import java.awt.Component;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
@@ -65,7 +65,6 @@ public class QuestionnairePanel extends JPanel implements Screen, ActionListener
 				.createCompoundBorder(
 						BorderFactory.createTitledBorder("Initial Questions"),
 						BorderFactory.createEmptyBorder(10, 30, 20, 30))));
-		System.err.println("created questionnairepanel");
 
 	}
 	
@@ -109,6 +108,27 @@ public class QuestionnairePanel extends JPanel implements Screen, ActionListener
 		next.setActionCommand(responses[0] + responses[1]);
 		
 		if(responses[0] != null && responses[1] != null) next.setEnabled(true);
+		
+	}
+
+	@Override
+	public void init() { }
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		// TODO Auto-generated method stub
 		
 	}
 

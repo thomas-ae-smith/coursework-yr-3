@@ -1,10 +1,9 @@
-import java.awt.Component;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import Model.Model;
 
-public class Controller implements Runnable, KeyListener{
+public class Controller implements Runnable, KeyListener, Screen{
 	private Generator generator;
 	private Model model;
 	private View view;
@@ -76,6 +75,9 @@ public class Controller implements Runnable, KeyListener{
 	public void init() {
 		view.init(model);		
 		generator.init(model);
+		Thread thread = new Thread(this);
+		thread.start();
+//		this.run();
 	}
 
 }
