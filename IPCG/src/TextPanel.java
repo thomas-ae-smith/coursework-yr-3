@@ -1,21 +1,37 @@
 import java.awt.Button;
 import java.awt.Component;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 
 import javax.swing.BorderFactory;
+import javax.swing.JEditorPane;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
+import javax.swing.UIManager;
+import javax.swing.event.HyperlinkEvent;
+import javax.swing.event.HyperlinkListener;
+import javax.swing.text.html.HTMLDocument;
 
-public class TextPanel extends JPanel implements Screen{
+public class TextPanel extends JPanel implements Screen, HyperlinkListener {
 
 	private static final long serialVersionUID = 1L;
-	private static final String text[][] = { {"Introduction", "This is the introductory text."},
-											 {"Instructions", "This is the instructory text."},
-											 {"Confirmation", "This is the confirmatory text."}};
+	private static final String text[][] = {
+		{
+			"Introduction",
+			"<html>Welcome to this evaluation system. <p>If you have not already, please read the Participant "
+					+ "Instructions here: <a href=\"www.google.com\">address</a></p><p>You may leave the experiment "
+					+ " at any time by closing this window. </p><p>Click next to continue.</p></html>", "Next >>" },
+			{ "Instructions", "<html><p>The aim of each section is to reach the exit at the right of the level.</p>"
+							+ "<p>The left and right arrow keys control the movement of the green avatar."
+							+ "<br>Pressing the up arrow will cause it to jump.</p>"
+							+ "<p>Falling off the bottom of the screen or touching a red obstacle will send you back a little.</p>"
+							+ "<p>After each level will be a short evaluation. Click 'Start' to start.</p></html>", "Start >>"},
+			{ "Confirmation", "This is the confirmatory text.", "Finish" } };
 
 	public TextPanel(int textNum, ActionListener listener) {
 
@@ -30,15 +46,28 @@ public class TextPanel extends JPanel implements Screen{
 
 		constraints.weightx = constraints.weighty = 1.0;
 
-		JLabel displayText = new JLabel(text[textNum][1]);
-		displayText.setHorizontalAlignment(SwingConstants.LEFT);
+		JEditorPane displayText = new JEditorPane();
+		displayText.setContentType("text/html");
+		displayText.setText(text[textNum][1]);
+
+		// credit:
+		// http://explodingpixels.wordpress.com/2008/10/28/make-jeditorpane-use-the-system-font/
+		Font font = UIManager.getFont("Label.font");
+		String bodyRule = "body { font-family: " + font.getFamily() + "; "
+				+ "font-size: " + font.getSize() + "pt; }";
+		((HTMLDocument) displayText.getDocument()).getStyleSheet().addRule(
+				bodyRule);
+		// endcredit
+
+		// displayText.setHorizontalAlignment(SwingConstants.LEFT);
+		displayText.setEditable(false);
+		displayText.setOpaque(false);
+		displayText.addHyperlinkListener(this);
 		constraints.gridwidth = GridBagConstraints.REMAINDER;
 		gridbag.setConstraints(displayText, constraints);
 		this.add(displayText);
 
-		
-
-		Button next = new Button("Next >>");
+		Button next = new Button(text[textNum][2]);
 		constraints.fill = GridBagConstraints.NONE;
 		constraints.anchor = GridBagConstraints.EAST;
 		gridbag.setConstraints(next, constraints);
@@ -49,7 +78,7 @@ public class TextPanel extends JPanel implements Screen{
 				.createEmptyBorder(30, 30, 30, 30), BorderFactory
 				.createCompoundBorder(
 						BorderFactory.createTitledBorder(text[textNum][0]),
-						BorderFactory.createEmptyBorder(30, 30, 30, 30))));
+						BorderFactory.createEmptyBorder(10, 30, 20, 30))));
 
 	}
 
@@ -59,24 +88,49 @@ public class TextPanel extends JPanel implements Screen{
 	}
 
 	@Override
-	public void init() { }
+	public void init() {
+	}
 
 	@Override
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void keyTyped(KeyEvent e) {
 		// TODO Auto-generated method stub
-		
+
+	}
+
+	@Override
+	public void hyperlinkUpdate(HyperlinkEvent e) {
+		if (e.getEventType() == HyperlinkEvent.EventType.ACTIVATED) {
+			System.err.println("clicked");
+			if (java.awt.Desktop.isDesktopSupported()) {
+				java.awt.Desktop desktop = java.awt.Desktop.getDesktop();
+				System.err.println("hasdesktop");
+				if (desktop.isSupported(java.awt.Desktop.Action.BROWSE)) {
+					System.err.println("browsesupported");
+					try {
+						System.err.println("sending to google");
+						java.net.URI uri = new java.net.URI("http://www.google.com");
+						desktop.browse(uri);
+					} catch (Exception ex) {
+						System.err.println(ex);
+						System.err.println(ex.getMessage());
+					}
+				}
+
+			}
+
+		}
 	}
 
 }

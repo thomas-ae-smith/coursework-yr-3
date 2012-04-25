@@ -10,6 +10,7 @@ public class Player extends ActivePart {
 	Point2D.Double velocity;
 	boolean right, left, up, down, stop;
 	boolean collided;
+	private boolean finished;
 
 	public Player(int x, int y) {
 		centre = new Point2D.Double(x, y);
@@ -99,4 +100,11 @@ public class Player extends ActivePart {
 
 	@Override
 	public float rate() { return 0;	}
+
+	public void setFinished(boolean b) {
+		this.finished = b;
+		//starttimer
+		
+	}
+	public boolean getFinished() { return finished; }
 }

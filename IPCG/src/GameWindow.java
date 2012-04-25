@@ -6,29 +6,27 @@ import javax.swing.UIManager;
 
 import Model.Constants;
 
-
 public class GameWindow extends JFrame implements ActionListener {
 
 	private static final long serialVersionUID = -8255319694373975038L;
-	private StringBuilder log;
-	private Screen screens[] = {
-								new TextPanel(0, this),
-								new QuestionnairePanel(this), 
-								new TextPanel(1, this),
-								new Controller(),
-								new FeedbackPanel(3, this), 
-								new FeedbackPanel(4, this), 
-								new FeedbackPanel(5, this), 
-								new FeedbackPanel(6, this),
-								new TextPanel(2, this),
-								new Controller()};
+	private StringBuilder log = new StringBuilder();
+	private Screen screens[] = { new TextPanel(0, this),
+			// new QuestionnairePanel(this),
+			new TextPanel(1, this),
+			// // new Controller(this),
+			// new FeedbackPanel(3, this),
+			// // new Controller(this),
+			// new FeedbackPanel(4, this),
+			// // new Controller(this),
+			// new FeedbackPanel(5, this),
+			// // new Controller(this),
+			// new FeedbackPanel(6, this),
+			new ConfirmPanel(log, this), new TextPanel(2, this) };
 	private int curr_screen = 0;
-
-	
 
 	public static void main(String[] args) {
 
-//		Applet IPCGsystem = new Applet();
+		// Applet IPCGsystem = new Applet();
 		try {
 			// Attempt to use the system's native look and feel (buttons etc)
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
@@ -36,26 +34,26 @@ public class GameWindow extends JFrame implements ActionListener {
 			System.err.println("Error changing system look and feel.");
 		}
 		new GameWindow();
-	}	
+	}
 
 	public GameWindow() {
-		this.log = new StringBuilder("# this is the data file\n---\n");
+		// this.log = new StringBuilder("# this is the data file\n---\n");
+		log.append("# this is the data file\n---\n");
 		this.setTitle("IPCG");
-		//this.setIgnoreRepaint(true);
+		// this.setIgnoreRepaint(true);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setResizable(false);
 
-		
-		//Create and set up the content pane
+		// Create and set up the content pane
 		this.add(screens[0].getView());
-		
+
 		this.setFocusable(true);
 		this.pack();
 		this.setSize(Constants.WINDOW_WIDTH, Constants.WINDOW_HEIGHT);
 		this.setLocationRelativeTo(null);
 		this.addKeyListener(screens[0]);
 		this.setVisible(true);
-		
+
 		screens[0].init();
 
 	}
@@ -67,11 +65,15 @@ public class GameWindow extends JFrame implements ActionListener {
 		this.removeKeyListener(screens[curr_screen]);
 		this.getContentPane().remove(0);
 		curr_screen++;
-		this.add(screens[curr_screen].getView());
-		this.validate();
-		this.addKeyListener(screens[curr_screen]);
-		screens[curr_screen].init();
-		
+		if (curr_screen < screens.length) {
+			this.add(screens[curr_screen].getView());
+			this.validate();
+			this.addKeyListener(screens[curr_screen]);
+			screens[curr_screen].init();
+		} else {
+			System.exit(0);
+		}
+
 	}
 
 }
