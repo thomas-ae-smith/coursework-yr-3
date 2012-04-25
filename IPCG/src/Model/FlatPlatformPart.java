@@ -16,6 +16,7 @@ public class FlatPlatformPart extends Part {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+	
 	@Override
 	public void render(Graphics2D g2D) {
 		g2D.setColor(Color.BLACK);

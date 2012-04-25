@@ -1,3 +1,5 @@
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -7,11 +9,13 @@ public class Controller implements Runnable, KeyListener, Screen{
 	private Generator generator;
 	private Model model;
 	private View view;
+	private ActionListener listener; //hijack the action system
 
-	public Controller() {
+	public Controller(ActionListener listener) {
 		this.model = new Model();
 		this.view = new View();
 		this.generator = new Generator();
+		this.listener = listener;
 	}
 
 	@Override
@@ -30,7 +34,7 @@ public class Controller implements Runnable, KeyListener, Screen{
 				generator.update(delta_t);
 				model.update(delta_t);
 				view.update(delta_t);
-
+				if(model.getFinished()) break;
 
 				// Let the OS have a little time...
 				Thread.yield();
@@ -38,6 +42,7 @@ public class Controller implements Runnable, KeyListener, Screen{
 				view.dispose();
 			}
 		}
+		listener.actionPerformed(new ActionEvent(this, ActionEvent.ACTION_PERFORMED, "++level event log++\n"));
 	}
 
 
@@ -77,7 +82,6 @@ public class Controller implements Runnable, KeyListener, Screen{
 		generator.init(model);
 		Thread thread = new Thread(this);
 		thread.start();
-//		this.run();
 	}
 
 }

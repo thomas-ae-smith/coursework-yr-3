@@ -41,5 +41,9 @@ public class Model {
 		level.add(pattern);
 		
 	}
+
+	public boolean getFinished() {
+		return player.getFinished();
+	}
 	
 }
