@@ -27,8 +27,8 @@ public class Player extends ActivePart {
 		if (Constants.DRAW_DEBUG) {
 			g2D.setColor(Color.RED);
 			g2D.drawLine((int) centre.x, (int) centre.y,
-					(int) (centre.x + velocity.x * 10),
-					(int) (centre.y + velocity.y * 10));
+					(int) (centre.x + velocity.x / 10),
+					(int) (centre.y + velocity.y / 10));
 		}
 	}
 
@@ -40,20 +40,18 @@ public class Player extends ActivePart {
 			reset();
 			return;
 		}
-		delta_t /= 10;
+//		delta_t *= 100;
 		if (collided && up)
-			velocity.y = -15 * Constants.MAX_VELOCITY.y; // jump if on ground
+			velocity.y = -112f * Constants.MAX_VELOCITY.y/(Constants.MAX_VELOCITY.x); // jump if on ground, see Constants for maths
+		else if (!collided)
+			velocity.y += Constants.MAX_VELOCITY.y * delta_t;
 		else
-			velocity.y = Math.min(Constants.MAX_VELOCITY.y * 2, velocity.y
-					+ Constants.MAX_VELOCITY.y * delta_t);
+			velocity.y = 0;
 		collided = false;
-		if (!stop) {
-			if (right)
-				velocity.x += Constants.MAX_VELOCITY.x;
-			if (left)
-				velocity.x -= Constants.MAX_VELOCITY.x;
-		} else
-			centre = new Point2D.Double(65, 65);
+		if (right)
+			velocity.x += Constants.MAX_VELOCITY.x;
+		if (left)
+			velocity.x -= Constants.MAX_VELOCITY.x;
 
 		centre.x += velocity.x * delta_t;
 		centre.y += velocity.y * delta_t;
@@ -99,7 +97,7 @@ public class Player extends ActivePart {
 	public Object clone(boolean placeAtEnd) { return null; }
 
 	@Override
-	public float rate() { return 0;	}
+	public double rate() { return 0;	}
 
 	public void setFinished(boolean b) {
 		this.finished = b;

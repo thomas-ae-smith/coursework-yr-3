@@ -24,7 +24,7 @@ public class View extends Canvas {
 
 	int fps = 0;
 	int frames = 0;
-	long totalTime = 0;
+	double totalTime = 0;
 
 	public View() {
 		this.setIgnoreRepaint(true);
@@ -52,8 +52,8 @@ public class View extends Canvas {
 	public void update(double delta_t) {
 
 		totalTime += delta_t;
-		if (totalTime > 1000) {
-			totalTime -= 1000;
+		if (totalTime > 1.f) {
+			totalTime -= 1.f;
 			fps = frames;
 			frames = 0;
 		}

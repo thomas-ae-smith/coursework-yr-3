@@ -16,7 +16,7 @@ public class Level extends GameCollection<Pattern> {
 	public void tweak() { }
 
 	@Override
-	public float rate() { return 0; }
+	public double rate() { return 0; }
 
 	@Override
 	public Point collide(Player p) {

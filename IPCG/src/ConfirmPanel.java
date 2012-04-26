@@ -131,8 +131,10 @@ public class ConfirmPanel extends JPanel implements ActionListener, Screen, Hype
 			this.remove(submit);
 			this.add(this.createErrorWarning());
 			this.logDisplay.selectAll(); //TODO make this work
+			this.logDisplay.requestFocus();
+//			this.logDisplay.setSelectionStart(0);
+//			this.logDisplay.setSelectionEnd(this.logDisplay.getText().length()-1);
 			this.validate();
-			listener.actionPerformed(new ActionEvent(e.getSource(), ActionEvent.ACTION_PERFORMED, ""));//FIXME TODO testing only
 		}
 		
 	}

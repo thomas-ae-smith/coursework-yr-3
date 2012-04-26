@@ -32,9 +32,9 @@ public class ObstaclePart extends ActivePart {
 	}
 
 	@Override
-	public void update(double delta) {
+	public void update(double delta_t) {
 		if (centre.x == start.x) {	//hackish verticality check
-			centre.y -= dir * delta/5;
+			centre.y -= dir * delta_t * Constants.OBSTACLE_BASE_SPEED;
 			if (centre.y <= start.y) dir = -1;
 			if (centre.y >= end.y) dir = 1;
 		}
@@ -83,7 +83,7 @@ public class ObstaclePart extends ActivePart {
 	}
 
 	@Override
-	public float rate() {
+	public double rate() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
