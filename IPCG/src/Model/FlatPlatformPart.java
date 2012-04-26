@@ -13,10 +13,7 @@ public class FlatPlatformPart extends Part {
 	}
 	
 	@Override
-	public double rate() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+	public double rate() { return 0; }
 	
 	@Override
 	public void render(Graphics2D g2D) {

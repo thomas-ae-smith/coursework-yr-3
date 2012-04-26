@@ -1,3 +1,4 @@
+import java.awt.Point;
 import java.util.Random;
 
 import Model.Component;
@@ -14,7 +15,15 @@ import Model.SinglePattern;
 public class Generator {
 	private Model model;
 	private Random rndNumGen;
-
+	private int chances[] =		 {	2,		//step
+									2,		//hop
+									2,		//skip
+									2,		//jump
+									2,		//leap
+									20,		//horizontal obstacle
+									2,		//final
+	};
+	
 	public Generator() {
 		rndNumGen = new Random();
 	}
@@ -29,15 +38,31 @@ public class Generator {
 			if (model.getLevelEndPoint().x > 5000) {	//TODO: make this dependant
 				model.add(new SinglePattern(new FinalComponent(model.getLevelEndPoint())));
 			} else {
-				switch(rndNumGen.nextInt(2)) {
+				Point start = model.getLevelEndPoint();
+				switch(getIndex()) {
 				case 0:
-					next = new GapComponent(model.getLevelEndPoint());
+					next = GapComponent.step(start);
 					break;
 				case 1:
-					next = new ObstacleComponent(model.getLevelEndPoint());
+					next = GapComponent.hop(start);
+					break;
+				case 2:
+					next = GapComponent.skip(start);
+					break;
+				case 3:
+					next = GapComponent.jump(start);
+					break;
+				case 4:
+					next = GapComponent.leap(start);
+					break;
+				case 5:
+					next = new ObstacleComponent(start);
+					break;
+				case 6:
+					next = new FinalComponent(start);
 					break;
 				default:
-					next = new FlatComponent(model.getLevelEndPoint());
+					next = new FlatComponent(start);
 					break;
 				}
 
@@ -54,6 +79,24 @@ public class Generator {
 			}
 
 		}
+	}
+
+	private int getIndex() {
+		int pick = rndNumGen.nextInt(sum());
+		int i = 0;
+		for (; i < chances.length; i++) {
+			pick -= chances[i];
+			if (pick <= 0) break;
+		}
+		return i;
+	}
+
+	private int sum() {
+		int total = 0;
+		for (int i = 0; i < chances.length; i++) {
+			total += chances[i];
+		}
+		return total;
 	}
 
 	public void dispose() {

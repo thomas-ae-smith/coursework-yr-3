@@ -9,7 +9,7 @@ public abstract class Component extends GameCollection<Part> {
 
 	@Override
 	public double rate() {
-		float rating = 0;
+		double rating = 0;
 		for (Part element : elements) {
 			rating += element.rate();
 		}
