@@ -50,7 +50,7 @@ public class GameWindow extends JFrame implements ActionListener {
 
 		this.setFocusable(true);
 		this.pack();
-		this.getContentPane().setSize(Constants.WINDOW_WIDTH, Constants.WINDOW_HEIGHT);
+		this.setSize(Constants.WINDOW_WIDTH, Constants.WINDOW_HEIGHT);
 		this.setLocationRelativeTo(null);
 		this.addKeyListener(screens[0]);
 		this.setVisible(true);
