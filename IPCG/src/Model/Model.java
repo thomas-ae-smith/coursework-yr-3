@@ -6,6 +6,7 @@ import java.awt.event.KeyEvent;
 public class Model {
 	Level level;
 	Player player;
+	private boolean skip;
 
 	public Model() {
 		player = new Player(65, 65);
@@ -30,6 +31,7 @@ public class Model {
 		case KeyEvent.VK_LEFT:		player.left  = value;	break;
 		case KeyEvent.VK_RIGHT:		player.right = value;	break;
 		case KeyEvent.VK_SPACE:		player.stop  = value; 	break;
+		case KeyEvent.VK_ESCAPE:	skip		 = value; 	break;
 		}
 		return;
 	}
@@ -43,7 +45,7 @@ public class Model {
 	}
 
 	public boolean getFinished() {
-		return player.getFinished();
+		return player.getFinished() || skip;
 	}
 	
 }
