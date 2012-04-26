@@ -4,6 +4,12 @@ import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.net.URL;
+import java.net.URLConnection;
+import java.net.URLEncoder;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -57,7 +63,7 @@ public class ConfirmPanel extends JPanel implements ActionListener, Screen{
 		constraints.fill = GridBagConstraints.NONE;
 		constraints.anchor = GridBagConstraints.EAST;
 		gridbag.setConstraints(submit, constraints);
-		submit.addActionListener(listener);
+		submit.addActionListener(this);
 		submit.setActionCommand("");
 		this.add(submit);
 		
@@ -71,8 +77,34 @@ public class ConfirmPanel extends JPanel implements ActionListener, Screen{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		submit.setActionCommand("");
-		submit.setEnabled(true);		
+		try {
+		    // Construct data
+		    String data = URLEncoder.encode("data", "UTF-8") + "=" + URLEncoder.encode(log.toString(), "UTF-8");
+		    data += "&" + URLEncoder.encode("submit", "UTF-8") + "=" + URLEncoder.encode("Submit", "UTF-8");
+System.err.println("compiled: " + data);
+		    // Send data
+		    URL url = new URL("http://users.ecs.soton.ac.uk/taes1g09/submit.php");
+		    URLConnection conn = url.openConnection();
+		    System.err.println("urlopened");
+		    conn.setDoOutput(true);
+		    OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
+		    System.err.println("writer");
+		    wr.write(data);
+		    wr.flush();
+
+		    System.err.println("written");
+		    // Get the response
+		    BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+		    String line;
+		    while ((line = rd.readLine()) != null) {
+		        // Process line...
+System.err.println("line: " + line);		    	
+		    }
+		    wr.close();
+		    rd.close();
+		} catch (Exception ex) {
+			System.err.println(ex.getLocalizedMessage());
+		}	
 	}
 
 	@Override
