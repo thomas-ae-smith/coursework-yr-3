@@ -12,7 +12,7 @@ public class GameWindow extends JFrame implements ActionListener {
 	private StringBuilder log = new StringBuilder();
 	private Screen screens[] = { new TextPanel(0, this),
 			// new QuestionnairePanel(this),
-//			new TextPanel(1, this),
+			new TextPanel(1, this),
 			  new Controller(this),
 //			 new FeedbackPanel(3, this),
 //			 // new Controller(this),
@@ -50,7 +50,7 @@ public class GameWindow extends JFrame implements ActionListener {
 
 		this.setFocusable(true);
 		this.pack();
-		this.setSize(Constants.WINDOW_WIDTH, Constants.WINDOW_HEIGHT);
+		this.getContentPane().setSize(Constants.WINDOW_WIDTH, Constants.WINDOW_HEIGHT);
 		this.setLocationRelativeTo(null);
 		this.addKeyListener(screens[0]);
 		this.setVisible(true);

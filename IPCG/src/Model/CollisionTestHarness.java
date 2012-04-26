@@ -3,16 +3,16 @@ package Model;
 import java.awt.Point;
 
 
-public class TestHarness extends Player {
+public class CollisionTestHarness extends Player {
 	
 	Point loc;
 	int radius;
 	
 public static void main(String[] args) {
-	new TestHarness();
+	new CollisionTestHarness();
 }
 
-public TestHarness() {
+public CollisionTestHarness() {
 	super(10,10);//cruft
 	GameObject plat = new FlatPlatformPart(new Point(10, 10), 10);
 	radius = 10;

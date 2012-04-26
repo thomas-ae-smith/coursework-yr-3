@@ -11,6 +11,7 @@ public class Player extends ActivePart {
 	boolean right, left, up, down, stop;
 	boolean collided;
 	private boolean finished;
+	private boolean lastCollided;
 
 	public Player(int x, int y) {
 		centre = new Point2D.Double(x, y);
@@ -34,6 +35,7 @@ public class Player extends ActivePart {
 
 	@Override
 	public void update(double delta_t) {
+		lastCollided = collided;
 		if (getStartPoint().y > Constants.WINDOW_HEIGHT) { // fallen off the
 			// bottom of the
 			// screen
@@ -63,7 +65,8 @@ public class Player extends ActivePart {
 	@Override
 	public void translate(Point delta_l) {
 		super.translate(delta_l);
-		collided = true;
+		if(lastCollided || (delta_l.y*delta_l.y > delta_l.x*delta_l.x && delta_l.y < 0))
+			collided = true;
 	}
 
 	@Override
