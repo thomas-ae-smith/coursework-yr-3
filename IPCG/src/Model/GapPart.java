@@ -14,7 +14,7 @@ public class GapPart extends Part {
 	
 	public GapPart(Point start, int length, int height) {
 		this.start = start;
-		this.end = new Point(start.x + length * Constants.TILE_WIDTH, start.y + height);
+		this.end = new Point(start.x + length * Constants.TILE_WIDTH, start.y + height * Constants.TILE_HEIGHT);
 		this.calculateRating();
 	}
 	

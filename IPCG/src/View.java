@@ -1,10 +1,12 @@
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.GraphicsConfiguration;
 import java.awt.GraphicsEnvironment;
+import java.awt.Point;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 
@@ -80,10 +82,12 @@ public class View extends Canvas {
 		g2D.setColor(Color.RED);
 		g2D.drawString(String.format("FPS: %s\ncamerastart: %s", fps, cameraStart), cameraStart + 20, 20);
 
-		g2D.setColor(Color.DARK_GRAY);
+//		g2D.setColor(Color.DARK_GRAY);
 
 		model.render(g2D); // this is where the meat happens
 
+		g2D.setPaint(new GradientPaint(new Point(0, Constants.WINDOW_HEIGHT - Constants.TILE_HEIGHT*3), new Color(1f, 1f, 1f, 0f), new Point(0, Constants.WINDOW_HEIGHT), Color.DARK_GRAY));
+		g2D.fillRect(cameraStart, Constants.WINDOW_HEIGHT - Constants.TILE_HEIGHT*3, Constants.WINDOW_WIDTH, Constants.TILE_HEIGHT*3);
 		// Blit image and flip...
 		graphics = bufferStrategy.getDrawGraphics();
 		graphics.drawImage(buffer, 0, 0, null);

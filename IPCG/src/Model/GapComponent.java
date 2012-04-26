@@ -4,7 +4,7 @@ import java.awt.Point;
 public class GapComponent extends Component {
 	public GapComponent(Point start) {
 		elements.add(new FlatPlatformPart(start, 3));
-		elements.add(new GapPart(this.getEndPoint(), 2));
+		elements.add(new GapPart(this.getEndPoint(), 1, -7));
 	}
 	
 	@Override

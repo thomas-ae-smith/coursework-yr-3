@@ -30,6 +30,7 @@ public class TextPanel extends JPanel implements Screen, HyperlinkListener {
 							+ "<p>The left and right arrow keys control the movement of the green avatar."
 							+ "<br>Pressing the up arrow will cause it to jump.</p>"
 							+ "<p>Falling off the bottom of the screen or touching a red obstacle will send you back a little.</p>"
+							+ "<p>Pressing ESC at any time will allow you to skip the level, though this action will be recorded.</p>"
 							+ "<p>After each level will be a short evaluation. Click 'Start' to start.</p></html>", "Start >>"},
 			{ "Thank You", "<html><p>Your data has successfully been submitted.</p>"
 							+ "<p>Thank you for participating in this experiment," 
@@ -68,7 +69,7 @@ public class TextPanel extends JPanel implements Screen, HyperlinkListener {
 		displayText.setEditable(false);
 		displayText.setOpaque(false);
 		displayText.addHyperlinkListener(this);
-		constraints.gridwidth = GridBagConstraints.REMAINDER;
+		constraints.gridwidth = GridBagConstraints.RELATIVE;
 		gridbag.setConstraints(displayText, constraints);
 		this.add(displayText);
 
@@ -85,7 +86,7 @@ public class TextPanel extends JPanel implements Screen, HyperlinkListener {
 				.createEmptyBorder(30, 30, 30, 30), BorderFactory
 				.createCompoundBorder(
 						BorderFactory.createTitledBorder(text[textNum][0]),
-						BorderFactory.createEmptyBorder(10, 30, 20, 30))));
+						BorderFactory.createEmptyBorder(10, 30, 10, 30))));
 
 	}
 
