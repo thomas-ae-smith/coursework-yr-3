@@ -10,14 +10,18 @@ public class ObstaclePart extends ActivePart {
 
 	public static ArrayList<ObstaclePart> all = new ArrayList<ObstaclePart>();
 	private int dir = 1;
+	private boolean vertical;
 
 	public ObstaclePart(GameObject parent, boolean vertical) {
 		all.add(this);
 		this.setParent(parent);
 		this.radius = Constants.OBSTACLE_RADIUS;
+		this.vertical = vertical;
+		
 		Point midPoint = new Point(
 				(parent.getStartPoint().x + parent.getEndPoint().x) / 2,
 				(parent.getStartPoint().y + parent.getEndPoint().y) / 2);
+		
 		if (vertical) {
 			start = new Point(midPoint.x, midPoint.y - radius
 					- Constants.JUMP_HEIGHT);
@@ -33,10 +37,14 @@ public class ObstaclePart extends ActivePart {
 
 	@Override
 	public void update(double delta_t) {
-		if (centre.x == start.x) {	//hackish verticality check
+		if (vertical) {
 			centre.y -= dir * delta_t * Constants.OBSTACLE_BASE_SPEED;
 			if (centre.y <= start.y) dir = -1;
 			if (centre.y >= end.y) dir = 1;
+		} else {
+			centre.x -= dir * delta_t * Constants.OBSTACLE_BASE_SPEED;
+			if (centre.x <= start.x) dir = -1;
+			if (centre.x >= end.x) dir = 1;
 		}
 	}
 
@@ -50,7 +58,6 @@ public class ObstaclePart extends ActivePart {
 	public void debugRender(Graphics2D g2D, int inset) {
 		g2D.setColor(Color.RED);
 		g2D.drawLine(start.x, start.y, end.x, end.y);
-		// super.debugRender(g2D, inset);
 	}
 
 	@Override
@@ -84,13 +91,13 @@ public class ObstaclePart extends ActivePart {
 
 	@Override
 	public double rate() {
-		// TODO Auto-generated method stub
+		// FIXME TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
 	public void reset() {
-		// TODO Auto-generated method stub
-
+		centre = new Point2D.Double(end.x, end.y);
+		dir = 1;
 	}
 }

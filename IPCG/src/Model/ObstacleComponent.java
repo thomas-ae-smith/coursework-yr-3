@@ -5,7 +5,7 @@ public class ObstacleComponent extends Component {
 	public ObstacleComponent(Point start) {
 		elements.add(new FlatPlatformPart(start, 3));
 		FlatPlatformPart obstaclePlatform = new FlatPlatformPart(getLast().getEndPoint(), 3);
-		elements.add(new ObstaclePart(obstaclePlatform, true));
+		elements.add(new ObstaclePart(obstaclePlatform, false));
 		elements.add(obstaclePlatform);
 	}
 	

@@ -3,20 +3,28 @@ package Model;
 
 import java.awt.Graphics2D;
 import java.awt.Point;
+import java.util.Iterator;
 
 
 
 public class Level extends GameCollection<Pattern> {
 
 	public Level() {
-		elements.add(new SimplePattern(new ObstacleComponent(new Point(0, Constants.WINDOW_HEIGHT/2))));
+		elements.add(new SinglePattern(new FlatComponent(new Point(0, Constants.WINDOW_HEIGHT/2))));
 	}
 	
 	@Override
 	public void tweak() { }
 
 	@Override
-	public double rate() { return 0; }
+	public double rate() { 
+		double total = 0;
+		for (Pattern p : elements) {
+			total += p.rate();
+		}
+		total /= elements.size();
+		return total; 
+	}
 
 	@Override
 	public Point collide(Player p) {

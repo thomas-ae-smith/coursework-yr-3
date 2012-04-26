@@ -12,8 +12,12 @@ public abstract class Pattern extends GameCollection<Component>{
 
 	@Override
 	public double rate() {
-		// TODO Auto-generated method stub
-		return 0;
+		double total = 0;
+		for (Component c : elements) {
+			total += c.rate();
+		}
+		total /= elements.size();
+		return total; 
 	}
 	
 	//hijack the returned result, and check it to see if we need to reparent the player
