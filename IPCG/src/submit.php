@@ -1,3 +1,19 @@
+<?php
+$data = $_POST['data'];
+if (isset($_POST['submit']) && filter_var($data, FILTER_SANITIZE_STRING)) {
+$fileName = "data/" . strtotime(' ') . ".txt";
+$fileHandle = fopen($fileName, 'w') or $success = False;
+if ($fileHandle) {
+	fwrite($fileHandle, $data);
+	fclose($fileHandle);
+	$success = True;
+}
+
+echo("<!--" . $success . "-->");
+
+}
+
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
 <head>
@@ -6,16 +22,12 @@
 </head>
 <body>
 
-<?php
-$data = $_POST['data'];
-?>
-
 <h1>Submit Data</h1>
 <form method="post" action="" name="submission">
 <label for="data">Paste experiment data here:</label> <br />
 	<input type="textarea" name="data" value="<?php echo $data;?>" rows="3" 
 		<?php 
-		if (isset($_POST['submit'])) {
+		if ($success) {
 			echo( "readonly=\"readonly\"");
 		}
 		?>
@@ -24,7 +36,7 @@ $data = $_POST['data'];
 <br />
 <input type="submit" name="submit" value="Submit" 
 	<?php 
-		if (isset($_POST['submit'])) {
+		if ($success) {
 			echo( "disabled=\"disabled\"");
 		}
 		?>
@@ -33,16 +45,8 @@ $data = $_POST['data'];
 </form>
 </div>
 <?php
-echo($_POST['submit']);
-if (isset($_POST['submit']) && filter_var($data, FILTER_SANITIZE_STRING)) {
-$fileName = "data/" . strtotime(' ') . ".txt";
-$fileHandle = fopen($fileName, 'w') or die("<div style=\"color:red\">Write error: can't open file.</div>");
-fwrite($fileHandle, $data);
-fclose($fileHandle);
-echo("<div style=\"color:green\">Data submission successful.</div>");
-
-}
-
+	if ($success) {echo("<div style=\"color:green\">Data submission successful.</div>");}
+	else {echo("<div style=\"color:red\">Write error: can't open file.</div>");}
 ?>
 
 <br />

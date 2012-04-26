@@ -31,7 +31,12 @@ public class TextPanel extends JPanel implements Screen, HyperlinkListener {
 							+ "<br>Pressing the up arrow will cause it to jump.</p>"
 							+ "<p>Falling off the bottom of the screen or touching a red obstacle will send you back a little.</p>"
 							+ "<p>After each level will be a short evaluation. Click 'Start' to start.</p></html>", "Start >>"},
-			{ "Confirmation", "This is the confirmatory text.", "Finish" } };
+			{ "Thank You", "<html><p>Your data has successfully been submitted.</p>"
+							+ "<p>Thank you for participating in this experiment," 
+							+ "<br>please do not submit any more data.</p>" 
+							+ "<p>Close this window or tab to exit the experiment.</p>"
+							+ "<br><p>Contact taes1g09@ecs.soton.ac.uk if you have any questions.</p></html>", null } 
+		};
 
 	public TextPanel(int textNum, ActionListener listener) {
 
@@ -73,7 +78,9 @@ public class TextPanel extends JPanel implements Screen, HyperlinkListener {
 		gridbag.setConstraints(next, constraints);
 		next.addActionListener(listener);
 		next.setActionCommand("");
-		this.add(next);
+		if(text[textNum][2] != null) {
+			this.add(next);
+		}
 		setBorder(BorderFactory.createCompoundBorder(BorderFactory
 				.createEmptyBorder(30, 30, 30, 30), BorderFactory
 				.createCompoundBorder(

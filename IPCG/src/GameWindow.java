@@ -12,16 +12,17 @@ public class GameWindow extends JFrame implements ActionListener {
 	private StringBuilder log = new StringBuilder();
 	private Screen screens[] = { new TextPanel(0, this),
 			// new QuestionnairePanel(this),
-			new TextPanel(1, this),
-			  new Controller(this),
-			 new FeedbackPanel(3, this),
-			 // new Controller(this),
-			 new FeedbackPanel(4, this),
-			 // new Controller(this),
-			 new FeedbackPanel(5, this),
-			 // new Controller(this),
-			 new FeedbackPanel(6, this),
-			new ConfirmPanel(log, this), new TextPanel(2, this) };
+//			new TextPanel(1, this),
+//			  new Controller(this),
+//			 new FeedbackPanel(3, this),
+//			 // new Controller(this),
+//			 new FeedbackPanel(4, this),
+//			 // new Controller(this),
+//			 new FeedbackPanel(5, this),
+//			 // new Controller(this),
+//			 new FeedbackPanel(6, this),
+			new ConfirmPanel(log, this), 
+			new TextPanel(2, this) };
 	private int curr_screen = 0;
 
 	public static void main(String[] args) {
