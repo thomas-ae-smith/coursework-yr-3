@@ -1,12 +1,12 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JFrame;
+import javax.swing.JApplet;
 import javax.swing.UIManager;
 
 import Model.Constants;
 
-public class GameWindow extends JFrame implements ActionListener {
+public class GameApplet extends JApplet implements ActionListener {
 
 	private static final long serialVersionUID = -8255319694373975038L;
 	private StringBuilder log = new StringBuilder();
@@ -24,33 +24,24 @@ public class GameWindow extends JFrame implements ActionListener {
 			new ConfirmPanel(log, this), new TextPanel(2, this) };
 	private int curr_screen = 0;
 
-	public static void main(String[] args) {
 
-		// Applet IPCGsystem = new Applet();
+	public void init() {
 		try {
 			// Attempt to use the system's native look and feel (buttons etc)
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		} catch (Exception e) {
 			System.err.println("Error changing system look and feel.");
 		}
-		new GameWindow();
-	}
-
-	public GameWindow() {
 		// this.log = new StringBuilder("# this is the data file\n---\n");
 		log.append("# this is the data file\n---\n");
-		this.setTitle("IPCG");
 		// this.setIgnoreRepaint(true);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setResizable(false);
 
 		// Create and set up the content pane
 		this.add(screens[0].getView());
 
 		this.setFocusable(true);
-		this.pack();
+//		this.pack();
 		this.setSize(Constants.WINDOW_WIDTH, Constants.WINDOW_HEIGHT);
-		this.setLocationRelativeTo(null);
 		this.addKeyListener(screens[0]);
 		this.setVisible(true);
 
