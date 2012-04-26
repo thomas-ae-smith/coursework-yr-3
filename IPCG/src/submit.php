@@ -1,17 +1,17 @@
 <?php
+$success = False;
 $data = $_POST['data'];
 if (isset($_POST['submit']) && filter_var($data, FILTER_SANITIZE_STRING)) {
-$fileName = "data/" . strtotime(' ') . ".txt";
-$fileHandle = fopen($fileName, 'w') or $success = False;
-if ($fileHandle) {
-	fwrite($fileHandle, $data);
-	fclose($fileHandle);
-	$success = True;
+	$fileName = "data/" . strtotime(' ') . ".txt";
+	$fileHandle = fopen($fileName, 'w') or $fail = True;
+	if ($fileHandle) {
+		fwrite($fileHandle, $data);
+		fclose($fileHandle);
+		$success = True;
+	}
 }
 
-echo("<!--" . $success . "-->");
-
-}
+echo("<!--" . (($success)? 1 : 0) . "-->");
 
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
@@ -32,7 +32,6 @@ echo("<!--" . $success . "-->");
 		}
 		?>
 	/>
-	<br />
 <br />
 <input type="submit" name="submit" value="Submit" 
 	<?php 
@@ -44,11 +43,14 @@ echo("<!--" . $success . "-->");
 <br />
 </form>
 </div>
+<div>
 <?php
-	if ($success) {echo("<div style=\"color:green\">Data submission successful.</div>");}
-	else {echo("<div style=\"color:red\">Write error: can't open file.</div>");}
+	if ($success) {echo("<span style=\"color:green\">Data submission successful.</span>");}
+	else if ($fail) {echo("<span style=\"color:red\">Write error: can't open file.</span>");}
+	else echo("<br />");
 ?>
-
+</div>
+<div>Contact <a href="mailto:taes1g09@ecs.soton.ac.uk?Subject=IPCG">taes1g09@ecs.soton.ac.uk</a> if you have any questions.</div>
 <br />
 </body>
 </html>

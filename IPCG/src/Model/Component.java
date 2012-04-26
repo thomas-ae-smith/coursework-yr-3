@@ -8,7 +8,7 @@ public abstract class Component extends GameCollection<Part> {
 	}
 
 	@Override
-	public float rate() {
+	public double rate() {
 		float rating = 0;
 		for (Part element : elements) {
 			rating += element.rate();

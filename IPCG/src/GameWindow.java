@@ -13,7 +13,7 @@ public class GameWindow extends JFrame implements ActionListener {
 	private Screen screens[] = { new TextPanel(0, this),
 			// new QuestionnairePanel(this),
 //			new TextPanel(1, this),
-//			  new Controller(this),
+			  new Controller(this),
 //			 new FeedbackPanel(3, this),
 //			 // new Controller(this),
 //			 new FeedbackPanel(4, this),

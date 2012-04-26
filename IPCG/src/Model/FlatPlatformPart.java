@@ -1,6 +1,7 @@
 package Model;
 
 import java.awt.Color;
+import java.awt.GradientPaint;
 import java.awt.Graphics2D;
 import java.awt.Point;
 
@@ -12,15 +13,23 @@ public class FlatPlatformPart extends Part {
 	}
 	
 	@Override
-	public float rate() {
+	public double rate() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 	
 	@Override
 	public void render(Graphics2D g2D) {
-		g2D.setColor(Color.BLACK);
-		g2D.drawLine(start.x, start.y, end.x, end.y);
+//		g2D.setColor(Color.BLACK);
+//		g2D.drawLine(start.x, start.y, end.x, end.y);
+//		g2D.setColor(Color.BLACK);
+//		g2D.drawLine(start.x, start.y+1, end.x, end.y+1);
+//		g2D.setColor(Color.DARK_GRAY);
+//		g2D.drawLine(start.x, start.y+2, end.x, end.y+2);
+//		g2D.setColor(Color.DARK_GRAY);
+//		g2D.drawLine(start.x, start.y+3, end.x, end.y+3);
+		g2D.setPaint(new GradientPaint(start, Color.BLACK, new Point(start.x, start.y+5), Color.RED));
+		g2D.fillRect(start.x, start.y, end.x-start.x, 5);
 	}
 
 	@Override

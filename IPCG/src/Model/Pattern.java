@@ -11,7 +11,7 @@ public abstract class Pattern extends GameCollection<Component>{
 	}
 
 	@Override
-	public float rate() {
+	public double rate() {
 		// TODO Auto-generated method stub
 		return 0;
 	}

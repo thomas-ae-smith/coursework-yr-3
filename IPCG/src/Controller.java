@@ -30,7 +30,9 @@ public class Controller implements Runnable, KeyListener, Screen{
 				lastTime = curTime;
 				curTime = System.currentTimeMillis();
 
-				float delta_t = curTime - lastTime;
+				double delta_t = (curTime - lastTime)/1000f;
+				
+//				System.err.println("c: " + curTime + " \tl: " + lastTime + "\tdiff: " + (curTime-lastTime) + " \td: " + delta_t);
 				generator.update(delta_t);
 				model.update(delta_t);
 				view.update(delta_t);
