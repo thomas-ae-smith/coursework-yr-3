@@ -4,7 +4,7 @@ import java.awt.Point;
 public class GapComponent extends Component {
 	private int xDiff, yDiff;
 	
-	private GapComponent(Point start, int xDiff, int yDiff) {
+	public GapComponent(Point start, int xDiff, int yDiff) {
 		this.xDiff = xDiff;
 		this.yDiff = yDiff;
 		elements.add(new FlatPlatformPart(start, 3));
@@ -17,6 +17,8 @@ public class GapComponent extends Component {
 		return new GapComponent(this.getStartPoint(), xDiff, yDiff);
 	}
 	
+	
+	//TODO can probably remove these
 	public static GapComponent step(Point start) {
 		return new GapComponent(start, 0, 0);
 	}
@@ -34,6 +36,6 @@ public class GapComponent extends Component {
 	}
 	
 	public static GapComponent leap(Point start) {
-		return new GapComponent(start, 4, 5);
+		return new GapComponent(start, 4, 10);
 	}
 }

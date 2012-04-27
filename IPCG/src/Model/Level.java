@@ -10,7 +10,7 @@ import java.util.Iterator;
 public class Level extends GameCollection<Pattern> {
 
 	public Level() {
-		elements.add(new SinglePattern(new FlatComponent(new Point(0, Constants.WINDOW_HEIGHT/2))));
+		elements.add(new SinglePattern(new FlatComponent(new Point(0, Constants.TILE_HEIGHT*7))));
 	}
 	
 	@Override
