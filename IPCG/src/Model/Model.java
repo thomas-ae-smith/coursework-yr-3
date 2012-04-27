@@ -9,8 +9,8 @@ public class Model {
 	private boolean skip;
 
 	public Model() {
-		player = new Player(65, 65);
 		level = new Level();
+		player = new Player(level.getLast());
 	}
 
 	public void update(double delta_t) {
