@@ -109,3 +109,10 @@ public class Player extends ActivePart {
 	}
 	public boolean getFinished() { return finished; }
 }
+
+/* getResetLoc() return parent.loc + offset
+on kill, set deathVelocity() to 0.5sec movement
+isDead() return (deathVelocity!=null)
+render: draw blue dot, lifeline if isDead()
+don't collide or translate if dead
+only set parent if new is further right. on set parent, callback evaluator*/
