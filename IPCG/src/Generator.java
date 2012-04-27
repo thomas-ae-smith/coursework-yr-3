@@ -14,15 +14,16 @@ import Model.FlatComponent;
 import Model.GapComponent;
 import Model.GapPart;
 import Model.Model;
+import Model.Pattern;
 import Model.SimplePattern;
 import Model.SinglePattern;
 
 
 public class Generator {
 	private static final int RATING = 0;
-	private static final int TYPE = 0;
-	private static final int X = 0;
-	private static final int Y = 0;
+	private static final int TYPE = 1;
+	private static final int X = 2;
+	private static final int Y = 3;
 	private enum componentType{
 		GAP(-7, 10, 0, 4),
 		HOBS(0, 0, 3, 3),
@@ -57,18 +58,6 @@ public class Generator {
 		//printRatings();
 	}
 
-	public static void main(String[] args) {
-
-		// Applet IPCGsystem = new Applet();
-		try {
-			// Attempt to use the system's native look and feel (buttons etc)
-			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-		} catch (Exception e) {
-			System.err.println("Error changing system look and feel.");
-		}
-		new Generator();
-	}
-
 	public void printRatings() {
 		for (Iterator<int[]> iterator = ratings.iterator(); iterator.hasNext();) {
 			int[] rating = (int[]) iterator.next();
@@ -82,17 +71,21 @@ public class Generator {
 
 	public void update(int desiredRating) {
 		if (model.getPlayerLoc() + Constants.WINDOW_WIDTH > model.getLevelEndPoint().x) {
+			System.err.println("New pattern needed. Desired rating: " + desiredRating);
 			//calculate desired standard deviation:
 			//half of the distance to the nearest 'edge' of the obstacle distribution
 			int stdDev = Math.min(desiredRating - ratings.first()[RATING], ratings.last()[RATING] - desiredRating) / 2;
 			//pick a random location within the distribution
 			int target = (int)(rndNumGen.nextGaussian() * stdDev + desiredRating);
+			System.err.println("Target chosen: " + target);
 			//get the closest object lower
 			int[] lowerRating = getLower(target);
 			//get the closest object higher
 			int[] higherRating = getHigher(target);
+			System.err.println("Lower obstacle: R: " + lowerRating[RATING] + "    \tt: " + lowerRating[TYPE] + " \tx: " + lowerRating[X] + "\ty: " + lowerRating[Y]);
+			System.err.println("Highr obstacle: R: " + higherRating[RATING] + "    \tt: " + higherRating[TYPE] + " \tx: " + higherRating[X] + "\ty: " + higherRating[Y]);
 			
-			if (lowerRating[RATING] == 0) {
+			if (lowerRating[RATING] == higherRating[RATING] || lowerRating[RATING] == 0) {
 				addComponent(higherRating);
 				return;
 			} else if (higherRating[RATING] == 0) {
@@ -111,68 +104,96 @@ public class Generator {
 	}
 
 	private void addComponent(int[] data) {
+		System.err.println("\nChosen obstacle: R: " + data[RATING] + "    \tt: " + data[TYPE] + " \tx: " + data[X] + "\ty: " + data[Y]);
+		
 		Component next;
+		Pattern p = null;
 		Point start = model.getLevelEndPoint();
-		System.err.println(data);
+		System.err.println(data[TYPE]);
 		switch (componentType.get(data[TYPE])) {
 		case GAP:
+			System.err.println("Making a GAP with X:" + data[X] + " and Y:" + data[Y]);
 			next = new GapComponent(start, data[X], data[Y]);
+			break;
 		default:
+			System.err.println("Making a default FlatComponent");
 			next = new FlatComponent(start);
 		}
-		switch (rndNumGen.nextInt(2)) {
-		case 0:
-			model.add(new SinglePattern(next));
-		case 1:
-			model.add(new SimplePattern(next));
+		int i = 0;
+		while (p == null) {
+			i++;
+			switch (rndNumGen.nextInt(2)) {
+			case 0:
+				p = new SinglePattern(next);
+				break;
+			case 1:
+				if (isValid(2*data[Y]))
+					p = new SimplePattern(next);
+			}
+			if (i >= 12) p = new SinglePattern(next);
 		}
-		
+		model.add(p);
 	}
 
 	private int[] getLower(int target) {
-		if (target < ratings.first()[0]) return new int[]{0,0,0,0};		//if the destination is off the bottom, fake it
+		if (target < ratings.first()[RATING]) return new int[]{0,0,0,0};		//if the destination is off the bottom, fake it
 		//set up variables
 		ArrayList<int[]> list = new ArrayList<int[]>();
 		Iterator<int[]> it = ratings.descendingIterator();
 		int[] test;
 		//run until test contains the first with rating equal to or less than target 
 		while((test = it.next()) != null) {
-			if (test[0] <= target) break;
+			if (test[RATING] <= target) break;
 		};
-		
-		target = test[0];	//update target to be the actual rating
-		if (isValid(test)) list.add(test);	//if test is valid to be placed
-		//while remaining tests have the same rating
-		while((test = it.next())[0] == target) {
-			if (isValid(test)) list.add(test);	//add to the list if valid
+		System.err.println("\nChosen obstacle: R: " + test[RATING] + "    \tt: " + test[TYPE] + " \tx: " + test[X] + "\ty: " + test[Y]);
+
+		while (!isValid(test[Y])) {
+			test = it.next();
+			if (!it.hasNext()) return new int[]{0,0,0,0};		//if there are no valid ones before the end, fake it
 		}
+		target = test[RATING];	//update target to be the actual rating
+		do {
+			list.add(test);	//if test is valid to be placed
+		//while remaining tests have the same rating
+		} while (it.hasNext() && (test = it.next())[RATING] == target && isValid(test[Y]));
+		
 		Collections.shuffle(list);
 		return list.get(0);
 	}
 	
 	private int[] getHigher(int target) {
-		if (target > ratings.last()[0]) return new int[]{0,0,0,0};		//if the destination is off the top, fake it
+		if (target > ratings.last()[RATING]) return new int[]{0,0,0,0};		//if the destination is off the top, fake it
 		//set up variables
 		ArrayList<int[]> list = new ArrayList<int[]>();
 		Iterator<int[]> it = ratings.iterator();
 		int[] test;
 		//run until test contains the first with rating equal to or less than target 
 		while((test = it.next()) != null) {
-			if (test[0] >= target) break;
+			if (test[RATING] >= target) break;
 		};
-		
-		target = test[0];	//update target to be the actual rating
-		if (isValid(test)) list.add(test);	//if test is valid to be placed
-		//while remaining tests have the same rating
-		while((test = it.next())[0] == target) {
-			if (isValid(test)) list.add(test);	//add to the list if valid
+		System.err.println("\nChosen obstacle: R: " + test[RATING] + "    \tt: " + test[TYPE] + " \tx: " + test[X] + "\ty: " + test[Y]);
+
+		while (!isValid(test[Y])) {
+			test = it.next();
+			if (!it.hasNext()) return new int[]{0,0,0,0};		//if there are no valid ones before the end, fake it
 		}
+		target = test[RATING];	//update target to be the actual rating
+		do {
+			list.add(test);	//if test is valid to be placed
+		//while remaining tests have the same rating
+		} while (it.hasNext() && (test = it.next())[RATING] == target && isValid(test[Y]));
+		
 		Collections.shuffle(list);
 		return list.get(0);
 	}
 	
-	private boolean isValid(int[] test) {
-		return true; 		//FIXME TODO implement this
+	private boolean isValid(int test) {
+		int tile = model.getLevelEndPoint().y/Constants.TILE_HEIGHT + test;
+		if (tile < 5 || tile > 18) {
+			System.out.println("Point: " + model.getLevelEndPoint().y/Constants.TILE_HEIGHT + " diff: " + test + " result: " + tile);
+			return false;
+		}
+		return true; 		//FIXME TODO implement this - might already work
 	}
 	
 	private void calculateRatings() {

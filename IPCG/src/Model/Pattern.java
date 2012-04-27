@@ -24,7 +24,7 @@ public abstract class Pattern extends GameCollection<Component>{
 	@Override
 	public Point collide(Player p) {
 		Point result = super.collide(p);
-		if (result != null) p.setParent(this);
+		if (result != null && (result.y*result.y > result.x*result.x && result.y < 0)) p.setParent(this);
 		return result;
 	}
 	

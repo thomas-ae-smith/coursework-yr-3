@@ -5,6 +5,7 @@ import java.awt.Graphics2D;
 import java.awt.Point;
 
 public class GapPart extends Part {
+	int dist;
 	
 	public GapPart(Point start, int length) {
 		this(start, length, 0);
@@ -14,6 +15,7 @@ public class GapPart extends Part {
 		this.start = start;
 		this.end = new Point(start.x + length * Constants.TILE_WIDTH, start.y + height * Constants.TILE_HEIGHT);
 		rating = GapPart.calculateRating(length, height);
+		dist = GapPart.calculateDist(length, height);
 	}
 	
 	@Override
@@ -21,12 +23,14 @@ public class GapPart extends Part {
 		return rating;
 	}
 	
-	public static int calculateRating(int length, int height) {
+	private static int calculateDist(int length, int height) {
 		double t1 = 112f/Constants.MAX_VELOCITY;		//time to apex
 		double t2 = Math.sqrt(2f*(height*Constants.TILE_HEIGHT+Constants.JUMP_DIST.y)/Constants.GRAVITY);	//t = (2s/a)^(1/2) time from apex to platform
 		int dist = (int)((t1+t2)*Constants.MAX_VELOCITY)-(length * Constants.TILE_WIDTH);	//distance a player can press jump in and still clear the gap
-		dist = Math.min(dist, Constants.JUMP_DIST.x);									//limit dist to at most a singel jump's worth before the launch point
-		return dist*1000/Constants.MAX_VELOCITY;								//converted to time in milliseconds
+		return Math.min(dist, Constants.JUMP_DIST.x);									//limit dist to at most a singel jump's worth before the launch point
+	}
+	public static int calculateRating(int length, int height) {
+		return calculateDist(length, height)*1000/Constants.MAX_VELOCITY;								//converted to time in milliseconds
 	}
 	
 	@Override
@@ -36,7 +40,7 @@ public class GapPart extends Part {
 	public void debugRender(Graphics2D g2D, int inset) {
 		super.debugRender(g2D, inset);
 		g2D.setColor(Color.YELLOW);
-		g2D.drawLine(start.x, start.y, start.x - (int)rating, start.y);
+		g2D.drawLine(start.x, start.y, start.x - dist, start.y);
 	}
 
 	@Override
