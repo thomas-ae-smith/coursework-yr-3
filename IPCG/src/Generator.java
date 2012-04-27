@@ -102,3 +102,11 @@ public class Generator {
 	public void dispose() {
 	}
 }
+
+/* use treemap, with difficulties as keys
+ * need a switch to gap, horizontal obs, vertical obs, (gap obs?)
+ * pick using rndNumGen.nextGaussian()*stdDeviation + desiredAvg
+ * stdDeviation = dist from desiredDAvg to nearest edge, / 2
+ * TODO ensure that I don't need to square it and use variation insted?
+ * need a getLowerValid(int) and getHigherValid(int)
+ */
