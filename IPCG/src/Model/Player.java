@@ -8,21 +8,26 @@ import java.awt.geom.Point2D;
 public class Player extends ActivePart {
 
 	Point2D.Double velocity;
+	Point resetLoc;
 	boolean right, left, up, down, stop;
 	boolean collided;
 	private boolean finished;
 	private boolean lastCollided;
 
-	public Player(int x, int y) {
-		centre = new Point2D.Double(x, y);
+	public Player(Pattern parent) {
+		this.setParent(parent);
+		centre = new Point2D.Double(resetLoc.x, resetLoc.y);
 		velocity = new Point2D.Double(0, 0);
 		radius = Constants.PLAYER_RADIUS;
-		start = new Point(x - radius, y - radius);
-		end = new Point(x + radius, y + radius);
+		start = new Point(resetLoc.x - radius, resetLoc.y - radius);
+		end = new Point(resetLoc.x + radius, resetLoc.y + radius);
 	}
 
 	@Override
 	public void render(Graphics2D g2D) {
+		g2D.setColor(Color.BLUE.brighter());
+		g2D.fillOval(resetLoc.x - radius, resetLoc.y - radius,
+				radius * 2, radius * 2);
 		g2D.setColor(Color.GREEN);
 		super.render(g2D);
 		if (Constants.DRAW_DEBUG) {
@@ -71,9 +76,7 @@ public class Player extends ActivePart {
 
 	@Override
 	public void reset() {
-		this.centre = new Point2D.Double(parent.getStartPoint().x
-				+ Constants.TILE_WIDTH / 2, parent.getStartPoint().y
-				- Constants.PLAYER_RADIUS);
+		this.centre = new Point2D.Double(resetLoc.x, resetLoc.y);;
 		velocity = new Point2D.Double();
 		collided = false;
 	}
@@ -100,7 +103,17 @@ public class Player extends ActivePart {
 	public Object clone(boolean placeAtEnd) { return null; }
 
 	@Override
-	public double rate() { return 0;	}
+	public double rate() { return 0; }
+	
+	@Override
+	public void setParent(GameObject parent) {
+		if (this.parent == null || parent.getStartPoint().x > this.parent.getStartPoint().x) {	//only reparent if further right
+			super.setParent(parent);
+			resetLoc = new Point(parent.getStartPoint().x
+					+ Constants.TILE_WIDTH / 2, parent.getStartPoint().y
+					- Constants.PLAYER_RADIUS);		
+		}
+	}
 
 	public void setFinished(boolean b) {
 		this.finished = b;

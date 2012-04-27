@@ -13,7 +13,8 @@ public static void main(String[] args) {
 }
 
 public CollisionTestHarness() {
-	super(10,10);//cruft
+	super(new SinglePattern(new FlatComponent(new Point(0, Constants.WINDOW_HEIGHT/2))));//cruft
+	System.err.println("+++/nThis harness will no longer work as intended./n+++");
 	GameObject plat = new FlatPlatformPart(new Point(10, 10), 10);
 	radius = 10;
 	System.out.println("Starting Testing");
