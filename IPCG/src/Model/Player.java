@@ -49,16 +49,16 @@ public class Player extends ActivePart {
 		}
 //		delta_t *= 100;
 		if (collided && up)
-			velocity.y = -112f * Constants.MAX_VELOCITY.y/(Constants.MAX_VELOCITY.x); // jump if on ground, see Constants for maths
+			velocity.y = -112f * Constants.GRAVITY/(Constants.MAX_VELOCITY); // jump if on ground, see Constants for maths
 		else if (!collided)
-			velocity.y += Constants.MAX_VELOCITY.y * delta_t;
+			velocity.y += Constants.GRAVITY * delta_t;
 		else
 			velocity.y = 0;
 		collided = false;
 		if (right)
-			velocity.x += Constants.MAX_VELOCITY.x;
+			velocity.x += Constants.MAX_VELOCITY;
 		if (left)
-			velocity.x -= Constants.MAX_VELOCITY.x;
+			velocity.x -= Constants.MAX_VELOCITY;
 
 		centre.x += velocity.x * delta_t;
 		centre.y += velocity.y * delta_t;

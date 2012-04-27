@@ -33,7 +33,7 @@ public class Controller implements Runnable, KeyListener, Screen{
 				double delta_t = (curTime - lastTime)/1000f;
 				
 //				System.err.println("c: " + curTime + " \tl: " + lastTime + "\tdiff: " + (curTime-lastTime) + " \td: " + delta_t);
-				generator.update(delta_t);
+				generator.update(2);
 				model.update(delta_t);
 				view.update(delta_t);
 				if(model.getFinished()) break;

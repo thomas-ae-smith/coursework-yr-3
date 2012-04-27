@@ -6,6 +6,10 @@ public abstract class Part extends GameObject {
 	protected Point start, end;
 	protected double rating;
 	
+	static int calculateRating(int x, int y) {
+		return 0;
+	}
+		
 	@Override
 	public void translate(Point delta_l) {
 		start.x += delta_l.x;

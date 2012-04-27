@@ -24,7 +24,7 @@ public class ObstaclePart extends ActivePart {
 		
 		if (vertical) {
 			start = new Point(midPoint.x, midPoint.y - radius
-					- Constants.JUMP_HEIGHT);
+					- Constants.JUMP_DIST.y*Constants.TILE_HEIGHT);
 			end = new Point(midPoint.x, midPoint.y - radius);
 		} else {
 			start = new Point(parent.getStartPoint().x + radius, midPoint.y

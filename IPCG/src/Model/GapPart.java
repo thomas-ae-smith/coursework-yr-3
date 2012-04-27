@@ -7,15 +7,13 @@ import java.awt.Point;
 public class GapPart extends Part {
 	
 	public GapPart(Point start, int length) {
-		this.start = start;
-		this.end = new Point(start.x + length * Constants.TILE_WIDTH, start.y + 0);	
-		this.calculateRating();
+		this(start, length, 0);
 	}
 	
 	public GapPart(Point start, int length, int height) {
 		this.start = start;
 		this.end = new Point(start.x + length * Constants.TILE_WIDTH, start.y + height * Constants.TILE_HEIGHT);
-		this.calculateRating();
+		rating = GapPart.calculateRating(length, height);
 	}
 	
 	@Override
@@ -23,13 +21,14 @@ public class GapPart extends Part {
 		return rating;
 	}
 	
-	private void calculateRating() {
-		double t1 = 112/Constants.MAX_VELOCITY.x;		//time to apex
-		int apex = start.y - 112;			//112 = 7*tileheight
-		double t2 = Math.sqrt(2*(end.y - apex)/Constants.MAX_VELOCITY.y);	//t = (2s/a)^(1/2) time from apex to platform
-		int dist = (int)((t1+t2)*Constants.MAX_VELOCITY.x)-(end.x - start.x);
-		rating = dist;
+	public static int calculateRating(int length, int height) {
+		double t1 = 112f/Constants.MAX_VELOCITY;		//time to apex
+		double t2 = Math.sqrt(2f*(height*Constants.TILE_HEIGHT+Constants.JUMP_DIST.y)/Constants.GRAVITY);	//t = (2s/a)^(1/2) time from apex to platform
+		int dist = (int)((t1+t2)*Constants.MAX_VELOCITY)-(length * Constants.TILE_WIDTH);	//distance a player can press jump in and still clear the gap
+		dist = Math.min(dist, Constants.JUMP_DIST.x);									//limit dist to at most a singel jump's worth before the launch point
+		return dist*1000/Constants.MAX_VELOCITY;								//converted to time in milliseconds
 	}
+	
 	@Override
 	public void render(Graphics2D g2D) { } //gaps need no rendering
 	
