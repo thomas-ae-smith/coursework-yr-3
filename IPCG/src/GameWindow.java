@@ -10,12 +10,12 @@ public class GameWindow extends JFrame implements ActionListener {
 
 	private static final long serialVersionUID = -8255319694373975038L;
 	private StringBuilder log = new StringBuilder();
-	private Screen screens[] = { new TextPanel(0, this),
+	private Screen screens[] = { //new TextPanel(0, this),
 			// new QuestionnairePanel(this),
-			new TextPanel(1, this),
+//			new TextPanel(1, this),
 			  new Controller(this),
 //			 new FeedbackPanel(3, this),
-//			 // new Controller(this),
+			  new Controller(this),
 //			 new FeedbackPanel(4, this),
 //			 // new Controller(this),
 //			 new FeedbackPanel(5, this),
@@ -26,8 +26,6 @@ public class GameWindow extends JFrame implements ActionListener {
 	private int curr_screen = 0;
 
 	public static void main(String[] args) {
-
-		// Applet IPCGsystem = new Applet();
 		try {
 			// Attempt to use the system's native look and feel (buttons etc)
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
