@@ -13,8 +13,8 @@ public abstract class Pattern extends GameCollection<Component>{
 	}
 
 	@Override
-	public double rate() {
-		double total = 0;
+	public int rate() {
+		int total = 0;
 		for (Component c : elements) {
 			total += c.rate();
 		}

@@ -17,8 +17,8 @@ public class Level extends GameCollection<Pattern> {
 	public void tweak() { }
 
 	@Override
-	public double rate() { 
-		double total = 0;
+	public int rate() { 
+		int total = 0;
 		for (Pattern p : elements) {
 			total += p.rate();
 		}

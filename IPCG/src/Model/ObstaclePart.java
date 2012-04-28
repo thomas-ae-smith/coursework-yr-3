@@ -90,7 +90,7 @@ public class ObstaclePart extends ActivePart {
 	}
 
 	@Override
-	public double rate() {
+	public int rate() {
 		// FIXME TODO Auto-generated method stub
 		return 0;
 	}
