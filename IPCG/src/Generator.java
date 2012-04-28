@@ -77,13 +77,13 @@ public class Generator {
 			int stdDev = Math.min(desiredRating - ratings.first()[RATING], ratings.last()[RATING] - desiredRating) / 2;
 			//pick a random location within the distribution
 			int target = (int)(rndNumGen.nextGaussian() * stdDev + desiredRating);
-			System.err.println("Target chosen: " + target);
+//			System.err.println("Target chosen: " + target);
 			//get the closest object lower
 			int[] lowerRating = getLower(target);
 			//get the closest object higher
 			int[] higherRating = getHigher(target);
-			System.err.println("Lower obstacle: R: " + lowerRating[RATING] + "    \tt: " + lowerRating[TYPE] + " \tx: " + lowerRating[X] + "\ty: " + lowerRating[Y]);
-			System.err.println("Highr obstacle: R: " + higherRating[RATING] + "    \tt: " + higherRating[TYPE] + " \tx: " + higherRating[X] + "\ty: " + higherRating[Y]);
+//			System.err.println("Lower obstacle: R: " + lowerRating[RATING] + "    \tt: " + lowerRating[TYPE] + " \tx: " + lowerRating[X] + "\ty: " + lowerRating[Y]);
+//			System.err.println("Highr obstacle: R: " + higherRating[RATING] + "    \tt: " + higherRating[TYPE] + " \tx: " + higherRating[X] + "\ty: " + higherRating[Y]);
 			
 			if (lowerRating[RATING] == higherRating[RATING] || lowerRating[RATING] == 0) {
 				addComponent(higherRating);
@@ -104,15 +104,14 @@ public class Generator {
 	}
 
 	private void addComponent(int[] data) {
-		System.err.println("\nChosen obstacle: R: " + data[RATING] + "    \tt: " + data[TYPE] + " \tx: " + data[X] + "\ty: " + data[Y]);
+//		System.err.println("\nChosen obstacle: R: " + data[RATING] + "    \tt: " + data[TYPE] + " \tx: " + data[X] + "\ty: " + data[Y]);
 		
 		Component next;
 		Pattern p = null;
 		Point start = model.getLevelEndPoint();
-		System.err.println(data[TYPE]);
 		switch (componentType.get(data[TYPE])) {
 		case GAP:
-			System.err.println("Making a GAP with X:" + data[X] + " and Y:" + data[Y]);
+//			System.err.println("Making a GAP with X:" + data[X] + " and Y:" + data[Y]);
 			next = new GapComponent(start, data[X], data[Y]);
 			break;
 		default:
@@ -133,6 +132,7 @@ public class Generator {
 			if (i >= 12) p = new SinglePattern(next);
 		}
 		model.add(p);
+		System.err.println("Eventually got " + p.rate());
 	}
 
 	private int[] getLower(int target) {
@@ -145,7 +145,7 @@ public class Generator {
 		while((test = it.next()) != null) {
 			if (test[RATING] <= target) break;
 		};
-		System.err.println("\nChosen obstacle: R: " + test[RATING] + "    \tt: " + test[TYPE] + " \tx: " + test[X] + "\ty: " + test[Y]);
+//		System.err.println("\nChosen obstacle: R: " + test[RATING] + "    \tt: " + test[TYPE] + " \tx: " + test[X] + "\ty: " + test[Y]);
 
 		while (!isValid(test[Y])) {
 			test = it.next();
@@ -171,7 +171,7 @@ public class Generator {
 		while((test = it.next()) != null) {
 			if (test[RATING] >= target) break;
 		};
-		System.err.println("\nChosen obstacle: R: " + test[RATING] + "    \tt: " + test[TYPE] + " \tx: " + test[X] + "\ty: " + test[Y]);
+//		System.err.println("\nChosen obstacle: R: " + test[RATING] + "    \tt: " + test[TYPE] + " \tx: " + test[X] + "\ty: " + test[Y]);
 
 		while (!isValid(test[Y])) {
 			test = it.next();
@@ -190,7 +190,7 @@ public class Generator {
 	private boolean isValid(int test) {
 		int tile = model.getLevelEndPoint().y/Constants.TILE_HEIGHT + test;
 		if (tile < 5 || tile > 18) {
-			System.out.println("Point: " + model.getLevelEndPoint().y/Constants.TILE_HEIGHT + " diff: " + test + " result: " + tile);
+//			System.out.println("Point: " + model.getLevelEndPoint().y/Constants.TILE_HEIGHT + " diff: " + test + " result: " + tile);
 			return false;
 		}
 		return true; 		//FIXME TODO implement this - might already work
