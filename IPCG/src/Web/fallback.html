@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>test</title>
+<title>Fallback</title>
 </head>
 <body>
 	<div id="content">
@@ -17,7 +17,7 @@
          >
             Your browser is ignoring the &lt;object&gt; tag!      
         </object>
--->
+
 
         <script src="http://www.java.com/js/deployJava.js"></script>
 <script>
@@ -28,7 +28,16 @@
     var version = '1.6' ;
     deployJava.runApplet(attributes, parameters, version);
 </script>
-
+-->
+<applet code="UI.GameApplet.class" 
+            width=1024 
+            height=320
+            codebase="bin"
+            alt="Your browser understands the &lt;APPLET&gt; tag but isn't running the applet, for some reason."
+         >
+             
+            Your browser is ignoring the &lt;APPLET&gt; tag!      
+        </applet>
 </div>
 </body>
 </html>

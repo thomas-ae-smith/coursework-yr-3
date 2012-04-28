@@ -15,7 +15,7 @@
 		<h1 id="title">Intelligent Procedural Content Generation for Computer Games</h1>
 	</div><!--unheader-->
 <?php 
-	if (isset($_POST['submit']) && isset($_POST['understood']) && isset($_POST['agree']) && isset($_POST['voluntary']) && isset($_POST['age']) && isset($_POST['data'])) include('java.php');
+	if (isset($_POST['continue']) && isset($_POST['understood']) && isset($_POST['agree']) && isset($_POST['voluntary']) && isset($_POST['age']) && isset($_POST['data'])) include('java.php');
 	else if (isset($_POST['continue'])) include('form.php'); 
 	else include('info.php'); 
 	?>
