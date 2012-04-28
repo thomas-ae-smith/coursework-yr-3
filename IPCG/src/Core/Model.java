@@ -1,16 +1,20 @@
-package Model;
+package Core;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.event.KeyEvent;
+
+import Model.Level;
+import Model.Pattern;
+import Model.Player;
 
 public class Model {
 	Level level;
 	Player player;
 	private boolean skip;
 
-	public Model() {
+	public Model(Evaluator eval) {
 		level = new Level();
-		player = new Player(level.getLast());
+		player = new Player(level.getLast(), eval);
 	}
 
 	public void update(double delta_t) {

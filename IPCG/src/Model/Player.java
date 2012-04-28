@@ -5,22 +5,30 @@ import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.geom.Point2D;
 
+import Core.Evaluator;
+
 public class Player extends ActivePart {
 
 	Point2D.Double velocity;
 	Point resetLoc;
-	boolean right, left, up, down, stop;
+	public boolean right;
+	public boolean left;
+	public boolean up;
+	public boolean down;
+	public boolean stop;
 	boolean collided;
 	private boolean finished;
 	private boolean lastCollided;
+	private Evaluator eval;
 
-	public Player(Pattern parent) {
+	public Player(Pattern parent, Evaluator eval) {
 		this.setParent(parent);
 		centre = new Point2D.Double(resetLoc.x, resetLoc.y);
 		velocity = new Point2D.Double(0, 0);
 		radius = Constants.PLAYER_RADIUS;
 		start = new Point(resetLoc.x - radius, resetLoc.y - radius);
 		end = new Point(resetLoc.x + radius, resetLoc.y + radius);
+		this.eval = eval;
 	}
 
 	@Override
@@ -76,6 +84,7 @@ public class Player extends ActivePart {
 
 	@Override
 	public void reset() {
+		eval.addNegative(parent.rate());
 		this.centre = new Point2D.Double(resetLoc.x, resetLoc.y);;
 		velocity = new Point2D.Double();
 		collided = false;
@@ -108,6 +117,7 @@ public class Player extends ActivePart {
 	@Override
 	public void setParent(GameObject parent) {
 		if (this.parent == null || parent.getStartPoint().x > this.parent.getStartPoint().x) {	//only reparent if further right
+			if (this.parent != null) eval.addPositive(this.parent.rate());
 			super.setParent(parent);
 			resetLoc = new Point(parent.getStartPoint().x
 					+ Constants.TILE_WIDTH / 2, parent.getStartPoint().y

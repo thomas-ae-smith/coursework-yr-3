@@ -15,7 +15,7 @@ public abstract class GameCollection<T extends GameObject> extends GameObject {
 		elements.add(t);
 	}
 	
-	protected T getLast() {
+	public T getLast() {
 		return elements.get(elements.size()-1);
 	}
 	
