@@ -26,7 +26,7 @@ public class TextPanel extends JPanel implements Screen, HyperlinkListener {
 		{
 			"Introduction",
 			"<html>Welcome to this evaluation system. <p>If you have not already, please read the Participant "
-					+ "Instructions here: <a href=\"www.google.com\">http://users.ecs.soton.ac.uk/taes1g09/3YP/index.php</a></p><p>You may leave the experiment "
+					+ "Instructions here: <a href=\"http://users.ecs.soton.ac.uk/taes1g09/3YP/\">http://users.ecs.soton.ac.uk/taes1g09/3YP/</a></p><p>You may leave the experiment "
 					+ " at any time by closing this window. </p><p>Click next to continue.</p></html>", "Next >>" },
 			{ "Instructions", "<html><p>The aim of each section is to reach the exit at the right of the level.</p>"
 							+ "<p>The green avatar will move rightwards across the level automatically."
@@ -38,7 +38,7 @@ public class TextPanel extends JPanel implements Screen, HyperlinkListener {
 							+ "<p>Thank you for participating in this experiment," 
 							+ "<br>please do not submit any more data.</p>" 
 							+ "<p>Close this window or tab to exit the experiment.</p>"
-							+ "<br><p>Contact taes1g09@ecs.soton.ac.uk if you have any questions.</p></html>", null } 
+							+ "<br><p>Contact <a href=\"mailto:taes1g09@ecs.soton.ac.uk?Subject=IPCG\">taes1g09@ecs.soton.ac.uk</a> if you have any questions.</p></html>", null } 
 		};
 
 	public TextPanel(int textNum, ActionListener listener) {
@@ -130,7 +130,7 @@ public class TextPanel extends JPanel implements Screen, HyperlinkListener {
 					System.err.println("browsesupported");
 					try {
 						System.err.println("sending to google");
-						java.net.URI uri = new java.net.URI("http://users.ecs.soton.ac.uk/taes1g09/3YP/index.php");
+						java.net.URI uri = new java.net.URI(e.getURL().toString());
 						desktop.browse(uri);
 					} catch (Exception ex) {
 						System.err.println(ex);
