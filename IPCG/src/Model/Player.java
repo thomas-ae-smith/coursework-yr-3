@@ -20,6 +20,8 @@ public class Player extends ActivePart {
 	private boolean finished;
 	private boolean lastCollided;
 	private Evaluator eval;
+	private Point2D.Double deathVel = null;
+	private float alpha = 0.5f;
 
 	public Player(Pattern parent, Evaluator eval) {
 		this.setParent(parent);
@@ -33,9 +35,13 @@ public class Player extends ActivePart {
 
 	@Override
 	public void render(Graphics2D g2D) {
-		g2D.setColor(Color.BLUE.brighter());
-		g2D.fillOval(resetLoc.x - radius, resetLoc.y - radius,
-				radius * 2, radius * 2);
+		g2D.setColor(new Color(0, 0, 1, alpha));
+		g2D.fillOval(resetLoc.x - radius/2, resetLoc.y - radius/2,
+				radius, radius);
+		if (deathVel != null) {
+			g2D.drawLine(resetLoc.x, resetLoc.y, (int)centre.x, (int)centre.y);
+			g2D.fillOval((int) centre.x - radius - 1, (int) centre.y - radius - 1, radius * 2 + 2, radius * 2 + 2);
+		}
 		g2D.setColor(Color.GREEN);
 		super.render(g2D);
 		if (Constants.DRAW_DEBUG) {
@@ -49,6 +55,12 @@ public class Player extends ActivePart {
 	@Override
 	public void update(double delta_t) {
 		lastCollided = collided;
+		if (deathVel != null) {
+			centre.x += deathVel.x * delta_t;
+			centre.y += deathVel.y * delta_t;
+			if ((resetLoc.y - centre.y) * deathVel.y < 0) deathVel = null;
+			return;
+		}
 		if (getStartPoint().y > Constants.WINDOW_HEIGHT) { // fallen off the
 			// bottom of the
 			// screen
@@ -77,6 +89,7 @@ public class Player extends ActivePart {
 	// called as a result of a collision
 	@Override
 	public void translate(Point delta_l) {
+		if (deathVel != null) return;
 		super.translate(delta_l);
 		if(lastCollided || (delta_l.y*delta_l.y > delta_l.x*delta_l.x && delta_l.y < 0))
 			collided = true;
@@ -84,10 +97,13 @@ public class Player extends ActivePart {
 
 	@Override
 	public void reset() {
-		eval.addNegative(parent.rate());
-		this.centre = new Point2D.Double(resetLoc.x, resetLoc.y);;
-		velocity = new Point2D.Double();
-		collided = false;
+		if (deathVel == null) {
+			eval.addNegative(parent.rate());
+//					this.centre = new Point2D.Double(resetLoc.x, resetLoc.y);
+			deathVel = new Point2D.Double(2*(resetLoc.x - centre.x), 2*(resetLoc.y - centre.y));
+			velocity = new Point2D.Double();
+			collided = false;
+		}
 	}
 
 	// top-left
@@ -116,7 +132,7 @@ public class Player extends ActivePart {
 	
 	@Override
 	public void setParent(GameObject parent) {
-		if (this.parent == null || parent.getStartPoint().x > this.parent.getStartPoint().x) {	//only reparent if further right
+		if (this.parent == null || (this.centre.x - Constants.TILE_WIDTH/2 > parent.getStartPoint().x && parent.getStartPoint().x > this.parent.getStartPoint().x)) {	//only reparent if further right
 			if (this.parent != null) eval.addPositive(this.parent.rate());
 			super.setParent(parent);
 			resetLoc = new Point(parent.getStartPoint().x

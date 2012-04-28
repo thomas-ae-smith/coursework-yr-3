@@ -2,7 +2,7 @@ package Model;
 import java.awt.Point;
 
 public class GapComponent extends Component {
-	private int xDiff, yDiff;
+	
 	
 	public GapComponent(Point start, int xDiff, int yDiff) {
 		this.xDiff = xDiff;

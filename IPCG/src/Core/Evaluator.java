@@ -12,9 +12,10 @@ import Model.Constants;
 public class Evaluator {
 
 	private static final int BUFFER = 40;
+	private static final int MAXRATING = 1000*Constants.JUMP_DIST.x/Constants.MAX_VELOCITY;
 	
 	private LinkedList<Integer> fail, live;
-	private Integer failS = 0, liveS = 1000*Constants.JUMP_DIST.x/Constants.MAX_VELOCITY;	//initialise to limits
+	private Integer failS = 0, liveS = MAXRATING;	//initialise to limits
 //	private double L = Double.POSITIVE_INFINITY;
 	
 	public void addPositive(int rating) {
@@ -24,7 +25,7 @@ public class Evaluator {
 
 	public void addNegative(int rating) {
 		System.out.printf("0: %d\n", rating);
-		if(fail.indexOf(failS) < BUFFER || rating > fail.getLast()) sortedAdd(fail, 666-rating);		
+		if(fail.indexOf(failS) < BUFFER || rating > fail.getLast()) sortedAdd(fail, MAXRATING-rating);		
 	}
 	
 	public Evaluator() {
@@ -37,7 +38,7 @@ public class Evaluator {
 	public int getPlane() { return (failS + liveS)/2; }
 	
 	private void sortedAdd(LinkedList<Integer> list, int rating) {
-		System.out.println("Adding: " + rating);
+//		System.out.println("Adding: " + rating);
 		int index = list.size(); 	//initialise high
 		for (Integer integer : list) {
 			if (rating <= integer) {
@@ -65,7 +66,7 @@ public class Evaluator {
 		while (itp.hasNext() && itq.hasNext()) {
 			pi = itp.next();
 			qi = itq.next();
-			System.out.printf("Starting: pi:%d qi:%d\n", pi, qi);
+//			System.out.printf("Starting: pi:%d qi:%d\n", pi, qi);
 			//if we've run out of p before reaching q
 			if (pi > qi && !itp.hasNext()) {
 				while (pi > qi && itq.hasNext()) qi = itq.next();	//last-ditch attempt to bring qi into range
@@ -81,7 +82,7 @@ public class Evaluator {
 					L = li;
 					failS = pi;
 					liveS = qi;
-					System.out.printf("Found a better l. li:%f  plane:%f\n", li, (pi+qi)/2.0);
+//					System.out.printf("Found a better l. li:%f  plane:%f\n", li, (pi+qi)/2.0);
 				}
 			}
 			dp += pi;
@@ -90,7 +91,6 @@ public class Evaluator {
 		}
 		if (fail.indexOf(failS) > BUFFER) fail.subList(0, fail.indexOf(failS)-BUFFER).clear(); //if there's more than BUFFER at the beginning, trim
 		if (live.indexOf(liveS) + BUFFER < live.size()) live.subList(live.indexOf(liveS) + BUFFER, live.size()).clear(); //as above, so below
-		System.err.println(i);
 	}
 	
 //	public static void main(String[] args) {

@@ -45,7 +45,6 @@ public class Model {
 
 	public void add(Pattern pattern) {
 		level.add(pattern);
-		System.out.println(level.rate());
 	}
 
 	public int getRating() {

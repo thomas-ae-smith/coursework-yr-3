@@ -29,6 +29,7 @@ public class GapPart extends Part {
 		int dist = (int)((t1+t2)*Constants.MAX_VELOCITY)-(length * Constants.TILE_WIDTH);	//distance a player can press jump in and still clear the gap
 		return Math.min(dist, Constants.JUMP_DIST.x);									//limit dist to at most a singel jump's worth before the launch point
 	}
+	
 	public static int calculateRating(int length, int height) {
 		return calculateDist(length, height)*1000/Constants.MAX_VELOCITY;								//converted to time in milliseconds
 	}

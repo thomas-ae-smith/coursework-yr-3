@@ -12,9 +12,12 @@ import javax.swing.UIManager;
 
 import Model.Component;
 import Model.Constants;
+import Model.FinalComponent;
 import Model.FlatComponent;
 import Model.GapComponent;
+import Model.ObstacleComponent;
 import Model.GapPart;
+import Model.ObstaclePart;
 import Model.Pattern;
 import Model.SimplePattern;
 import Model.SinglePattern;
@@ -28,7 +31,8 @@ public class Generator {
 	private enum componentType{
 		GAP(-7, 10, 0, 4),
 		HOBS(0, 0, 3, 3),
-		VOBS(6, 6, 3, 3),
+		VOBS(4, 7, 1, 1),
+		STOBS(-6, 0, 1, 3),
 		MAX_KINDS(0,0,0,0);
 
 		private final int minY, maxY, minX, maxX;
@@ -56,7 +60,7 @@ public class Generator {
 	public Generator() {
 		rndNumGen = new Random();
 		calculateRatings();
-		//printRatings();
+		printRatings();
 	}
 
 	public void printRatings() {
@@ -72,7 +76,11 @@ public class Generator {
 
 	public void update(int desiredRating) {
 		if (model.getPlayerLoc() + Constants.WINDOW_WIDTH > model.getLevelEndPoint().x) {
-			System.err.println("New pattern needed. Desired rating: " + desiredRating);
+			if (model.getLevelEndPoint().x > 10240) {
+				model.add(new SinglePattern(new FinalComponent(model.getLevelEndPoint())));
+				return;
+			}
+//			System.err.println("New pattern needed. Desired rating: " + desiredRating);
 			//calculate desired standard deviation:
 			//quarter of the distance to the nearest 'edge' of the obstacle distribution. Varies between 1/8 to 0 of the range
 			int stdDev = Math.min(desiredRating - ratings.first()[RATING], ratings.last()[RATING] - desiredRating) / 4;
@@ -116,6 +124,15 @@ public class Generator {
 //			System.err.println("Making a GAP with X:" + data[X] + " and Y:" + data[Y]);
 			next = new GapComponent(start, data[X], data[Y]);
 			break;
+//		case HOBS:
+//			next = new ObstacleComponent(start, data[X], data[Y]);
+//			break;
+//		case VOBS:
+//			next = new ObstacleComponent(start, data[X], data[Y]);
+//			break;
+		case STOBS:
+			next = new ObstacleComponent(start, data[X], data[Y]);
+			break;
 		default:
 			System.err.println("Making a default FlatComponent");
 			next = new FlatComponent(start);
@@ -134,7 +151,7 @@ public class Generator {
 			if (i >= 12) p = new SinglePattern(next);
 		}
 		model.add(p);
-		System.err.println("Eventually got " + p.rate());
+//		System.err.println("Eventually got " + p.rate());
 	}
 
 	private int[] getLower(int target) {
@@ -222,6 +239,8 @@ public class Generator {
 		switch (type) {
 		case GAP:
 			return GapPart.calculateRating(x, y);
+		case STOBS:
+			return ObstaclePart.calculateRating(x, y);
 		default:
 			return 0;
 		}
