@@ -1,3 +1,5 @@
+package Core;
+
 import java.awt.Point;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -13,7 +15,6 @@ import Model.Constants;
 import Model.FlatComponent;
 import Model.GapComponent;
 import Model.GapPart;
-import Model.Model;
 import Model.Pattern;
 import Model.SimplePattern;
 import Model.SinglePattern;

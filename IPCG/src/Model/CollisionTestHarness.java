@@ -2,6 +2,8 @@ package Model;
 // tests the collisions with a flatplatformpart
 import java.awt.Point;
 
+import Core.Evaluator;
+
 
 public class CollisionTestHarness extends Player {
 	
@@ -13,7 +15,7 @@ public static void main(String[] args) {
 }
 
 public CollisionTestHarness() {
-	super(new SinglePattern(new FlatComponent(new Point(0, Constants.WINDOW_HEIGHT/2))));//cruft
+	super(new SinglePattern(new FlatComponent(new Point(0, Constants.WINDOW_HEIGHT/2))), new Evaluator());//cruft
 	System.err.println("+++/nThis harness will no longer work as intended./n+++");
 	GameObject plat = new FlatPlatformPart(new Point(10, 10), 10);
 	radius = 10;

@@ -1,3 +1,5 @@
+package Core;
+
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Font;
@@ -11,7 +13,6 @@ import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 
 import Model.Constants;
-import Model.Model;
 
 public class View extends Canvas {
 	private static final long serialVersionUID = 1L;

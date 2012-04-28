@@ -1,18 +1,22 @@
+package Core;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-import Model.Model;
+import UI.Screen;
 
 public class Controller implements Runnable, KeyListener, Screen{
+	private Evaluator eval;
 	private Generator generator;
 	private Model model;
 	private View view;
 	private ActionListener listener; //hijack the action system
 
 	public Controller(ActionListener listener) {
-		this.model = new Model();
+		this.eval = new Evaluator();
+		this.model = new Model(eval);
 		this.view = new View();
 		this.generator = new Generator();
 		this.listener = listener;
@@ -33,7 +37,7 @@ public class Controller implements Runnable, KeyListener, Screen{
 				double delta_t = (curTime - lastTime)/1000f;
 				
 //				System.err.println("c: " + curTime + " \tl: " + lastTime + "\tdiff: " + (curTime-lastTime) + " \td: " + delta_t);
-				generator.update(model.getRating());
+				generator.update(eval.getPlane());
 				model.update(delta_t);
 				view.update(delta_t);
 				if(model.getFinished()) break;
