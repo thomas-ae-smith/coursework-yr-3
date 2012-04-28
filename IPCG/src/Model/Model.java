@@ -44,6 +44,9 @@ public class Model {
 		System.out.println(level.rate());
 	}
 
+	public int getRating() {
+		return level.rate();
+	}
 	public boolean getFinished() {
 		return player.getFinished() || skip;
 	}

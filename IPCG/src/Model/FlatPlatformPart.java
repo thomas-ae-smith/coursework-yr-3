@@ -13,7 +13,7 @@ public class FlatPlatformPart extends Part {
 	}
 	
 	@Override
-	public double rate() { return 0; }
+	public int rate() { return 0; }
 	
 	@Override
 	public void render(Graphics2D g2D) {

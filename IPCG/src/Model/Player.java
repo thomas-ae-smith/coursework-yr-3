@@ -103,7 +103,7 @@ public class Player extends ActivePart {
 	public Object clone(boolean placeAtEnd) { return null; }
 
 	@Override
-	public double rate() { return 0; }
+	public int rate() { return 0; }
 	
 	@Override
 	public void setParent(GameObject parent) {

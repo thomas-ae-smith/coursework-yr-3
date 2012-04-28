@@ -12,4 +12,7 @@ public class FlatComponent extends Component {
 		return new FlatComponent(this.getStartPoint());
 	}
 	
+	@Override
+	public int rate() { return 1000*Constants.JUMP_DIST.x/Constants.MAX_VELOCITY; } //'null' rating: as difficult as staying still
+	
 }

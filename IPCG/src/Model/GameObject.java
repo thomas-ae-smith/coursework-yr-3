@@ -22,7 +22,7 @@ public abstract class GameObject {
 
 	public abstract Object clone(boolean placeAtEnd);
 
-	public abstract double rate();
+	public abstract int rate();
 
 	public abstract Point getStartPoint();
 

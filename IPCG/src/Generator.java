@@ -148,8 +148,8 @@ public class Generator {
 //		System.err.println("\nChosen obstacle: R: " + test[RATING] + "    \tt: " + test[TYPE] + " \tx: " + test[X] + "\ty: " + test[Y]);
 
 		while (!isValid(test[Y])) {
-			test = it.next();
 			if (!it.hasNext()) return new int[]{0,0,0,0};		//if there are no valid ones before the end, fake it
+			test = it.next();
 		}
 		target = test[RATING];	//update target to be the actual rating
 		do {
@@ -174,8 +174,8 @@ public class Generator {
 //		System.err.println("\nChosen obstacle: R: " + test[RATING] + "    \tt: " + test[TYPE] + " \tx: " + test[X] + "\ty: " + test[Y]);
 
 		while (!isValid(test[Y])) {
-			test = it.next();
 			if (!it.hasNext()) return new int[]{0,0,0,0};		//if there are no valid ones before the end, fake it
+			test = it.next();
 		}
 		target = test[RATING];	//update target to be the actual rating
 		do {

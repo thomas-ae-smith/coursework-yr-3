@@ -19,7 +19,7 @@ public class GapPart extends Part {
 	}
 	
 	@Override
-	public double rate() {
+	public int rate() {
 		return rating;
 	}
 	

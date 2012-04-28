@@ -4,7 +4,7 @@ import java.awt.Point;
 // A part is the lowest level item in the heirarchy. It is concrete and collideable
 public abstract class Part extends GameObject {
 	protected Point start, end;
-	protected double rating;
+	protected int rating;
 	
 	static int calculateRating(int x, int y) {
 		return 0;
