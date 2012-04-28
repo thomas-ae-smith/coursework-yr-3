@@ -28,6 +28,6 @@
 <label for="data">I understand that information collected about me during my participation in this study will be stored on a password protected computer and that this information will only be used for the purpose of this study. All files containing any personal data will be made anonymous.</label>
 	<input type="checkbox" name="data"/></div>
  
-<input type="submit" name="submit" value="Continue"/>
+<input type="submit" name="continue" value="Continue"/>
 </form>
 </div>

@@ -11,5 +11,5 @@
     var version = '1.6' ;
     deployJava.runApplet(attributes, parameters, version);
 </script>
-
+Alternate embedding available <a href="fallback.html">here</a>.
 </div>
