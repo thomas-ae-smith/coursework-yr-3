@@ -19,7 +19,7 @@ public abstract class Constants{
 	public static final int GRAVITY = 2016; //acceleration in Y
 	public static final int PLAYER_OFFSET = 100;	//used for camera and spawning within a pattern
 	public static final int PLAYER_RADIUS = 20;
-	public static final int OBSTACLE_RADIUS = 15;
+	public static final int OBSTACLE_RADIUS = 14;
 	public static final int OBSTACLE_BASE_SPEED = 200;
 	public static final Point JUMP_DIST = new Point((int) (TILE_WIDTH*3.5), 7*TILE_HEIGHT);
 	

@@ -10,8 +10,13 @@ public class FinalComponent extends Component {
 	
 	public FinalComponent(Point start) {
 		elements.add(new FinalPlatformPart(start));
-		elements.add(new FlatPlatformPart(this.getEndPoint(), 2 * Constants.WINDOW_WIDTH/Constants.TILE_WIDTH));
+		elements.add(new GapPart(this.getEndPoint(), 2 * Constants.WINDOW_WIDTH/Constants.TILE_WIDTH));
 		
+	}
+	
+	@Override
+	public int rate() {
+		return 0;
 	}
 
 	@Override

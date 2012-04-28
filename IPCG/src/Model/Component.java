@@ -1,7 +1,8 @@
 package Model;
 // A component is a single obstacle, made up of a small collection of parts
 public abstract class Component extends GameCollection<Part> {
-
+	protected int xDiff, yDiff;
+	
 	@Override
 	public void tweak() {
 		// TODO 
