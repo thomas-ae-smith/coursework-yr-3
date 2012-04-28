@@ -1,6 +1,9 @@
 package Model;
+import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.MultipleGradientPaint.CycleMethod;
 import java.awt.Point;
+import java.awt.RadialGradientPaint;
 import java.awt.geom.Point2D;
 
 
@@ -30,8 +33,18 @@ public abstract class ActivePart extends Part {
 
 	@Override
 	public void render(Graphics2D g2D) {
+	     Point2D.Double focus = new Point2D.Double(centre.x, centre.y - radius/2);
+	     float[] dist = {0.0f, 1.0f};
+	     Color[] colors = {g2D.getColor(), g2D.getColor().darker()};
+	  
+	     g2D.setPaint(new RadialGradientPaint(centre, radius, focus,
+	                                 dist, colors,
+	                                 CycleMethod.NO_CYCLE));
 		g2D.fillOval((int) centre.x - radius, (int) centre.y - radius,
 				radius * 2, radius * 2);
+//		g2D.setColor(g2D.getColor().darker());
+//		g2D.drawOval((int) centre.x - radius, (int) centre.y - radius,
+//				radius * 2, radius * 2);
 	}
 
 	public void setParent(GameObject parent) {
@@ -39,5 +52,6 @@ public abstract class ActivePart extends Part {
 	}
 
 	public abstract void reset();
+
 
 }

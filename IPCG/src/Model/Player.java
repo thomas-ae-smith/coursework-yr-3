@@ -75,10 +75,10 @@ public class Player extends ActivePart {
 		else
 			velocity.y = 0;
 		collided = false;
-		if (right)
+//		if (right)
 			velocity.x += Constants.MAX_VELOCITY;
-		if (left)
-			velocity.x -= Constants.MAX_VELOCITY;
+//		if (left)
+//			velocity.x -= Constants.MAX_VELOCITY;
 
 		centre.x += velocity.x * delta_t;
 		centre.y += velocity.y * delta_t;

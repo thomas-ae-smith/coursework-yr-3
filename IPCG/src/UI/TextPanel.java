@@ -26,14 +26,14 @@ public class TextPanel extends JPanel implements Screen, HyperlinkListener {
 		{
 			"Introduction",
 			"<html>Welcome to this evaluation system. <p>If you have not already, please read the Participant "
-					+ "Instructions here: <a href=\"www.google.com\">address</a></p><p>You may leave the experiment "
+					+ "Instructions here: <a href=\"www.google.com\">http://users.ecs.soton.ac.uk/taes1g09/3YP/index.php</a></p><p>You may leave the experiment "
 					+ " at any time by closing this window. </p><p>Click next to continue.</p></html>", "Next >>" },
 			{ "Instructions", "<html><p>The aim of each section is to reach the exit at the right of the level.</p>"
-							+ "<p>The left and right arrow keys control the movement of the green avatar."
+							+ "<p>The green avatar will move rightwards across the level automatically."
 							+ "<br>Pressing the up arrow will cause it to jump.</p>"
 							+ "<p>Falling off the bottom of the screen or touching a red obstacle will send you back a little.</p>"
 							+ "<p>Pressing ESC at any time will allow you to skip the level, though this action will be recorded.</p>"
-							+ "<p>After each level will be a short evaluation. Click 'Start' to start.</p></html>", "Start >>"},
+							+ "<p>After each level there will be a short evaluation. Click 'Start' to start.</p></html>", "Start >>"},
 			{ "Thank You", "<html><p>Your data has successfully been submitted.</p>"
 							+ "<p>Thank you for participating in this experiment," 
 							+ "<br>please do not submit any more data.</p>" 
@@ -130,7 +130,7 @@ public class TextPanel extends JPanel implements Screen, HyperlinkListener {
 					System.err.println("browsesupported");
 					try {
 						System.err.println("sending to google");
-						java.net.URI uri = new java.net.URI("http://www.google.com");
+						java.net.URI uri = new java.net.URI("http://users.ecs.soton.ac.uk/taes1g09/3YP/index.php");
 						desktop.browse(uri);
 					} catch (Exception ex) {
 						System.err.println(ex);

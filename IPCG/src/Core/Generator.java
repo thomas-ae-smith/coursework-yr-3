@@ -55,12 +55,14 @@ public class Generator {
 	private TreeSet<int[]> ratings;
 	private Model model;
 	private Random rndNumGen;
+	private StringBuilder log;
 
 
-	public Generator() {
+	public Generator(StringBuilder log) {
 		rndNumGen = new Random();
+		this.log = log;
 		calculateRatings();
-		printRatings();
+//		printRatings();
 	}
 
 	public void printRatings() {
@@ -76,8 +78,10 @@ public class Generator {
 
 	public void update(int desiredRating) {
 		if (model.getPlayerLoc() + Constants.WINDOW_WIDTH > model.getLevelEndPoint().x) {
+			log.append("d: " + desiredRating + "\n");
 			if (model.getLevelEndPoint().x > 10240) {
 				model.add(new SinglePattern(new FinalComponent(model.getLevelEndPoint())));
+				log.append("g: " + model.getLevelEndPoint().x + "\n");
 				return;
 			}
 //			System.err.println("New pattern needed. Desired rating: " + desiredRating);

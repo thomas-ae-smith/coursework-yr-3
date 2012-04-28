@@ -34,7 +34,7 @@ public abstract class Pattern extends GameCollection<Component>{
 	public void render(Graphics2D g2D) {
 		super.render(g2D);
 		g2D.setColor(Color.BLUE);
-		g2D.drawLine(getStartPoint().x, getStartPoint().y, getStartPoint().x + Constants.TILE_WIDTH, getStartPoint().y);
+		g2D.drawLine(getStartPoint().x, getStartPoint().y-1, getStartPoint().x + Constants.TILE_WIDTH, getStartPoint().y-1);
 	}
 	
 	@Override

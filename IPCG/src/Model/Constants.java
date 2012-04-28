@@ -13,7 +13,7 @@ public abstract class Constants{
 	public static final int WINDOW_HEIGHT = 320;
 	public static final int WINDOW_WIDTH = 1024;
 	public static final Color[] DEBUG_COLOURS = { Color.RED, Color.GREEN, Color.BLUE, Color.MAGENTA, Color.BLACK};
-	public static final boolean DRAW_DEBUG = true;	// causes object outlines to be drawn
+	public static final boolean DRAW_DEBUG = false;	// causes object outlines to be drawn
 //	public static final Point2D.Double MAX_VELOCITY = new Point2D.Double(336,2016); //max velocity in X & Y
 	public static final int MAX_VELOCITY = 336; //max velocity in X
 	public static final int GRAVITY = 2016; //acceleration in Y

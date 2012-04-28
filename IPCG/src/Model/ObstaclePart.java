@@ -117,4 +117,8 @@ public class ObstaclePart extends ActivePart {
 		centre = new Point2D.Double(end.x, end.y);
 		dir = 1;
 	}
+	
+	public static void clear() {
+		all.clear();
+	}
 }

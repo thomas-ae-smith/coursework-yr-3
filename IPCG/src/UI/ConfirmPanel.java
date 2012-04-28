@@ -95,20 +95,20 @@ public class ConfirmPanel extends JPanel implements ActionListener, Screen, Hype
 					+ URLEncoder.encode(log.toString(), "UTF-8");
 			data += "&" + URLEncoder.encode("submit", "UTF-8") + "="
 					+ URLEncoder.encode("Submit", "UTF-8");
-			System.err.println("compiled: " + data);
+//			System.err.println("compiled: " + data);
 			// Send data
 			URL url = new URL(
-					"http://users.ecs.soton.ac.uk/taes1g09/submit.php");
+					"http://users.ecs.soton.ac.uk/taes1g09/3YP/submit.php");
 			URLConnection conn = url.openConnection();
-			System.err.println("urlopened");
+//			System.err.println("urlopened");
 			conn.setDoOutput(true);
 			OutputStreamWriter wr = new OutputStreamWriter(
 					conn.getOutputStream());
-			System.err.println("writer");
+//			System.err.println("writer");
 			wr.write(data);
 			wr.flush();
 
-			System.err.println("written");
+//			System.err.println("written");
 			// Get the response
 			BufferedReader rd = new BufferedReader(new InputStreamReader(
 					conn.getInputStream()));
@@ -120,22 +120,29 @@ public class ConfirmPanel extends JPanel implements ActionListener, Screen, Hype
 				success = false; // somewhat redundant
 			while ((line = rd.readLine()) != null) {
 				// Process line...
-				System.err.println("line: " + line);
+//				System.err.println("line: " + line);
 			}
 			wr.close();
 			rd.close();
 		} catch (Exception ex) {
-			System.err.println("Error: " + ex.getLocalizedMessage());
+			//System.err.println("Error: " + ex.getLocalizedMessage());
 		}
 		if (success) {
 			listener.actionPerformed(new ActionEvent(e.getSource(), ActionEvent.ACTION_PERFORMED, ""));
 		} else {
 			this.remove(submit);
-			this.add(this.createErrorWarning());
-			this.logDisplay.selectAll(); //TODO make this work
+			
+			GridBagConstraints constraints = new GridBagConstraints();
+			constraints.fill = GridBagConstraints.HORIZONTAL;
+			constraints.weightx = 1.0;
+
+			constraints.gridwidth = GridBagConstraints.REMAINDER;
+			
+			JEditorPane pane = this.createErrorWarning();
+			((GridBagLayout)this.getLayout()).setConstraints(pane, constraints);
+			this.add(pane);
+			this.logDisplay.selectAll(); 
 			this.logDisplay.requestFocus();
-//			this.logDisplay.setSelectionStart(0);
-//			this.logDisplay.setSelectionEnd(this.logDisplay.getText().length()-1);
 			this.validate();
 		}
 		
@@ -144,7 +151,7 @@ public class ConfirmPanel extends JPanel implements ActionListener, Screen, Hype
 	private JEditorPane createErrorWarning() {
 		JEditorPane displayError = new JEditorPane();
 		displayError.setContentType("text/html");
-		displayError.setText("<html><div style=\"color:red\">Error: automatic submission failed. Please copy the text above into the manual submission system at <a href=\"address\">address</a>.</div></html>");//TODO correct address
+		displayError.setText("<html><div style=\"color:red\">Error: automatic submission failed. Please copy the text above into the manual submission system at <a href=\"address\">http://users.ecs.soton.ac.uk/taes1g09/3YP/submit.php</a>.</div></html>");//TODO correct address
 
 		// credit:
 		// http://explodingpixels.wordpress.com/2008/10/28/make-jeditorpane-use-the-system-font/
@@ -168,6 +175,7 @@ public class ConfirmPanel extends JPanel implements ActionListener, Screen, Hype
 
 	@Override
 	public void init() {
+		log.append("# EOF");
 		logDisplay.setText(log.toString());
 	}
 
@@ -200,7 +208,7 @@ public class ConfirmPanel extends JPanel implements ActionListener, Screen, Hype
 					System.err.println("browsesupported");
 					try {
 						System.err.println("sending to google");
-						java.net.URI uri = new java.net.URI("http://www.google.com");
+						java.net.URI uri = new java.net.URI("http://users.ecs.soton.ac.uk/taes1g09/3YP/submit.php");
 						desktop.browse(uri);
 					} catch (Exception ex) {
 						System.err.println(ex);
