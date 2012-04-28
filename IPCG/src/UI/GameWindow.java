@@ -16,9 +16,9 @@ public class GameWindow extends JFrame implements ActionListener {
 	private Screen screens[] = { //new TextPanel(0, this),
 			// new QuestionnairePanel(this),
 //			new TextPanel(1, this),
-			  new Controller(this),
+//			  new Controller(this),
 //			 new FeedbackPanel(3, this),
-			  new Controller(this),
+//			  new Controller(this),
 //			 new FeedbackPanel(4, this),
 //			 // new Controller(this),
 //			 new FeedbackPanel(5, this),
@@ -28,15 +28,16 @@ public class GameWindow extends JFrame implements ActionListener {
 			new TextPanel(2, this) };
 	private int curr_screen = 0;
 
-	public static void main(String[] args) {
-		try {
-			// Attempt to use the system's native look and feel (buttons etc)
-			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-		} catch (Exception e) {
-			System.err.println("Error changing system look and feel.");
-		}
-		new GameWindow();
-	}
+	//DEPRECATED
+//	public static void main(String[] args) {
+//		try {
+//			// Attempt to use the system's native look and feel (buttons etc)
+//			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+//		} catch (Exception e) {
+//			System.err.println("Error changing system look and feel.");
+//		}
+//		new GameWindow();
+//	}
 
 	public GameWindow() {
 		// this.log = new StringBuilder("# this is the data file\n---\n");

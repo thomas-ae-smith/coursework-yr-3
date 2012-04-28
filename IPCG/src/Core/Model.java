@@ -34,7 +34,7 @@ public class Model {
 		case KeyEvent.VK_DOWN: 		player.down  = value;	break;
 		case KeyEvent.VK_LEFT:		player.left  = value;	break;
 		case KeyEvent.VK_RIGHT:		player.right = value;	break;
-		case KeyEvent.VK_SPACE:		player.stop  = value; 	break;
+		case KeyEvent.VK_SPACE:		player.up	 = value; 	break;
 		case KeyEvent.VK_ESCAPE:	skip		 = value; 	break;
 		}
 		return;

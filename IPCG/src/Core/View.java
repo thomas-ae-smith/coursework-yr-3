@@ -81,7 +81,8 @@ public class View extends Canvas {
 		// display frames per second...
 		g2D.setFont(new Font("Courier New", Font.PLAIN, 12));
 		g2D.setColor(Color.RED);
-		g2D.drawString(String.format("FPS: %s\ncamerastart: %s", fps, cameraStart), cameraStart + 20, 20);
+		if (Constants.DRAW_DEBUG) g2D.drawString(String.format("FPS: %s\ncamerastart: %s", fps, cameraStart), cameraStart + 20, 20);
+		else g2D.drawString("ESC", cameraStart + 20, 20);
 
 //		g2D.setColor(Color.DARK_GRAY);
 

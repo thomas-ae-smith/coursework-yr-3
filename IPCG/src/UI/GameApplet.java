@@ -7,23 +7,27 @@ import javax.swing.JApplet;
 import javax.swing.UIManager;
 
 import Core.Controller;
+import Core.Evaluator;
+import Core.Generator;
 import Model.Constants;
 
 public class GameApplet extends JApplet implements ActionListener {
 
 	private static final long serialVersionUID = -8255319694373975038L;
 	private StringBuilder log = new StringBuilder();
+	private Evaluator eval = new Evaluator(log);
+	private Generator gen = new Generator(log);
 	private Screen screens[] = { new TextPanel(0, this),
-			// new QuestionnairePanel(this),
+			new QuestionnairePanel(this),
 			new TextPanel(1, this),
-			  new Controller(this),
-			 new FeedbackPanel(3, this),
-			 // new Controller(this),
-			 new FeedbackPanel(4, this),
-			 // new Controller(this),
-			 new FeedbackPanel(5, this),
-			 // new Controller(this),
-			 new FeedbackPanel(6, this),
+			new Controller(this, gen, eval, 444, 444),
+			new FeedbackPanel(3, this),
+			new Controller(this, gen, eval, 222, 222),
+			new FeedbackPanel(4, this),
+			new Controller(this, gen, eval, 111, 666),
+			new FeedbackPanel(5, this),
+			new Controller(this, gen, eval, 0, 444),
+			new FeedbackPanel(6, this),
 			new ConfirmPanel(log, this), new TextPanel(2, this) };
 	private int curr_screen = 0;
 
@@ -36,7 +40,7 @@ public class GameApplet extends JApplet implements ActionListener {
 			System.err.println("Error changing system look and feel.");
 		}
 		// this.log = new StringBuilder("# this is the data file\n---\n");
-		log.append("# this is the data file\n---\n");
+		log.append("---\n# IPCG 3YP data file\n# taes1g09@ecs.soton.ac.uk\n");
 		// this.setIgnoreRepaint(true);
 
 		// Create and set up the content pane
@@ -54,8 +58,8 @@ public class GameApplet extends JApplet implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		this.log.append(e.getActionCommand());
-		System.err.println(log);
+		this.log.append(e.getActionCommand()+"---\n");
+//		System.err.println(log);
 		this.removeKeyListener(screens[curr_screen]);
 		this.getContentPane().remove(0);
 		curr_screen++;

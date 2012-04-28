@@ -1,0 +1,99 @@
+body {color: #202020; margin-bottom: 0px}
+div#page {margin: 0px auto 0px auto; text-align: left; width: 700px; border: 2px solid #FFFFFF; border-width: 0px 5px 0px 5px; font-family: Tahoma, Geneva, sans-serif;}
+img {border: none}
+img#watermark {position: fixed; bottom: 10px; right: 10px}
+#topbar {position: relative; top: -6px; left: -5px}
+
+
+/*          Header          */
+div#header {}
+h1#title { font-weight: normal; text-align: center; letter-spacing: 5px}
+span#super {vertical-align: super;}
+span#mid {font-weight: bold}
+span#sub {vertical-align: sub;}
+span.home {color: #3366FF}
+span.interests {color: #66FF33}
+span.network {color: #FFFF66}
+span.more {color: #FF3333}
+span.java {color: #999999}
+
+/*          Navbar          */
+div#nav {border: 0px solid #FFFFFF; border-width: 2px 0px 2px 0px; height: 20px}
+ul#links {list-style: none; margin: 0px auto; padding: 0px; width 400px} 
+ul#links li { float: left; width: 100px; text-align: center}
+ul#links li#blank {width: 150px; visibility: hidden}
+ul#links a {display:block; color: #FFFFFF; text-align: center; text-decoration: none; border-bottom: 0px; padding-bottom: 1px}
+
+li#home a{color: #3366FF}
+li#home a:hover{color: #FFFFFF; background: #3366FF}
+li#interests a{color: #66FF33}
+li#interests a:hover{color: #FFFFFF; background: #66FF33}
+li#network a{color: #FFFF66}
+li#network a:hover{color: #FFFFFF; background: #FFFF66}
+li#more a{color: #FF3333}
+li#more a:hover{color: #FFFFFF; background: #FF3333}
+
+
+/*          Content         */
+div#content {padding: 5px }
+h2#title-content {padding: 5px; padding-left: 0px; margin: 0px; border: 0px}
+h4 {margin: 0px; font-size: 18px}
+div#text-content {padding: -1px 0px -1px 5px; text-align: justify}
+div.home {border-left: 20px solid  #3366FF}
+div.interests {border-left: 20px solid #66FF33}
+div.network {border-left: 20px solid  #FFFF66}
+div.more {border-left: 20px solid  #FF3333}
+div.java {border-left: 20px solid  #999999}
+
+
+    /*      Index-content       */
+img#profilepicture-content {float: right; width: 256px; height: 192px; border-bottom: 5px solid #3366FF; margin: 10px -5px 0px 10px}
+img#ecslogo-content {}
+a.index-img-link {display:block; border-bottom: 5px solid #3366FF; float: left; clear: both; margin: 4px 5px 0px 0px; position: relative; left: -5px}
+a.index-img-link:hover {border-bottom: 5px solid #FFFFFF; background:}
+
+    /*      Interests-content   */
+ul#int-list-content {list-style: disc; color: #66FF33; padding-left: 25px}
+ul#int-list-content li {margin-bottom: 15px}
+a.int-img-link {display:block; border-bottom: 0px; float: right; clear: both; margin: auto 0px auto 10px; border-right: 10px solid #66FF33;}
+a.int-img-link:hover {border-right: 10px solid #FFFFFF}
+a.int-link:hover {text-decoration:none; border-bottom: 1px dotted #66FF33}
+
+    /*      Network-content     */
+img#tutorgroup-content {float: right; width: 256px; height: 192px; border-bottom: 5px solid #FFFF66; 
+margin: 10px -5px 5px 5px}
+img#fbicon-content {float: left; border-bottom: 5px solid #FFFF66; 
+margin: 0px 5px 5px 0px}
+ul#net-list-content {list-style: disc; color: #FFFF66; padding-left: 25px}
+ul#net-list-content li {margin-bottom: 5px}
+a.net-link:hover {text-decoration:none; border-bottom: 1px dotted #FFFF66}
+.protected-content {unicode-bidi:bidi-override; direction: rtl; display: block; text-align: left; padding: 0px 0px 10px 30px}
+
+    /*      More-content        */
+a.more-link:hover {text-decoration:none; border-bottom: 1px dotted #FF3333}
+div.more h4 {margin-top: 10px}
+applet {margin: 10px 0px}
+
+    /*      Java-content        */
+a.java-link:hover {text-decoration:none; border-bottom: 1px dotted #999999}
+
+/*          Footer          */
+div#footer {border: 0px solid #FFFFFF; border-top-width: 3px; padding: 5px; padding-bottom: 16px; color: #FFFFFF; }
+span#general {text-color: #f00; display: block; font-size: 8px}
+span#copyright {text-color: #fff; float: left; font-size: 12px }
+span#date {text-color: #fff; float: right; font-size: 12px }
+
+label {
+    display: inline-block;
+    padding: 15px;
+    width: 600px;
+}
+input[type=checkbox] {
+    display: inline-block;
+    width: 13px;
+    height: 13px;
+    padding: 0;
+    margin:0;
+    vertical-align: center;
+}
+.formitem { margin: 8px 0px; }

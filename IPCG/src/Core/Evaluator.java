@@ -16,19 +16,21 @@ public class Evaluator {
 	
 	private LinkedList<Integer> fail, live;
 	private Integer failS = 0, liveS = MAXRATING;	//initialise to limits
+	private StringBuilder log;
 //	private double L = Double.POSITIVE_INFINITY;
 	
 	public void addPositive(int rating) {
-		System.out.printf("1: %d\n", rating);
+		log.append("1: " + rating + "\n");
 		if(live.size() - live.indexOf(liveS) < BUFFER || rating < live.getLast()) sortedAdd(live, rating);		
 	}
 
 	public void addNegative(int rating) {
-		System.out.printf("0: %d\n", rating);
+		log.append("0: " + rating + "\n");
 		if(fail.indexOf(failS) < BUFFER || rating > fail.getLast()) sortedAdd(fail, MAXRATING-rating);		
 	}
 	
-	public Evaluator() {
+	public Evaluator(StringBuilder log) {
+		this.log = log;
 		fail = new LinkedList<Integer>();
 		live = new LinkedList<Integer>();
 		fail.add(failS);
