@@ -10,6 +10,16 @@ public class Evaluator {
 	private LinkedList<Integer> fail;
 	private LinkedList<Integer> live;
 	
+	public void addPositive(int rating) {
+		System.out.printf("1: %d\n", rating);
+		live.add(rating);
+	}
+
+	public void addNegative(int rating) {
+		System.out.printf("0: %d\n", rating);
+		fail.add(rating);
+	}
+	
 	public Evaluator() {
 		fail = new LinkedList<Integer>();
 		live = new LinkedList<Integer>();

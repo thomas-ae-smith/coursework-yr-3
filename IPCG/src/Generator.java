@@ -73,8 +73,9 @@ public class Generator {
 		if (model.getPlayerLoc() + Constants.WINDOW_WIDTH > model.getLevelEndPoint().x) {
 			System.err.println("New pattern needed. Desired rating: " + desiredRating);
 			//calculate desired standard deviation:
-			//half of the distance to the nearest 'edge' of the obstacle distribution
-			int stdDev = Math.min(desiredRating - ratings.first()[RATING], ratings.last()[RATING] - desiredRating) / 2;
+			//quarter of the distance to the nearest 'edge' of the obstacle distribution. Varies between 1/8 to 0 of the range
+			int stdDev = Math.min(desiredRating - ratings.first()[RATING], ratings.last()[RATING] - desiredRating) / 4;
+			stdDev += (ratings.first()[RATING] - ratings.last()[RATING]) / 8; //add another 1/8 to give healthy minimum
 			//pick a random location within the distribution
 			int target = (int)(rndNumGen.nextGaussian() * stdDev + desiredRating);
 //			System.err.println("Target chosen: " + target);
