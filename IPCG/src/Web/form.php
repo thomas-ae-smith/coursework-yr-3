@@ -5,7 +5,7 @@
  
 <div><b>Researcher name:</b> Thomas Smith</div>
 <div><b>Ethics reference number:</b> 1786</div>
- 
+<br/> 
 <form method="post" action="" name="submission">
 <div>Please mark the checkboxes if you agree with the statements:​</div>
 <div class="formitem">
@@ -28,6 +28,6 @@
 <label for="data">I understand that information collected about me during my participation in this study will be stored on a password protected computer and that this information will only be used for the purpose of this study. All files containing any personal data will be made anonymous.</label>
 	<input type="checkbox" name="data"/></div>
  
-<input type="submit" name="continue" value="Continue"/>
+<input type="submit" name="continue" value="Continue" style=" font-size: 500%; padding: 10px; font-weight: bold;"/>
 </form>
 </div>
