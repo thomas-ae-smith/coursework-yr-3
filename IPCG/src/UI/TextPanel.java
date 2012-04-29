@@ -23,22 +23,22 @@ public class TextPanel extends JPanel implements Screen, HyperlinkListener {
 
 	private static final long serialVersionUID = 1L;
 	private static final String text[][] = {
-		{
-			"Introduction",
-			"<html>Welcome to this evaluation system. <p>If you have not already, please read the Participant "
-					+ "Instructions here: <a href=\"http://users.ecs.soton.ac.uk/taes1g09/3YP/\">http://users.ecs.soton.ac.uk/taes1g09/3YP/</a></p><p>You may leave the experiment "
-					+ " at any time by closing this window. </p><p>Click next to continue.</p></html>", "Next >>" },
+			{"Introduction", "<html>Welcome to this evaluation system. <p>If you have not already, please read the Participant "
+							+ "Instructions here: <a href=\"http://users.ecs.soton.ac.uk/taes1g09/3YP/\">http://users.ecs.soton.ac.uk/taes1g09/3YP/</a></p>" 
+							+ "<p>You may leave the experiment at any time by closing this window. </p>" 
+							+ "<p>Click next to continue.</p><br/><br/><br/><br/>" 
+							+ "<p>Contact <a href=\"mailto:taes1g09@ecs.soton.ac.uk?Subject=3YP:%20IPCG%20-%20taes1g09\">taes1g09@ecs.soton.ac.uk</a> if you have any questions. (v.29)</p></html>", "Next >>" },
 			{ "Instructions", "<html><p>The aim of each section is to reach the exit at the right of the level.</p>"
 							+ "<p>The green avatar will move rightwards across the level automatically."
-							+ "<br>Pressing the up arrow will cause it to jump.</p>"
+							+ "<br>Pressing the up arrow or space bar will cause it to jump.</p>"
 							+ "<p>Falling off the bottom of the screen or touching a red obstacle will send you back a little.</p>"
 							+ "<p>Pressing ESC at any time will allow you to skip the level, though this action will be recorded.</p>"
-							+ "<p>After each level there will be a short evaluation. Click 'Start' to start.</p></html>", "Start >>"},
+							+ "<p>After each level there will be a short evaluation. Click 'Start' to begin.</p></html>", "Start >>"},
 			{ "Thank You", "<html><p>Your data has successfully been submitted.</p>"
 							+ "<p>Thank you for participating in this experiment," 
 							+ "<br>please do not submit any more data.</p>" 
 							+ "<p>Close this window or tab to exit the experiment.</p>"
-							+ "<br><p>Contact <a href=\"mailto:taes1g09@ecs.soton.ac.uk?Subject=IPCG\">taes1g09@ecs.soton.ac.uk</a> if you have any questions.</p></html>", null } 
+							+ "<br><p>Contact <a href=\"mailto:taes1g09@ecs.soton.ac.uk?Subject=3YP:%20IPCG%20-%20taes1g09\">taes1g09@ecs.soton.ac.uk</a> if you have any questions.</p></html>", null } 
 		};
 
 	public TextPanel(int textNum, ActionListener listener) {
@@ -122,14 +122,14 @@ public class TextPanel extends JPanel implements Screen, HyperlinkListener {
 	@Override
 	public void hyperlinkUpdate(HyperlinkEvent e) {
 		if (e.getEventType() == HyperlinkEvent.EventType.ACTIVATED) {
-			System.err.println("clicked");
+//			System.err.println("clicked");
 			if (java.awt.Desktop.isDesktopSupported()) {
 				java.awt.Desktop desktop = java.awt.Desktop.getDesktop();
-				System.err.println("hasdesktop");
+//				System.err.println("hasdesktop");
 				if (desktop.isSupported(java.awt.Desktop.Action.BROWSE)) {
-					System.err.println("browsesupported");
+//					System.err.println("browsesupported");
 					try {
-						System.err.println("sending to google");
+//						System.err.println("sending to google");
 						java.net.URI uri = new java.net.URI(e.getURL().toString());
 						desktop.browse(uri);
 					} catch (Exception ex) {

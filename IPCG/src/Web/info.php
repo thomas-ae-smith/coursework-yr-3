@@ -15,7 +15,7 @@ This research is a student project that forms part of the evaluation process for
 This study has been made available to a limited group of people of which you are a member. You have chosen to take part, hopefully because you find the research interesting or wish to help out by providing data.
  
 <h3>What will happen to me if I take part?</h3>
-If you consent to the statements presented below, then you will continue to the system proper. You will first be asked a few questions about your familiarity with games, and then given instructions on how to interact with the system, a simple 2D platform game. Then, you will be asked to play the game and complete four levels with varying difficulties. During each level, data will be collected about your progress, such as number of mistakes made and total time to completion, and there will also be an option to skip individual levels (though this action will also be recorded). After each level, you will be asked to evaluate the degree of challenge you believe it presented. The study will take approximately 20 minutes to complete, and will be completed in a single session. If you leave the system before final completion, then no data will be kept. If you have completed the experiment already, then please do not undertake it again. No personal data is being collected, including email addresses, so there will be no followup.
+If you consent to the statements presented below, then you will continue to the system proper. You will first be asked a few questions about your familiarity with games, and then given instructions on how to interact with the system, a simple 2D platform game. Then, you will be asked to play the game and complete four levels with varying difficulties. During each level, data will be collected about your progress, such as number of mistakes made and total time to completion, and there will also be an option to skip individual levels (though this action will also be recorded). After each level, you will be asked to evaluate the degree of challenge you believe it presented. The study will take approximately 5-10 minutes to complete, and will be completed in a single session. If you leave the system before final submission, then no data will be kept. If you have completed the experiment already, then please do not undertake it again. No personal data is being collected, including email addresses, so there will be no followup.
  
 <h3>Will my participation be confidential?</h3>
 All data collected is anonymous. At no point will you be asked for your name, email address or any other personally identifiable information. As you have arrived from a link available to a large group of people, there will be no way to link your identity to the data. All submitted data will be kept within password-protected systems.
@@ -34,7 +34,7 @@ Please use the contact information below.
 </div>
 <div style="float: right;">
 	<form method="post" action="" name="submission">
-	<input type="submit" name="continue" value="Continue" />
+	<input type="submit" name="continue" value="Continue" style=" font-size: 500%; padding: 10px; font-weight: bold;"/>
 </form>
 </div>
 </div>
