@@ -1,4 +1,4 @@
-package UI;
+
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,6 +10,11 @@ import Core.Controller;
 import Core.Evaluator;
 import Core.Generator;
 import Model.Constants;
+import UI.ConfirmPanel;
+import UI.FeedbackPanel;
+import UI.QuestionnairePanel;
+import UI.Screen;
+import UI.TextPanel;
 
 public class GameApplet extends JApplet implements ActionListener {
 
