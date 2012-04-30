@@ -2,6 +2,7 @@ package UI;
 
 import java.awt.Button;
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -19,6 +20,8 @@ import javax.swing.event.HyperlinkEvent;
 import javax.swing.event.HyperlinkListener;
 import javax.swing.text.html.HTMLDocument;
 
+import Model.Constants;
+
 public class TextPanel extends JPanel implements Screen, HyperlinkListener {
 
 	private static final long serialVersionUID = 1L;
@@ -27,7 +30,7 @@ public class TextPanel extends JPanel implements Screen, HyperlinkListener {
 							+ "Instructions here: <a href=\"http://users.ecs.soton.ac.uk/taes1g09/3YP/\">http://users.ecs.soton.ac.uk/taes1g09/3YP/</a></p>" 
 							+ "<p>You may leave the experiment at any time by closing this window. </p>" 
 							+ "<p>Click next to continue.</p><br/><br/><br/><br/>" 
-							+ "<p>Contact <a href=\"mailto:taes1g09@ecs.soton.ac.uk?Subject=3YP:%20IPCG%20-%20taes1g09\">taes1g09@ecs.soton.ac.uk</a> if you have any questions. (v.30)</p></html>", "Next >>" },
+							+ "<p>Contact <a href=\"mailto:taes1g09@ecs.soton.ac.uk?Subject=3YP:%20IPCG%20-%20taes1g09\">taes1g09@ecs.soton.ac.uk</a> if you have any questions. (v.32)</p><br/></html>", "Next >>" },
 			{ "Instructions", "<html><p>The aim of each section is to reach the exit at the right of the level.</p>"
 							+ "<p>The green avatar will move rightwards across the level automatically."
 							+ "<br>Pressing the up arrow or space bar will cause it to jump.</p>"
@@ -89,6 +92,8 @@ public class TextPanel extends JPanel implements Screen, HyperlinkListener {
 				.createCompoundBorder(
 						BorderFactory.createTitledBorder(text[textNum][0]),
 						BorderFactory.createEmptyBorder(10, 30, 10, 30))));
+		
+		this.setMinimumSize(new Dimension(Constants.WINDOW_WIDTH, Constants.WINDOW_HEIGHT));
 
 	}
 
