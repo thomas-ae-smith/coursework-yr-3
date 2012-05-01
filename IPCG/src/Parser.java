@@ -1,18 +1,10 @@
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileFilter;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.FilenameFilter;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Queue;
-
-import javax.swing.UIManager;
-
-import UI.GameWindow;
 
 public class Parser {
 	
@@ -26,8 +18,6 @@ public class Parser {
 	ArrayList<ArrayList<Integer>> levelDesDiff;
 	ArrayList<ArrayList<Integer>> levelGenDiff;
 	
-	ArrayList<String> fileArray;
-	
 	String dirName = new String("/Users/Tirhakah/Desktop/data");
 	
 	public static void main(String[] args) {
@@ -40,8 +30,6 @@ public class Parser {
 		globalDeaths = new ArrayList<ArrayList<ArrayList<Integer>>>();
 		globalDesDiff = new ArrayList<ArrayList<ArrayList<Integer>>>();
 		globalGenDiff = new ArrayList<ArrayList<ArrayList<Integer>>>();
-		
-		fileArray = new ArrayList<String>();
 		
 		File dir = new File(dirName);
 
@@ -148,8 +136,6 @@ public class Parser {
 		levelGenDiff= new ArrayList<ArrayList<Integer>>();
 		currPlayerData = new ArrayList<Integer>();
 		
-		fileArray.clear();
-		
 		//add this file id to the beginning of the playerdata 
 		currPlayerData.add(Integer.parseInt(file.getName().substring(0, file.getName().indexOf('.'))));
 		
@@ -164,7 +150,6 @@ public class Parser {
 		while ((line = reader.readLine()) != null) {
 			switch (line.charAt(0)) {
 			case '#':	//ignore comments
-				fileArray.add(line);
 				break;	
 			case '-':	//ignore breaks, unless they are at the end of a level segment
 				if (level) {		//in which case, parse the level and prepare for the next one
@@ -174,11 +159,9 @@ public class Parser {
 					level = false;
 					levelNum++;
 				}
-				fileArray.add(line);
 				break;
 			case 'q':	//store the answers to questions
 				ans[line.charAt(1) - '0' - 1] = line.charAt(4) - '0';
-				fileArray.add(line);
 				break;
 			case '0':
 			case '1':
@@ -193,16 +176,6 @@ public class Parser {
 			}
 		}
 		reader.close();
-		
-		FileWriter fileWrite = new FileWriter(file);
-		for (String s : fileArray) {
-			fileWrite.write(s + "\n");
-		}
-		fileWrite.flush();
-		fileWrite.close();
-		
-		
-		
 		//copy the question onswers into the end of player data, after level data
 		for (int i = 0; i < ans.length; i++) {
 			currPlayerData.add(ans[i]);
@@ -227,39 +200,26 @@ public class Parser {
 		ArrayList<Integer> deaths = new ArrayList<Integer>();
 		deaths.add(0);
 		
-		int diff = 0;
-		int desired = 0;
+		
 		for (String data : level) {
 //			System.err.println(data);
 			switch (data.charAt(0)) {
 			case 'd':
-				desired = Integer.parseInt(data.substring(data.lastIndexOf(' ')+1));
-				dDiff.add(desired);	//record the desired difficulty
-				fileArray.add(data);
+				dDiff.add(Integer.parseInt(data.substring(data.lastIndexOf(' ')+1)));	//record the desired difficulty
 				break;
 			case '1':
-				diff = Integer.parseInt(data.substring(data.lastIndexOf(' ')+1));
-				if (diff == 622) diff = getClosest622((double)desired);
-				if (diff == 568) diff = getClosest568((double)desired);
-				gDiff.add(diff);	//record the actual difficulty
+				gDiff.add(Integer.parseInt(data.substring(data.lastIndexOf(' ')+1)));	//record the actual difficulty
 				deaths.add(new Integer(death));	//add a new tick with the deaths
 				successes++;
-				fileArray.add("1: " + diff);
 				break;
 			case '0':
-				diff = Integer.parseInt(data.substring(data.lastIndexOf(' ')+1));
-				if (diff == 622) diff = getClosest622((double)desired);
-				if (diff == 568) diff = getClosest568((double)desired);
-				fileArray.add("0: " + diff);
 				death++;
 				break;
 			case 'g':
 				end = Integer.parseInt(data.substring(data.lastIndexOf(' ')+1));	//store the location of the end of the level
-				fileArray.add(data);
 				break;
 			case 't':
 				time = Integer.parseInt(data.substring(data.lastIndexOf(' ')+1));	//store the level end time
-				fileArray.add(data);
 				break;
 			}
 		}
@@ -273,25 +233,5 @@ public class Parser {
 		levelDesDiff.add(dDiff);
 		levelGenDiff.add(gDiff);
 		
-	}
-	
-	public int getClosest622(double avg){
-		int[] nums = {41, 56, 71, 321, 336, 351, 463, 478, 493, 577, 592, 607};
-		int best = 0;
-		for (int i = 0; i < nums.length; i++) {
-			if (Math.abs(nums[i] - avg) < Math.abs(nums[best] - avg)) best = i;
-		}
-		System.err.println("622: got " + avg + " corrected to " + nums[best]);
-		return nums[best];
-	}
-	
-	public int getClosest568(double avg){
-		int[] nums = {219, 234, 249, 398, 413, 428, 523, 538, 553};
-		int best = 0;
-		for (int i = 0; i < nums.length; i++) {
-			if (Math.abs(nums[i] - avg) < Math.abs(nums[best] - avg)) best = i;
-		}
-		System.err.println("568: got " + avg + " corrected to " + nums[best]);
-		return nums[best];
 	}
 }
