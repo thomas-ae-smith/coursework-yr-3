@@ -217,11 +217,10 @@ public class Parser {
 				break;
 			case '1':
 				gDiff.add(Integer.parseInt(data.substring(data.lastIndexOf(' ')+1)));	//record the actual difficulty
-				deaths.add(new Integer(deaths.get(deaths.size()-1)));	//add a new tick with the same deaths
+				deaths.add(new Integer(death));	//add a new tick with the deaths
 				successes++;
 				break;
 			case '0':
-				deaths.add(new Integer(deaths.get(deaths.size()-1)+1));	//add a new tick with one more death
 				death++;
 				break;
 			case 'g':
