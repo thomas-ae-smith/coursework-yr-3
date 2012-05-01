@@ -29,8 +29,8 @@ public class TextPanel extends JPanel implements Screen, HyperlinkListener {
 			{"Introduction", "<html>Welcome to this evaluation system. <p>If you have not already, please read the Participant "
 							+ "Instructions here: <a href=\"http://users.ecs.soton.ac.uk/taes1g09/3YP/\">http://users.ecs.soton.ac.uk/taes1g09/3YP/</a></p>" 
 							+ "<p>You may leave the experiment at any time by closing this window. </p>" 
-							+ "<p>Click next to continue.</p><br/><br/><br/><br/>" 
-							+ "<p>Contact <a href=\"mailto:taes1g09@ecs.soton.ac.uk?Subject=3YP:%20IPCG%20-%20taes1g09\">taes1g09@ecs.soton.ac.uk</a> if you have any questions. (v.32)</p><br/></html>", "Next >>" },
+							+ "<p>Click next to continue.</p><br/><br/>" 
+							+ "<p>Contact <a href=\"mailto:taes1g09@ecs.soton.ac.uk?Subject=3YP:%20IPCG%20-%20taes1g09\">taes1g09@ecs.soton.ac.uk</a> if you have any questions. (v." + Constants.VERSION + ")</p><br/></html>", "Next >>" },
 			{ "Instructions", "<html><p>The aim of each section is to reach the exit at the right of the level.</p>"
 							+ "<p>The green avatar will move rightwards across the level automatically."
 							+ "<br>Pressing the up arrow or space bar will cause it to jump.</p>"

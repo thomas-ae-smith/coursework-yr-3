@@ -22,6 +22,7 @@ public abstract class Constants{
 	public static final int OBSTACLE_RADIUS = 14;
 	public static final int OBSTACLE_BASE_SPEED = 200;
 	public static final Point JUMP_DIST = new Point((int) (TILE_WIDTH*3.5), 7*TILE_HEIGHT);
+	public static final int VERSION = 33;
 	
 	public static enum keycodes{
 		JUMP(KeyEvent.VK_UP),

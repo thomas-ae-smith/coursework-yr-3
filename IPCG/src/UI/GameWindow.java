@@ -44,7 +44,7 @@ public class GameWindow extends JFrame implements ActionListener {
 
 	public GameWindow() {
 		// this.log = new StringBuilder("# this is the data file\n---\n");
-		log.append("---\n# IPCG 3YP data file\n# taes1g09@ecs.soton.ac.uk\n");
+		log.append("---\n# IPCG 3YP data file, v." + Constants.VERSION + "\n# taes1g09@ecs.soton.ac.uk\n");
 		this.setTitle("IPCG");
 		// this.setIgnoreRepaint(true);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
