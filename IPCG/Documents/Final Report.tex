@@ -54,7 +54,7 @@ taes1g09@ecs.soton.ac.uk\\[0.3cm]
 
 \abstractintoc
 \begin{abstract} %not more than 200 words
-Increasingly, as the demand for ever larger and more varied computer game environments grows, procedural content generation (PCG) is used to ensure that content remains `fresh'. However, many of the opportunities to use these systems to generate truly personalised content have so far been largely overlooked. When content is generated manually or algorithmically during the design phase of a game, it can only be created according to the designers' expectations of the players' needs. By instead generating content during the execution of the game, and using information about the player(s) as one of the system's inputs, PCG systems should be able to produce more varied content that can be far more tailored to enhance individual players' experiences than anything manually created. In a related field, much has been written about the generation of player models from observed data, including for the purposes of adaptivity or dynamic difficulty adjustment (DDA), and literature exists examining the problem of generating satisfying game environments via challenge adjustment. This project looks at combining these fields to create a prototype `intelligent' PCG system (IPCG) that is capable of monitoring players' progress and fully dynamically generating upcoming challenges to best suit their abilities. [TODO: specify that this is a prototype, investigating a specific aspect of the many that IPCG is able to cover.]
+As the demand for ever larger and more varied computer game environments grows, procedural content generation (PCG) is increasingly used to ensure that content remains `fresh'. However, many of the opportunities to use these systems to generate truly personalised content have so far been largely overlooked. When content is generated manually or algorithmically during the design phase of a game, it can only be created according to the designers' expectations of the players' needs. By instead generating content during the execution of the game, and using information about the player(s) as one of the system's inputs, PCG systems should be able to produce more varied content that can be far more tailored to enhance individual players' experiences than anything manually created. In a related field, much has been written about the generation of player models from observed data, including for the purposes of adaptivity or dynamic difficulty adjustment (DDA), and literature exists examining the problem of generating satisfying game environments via challenge adjustment. This project looks at combining these fields to create a prototype `intelligent' PCG system (IPCG); specifically one that is capable of monitoring players' progress, and fully dynamically generating upcoming challenges to best suit their abilities. %[TODO: specify that this is a prototype, investigating a specific aspect of the many that IPCG is able to cover.]
 \end{abstract}
 \vspace*{\fill}
 \vspace*{\fill}
@@ -64,19 +64,20 @@ Increasingly, as the demand for ever larger and more varied computer game enviro
 % \pagebreak
 
 \chapter{Statement of Originality}
-- You are strongly encouraged to include a one or two paragraph statement of originality
-– “this is all my own work” is rarely true
-– you should acknowledge the help you have received
-- Was the idea for the project yours, or was it based on an earlier project, or your supervisor’s research?
-- The examiners will assume that the analysis, design, implementation, testing, \ldots are your own work
-- So tell them where this is not true
-– the design of component X follows a standard technique/pattern described in [source]
-– this is my own code except for [package/class/method] which I have copied from [Internet site/author]
-
-Compton and Matheas for grammar
-one\_d SVG
-Own idea based on a particular personal interest in the field
-[TODO]
+% - You are strongly encouraged to include a one or two paragraph statement of originality
+% – “this is all my own work” is rarely true
+% – you should acknowledge the help you have received
+% - Was the idea for the project yours, or was it based on an earlier project, or your supervisor’s research?
+% - The examiners will assume that the analysis, design, implementation, testing, \ldots are your own work
+% - So tell them where this is not true
+% – the design of component X follows a standard technique/pattern described in [source]
+% – this is my own code except for [package/class/method] which I have copied from [Internet site/author]
+% 
+% Compton and Matheas for grammar
+% one\_d SVG
+% Own idea based on a particular personal interest in the field
+% [TODO]
+Aside from any part specified otherwise, this implementation and report is all my own work. It is based upon my own ideas born out of a particular interest in the field. Some elements of the design have been strongly influenced by existing work -- specifically the use of a probabalistic grammar for level generation, and the use of a one-dimensional support vector machine to calculate a decision boundary between two non-linearly-separable groups -- and this has been made clear in each respective section. I have also made extensive use of the standard Java packages.
 
 
 \mainmatter
@@ -86,62 +87,65 @@ Own idea based on a particular personal interest in the field
 %1. Introduction describing the problem
 %- A clear statement of the problem and goals of the project
 %– project goals
-The aim of this project is to investigate the use of intelligent procedural content generation (IPCG) in computer games, by looking at existing products, research in related areas and constructing a minimal prototype. [TODO: explanation of IPCG] Due to the increasing demand for both detail and variety within computer game environments, various aspects of in-game content are now often generated procedurally (that is, algorithmically rather than manually), using techniques that are frequently just refinements of algorithms used in the early days of computing, for games such as Elite \cite{elite} or Nethack \cite{nethack}.
-However, one of the strengths of modern procedurally generated content (PCG) is that (within reasonable limits) it may be performed at runtime, allowing it to also use information about the player in order to dynamically generate content on-the-fly in response to the player's actions. In general, this will involve making use of algorithms from the field of Artificial Intelligence in order to evaluate the information available and condense it to a form suitable for input to a PCG system; hence such systems might reasonably be termed `intelligent' procedural content generators (IPCG).
-As shown later, IPCG techniques can be applied to many different scenarios, for many reasons. For the purposes of this project, the prototype will be restricted to using IPCG for dynamic difficulty adjustment (DDA) in basic 2D platformer levels.
+Intelligent procedural content generation is a technique that may be used during the exectution of a computer game. It involves using machine learning algorithms to intelligently distill information about the current state of the game into a form that may be used to affect ongoing procedural generation of content. The aim of this project is to investigate the use of intelligent procedural content generation (IPCG) in computer games, by looking at existing products, research in related areas and constructing a minimal prototype.
 
-[TODO make this flow]
-Procedural Content Generation: Given the variety of mechanisms used by games to serve content to players, it can be difficult to define exactly what PCG is and is not. Togelius \textit{et al.} define PCG as ``\textit{the algorithmical creation of game content with limited or indirect user input}'' \cite{togeliusPCGdef}. This definition deliberately does not specify whether randomness is required in a PCG system, as examples of both random (stochastic) and deterministic PCG systems exist. It also does not distinguish between `offline' PCG, and adaptive `online' PCG, as both have their uses.
-TODO: more here]
-Dynamic Difficulty Adjustment: DDA is another broad term that could be applied to wildy differing systems in various games. In general, DDA is often viewed as the process of altering aspects of a game based on some part of the state of the game world - often a model of the performance of the player. Normally this is done with the intention of maintaining the player's ability to remain within a state of `flow' \cite{flow}. It can range from the simple `rubber-banding' used in basic racing games, to the more subtle alterations of timing, item placement and enemy frequency used by FPS games such as Resident Evil 5 \cite{ResE5}.
-Intelligent Procedural Content Generation is an extension of typical PCG in that it forms a model of some aspect of the player or game state, and then uses this as an input to an adaptive (parameterised) PCG system that modifies the generated output appropriately. Often this is done for the purposes of DDA (in contrast to typical non-PCG DDA, which generally makes minor adjustments to existing content, rather than generating new content), though it can also be applied for a range of other purposes, from providing more of the type of content a player favours \cite{garmsr}, to directing the player towards unexplored areas \cite{radiant}. [TODO use non- literature examples]
+Due to the increasing demand for both detail and variety within computer game environments, various aspects of in-game content are now increasingly generated procedurally (i.e. algorithmically rather than manually), using techniques that are frequently simply refinements of algorithms used in the early days of computing, by games such as Elite \cite{elite} or Nethack \cite{nethack}.
+However, one of the strengths of modern procedurally generated content (PCG) is that within reasonable limits it may be performed during runtime, allowing it to also use information about the player or current game state in order to dynamically generate content on-the-fly in response to the player's actions. 
+
+In general, this will involve making use of algorithms from the field of Artificial Intelligence in order to evaluate the information available and condense it to a form suitable for input to a PCG system; hence such systems might reasonably be termed `intelligent' procedural content generators (IPCG), in contrast to merely `adaptive' procedural content generators which respond to specific parameters, or non-interactive PCG systems. Given the variety of mechanisms used by games to serve content to players, it can be difficult to define exactly what PCG is and is not. Togelius \textit{et al.} define PCG as ``\textit{the algorithmical creation of game content with limited or indirect user input}'' \cite{togeliusPCGdef}. This definition deliberately does not specify whether randomness is required in a PCG system, as examples of both random (stochastic) and deterministic PCG systems exist. It also does not distinguish between `offline' PCG, and adaptive `online' PCG, as both are used widely for varying purposes.
+
+IPCG is an extension of typical PCG in that it will form a model of some aspect of the player or game state, and then use this as an input to an adaptive (parameterised) PCG system that modifies the generated output appropriately. Often this is done for the purposes of dynamic difficulty adjustment (DDA) -- in contrast to typical non-PCG DDA, which generally makes minor adjustments to existing content rather than generating new content -- though it can also be applied for a range of other purposes, from providing more of the type of content a player favours \cite{garmsr}, to directing the player towards unexplored areas \cite{radiant}. For the purposes of this project, a prototype will be developed which uses IPCG for DDA in basic 2D platformer levels.
+
+In general, DDA is often viewed as the process of altering aspects of a game based on some part of the state of the game world - often a model of the performance of the player. Normally this is done with the intention of maintaining the player's ability to remain within a state of `flow' \cite{flow}. It can range from the simple `rubber-banding' used in basic racing games, to the more subtle alterations of timing, item placement and enemy frequency used by FPS games such as Resident Evil 5 \cite{ResE5}.
+
+% [TODO use non- literature examples, improve flow here]
 
 
 \section{Goals}
-The aim of this project is to investigate the use of intelligent procedural content generation (IPCG) in computer games, by looking at existing products, research in related areas and constructing a minimal prototype. [TODO: fill out, listitems]
+The key goals of this project are to investigate the current state of intelligent procedural content generation (IPCG) in computer games and academia, and to develop an example prototype that demonstrates each of the major components of an IPCG system. 
 \begin{description}
-\item[Investigate the use of IPCG in computer games] To date, a remarkably small number of commercial games have contained systems that could reasonably classified as IPCG. In order to successfully research the current use of IPCG then, it will be important to view the field in the context of both PCG and DDA, more mature systems with more extensive bodies of existing literature and successful systems.
+\item[Investigate the use of IPCG in computer games:] To date, remarkably few commercial games have contained systems that could reasonably classified as IPCG. In order to successfully research the current use of IPCG then, it will be important to view the field in the context of both PCG and DDA, more mature techniques with more extensive bodies of existing literature and successful systems.
 \begin{description}
-\item[Existing commercial products]
-\item[Existing academic literature]
+\item[Existing commercial products:] A small number commercial products exist using IPCG systems, and many more are available that demonstrate use of PCG or DDA. Investigating these products will help to define the field of IPCG, and inform the development of the prototype.
+\item[Existing academic literature:] Again, many academic papers have been written on the topics of PCG and DDA, and comparatively fewer about systems that could be described as IPCG. In general those that do cover the topic approach it as a more powerful form of DDA, overlooking the potential for other uses. 
 \end{description}
-\item[Construct a minimal prototype]
 
+\item[Construct a minimal prototype:]  In order to demonstrate the use of an IPCG system, it should be possible to develop a basic protopye that implements all of the required functionality of an IPCG system, and provides results that it would be difficult to otherwise obtain without using IPCG.
 \begin{description}
-\item[Specify requirements]
-\item[Design and Implement]
-\item[Test and Evaluate]
+\item[Specify requirements:] As with any software project, requirements will inform the development process and should serve to ensure the quality and achievability of the end product.
+\item[Design and Implement:] Following a typical software development cycle, a system fulfilling the requirements of both the project and the wider IPCG definition should be developed.
+\item[Test and Evaluate:] In order to evaluate the effectiveness of the system, one or more user studies will be necessary to investigate the general applicability of the solution, and highlight potential areas for further development.
 \end{description}
 \end{description}
 
 \section{Prototype}
-One of the aims of this project is to construct a minimal prototype demonstrating the use of an IPCG system. By combining ideas from existing literature on PCG and DDA systems, it should be possible to construct a limited system that performs all of the stages necessary for it to function as an example of IPCG. That is, it should monitor the game state, form a conceptual model of some aspect of the player, and then use that model in order to generate content tailored to the particular player in some way. For the purposes of this project, the prototype will be necessarily basic, performing only the functions sufficient to display working IPCG. It should also provide some facility for player-provided evaluation of the system, to aid in final analysis.
-[An analysis and specification of the solution to the problem.]
-By looking at [the existing literature], it can be seen that not many [demonstrations of successful IPCG] exist. An attempt will be made to construct a minimal working prototype that demonstrates a successful IPCG system. Existing approaches, both in PCG and IPCG, have focused on simple 2D platforming systems, and so in order to benefit from developing the ideas presented in current literature, and also to aid in later comparative evaluation, it seems sensible to follow this approach also. [Following the work of Hunicke who worked to examine ``basic design requirements for effective dynamic difficulty adjustment" \cite{hunicke2005case}. Attempt a similar thing for IPCG ]
+From investigation of existing literature, it can be seen that few demonstrations of successful IPCG exist. Following the efforts by Hunicke to establish the ``basic design requirements for effective dynamic difficulty adjustment" \cite{hunicke2005case}, this prototype will build upon those requirements and extend the concept into the field of IPCG. By combining ideas from existing literature on PCG and DDA systems, it should be possible to construct a limited system that performs all of the stages necessary for it to function as an example of IPCG. That is, it should monitor the game state, form a conceptual model of some aspect of the player, and then use that model in order to generate content tailored to the particular player in some way. Existing approaches, both in PCG and IPCG, have focused on simple 2D platforming systems, and so in order to benefit from developing the ideas presented in current literature, and also to aid in later comparative evaluation, it seems sensible to follow this approach also. For the purposes of this project, the prototype will be necessarily basic, performing only the functions sufficient to display working IPCG. It should also provide some facility for player-provided evaluation of the system, to aid in final analysis.
+% [An analysis and specification of the solution to the problem.]
 
 \section{Overview}
-[TODO: one paragraph]
+% [TODO: one paragraph]
+This report will begin by investigating work in related fields, specifically PCG and DDA, as many of the techniques used for content generation and game state modelling are directly transferable to IPCG. Examples of both commercial systems and academic research will be used to illustrate certain features or ideas, and the concepts will be developed in a similar section on IPCG. This background will provide a starting point for specifying the requirements for the prototype system, which are necessary to define the scope of the desired system. These will then be developed into a detailed design, from which it should be possible to create the IPCG prototype. An account of the implementation will be followed by details of the system evaluation process and an analysis of the data collected. The report will close with an evaluation of the project as a whole, as well as the conclusions that can be drawn and suggestions for future work.
 
 \chapter{Project Background}
 % 2. a chapter reviewing approaches/literature
 % - A review of the background literature
-Lot of academic work in related fields,
-Paucity of actual shipping systems
-[TODO: write more here]
+In order to understand the approaches taken towards developing IPCG systems, it is important to investigate the supporting work in closely related fields. Though the body of academic literature corcerning IPCG is currently quite small, it draws from considerably more mature fields with commensurately more available research and commercial systems. Central to the concept of IPCG is the use of an adaptive PCG sytem, and the work done on player and situation modelling for DDA is also directly relevant.
+% Lot of academic work in related fields,
+% Paucity of actual shipping systems
+% [TODO: write more here]
 \section{Procedural Content Generation}
-Procedural Content Generators in various forms have been used since the early days of gaming. Well-known games such as Elite and Rogue made extensive use of PCG, in order to present the player with expansive game worlds far larger than could have been fully stored on the distribution media that was available at the time. In the case of Elite, this was done using a fully deterministic PCG system, and storing only the seeds used to generate the desired content - resulting in a game world that was identical each time it was generated, but that took very little memory to store. For Rogue, environments were generated pseudo-randomly, meaning a different play experience each time, but following strict constraints that ensured that levels were completable \cite{togeliusPCGdef}. 
+Procedural Content Generators in various forms have been used since the early days of gaming. Well-known games such as Elite and Rogue made extensive use of PCG, in order to present the player with expansive game worlds far larger than could be fully stored on the distribution media that was available at the time. In the case of Elite, this was done using a fully deterministic PCG system, and storing only the seeds used to generate the desired content - resulting in a game world that was identical each time it was generated, but that took very little memory to store. For Rogue, environments were generated pseudo-randomly, meaning a different play experience each time, but following strict constraints that ensured that levels were completable \cite{togeliusPCGdef}. 
 As technologies improved, focus shifted more towards hand-crafted environments as it was easier to ensure that these provided value and did not feel sparse \cite{charbitat}. However, with the further progress of technology attention has returned to procedural generation. Modern game worlds typically contain vast amounts of detail, and procedural content generation algorithms are ideally suited to producing this by generating large numbers of variations on a theme -- be that trees, clouds, textures, or even sounds. Producing each of these items individually by hand would take many hours of labour and require large data files, but by defining specific sub elements and assembly rules, a small effort can lead to hundreds or thousands of variations. As PGC mechanisms have matured, they are once again being used for the provision of entire play environments. Commenting on the use of PCG in a successful commercial title (Borderlands, \cite{borderlands}), A. Doull claims that ``it points the way forward to a time where the current role of the level designer will be as obsolete as punch cards'' \cite{deathotleveldesigner}.
 
-[TODO: mention occupancy regulated expansion / extension]
+% [TODO: mention occupancy regulated expansion / extension]
 
 \subsection{Existing PCG Systems}
-Many interesting PCG systems have been developed, too numerous to mention. Of particular note:
+Many interesting PCG systems have been developed, too numerous to mention. Of particular note due to their comparative success:
 
 \begin{description}
-\item[Charbitat] [TODO: write description for charbitat. academic paper /example system. arguably IPCG\ldots]
-\item[Infinite Mario] A Java reimplementation of the original Mario, uses PCG to create an endless variety of potential levels \cite{mario}. Considered something of a standard in academic PCG implementations, the codebase is often used as a launching point for competitions of various kinds.
-\item[Speedtree] Possibly the most widely-used commercial PCG system, Speedtree is a middleware application that generates trees and other vegetation for use in games and some movies \cite{speedtree}.
-\item[Borderlands] A commercially successful videogame, Borderlands was one of the first modern games to extensively use and publicise a PCG system; in this instance to generate millions of different varied weapons \cite{borderlandsguns} - a selling point for the game. 
+\item[Infinite Mario:] A Java reimplementation of the original Super Mario, Infinite Mario uses PCG to create an endless variety of potential levels \cite{mario}. Considered something of a standard in academic PCG implementations, the codebase is notable as it is often used as a launching point for AI competitions of various kinds - both pathfinding and alternative generation.
+\item[Speedtree:] Possibly the most widely-used commercial PCG system in existence, Speedtree is a middleware application that generates trees and other vegetation for use in games and some movies \cite{speedtree}.
+\item[Borderlands:] A commercially successful videogame, Borderlands was one of the first modern games to extensively use and publicise a non-decorative PCG system; in this instance to generate millions of different varied weapons \cite{borderlandsguns} - a selling point for the game. 
 \end{description}
 
 \section{Dynamic Difficulty Adjustment}
@@ -151,9 +155,9 @@ By monitoring and then modelling the players' ability in some fashion, it can be
 \subsection{Existing DDA systems}
 From 'rubber-banding' -- the simple modulation of maximum velocity by position used in racing games -- to the more complex level-based adjustments used in games such as Fallout, Oblivion and Homeworld, DDA systems are widely used in modern games. The best such systems often go unnoticed by the player \cite{moffett2010applying}.
 \begin{description}
-\item[Resident Evil 5] A successful commercial game, Resident Evil 5 contained both a traditional difficulty selection screen and a far less publicised DDA system that used information about the player's health, equipment and difficulty setting in order to adjust the properties of enemies that they faced \cite{ResE5}.
-\item[Hamlet] Hamlet is a system designed by R. Hunicke to examine ``basic design requirements for effective dynamic difficulty adjustment" \cite{hunicke2005case}. It integrates with an SDK for an existing game engine in order to monitor aspects of the player's status, and modifies upcoming encounters based on a historically-trained map from player evaluation result to desired game world adjustments.
-\item[Polymorph] [TODO: write about Polymorph. Academic paper / example system. Also arguably IPCG, especially since it's paper is in that section\ldots] \cite{jennings2010polymorph}
+\item[Resident Evil 5:] A successful commercial game, Resident Evil 5 contained both a traditional difficulty selection screen and a far less publicised DDA system that used information about the player's health, equipment and difficulty setting in order to adjust the properties of enemies that they faced \cite{ResE5}.
+\item[Hamlet:] Hamlet is a system designed by R. Hunicke to examine ``basic design requirements for effective dynamic difficulty adjustment" \cite{hunicke2005case}. It integrates with an SDK for an existing 3D game engine in order to monitor aspects of the player's status, and modifies upcoming encounters based on a historically-trained map between the result of player evaluation  and the desired game world adjustments.
+\item[Cannon:] A system developed by Missura \textit{et al.} in order to investigate the use of k-means clustering and SVM clustering for effective DDA. Cannon is a very simplified 2D shooter that provides minimal gameplay but a wealth of monitoring and statistics\cite{missura2009player}.
 \end{description}
 
 \section{Intelligent Procedural Content Generation}
@@ -164,12 +168,14 @@ However, existing literature in related areas borders on the topic: in some case
 IPCG can be (and has been) used for a wide range of purposes, almost as varied as PCG itself. Three very different such uses in commercial games are detailed below. It is unsurprising that many of the existing applications of IPCG are used to tackle some of the current key challenges in game design: maintaining players' engagement with the game via enhancing immersion and controlling `flow' \cite{flow}. [TODO: link to earlier description of intentions for flow maintenance] 
 
 \begin{description}
+\item[Charbitat] [TODO: write description for charbitat. academic paper /example system. arguably IPCG\ldots]
 \item[Valve's `AI Director']
 One of the most well-known such applications is used in Valve's games Left 4 Dead and Left 4 Dead 2. Known as the `AI Director', the system monitors the ``emotional intensity'' of each players' gameplay experience, by tracking factors such as each player's current health and recent kills, proximity and deadliness of visible enemies, and separation from the main group. It then dynamically alters the placement of supplies and the generation of enemies of various types in order to control pacing and maintain flow. It follows a policy of encouraging intensity to build up to a peak, sustaining threat for a short time, and then allowing intensity to fade during a `relax' period, thereby creating somewhat-unpredictable peaks and valleys during gameplay. In Left 4 Dead 2, the Director has additional control over the structure of the level \cite{valve}.
 \item[Bethesda's Radiant Story]
 Another recent example of IPCG is the Radiant Story system used in Bethesda's game Skyrim. Rather than monitor the player's performance and aptitude, it evaluates their progress and history. When the player receives a quest, the system looks for viable locations that the player has not yet explored, and customises details of the task so that it will take the player to this new location. This avoids requiring the player to return to already-completed areas, and instead force exploration of previously unknown regions, helping to increase immersion by avoiding repetition of content \cite{radiant}. 
 \item[GAR's Weapon Evolution]
 Finally, the weapon evolution mechanism in the game Galactic Arms Race\cite{garmsr} is an unconventional application of an IPCG system. All of the weapons in the game are represented by procedurally generated particle systems, with a small collection of variables that control their behaviour \cite{particles}. The IPCG system tracks only which weapons the player spends most time using, and then uses small neural networks to evolve new weapons that are variations on the player's favourite weapons so far. This allows the player to experience more of the type of content that they prefer.
+\item[Polymorph] [TODO: write about Polymorph. Academic paper / example system. Also arguably IPCG, especially since it's paper is in that section\ldots] \cite{jennings2010polymorph}
 \end{description}
 
 \subsection{IPCG Academic Literature}
@@ -215,7 +221,7 @@ The second portion of the IPCG system should be essentially a multi-class classi
 \subsection{Approach}
 The modules above are presented in logical order of development: none of the IPCG system will be testable without the Base program (which can be tested standalone if given a hand-crafted level), but the PCG may be run and tested using specimen models, and finally the Evaluator can be tested once the other systems are in place.
 \subsubsection{Classifier Training}
- The development of the classifier will involve initially collecting data on as many potentially relevant features of the player's performance as possible, and then performing principle component analysis (PCA) upon the data-set in order to identify the maximally variant features. These can then be retained and used as the input to a K-means discretisation algorithm, which can finally be used to train a One-vs-All SVM classifier.
+The development of the classifier will involve initially collecting data on as many potentially relevant features of the player's performance as possible, and then performing principle component analysis (PCA) upon the data-set in order to identify the maximally variant features. These can then be retained and used as the input to a K-means discretisation algorithm, which can finally be used to train a One-vs-All SVM classifier.
 \subsubsection{Evaluation}
 In order to perform retrospective evaluation of the system, it would be useful to integrate some facility for users to provide deliberate feedback outside of the player modelling system.
 \subsection{Justification}
@@ -225,6 +231,7 @@ Use of Java, as it is my most well known language.
 Custom-built base module, as will allow to be kept simple.
 An alternative approach to the problem of generating a 2D platforming environment for use with DDA is presented by Sorenson \emph{et al.}\cite{sorenson2010towards}, who detail a more general top-down approach using genetic algorithms. However, their system is also more complex and provides an unneeded degree of generality for this project. This system as proposed should be able to fulfil the requirements given, and demonstrate intelligent variation in output based upon the skill of the player.
 [TODO: mention the intelligent DDA. justify different genre \cite{missura2009player}. However, didn't know about this at design time.] 
+Pick a simpler testbed. Initial research showed a lot of PCG, DDA and even some IPCG literature applicable to the problem of 2D platforming. As this is generally considered fairly basic, seemed appropriate to follow suit. However, the goal was to create a minimal working demonstration. Partway through implementation discovered a paper by Missura \textit{et al.} on the use of machine learning algorithms in player modeling for intelligent difficulty adjustment \cite{missura2009player}. The example system in this case was a very simple `arcade' style 2D shooter, a genre which would possibly have been an even simpler testbed than a 2D platformer. However, due to the nature of the genre it would have been more difficult to affect the game environment in manners that were more obviously  IPCG than DDA. 
 
 \section{Requirements}
 The main aim of the project requirements will be to constrain the problem to an achievable scale, and inform future evaluation of the final solution. The `functional' requirements that follow specify functionality that the system must provide. The majority of them are generic to any IPCG system, as this project intends to cover that alone, and refinements specific to this project are specified where necessary. The `non-functional' requirements define qualities that the system must adhere to, and in general are constraints that should serve to encourage feasibility and quality.
@@ -314,10 +321,10 @@ Then, do use k-means discretisation with these features.
 \section{Feedback Interface}
 One of the advantages of using Java is that it provides the Swing GUI widget toolkit, which makes creating a simple interface allowing player feedback relatively simple. Four custom layouts are needed: 
 \begin{description}
-\item[Introductory text.] Used for the welcome screen with a brief overview of the experiment. Re-used for the interaction instructions. Re-used again for the final submission confirmation and thanks screen. %[TODO: specify gridbag layout, forward and back buttons]
-\item[Introductory questions.] Initial mini-questionnaire containing two labelled five-point Likert items to query the participants' familiarity with games and 2D platform games. %[TODO: specify layout and forward back buttons]
-\item[Level evaluation questions.] Used after each of the four levels to request player feedback. A single seven-point Likert item with label and explanatory text, possibly level / progress statistics. %[TODO: you know the drill]
-\item[Final review and submission.] Penultimate screen. Provides a non-editable textbox containing all data to be submitted, and a final 'Submit' button for confirmation. %[TODO: specify layout and forward back buttons]
+\item[Introductory text.] Used for the welcome screen with a brief overview of the experiment. Re-used for the interaction instructions. Re-used again for the final submission confirmation and thanks screen. [TODO: specify gridbag layout, forward and back buttons]
+\item[Introductory questions.] Initial mini-questionnaire containing two labelled five-point Likert items to query the participants' familiarity with games and 2D platform games. [TODO: specify layout and forward back buttons]
+\item[Level evaluation questions.] Used after each of the four levels to request player feedback. A single seven-point Likert item with label and explanatory text, possibly level / progress statistics. [TODO: you know the drill]
+\item[Final review and submission.] Penultimate screen. Provides a non-editable textbox containing all data to be submitted, and a final 'Submit' button for confirmation. [TODO: specify layout and forward back buttons]
 \end{description}
 
 [TODO: discuss justification for using likert items, advantages of symmetry. Cite ideal use of likert items in surveys, justifying neutral presentation.]
@@ -360,22 +367,22 @@ Each of the concrete items within the world, such as \texttt{FlatPlatformPart}, 
 
 discuss physics, sonic, simplification
 
+The physics mistake: writing the physics for a 2D platformer, even one as restricted as this has ended up being, turns out to be decidedly non-trivial. There are so many possibly variations in terms of realism, amplitude and sensitivity. Initially followed the Sonic Physics Guide by Mercury \footnote{\texttt{http://info.sonicretro.org/Sonic\_Physics\_Guide}}, which was recommended as a good starting point. In terms of the game base alone, this was fine as it resulted in solid, satisfying physics. However, turned out to be taking separation of concerns too far, as the nature of the physics and freedom of movement has a significant impact on the evaluation of challenge of a particular jump or obstacle. Ended up stripping out a lot of the more advanced features such as acceleration and variable jump responsiveness, in order to simplify the challenge evaluation.
+
+Things could have done differently: used the infinite mario codebase. Been more specific with requirements
 
 \section{Generator}
 [TODO: write about creating an ordered list of all variations on obstacles by rating. Pick using a gaussian distribution where the centre is the desired difficulty and the standard deviation vaires based on how close to the Edge you are. this gives a target difficulty the nearest higher and lower valid obstacles are selected, and randomly chosen between based on proximity. This process runs whenever a new pattern is needed. Once the level has exceeded a certain length is will generate a final platform instead]
 
 \section{Evaluator}
 [TODO: write about had intended to use a K-means classifier, which would have used a selected set of training points in order to wuickly classify new playser.. However, this would have relied upn haveing a sufficiend spread and quality of training data across all point on the difficulty spectrum. Research into alternative classification methods led to the possibimity of using a one-dimensional Support Vector Machine (SVM). By plotting the difficulty of failed obstacles against successful ones, build two classes that are probably non-linearly-separable. However by using an SVM with slack variables, it is possible to calculate an optimal separating plane. This represents the percieved boundary of the participant's ability, and so by using this as the target input for the aPCG content can be generated that should challenge but not frustrate the player.]
+
+\section{Testing}
 Had significant problems throughout development when making things too general: specifically collision, among others. Initially worked on a general collision algorithm for colliding the player (a circle) with a platform of arbitrary angle. This turned out to be superfluous, as for simplicity the control physics does not deal differently with movement on non-horizontal surfaces, and the generator does not generate them to reduce complexity. This could be the subject of a future extension however. Confining all platforms to be horizontal greatly simplified the collision algorithms, though there are still difficult cases there the player is potentially colliding simultaneously with two contiguous platforms: in these cases the results of the two collisions are compared and whichever results in a greater y-displacement is accepted: due to the horizontality restriction on the platforms, this guarantees the player is no longer intersecting either possible collision (TODO no it doesn't, will have to look into this\ldots well, it does for contiguous platforms, but not for disjoint ones: $\_$- gah.)
 
 Used test-driven-development for the collisions, as these were tricky and I wanted to be certain of getting it right. Throughout development, had to use regular integration testing in order to ensure that new features and functionality was compatible with existing code. [TODO: Write about agile development and continuous unit and integration testing.]
 [TODO: mention Java strong-typing and generics]
 [TODO: write about]
-
-% \chapter{System Testing}
-% % - Testing strategy and results
-% see appendix 
-% I used test-driven-development for the collisions, as these were tricky and I wanted to be certain of getting it right. Throughout development I had to use regular integration testing in order to ensure that new features and functionality was compatible with existing code. Write about agile development and continuous unit and integration testing. possibly fold this chapter into the evaluation one, will be short otherwise.
 
 \chapter{System Evaluation}
 % n-1. a chapter reviewing progress and results
@@ -394,6 +401,7 @@ loopback cells (major effect on difficulty, don't die just return)\\
 death penalty: return to start of component, pattern or level\\
 auto-movement of camera\\
 
+\section{User Study}
 Wider evaluation of system: look at whether participant feedback matches expected:
 items:\\
 Levels 1 \& 2: familiar players should report that they experienced less challenge than unfamiliar players\\
@@ -406,7 +414,9 @@ difficult. closest competition is Polymorph, possibly Launchpad; can look at sim
 
 Critical evaluation:\\
 has fulfilled all (most?) requirements. However, many desired features missing
-Important question: has it demonstrated working IPCG? If so, are there interesting comments that can be made `even with an environment this simple/restricted, it it possible to make meaningful changes that impact the player's experience of challenge'. If not, why not? was the system too simple, or is it purely bad calibration. In either case, is it possible to improve the calibration? if there's time, can the wider evaluation be run again with a better-calibrated version using the first survey's data, and does this give interesting results to be used in the viva?
+Important question: has it demonstrated working IPCG? If so, are there interesting comments that can be made `even with an environment this simple/restricted, it it possible to make meaningful changes that impact the player's experience of challenge'. If not, why not? was the system too simple, or is it purely bad calibration. In either case, is it possible to improve the calibration? 
+
+\section{Metrics}
 
 \chapter{Project Evaluation}
 % – comparative and critical evaluation – reflection
@@ -482,7 +492,7 @@ Definitely fell behind. Did not *exactly* end up dropping features: due to the u
 At the time of writing, I thought that the plan was fairly generous. I was also fortunate in that I had no other academic coursework commitments during the second semester, and so believed that I would be able to stick to schedule uninterrupted. However, this proved difficult in the face of non-academic commitments, and was further hindered by the fact that the direction[] of actual development did not match the clean separation indicated in the original plan, leading to the use of ad-hoc milestones under the agile system. I believe that this flexibility was ultimately necessary, as making the individual modules general and robust enough to match the separate implementation indicated in the schedule would actually have taken far more time than the schedule allowed for. However, this same flexibility made it more difficult to reconcile the [actual] milestones with those indicated by the schedule, making it difficult to judge progress. 
 Scheduling aside, equipment failure would have been mitigated by the use of a cross-platform programming language, IDE and report-writing environment, and having all files (including bibtex file for references) backed up and under version control, allowing development to continue close-to-seamlessly on another machine. In retrospect, one weakness of this approach is the number of bookmarked resources and potential references that would have been lost if equipment failed.
 Scheduling allowed for a sensible mix of project work and other non-academic commitments, however expectations in this area proved unrealistic. During the research phase, ongoing reading took place alongside other commitments. During the implementation phase, it proved much more difficult to maintain continuous application to the project, partially due to the necessary wind-up time needed for effective coding, in comparison to the relative ease of quickly reading one or more potentially relevant papers. This resulted in the most effective coding taking place during irregular sprints - ideally suited to the agile methodology, but resulting in time lost to re-acquaintance overheads. 
-%intensely educational experience
+intensely educational experience
 
 Learned how different this report/project is from typically available academic literature. Almost all papers abstract away the development work (apart from key algorithms and techniques) and write instead only about results and conclusions. This leads to inaccurate beliefs about the areas of challenge in the project. 
 
@@ -491,9 +501,6 @@ Learned how different this report/project is from typically available academic l
 \centering
 \vspace{-5cm}
 \section{Gantt Charts}
-
-% \addcontentsline{toc}{section}{5.1 Work Completed}
-% \addcontentsline{toc}{section}{5.2 Work Remaining}
 
      \includegraphics[scale=0.7, trim = 12mm 30mm 95mm 30mm, clip]{done}
 \caption{Work Completed}
@@ -516,16 +523,13 @@ Learned how different this report/project is from typically available academic l
 % – summary and conclusions
 
 Overall, the project has met (the majority of) its stated goals, and so can be considered to some extent successful. However, in many ways more valuable have been the lessons learned from the mistakes made during the project. Certainly the most damaging mistake, made repeatedly, though in different contexts, was the desire for, specification of and implementation of overly general systems, without regards to the practicalities of the problem at hand 
-% \section{Future Work}
-% \subsection{Possible Extensions}
+
 One drawback of the system as proposed is that it must still reduce all of the data about the player's performance into a single discrete decision: [TODO: make this clear earlier when talking about the evaluator] whether to continue generating the level at the current difficulty, increase the difficulty, or decrease it. There is no opportunity for granularity representing player aptitude at a particular type of challenge. One possible extension would be to divide the obstacles by type (stationary hazard, timed hazard, projectile etc.), and evaluate the player's skill on particular classes individually, then use this more detailed model to inform a slightly more sophisticated PCG module. This approach would be an ideal candidate for a collaborative filtering algorithm, which with a large enough dataset would further allow the system to predict a player's aptitude at obstacle types that had not yet been seen by that player.
 [IGNORE: citations testing]
 \cite{rogue}
 
 \cite{sorenson2011generic,lopes2011adaptivity,hamlet,smith2011inclusive,garmsr,denault2007avoid,borderlands,charbitat,citeulike:7364450,elite,flow,borderlandsguns,mario,particles,smith2011launchpad,missura2009player,jennings2010polymorph,compton2006procedural,radiant,smith2009rhythm,rogue,spelunky,smith2010tanagra,valve,hunicke2005case,deathotleveldesigner,speedtree,sorenson2010towards,shaker2010towards,togeliusPCGdef}\cite{mawhorter2010procedural}
-% \subsection{Related Areas}
 
-% \section{Summary}
 
 
 \bibliography{IPCG}{}
