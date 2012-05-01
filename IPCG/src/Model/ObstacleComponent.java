@@ -24,7 +24,7 @@ public class ObstacleComponent extends Component {
 	public int rate() {
 		int rating = 0;
 		for (Part element : elements) {
-			rating = Math.max(element.rate(), rating);
+			rating = Math.min(element.rate(), rating);
 		}
 		return rating;
 	}

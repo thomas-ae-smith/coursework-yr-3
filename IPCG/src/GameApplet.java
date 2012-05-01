@@ -45,7 +45,7 @@ public class GameApplet extends JApplet implements ActionListener {
 			System.err.println("Error changing system look and feel.");
 		}
 		// this.log = new StringBuilder("# this is the data file\n---\n");
-		log.append("---\n# IPCG 3YP data file\n# taes1g09@ecs.soton.ac.uk\n");
+		log.append("---\n# IPCG 3YP data file, v." + Constants.VERSION + "\n# taes1g09@ecs.soton.ac.uk\n");
 		// this.setIgnoreRepaint(true);
 
 		// Create and set up the content pane
