@@ -19,7 +19,7 @@
 
 \renewcommand*\descriptionlabel[1]{\hspace\labelsep \normalfont\bfseries --~~#1}
 
-%  \let\clearforchapter\relax  %to break chapter newpages.
+  \let\clearforchapter\relax  %to break chapter newpages.
 
 \begin{document}
 \frontmatter
@@ -198,7 +198,7 @@ This section of the report provides a specification for the prototype IPCG demon
 
 \section{Overview}
 The project is intended to provide the minimum functionality necessary to demonstrate a working IPCG system. This means that it will require the ability to monitor game state as the player progresses, form a model of some aspect of the state, and then generate further content based on the input from the model.
-Following the separation of concerns (SoC) design practice, the project may easily be modularised into three principle components: a `host' or base module, an adaptive PCG system, and an intelligent procedure for taking data about the game state and converting it into a model usable by the PCG. The proposed flow of information is shown in \fref{Figure:dataflow}.
+Following the separation of concerns (SoC) design practice, the IPCG system may easily be modularised into three principle components: a `host' or base module, an adaptive PCG system, and an intelligent procedure for taking data about the game state and converting it into a model usable by the PCG. The proposed flow of information is shown in \fref{Figure:dataflow}.
 
 \begin{figure}[htbp]
   \centering
@@ -206,62 +206,63 @@ Following the separation of concerns (SoC) design practice, the project may easi
   \caption{Data flow in proposed system.}
   \label{Figure:dataflow}
 \end{figure}
-\subsection{Modules}
-[TODO: text, referring to 3.1]
-\subsubsection{Game Base}
-The game base need be nothing more than a simple 2D platformer engine. This module should handle all input and rendering activity, and should follow the Model-View-Controller architecture in order to facilitate monitoring and live updating. In addition to presenting the user with the output of the IPCG system, the Base module should provide the basic input handling, physics and game functionality necessary to play the platformer, while also logging multiple types of information about the players performance for the evaluator module. 
-\subsubsection{Adaptive PCG}
-Forming the first portion of the IPCG system, this should be an adaptive (parameterised) 2D platforming level generator. Building on the work of Compton \emph{et al.}\cite{compton2006procedural}, this module should maintain a context-free grammar (CFG) of obstacles available, along with weights representing the estimated challenge of each element (terminal obstacle or combination).[TODO: explain this more fully previously] By taking these weights into account when deriving a string of obstacles from the CFG, sequences of a desired difficulty can be produced - or alternatively, the estimated challenge of existing sequences may be evaluated. A PCG system designed in this way should be able to generate entire levels `offline', by maintaining pre-determined maxima and local variations in difficulty, but should also be capable of generating levels on-the-fly, by ensuring that short-term future difficulty levels match those requested by the Evaluator.
-\subsubsection{Evaluator}
-The second portion of the IPCG system should be essentially a multi-class classifier. Given the varied inputs from the Base module, the Evaluator should form a belief about the player's skill relative to the current challenge of the level. By running the player's data through a previously-trained classifier, this module should obtain a model that can be passed to the PCG module and acted upon.
-\subsection{Approach}
-The modules above are presented in logical order of development: none of the IPCG system will be testable without the Base program (which can be tested standalone if given a hand-crafted level), but the PCG may be run and tested using specimen models, and finally the Evaluator can be tested once the other systems are in place.
-\subsubsection{Classifier Training}
-The development of the classifier will involve initially collecting data on as many potentially relevant features of the player's performance as possible, and then performing principle component analysis (PCA) upon the data-set in order to identify the maximally variant features. These can then be retained and used as the input to a K-means discretisation algorithm, which can finally be used to train a One-vs-All SVM classifier.
-\subsubsection{Evaluation}
-In order to perform retrospective evaluation of the system, it would be useful to integrate some facility for users to provide deliberate feedback outside of the player modelling system.
-\subsection{Justification}
-Justify:
-2D platformer as simplest possible approach.
-Use of Java, as it is my most well known language.
-Custom-built base module, as will allow to be kept simple.
-An alternative approach to the problem of generating a 2D platforming environment for use with DDA is presented by Sorenson \emph{et al.}\cite{sorenson2010towards}, who detail a more general top-down approach using genetic algorithms. However, their system is also more complex and provides an unneeded degree of generality for this project. This system as proposed should be able to fulfil the requirements given, and demonstrate intelligent variation in output based upon the skill of the player.
-[TODO: mention the intelligent DDA. justify different genre \cite{missura2009player}. However, didn't know about this at design time.] 
-Pick a simpler testbed. Initial research showed a lot of PCG, DDA and even some IPCG literature applicable to the problem of 2D platforming. As this is generally considered fairly basic, seemed appropriate to follow suit. However, the goal was to create a minimal working demonstration. Partway through implementation discovered a paper by Missura \textit{et al.} on the use of machine learning algorithms in player modeling for intelligent difficulty adjustment \cite{missura2009player}. The example system in this case was a very simple `arcade' style 2D shooter, a genre which would possibly have been an even simpler testbed than a 2D platformer. However, due to the nature of the genre it would have been more difficult to affect the game environment in manners that were more obviously  IPCG than DDA. 
+\section{Modules}
+Based on the divisions as defined above in \fref{Figure:dataflow}, each of the components may be developed as follows: [FIXME]
+\subsection{Game Base}
+The game base need be nothing more than a simple 2D platformer engine. This module should handle all input and rendering activity, and should follow the Model-View-Controller architecture in order to facilitate monitoring and live updating. In addition to presenting the user with the output of the IPCG system, the Base module should provide the basic input handling, physics and game functionality necessary to play the platformer, while also logging any information about the participant's performance necessary for the evaluator module. 
+\subsection{Adaptive PCG}
+Forming the first portion of the IPCG system, this should be an adaptive (parameterised) 2D platforming level generator. Building on the work of Compton \emph{et al.} \cite{compton2006procedural}, this module should maintain a context-free grammar (CFG) of obstacles available, along with weights representing the estimated challenge of each element (terminal obstacle or combination). %[TODO: explain this more fully previously]
+By taking these weights into account when deriving a string of obstacles from the CFG, sequences of a desired difficulty can be produced - or alternatively, the estimated challenge of existing sequences may be evaluated. A PCG system designed in this way should be able to generate entire levels `offline', by maintaining pre-determined maxima and local variations in difficulty, but should also be capable of generating levels on-the-fly, by ensuring that short-term future difficulty levels match those requested by the Evaluator.
+\subsection{Evaluator}
+The second portion of the IPCG system should provide the capability to intelligently classify the player's performance in some way. Given the varied inputs from the Base module, the Evaluator should form a belief about the player's skill relative to the current challenge of the level. By running the player's data through a previously-trained classifier, this module should obtain a model that can be passed to the PCG module and then acted upon in order to generate further suitable content.
+
+\section{Approach}
+The modules above are presented in logical order of development: none of the IPCG system will be testable without the Base program (which can be tested standalone if given a hand-crafted level), but the PCG may be run and tested using specimen models, and finally the Evaluator can be tested once the other systems are in place. %[TODO: more here]
+\subsection{Testing}
+In order to ensure that the modules interact as expected, it will be important to define the interfaces between them and then use either test driven development (TDD) or unit testing in order to ensure that the modules conform to the specifications as expected. Integration testing will also be useful to check that the modules interact properly during execution of the final program.
+\subsection{Classifier Training}
+The development of the classifier will initially involve collecting data on as many potentially relevant features of the player's performance as possible, and then performing principle component analysis (PCA) upon the data-set in order to identify the maximally variant features. These can then be retained and used as the input to a K-means discretisation algorithm, which can finally be used to train a One-vs-All SVM classifier.
+\subsection{Evaluation}
+In order to perform retrospective evaluation of the system, some facility for users to provide deliberate feedback outside of the player modelling system will be necessary. Particularly after each period of interaction with the system, an opportunity to give feedback will provide relevant data, and it will be useful to also gather contextual information such as a participant's general level of familiarity with computer games.
+\section{Justification}
+The specification and approach as detailed should result in a working IPCG system, thereby fulfilling one of the goals of this project. Each aspect of the design has been chosen in order to produce the simplest possible demonstration prototype. For example, an alternative approach to the problem of generating a 2D platforming environment for use with DDA is presented by Sorenson \emph{et al.}\cite{sorenson2010towards}, who detail a more general top-down approach using genetic algorithms. However, their system is also more complex and provides an unneeded degree of generality for this project. This system as proposed should be able to fulfil the requirements given, and demonstrate intelligent variation in output based upon the skill of the player.
+Initial research shows that much PCG, DDA and even some IPCG literature is applicable to the problem of 2D platforming. Existing approaches, both in PCG and IPCG, have focused on simple 2D platforming systems, and so in order to benefit from developing the ideas presented in current literature, and also to aid in later comparative evaluation, it seems sensible to follow this approach also. However, even more basic game environments exist - for example 'Cannon', the very simple arcade style 2D shooter developed by Missura \textit{et al.} \cite{missura2009player} for the development of machine learning algorithms and player modeling for intelligent difficulty adjustment. Unfortunately, due to the natures of many of the simpler genres it becomes more difficult to modify the game environment in manners that are more obviously IPCG than DDA. 
 
 \section{Requirements}
-The main aim of the project requirements will be to constrain the problem to an achievable scale, and inform future evaluation of the final solution. The `functional' requirements that follow specify functionality that the system must provide. The majority of them are generic to any IPCG system, as this project intends to cover that alone, and refinements specific to this project are specified where necessary. The `non-functional' requirements define qualities that the system must adhere to, and in general are constraints that should serve to encourage feasibility and quality.
+The main aim of the project requirements will be to constrain the problem to an achievable scale, and inform future evaluation of the final solution. The `functional' requirements that follow specify features that the system must provide. The majority of them are generic to any IPCG system, as this project intends to cover that area specifically, and refinements perticular to this project are specified where necessary. The `non-functional' requirements define qualities that the system must adhere to, and in general are constraints that should serve to encourage feasibility and quality.
 
 \subsection{Functional}
 In order to properly implement IPCG, the system should:
 \begin{description}
 \item[Present the user with an interactive game environment.] Without at least a basic game environment in place, there will be no player interaction to collect data on, and nothing to generate content for. The system should provide a simple 2D platforming environment, with enough complexity to demonstrate working IPCG. Typical game mechanisms such as score or powerups are unnecessary in this context.
 \item[Record data on the game state and player's behaviour.] The system will need to be able to monitor and record data on many aspects of the game environment. Statistics such as number of mistakes, number and average width of gaps jumped, and time to completion of level will all be needed for the player evaluator. In addition, non-player data such as the length of the level may also need to be taken into account.
-\item[Evaluate this data according to specific criteria.] [a trained classifier]
-\item[Form a model of some aspect of the player.] [skill relative to current difficulty]
+\item[Evaluate this data according to specific criteria.] Using machine learning algorithms, it should be possible to process the monitoring input in some reliable manner, in order to retain the most useful aspects of the data while minimising surplus information. 
+\item[Form a model of some aspect of the player.] The final form of the collected data should be a representative model that provides useful information about the player, and gives a clear indication of the necessary next actions by the IPCG system. 
 \item[Use this model to inform further PCG activities.] Finally, the system will need to be able to make use of this model in order to generate future level chunks at a difficulty suitable for the player. To do this, the PCG must be able to evaluate the difficulty of its own output, and ensure that this matches the desired difficulty indicated by the evaluator.
 \end{description}
 In addition, in order to facilitate evaluation of the system itself, it should:
 \begin{description}
 \item[Keep a usable record of the data used to generate a level.] This serves two purposes: it should allow re-generation of a previous level when given the same input, for inspection of the generation process. It will also allow more accurate re-calibration of the classifier, should that be necessary.
-\item[Request feedback from the player.] In order to evaluate the effectiveness of the system, it would be useful to have feedback from the actual users. Rather than require the use of an external platform, an inbuilt feedback facility could store responses alongside the in-game data stored above.
+\item[Request feedback from the player.] In order to evaluate the effectiveness of the system, it will be useful to obtain feedback from the actual users. Rather than require the use of an external platform, an inbuilt feedback facility could store responses alongside the in-game data stored above.
+\item[Run on multiple operating systems and be widely available.] To ensure that the largest number of potential participants are able to use the system, it will need to be cross-platform and easy to access. Excessive size, acquisition difficulties or specific system requirements will all limit potential participation.
+\item[Return infomation to a central storage point.] In order to recover information collected by the system, it will need to be capable of sending data back to a server once each session is finished. This can then be stored, collated and analysed in order to aid in system evaluation. 
 \end{description}
 
 \subsection{Non-Functional}
 In order to remain at a manageable scale, the system should:
 \begin{description}
-\item[be written in Java.]
-\item[be presented as a basic platformer.] Though IPCG could be applied in some fashion to most genres, adjusting jump and obstacle placements is likely to be one of the most basic applications.
-\item[be confined to 2D.] As the degree of complexity of the generated content grows, so too does the complexity of the PCG required to generate it. A simple 3D terrain is relatively easy to generate, but in order to keep the complexity of a platforming game to a minimum it should be restricted to two dimensions. 
-\item[limit the user to move and jump actions.] Many 2D platformers provide the player with novel interaction methods, which in this context would complicate the both the level generation and player evaluation systems. By restricting the player avatar's moveset, complexity is minimised.
+\item[be written in Java.] The Java language has several properties which make it attractive for this project. It is supported on multiple platforms, and is capable both of launching from a website and then later communicating via http GET and POST  requests. It also has a large number of built-in libraries that support basic drawing and user interface widgets, reducing the burden of these portions of the implementation.
+\item[be presented as a basic platformer.] Though IPCG can be applied in some fashion to most genres, adjusting jump and obstacle placements is likely to be one of the most basic applications that demonstrates convincing adaptability according to the output of the IPCG system.
+\item[be confined to 2D.] As the degree of complexity of the generated content grows, so too does the complexity of the PCG required to generate it. A simple 3D terrain is relatively easy to generate, but in order to minimise the complexity of a platforming game it should be restricted to two dimensions. 
+\item[limit the user to move and jump actions.] Many 2D platformers provide the player with novel interaction methods, which in this context would complicate the both the level generation and player evaluation systems. By restricting the player avatar's moveset, complexity is reduced.
 \end{description}
 In order to function satisfactorily as an interactive experience for the users, the system should also:
 \begin{description}
-  \item[remain responsive]
-  \item[properly maintain the challenge of generated content]
+  \item[consistently maintain the challenge of generated content.] Rather than generate content precisely matched to the participant's abilities, the system should provide challenges within a narrow range of difficulties centred on the target challenge level. This will ensure that the user will experience a variety of levels of challenge, including also continual opportunities to attempt content harder than that completed so far.  
+  \item[conform to established gaming conventions.] In order to avoid confusing or alienating users that are already familiar with computer games of the same genre, the IPCG system should avoid breaking commonly understood conventions such as the goal existing at the far right of a level, or falling off the screen resulting in death.
+  \item[remain responsive.] To avoid frustrating participants it is important that the system should not noticably slow or become unresponsive during the execution of the program.
 \end{description}
-[TODO: make this far longer and more detailed.
- Write about requirements of/for evaluation method using swing]
+% [TODO: make this far longer and more detailed.  Write about requirements of/for evaluation method using swing]
  
 % 4... further chapters discussing system implementation or experiment...
 \chapter{Detailed System Design}
@@ -341,6 +342,9 @@ o Which process did you follow: Ð waterfall, iterative, evolutionary?
 o How does this show in your plan? 
 o Why did you choose this process? 
 o How well did it work out for you?
+
+Use of Java, as it is my most well known language.
+
 
 \section{Approach}
 I used an agile methodology, with regular milestones and refactoring, and an aim of always having a working prototype at the end of each coding session. The overall system development intention was to follow a waterfall approach with regards to completing each module before moving onto the next, this proved to be fairly optimistic and na•ve, as for that to work the modules would have to be completely independent. While generality of that kind is desirable, there were practical limits to the amount of time available, and higher-priority features, and so development of the three modules each started independently but ended up being developed together roughly in parallel, particularly the generator ant the game base. In MVC terminology, the model is shared through the system, and then there are two views and two controllers. The game base's view renders the level to the screen, through the GameObject's \texttt{render()} function. In response, the player provides input to the system, handled by the game base's controller which applies gravity and collision checking, and occasionally calls upon the IPCG system to populate the model with more content. Within the IPCG system, the evaluator can be seen as a pure-data non-visual view, which queries the model using the GameObject's \texttt{rate()} function. Based on its classification, it passes input to the aPCG, which can be seen as a controller that modifies the model.
@@ -457,7 +461,7 @@ However (back on topic) there is scope for a more detailed review and comparison
 Plan was initially sensible, but suffered from becoming to broad and general throughout. More on this later.
 How could I have done it better differently? Could write loads on this alone. Brief list:
 Earlier investigation on the difficulties of sending POST data from Java. Have done a small amount of work with this in the past, but partly owing to time taken on other items, did not allow properly enough time for this.
-Pick a simpler testbed. Initial research showed a lot of PCG, DDA and even some IPCG literature applicable to the problem of 2D platforming. As this is generally considered fairly basic, seemed appropriate to follow suit. However, the goal was to create a minimal working demonstration. Partway through implementation discovered a paper by Missura \textit{et al.} on the use of machine learning algorithms in player modeling for intelligent difficulty adjustment \cite{missura2009player}. The example system in this case was a very simple `arcade' style 2D shooter, a genre which would possibly have been an even simpler testbed than a 2D platformer. However, due to the nature of the genre it would have been more difficult to affect the game environment in manners that were more obviously  IPCG than DDA. 
+
 Given that the choice of a 2D platformer was probably a correct one, then rather than creating engine from scratch should have picked mature code. The IPCG system is quite demanding in that it must be tied into the engine at a level that allows it to monitor game state and provide upcoming content. At an early stage in the project, I investigated the availability of open-source engines, particularly in Java, but found none that were simple enough to not require a large time investment to learn the codebase, and that were structured in a way that would not prevent the IPCG system from working well. Had I found one, it would have saved time designing and implementing the game base module, albeit at the cost of having to integrate the design and implementation of the IPCG system with potentially complex existing code. However, none of the open-source engines that I found were usable, and as the game base was intended to be deliberately simple it appeared it would be quicker to write it myself [see the physics mistake]. However, I later discovered that by looking simply for an open source engine, I had missed Infinite Mario by Markus `Notch' Persson - an open source 2D platformer engine with inbuilt PCG system. If I had used that as an original code base, I would have been saved from many non-relevant project difficulties.
 [TODO discuss: Be more specific with requirements. Too much ambiguity leads to ambition and then disappointment.] 
 
@@ -641,7 +645,7 @@ $\circ$ & $\circ$ & $\circ$ & $\circ$ & $\circ$ & $\circ$ & $\circ$
 
 \fbox{Submit $>>$}
 
-\chapter{DVD Contents}
+\chapter{CD Contents}
 - A software project, or a project with a significant software component should include a CD or DVD at the back of the report with the sources and executables. A short table of contents for the CD/DVD should be included as a printed appendix.
 TODO: once files are finalised. Possibly create a python script for this?
  
