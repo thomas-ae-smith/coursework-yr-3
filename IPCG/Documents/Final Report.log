@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011) (format=pdflatex 2011.7.3)  2 MAY 2012 12:53
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2011) (format=pdflatex 2011.7.3)  2 MAY 2012 14:29
 entering extended mode
  restricted \write18 enabled.
  Source specials enabled.
@@ -684,15 +684,15 @@ Overfull \hbox (1.0103pt too wide) in paragraph at lines 257--258
  []
 
 
-Overfull \vbox (14.49998pt too high) has occurred while \output is active []
-
-
-[11]
 Overfull \hbox (14.22906pt too wide) in paragraph at lines 261--262
 [][]\OT1/cmr/m/n/12 Rather than gen-
  []
 
 
+Overfull \vbox (14.49998pt too high) has occurred while \output is active []
+
+
+[11]
 Overfull \vbox (14.49998pt too high) has occurred while \output is active []
 
 
@@ -724,11 +724,11 @@ File: lstlang1.sty 2004/09/05 1.3 listings language file
 (../src/Model/GameObject.java
 LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <10> not available
 (Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 1.
-
+)
 Overfull \vbox (14.49998pt too high) has occurred while \output is active []
 
 
-[17])
+[17]
 Overfull \hbox (22.561pt too wide) in paragraph at lines 363--365
 \OT1/cmr/m/n/12 spec-i-fy-ing gener-ics to re-strict the type of ob-ject they c
 an deal with, as in \OT1/cmtt/m/n/12 Component.java\OT1/cmr/m/n/12 :
@@ -755,17 +755,17 @@ Overfull \vbox (14.49998pt too high) has occurred while \output is active []
 
 
 [21]
-Overfull \hbox (49.96051pt too wide) in paragraph at lines 467--468
+Overfull \hbox (15.0992pt too wide) in paragraph at lines 468--469
+[][]\OT1/cmr/m/n/12 The
+ []
+
+
+Overfull \hbox (20.78835pt too wide) in paragraph at lines 469--470
 []
  []
 
 
-Overfull \hbox (48.11473pt too wide) in paragraph at lines 468--469
-[]
- []
-
-
-Overfull \hbox (0.60057pt too wide) in paragraph at lines 475--477
+Overfull \hbox (0.60057pt too wide) in paragraph at lines 476--478
 [][]\OT1/cmr/m/n/12 However, de-spite tech-ni-cally ful-fill-ing the re-quire-m
 ents, it has not man-aged to demon-
  []
@@ -777,16 +777,16 @@ Overfull \vbox (14.49998pt too high) has occurred while \output is active []
 [22] <done.pdf, id=143, 597.23125pt x 845.1575pt>
 File: done.pdf Graphic file (type pdf)
  <use done.pdf>
-Package pdftex.def Info: done.pdf used on input line 572.
+Package pdftex.def Info: done.pdf used on input line 573.
 (pdftex.def)             Requested size: 204.94936pt x 472.10548pt.
 
 <todo.png, id=145, 1306.8825pt x 379.4175pt>
 File: todo.png Graphic file (type png)
  <use todo.png>
-Package pdftex.def Info: todo.png used on input line 579.
+Package pdftex.def Info: todo.png used on input line 580.
 (pdftex.def)             Requested size: 602.22482pt x 189.70828pt.
 
-Overfull \hbox (19.44853pt too wide) in paragraph at lines 567--583
+Overfull \hbox (19.44853pt too wide) in paragraph at lines 568--584
 [][][]   [] 
  []
 
@@ -798,11 +798,13 @@ Overfull \vbox (14.49998pt too high) has occurred while \output is active []
 Overfull \vbox (14.49998pt too high) has occurred while \output is active []
 
 
-[24]
+[24 <./done.pdf> <./todo.png>]
 Overfull \vbox (14.49998pt too high) has occurred while \output is active []
 
 
-[25 <./done.pdf> <./todo.png>] (./Final Report.bbl
+[25
+
+] (./Final Report.bbl
 bibitemlist
 
 Overfull \vbox (14.49998pt too high) has occurred while \output is active []
@@ -811,79 +813,79 @@ Overfull \vbox (14.49998pt too high) has occurred while \output is active []
 [26
 
 ]
-Underfull \hbox (badness 8075) in paragraph at lines 154--160
+Underfull \hbox (badness 8075) in paragraph at lines 147--153
 [][]\OT1/cmr/m/n/12 A. Robin-son.  Gear-box In-ter-view: Randy Pitch-ford on Bo
 r-der-
  []
 
 
-Underfull \hbox (badness 6428) in paragraph at lines 154--160
+Underfull \hbox (badness 6428) in paragraph at lines 147--153
 \OT1/cmr/m/n/12 lands' 17 Mil-lion Guns. \OT1/cmr/m/it/12 Com-puter and Video G
 ames\OT1/cmr/m/n/12 .  Avail-able:
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 154--160
+Underfull \hbox (badness 10000) in paragraph at lines 147--153
 \OT1/cmr/m/n/12 http://www.computerandvideogames.com/220328/interviews/gearbox-
 
  []
 
-
+)
 Overfull \vbox (14.49998pt too high) has occurred while \output is active []
 
 
-[27])
+[27]
 Overfull \vbox (14.49998pt too high) has occurred while \output is active []
 
 
 [28]
-Underfull \hbox (badness 10000) in paragraph at lines 638--641
+Underfull \hbox (badness 10000) in paragraph at lines 639--642
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 638--641
+Underfull \hbox (badness 10000) in paragraph at lines 639--642
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 651--661
+Underfull \hbox (badness 10000) in paragraph at lines 652--662
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 669--681
+Underfull \hbox (badness 10000) in paragraph at lines 670--682
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 669--681
+Underfull \hbox (badness 10000) in paragraph at lines 670--682
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 669--681
+Underfull \hbox (badness 10000) in paragraph at lines 670--682
 
  []
 
 Missing character: There is no Ð in font cmti12!
 
-Overfull \hbox (7.41441pt too wide) in paragraph at lines 696--696
+Overfull \hbox (7.41441pt too wide) in paragraph at lines 697--697
  []|\OT1/cmr/m/n/12 about right| 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 696--700
+Underfull \hbox (badness 10000) in paragraph at lines 697--701
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 696--700
+Underfull \hbox (badness 10000) in paragraph at lines 697--701
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 696--700
+Underfull \hbox (badness 10000) in paragraph at lines 697--701
 
  []
 
@@ -892,11 +894,15 @@ Overfull \vbox (14.49998pt too high) has occurred while \output is active []
 
 
 [29]
+Overfull \hbox (16.8396pt too wide) in paragraph at lines 720--755
+[][] 
+ []
+
 
 Class memoir Warning: The material used in the headers is too large
 (14.49998pt) for the given head height (0.0pt), it is recommended to
 either increase the head height or redesign the header
-(in both cases you will find help in the memoir manual). on input line 720.
+(in both cases you will find help in the memoir manual). on input line 758.
 
 
 Overfull \vbox (14.49998pt too high) has occurred while \output is active []
@@ -908,13 +914,13 @@ Overfull \vbox (14.49998pt too high) has occurred while \output is active []
 
  (./Final Report.aux) ) 
 Here is how much of TeX's memory you used:
- 7748 strings out of 493633
- 112128 string characters out of 3143378
- 269939 words of memory out of 3000000
- 10992 multiletter control sequences out of 15000+200000
+ 7742 strings out of 493633
+ 112027 string characters out of 3143378
+ 274616 words of memory out of 3000000
+ 10986 multiletter control sequences out of 15000+200000
  10699 words of font info for 38 fonts, out of 3000000 for 9000
  831 hyphenation exceptions out of 8191
- 47i,11n,42p,1463b,1623s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 47i,11n,42p,1463b,1020s stack positions out of 5000i,500n,10000p,200000b,50000s
 </usr/local/texlive/2011/texmf-dist/fonts/type1/public/a
 msfonts/cm/cmbx10.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/public/am
 sfonts/cm/cmbx12.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/public/ams
@@ -929,7 +935,7 @@ mr8.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy
 2.pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10
 .pfb></usr/local/texlive/2011/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.
 pfb>
-Output written on "Final Report.pdf" (35 pages, 365590 bytes).
+Output written on "Final Report.pdf" (35 pages, 365696 bytes).
 PDF statistics:
  238 PDF objects out of 1000 (max. 8388607)
  175 compressed objects within 2 object streams
