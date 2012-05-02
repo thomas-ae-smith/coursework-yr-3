@@ -1,0 +1,225 @@
+\begin{thebibliography}{10}
+
+\bibitem{valve}
+M.~Booth.
+\newblock {The AI systems of Left 4 Dead}.
+\newblock In {\em Keynote, Fifth Artificial Intelligence and Interactive
+  Digital Entertainment Conference (AIIDE '09)}, Stanford, CA, October 14 - 16,
+  2009.
+
+\bibitem{elite}
+D.~Braben and I~Bell.
+\newblock \textit{Elite}.
+\newblock (Armstrad CPC), Acornsoft, 1984.
+
+\bibitem{cauwenberghs2001incremental}
+G.~Cauwenberghs and T.~Poggio.
+\newblock Incremental and decremental support vector machine learning.
+\newblock {\em Advances in neural information processing systems}, pages
+  409--415, 2001.
+
+\bibitem{citeulike:7364450}
+Darryl Charles and Michaela Black.
+\newblock Dynamic player modelling: A framework for {Player-Centered} digital
+  games.
+\newblock In {\em Proceedings of International Conference on Computer Games:
+  Artificial Intelligence, Design and Education}, pages 29--35, November 2004.
+
+\bibitem{flow}
+J.~Chen.
+\newblock Flow in games (and everything else).
+\newblock {\em Communications of the ACM}, 50(4):31--34, April 2007.
+
+\bibitem{compton2006procedural}
+K.~Compton and M.~Mateas.
+\newblock Procedural level design for platform games.
+\newblock In {\em Proceedings of the Artificial Intelligence and Interactive
+  Digital Entertainment International Conference (AIIDE)}, 2006.
+
+\bibitem{speedtree}
+A.~de~la Re, F.~Abad, E.~Camahort, and M.~Juan.
+\newblock Tools for procedural generation of plants in virtual scenes.
+\newblock In {\em Computational Science -- ICCS 2009}, pages 801--810. Springer
+  Berlin / Heidelberg, 2009.
+
+\bibitem{denault2007avoid}
+A.~Denault and J.~Kienzle.
+\newblock {Avoid common pitfalls when programming 2D graphics in Java: lessons
+  learnt from implementing the Minueto toolkit}.
+\newblock {\em Crossroads}, 13(3):7--7, 2007.
+
+\bibitem{deathotleveldesigner}
+A.~Doull.
+\newblock The death of the level designer: Procedural content generation in
+  games.
+\newblock {\em ASCII Dreams}, Jan 2008.
+
+\bibitem{borderlands}
+{Gearbox Software}.
+\newblock \textit{Borderlands}.
+\newblock (Xbox Game), 2K Games, 2009.
+
+\bibitem{garmsr}
+E.J. Hastings, R.K. Guha, and K.O. Stanley.
+\newblock Automatic content generation in the galactic arms race video game.
+\newblock {\em IEEE Transactions on Computational Intelligence and AI in
+  Games}, 1(4):245--263, 2009.
+
+\bibitem{particles}
+E.J. Hastings, R.K. Guha, and K.O. Stanley.
+\newblock Interactive evolution of particle systems for computer graphics and
+  animation.
+\newblock {\em IEEE Transactions on Evolutionary Computation}, 13(2):418--432,
+  2009.
+
+\bibitem{hunicke2005case}
+R.~Hunicke.
+\newblock The case for dynamic difficulty adjustment in games.
+\newblock In {\em Proceedings of the 2005 ACM SIGCHI International Conference
+  on Advances in computer entertainment technology}, pages 429--433. ACM, 2005.
+
+\bibitem{hamlet}
+R.~Hunicke and V.~Chapman.
+\newblock {AI} for dynamic difficulty adjustment in games.
+\newblock In {\em Challenges in Game Artificial Intelligence AAAI Workshop},
+  pages 91--96, 2004.
+
+\bibitem{jennings2010polymorph}
+M.~Jennings-Teats, G.~Smith, and N.~Wardrip-Fruin.
+\newblock Polymorph: dynamic difficulty adjustment through level generation.
+\newblock In {\em Proceedings of the 2010 Workshop on Procedural Content
+  Generation in Games}, page~11. ACM, 2010.
+
+\bibitem{ResE5}
+C.~Liu, P.~Agrawal, N.~Sarkar, and S.~Chen.
+\newblock Dynamic difficulty adjustment in computer games through real-time
+  anxiety-based affective feedback.
+\newblock {\em Intl. Journal of Human--Computer Interaction}, 25(6):506--529,
+  2009.
+
+\bibitem{lopes2011adaptivity}
+R.~Lopes and R.~Bidarra.
+\newblock Adaptivity challenges in games and simulations: a survey.
+\newblock {\em IEEE Transactions on Computational Intelligence and AI in
+  Games}, 3(2):85--99, June 2011.
+
+\bibitem{mawhorter2010procedural}
+P.~Mawhorter and M.~Mateas.
+\newblock Procedural level generation using occupancy-regulated extension.
+\newblock In {\em 2010 IEEE Symposium on Computational Intelligence and Games
+  (CIG)}, pages 351--358. IEEE, 2010.
+
+\bibitem{missura2009player}
+O.~Missura and T.~G{\"a}rtner.
+\newblock Player modeling for intelligent difficulty adjustment.
+\newblock In {\em Discovery Science}, pages 197--211. Springer, 2009.
+
+\bibitem{moffett2010applying}
+J.P. Moffett.
+\newblock {\em Applying Causal Models to Dynamic Difficulty Adjustment in Video
+  Games}.
+\newblock PhD thesis, Worcester Polytechnic Institute, 2010.
+
+\bibitem{radiant}
+B.~Nesmith.
+\newblock {Radiant Story: Dynamically created content in The Elder Scrolls V:
+  Skyrim}.
+\newblock Available:
+  http://www.gamedesignexpo.com/panel/2011/radiant-story-dynamically-created-content-in-the-elder-scrolls-v-skyrim/,
+  Jan 21 2012.
+
+\bibitem{nethack}
+{NetHack DevTeam}.
+\newblock \textit{Nethack}.
+\newblock (Cross-platform Game), Mike Stephenson, 1987.
+
+\bibitem{charbitat}
+M.~Nitsche, C.~Ashmore, W.~Hankinson, R.~Fitzpatrick, J.~Kelly, and
+  K.~Margenau.
+\newblock Designing procedural game spaces: A case study.
+\newblock {\em Proceedings of FuturePlay}, pages 10--12, 2006.
+
+\bibitem{nystrm2011agile}
+A.~Nystr{\"o}m.
+\newblock Agile solo-defining and evaluating an agile software development
+  process for a single software developer.
+\newblock 2011.
+
+\bibitem{mario}
+M.~Persson.
+\newblock \textit{Infinite Mario Bros!}
+\newblock (Online Game), Mojang, 2008.
+
+\bibitem{borderlandsguns}
+A.~Robinson.
+\newblock {Gearbox Interview: Randy Pitchford on Borderlands' 17 Million Guns.}
+  \textit{Computer and Video Games}.
+\newblock Available:
+  http://www.computerandvideogames.com/220328/interviews/gearbox-interview/,
+  July 28 2009.
+
+\bibitem{shaker2010towards}
+N.~Shaker, G.N. Yannakakis, and J.~Togelius.
+\newblock Towards automatic personalized content generation for platform games.
+\newblock In {\em Proceedings of the AAAI Conference on Artificial Intelligence
+  and Interactive Digital Entertainment (AIIDE). AAAI Press}, 2010.
+
+\bibitem{smith2011inclusive}
+A.M. Smith, C.~Lewis, K.~Hullett, G.~Smith, and A.~Sullivan.
+\newblock An inclusive view of player modeling.
+\newblock In {\em Proceedings of the 6th International Conference on
+  Foundations of Digital Games (FDG 2011)}, 2011.
+
+\bibitem{smith2009rhythm}
+G.~Smith, M.~Treanor, J.~Whitehead, and M.~Mateas.
+\newblock Rhythm-based level generation for {2D} platformers.
+\newblock In {\em Proceedings of the 4th International Conference on
+  Foundations of Digital Games}, pages 175--182. ACM, 2009.
+
+\bibitem{smith2010tanagra}
+G.~Smith, J.~Whitehead, and M.~Mateas.
+\newblock Tanagra: A mixed-initiative level design tool.
+\newblock In {\em Proceedings of the Fifth International Conference on the
+  Foundations of Digital Games}, pages 209--216. ACM, 2010.
+
+\bibitem{smith2011launchpad}
+G.~Smith, J.~Whitehead, M.~Mateas, M.~Treanor, J.~March, and M.~Cha.
+\newblock Launchpad: A rhythm-based level generator for {2D} platformers.
+\newblock {\em IEEE Transactions on Computational Intelligence and AI in
+  Games}, 3(1):1--16, March 2011.
+
+\bibitem{sorenson2010towards}
+N.~Sorenson and P.~Pasquier.
+\newblock Towards a generic framework for automated video game level creation.
+\newblock {\em Applications of Evolutionary Computation}, pages 131--140, 2010.
+
+\bibitem{sorenson2011generic}
+N.~Sorenson, P.~Pasquier, and S.~DiPaola.
+\newblock A generic approach to challenge modeling for the procedural creation
+  of video game levels.
+\newblock {\em IEEE Transactions on Computational Intelligence and AI in
+  Games}, 3(3):229--244, 2011.
+
+\bibitem{su2002training}
+Y.~Su, TM~Murali, V.~Pavlovic, and S.~Kasif.
+\newblock Training support vector machines in 1d.
+\newblock {\em URL http://genomics10. bu. edu/yangsu/rankgene/one-svm. pdf},
+  2002.
+
+\bibitem{togeliusPCGdef}
+J.~Togelius, E.~Kastbjerg, D.~Schedl, and G.N. Yannakakis.
+\newblock What is procedural content generation?: Mario on the borderline.
+\newblock In {\em Proceedings of the 2nd International Workshop on Procedural
+  Content Generation in Games}, page~3. ACM, 2011.
+
+\bibitem{rogue}
+Wichman G. Arnold~K. Toy, M. and J~Lane.
+\newblock \textit{Rogue}.
+\newblock (PC Game), {A. I. Design}, 1980.
+
+\bibitem{spelunky}
+D~Yu.
+\newblock \textit{Spelunky}.
+\newblock (PC Game), Mossmouth LLC, 2009.
+
+\end{thebibliography}

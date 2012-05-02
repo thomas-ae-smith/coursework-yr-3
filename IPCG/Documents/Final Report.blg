@@ -1,0 +1,64 @@
+This is BibTeX, Version 0.99d (TeX Live 2011)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: Final Report.aux
+The style file: plain.bst
+Database file #1: IPCG.bib
+Name 1 in "Toy, M., Wichman, G., Arnold, K., and Lane, J" has a comma at the end for entry rogue
+while executing---line 1049 of file plain.bst
+Too many commas in name 1 of "Toy, M., Wichman, G., Arnold, K., and Lane, J" for entry rogue
+while executing---line 1049 of file plain.bst
+Too many commas in name 1 of "Toy, M., Wichman, G., Arnold, K., and Lane, J" for entry rogue
+while executing---line 1049 of file plain.bst
+Too many commas in name 1 of "Toy, M., Wichman, G., Arnold, K., and Lane, J" for entry rogue
+while executing---line 1049 of file plain.bst
+Warning--empty journal in nystrm2011agile
+Name 1 in "Toy, M., Wichman, G., Arnold, K., and Lane, J" has a comma at the end for entry rogue
+while executing---line 1090 of file plain.bst
+Too many commas in name 1 of "Toy, M., Wichman, G., Arnold, K., and Lane, J" for entry rogue
+while executing---line 1090 of file plain.bst
+Too many commas in name 1 of "Toy, M., Wichman, G., Arnold, K., and Lane, J" for entry rogue
+while executing---line 1090 of file plain.bst
+Too many commas in name 1 of "Toy, M., Wichman, G., Arnold, K., and Lane, J" for entry rogue
+while executing---line 1090 of file plain.bst
+You've used 37 entries,
+            2118 wiz_defined-function locations,
+            693 strings with 10088 characters,
+and the built_in function-call counts, 12502 in all, are:
+= -- 1248
+> -- 544
+< -- 13
++ -- 219
+- -- 178
+* -- 761
+:= -- 2003
+add.period$ -- 119
+call.type$ -- 37
+change.case$ -- 199
+chr.to.int$ -- 0
+cite$ -- 38
+duplicate$ -- 514
+empty$ -- 1033
+format.name$ -- 178
+if$ -- 2720
+int.to.chr$ -- 0
+int.to.str$ -- 37
+missing$ -- 28
+newline$ -- 188
+num.names$ -- 74
+pop$ -- 265
+preamble$ -- 1
+purify$ -- 163
+quote$ -- 0
+skip$ -- 390
+stack$ -- 0
+substring$ -- 678
+swap$ -- 149
+text.length$ -- 13
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 148
+warning$ -- 1
+while$ -- 122
+width$ -- 39
+write$ -- 402
+(There were 8 error messages)
