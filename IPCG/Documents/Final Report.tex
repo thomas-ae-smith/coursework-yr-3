@@ -19,7 +19,7 @@
 
 \renewcommand*\descriptionlabel[1]{\hspace\labelsep \normalfont\bfseries --~~#1}
 
-  \let\clearforchapter\relax  %to break chapter newpages.
+%  \let\clearforchapter\relax  %to break chapter newpages.
 
 \begin{document}
 \frontmatter
@@ -264,73 +264,71 @@ In order to function satisfactorily as an interactive experience for the users, 
 \end{description}
 % [TODO: make this far longer and more detailed.  Write about requirements of/for evaluation method using swing]
  
+ 
 % 4... further chapters discussing system implementation or experiment...
 \chapter{Detailed System Design}
- - A detailed design\\
- Ð high level design or architecture\\
- Ð comparison of alternative technologies\\
-
-o Which process did you follow: Ð waterfall, iterative, evolutionary?\\
-o How does this show in your plan? \\
-o Why did you choose this process? \\
-o How well did it work out for you?\\
-
-
-During development, I chose to use an agile development programme, in order to increase flexibility in case of unforeseen difficulties. Did research into 'Scrum-for-one' [cite the workflow paper]
-
+Following the problem specification and requirements given in the previous chapters, this section provides a more in-depth design for each of the components that will be necessary to the execution of the final system. After looking at the intended high-level structure and the development approach, each module is detailed with observations about its specific challenges and interactions with the rest of the system. 
 
 \section{Overview}
-The system should be written as a java applet. this has the advantage that it will be able to be run online, making receiving feedback easier. There will be two primary types of interface: game segments drawn on Canvas objects using active rendering, and JPanels containing feedback/instructive segments created using Swing. The Java [object management system] facilitates swapping out these two types of elements
-\section{Game Segments}
-\subsection{Game Base}
-Discuss the functions that all objects must have (rateable etc)
-\begin{description}
-\item final objects such as platforms and jumps, these are 'parts'
-\item grouped into obstacles, or 'components'
-\item components are built up into repeating 'patterns'
-\item multiple patterns make a level.
-\end{description}
-this is the structure as recommended by \cite{compton2006procedural}
+In order to facilitate both presenting an IPCG system to the user and also recording feedback about that same system, the final program will need two main classes of interface: game segments that allow real-time interaction while the evaluator and generator are running, and a selection of feedback and instruction interfaces that enclose the interactive sections. In terms of high-level Java architecture and object types, the system should be written as a Java Applet using the Swing interface toolkit. This has the advantage that it will be able to be run online, making both distribution to participants and collection of feedback easier. The game segments can be drawn on Canvas objects using active rendering \cite{denault2007avoid}, and JPanels containing Swing widgets can be used for the feedback and instructive segments. The Java Swing toolkit will facilitate swapping between these two types of elements.
 
-In terms of implementation, a level owns a canvas, which can be added to the parent application (this is no longer true, but was at design time)
-More accurately, a level is the highest item in the model, and the canvas is a game segment that also has a view and a controller.
+\section{Development Strategies}
+Several basic software development approaches will be useful during the course of the project. Primarily, the class of software engineering process models known as `Agile' methodologies will help to keep the development process predictable and manageable. Agile methods follow an iterative cycle that promotes short sprints resulting in incrementally more functionality. They favour continual analysis of situation and workload, and help to ensure flexibility in planning. Another key component of the Agile philosophy is the use of a robust version control system and issue tracking, as alongside continuous integration and regression testing, these can ensure that a runnable version of the deliverable is always available, and the next incremental version is thoroughly specified. Though the techniques are typically used by small development teams, there exist modifications geared to solo developers \cite{nystrm2011agile}.
+
+\section{Game Segments}
+Interactive game segments form the link between the user and the IPCG system. While the user is playing, the system is continually monitoring the game state and generating new content as necessary. The components that make up the game segments each perform specific roles within the system, as detailed previously.
+\subsection{Game Base}
+The largest module within the system, the game base should be responsible for all user-facing aspects of the segment. Following the Model-View-Controller architecture, it can be further split into these separate components.
+\begin{description}
+\item[Model:] The model contains all of the data about the current game state, such as platform and player locations. In order to facilitate rendering, collision detection and challenge rating, this data can be stored within a scene-graph-like object hierarchy, as in \ref{Figure:model}.[FIXME] Individual platforms, gaps and obstructions are \textit{parts}, and an obstacle (\textit{component}) such as a jump or wall is a particular arrangement of a small group of parts. Components are built up into repeating \textit{patterns}, and multiple patterns are owned by a single \textit{level} object, which also owns the \textit{player} object and various useful metadata - this structure is based upon that used by \cite{compton2006procedural}. 
+\item[View:] The view performs all rendering within the system. The view class should own the Canvas that is displayed on screen, and use double-buffering to smoothly render the correct portions of the model for the player. Ideally it should also be capable of rendering useful debug information for testing purposes.
+\item[Controller:] The controller handles all interaction between the user and the rest of the system, and also all changes that occur to the model over time. it is also responsible for passing the game state to the evaluator when necessary, and updating the model with the output from the generator. Once the model has been altered appropriately, the view will render it to the screen for the player.
+\end{description}
 
 \subsection{Generator}
-Ties into the data structure discussed above. Each part or collection can return its difficulty. This can be queried at any point in the hierarchy. Parts return a difficulty that is a function of their size (quote formulas here). The larger collections all calculate their difficulties according to some function of the objects that they contain, and occasionally how late in the level they are.
-Need to also specify the probabilistic grammar that is used, and explain how the probabilities are weighted based upon the desired difficulty.
-\cite{smith2011launchpad}, which uses a grammar based generator too.
+The generator module will rely heavily on the ability to calculate a specific difficulty rating for each obstacle based upon the properties of the physics system within the game. Using the kinematic equations of motion for particles with constant acceleration, each component will have a rating, and the \textit{level} and \textit{pattern} collections will each be able to produce a rating as a function of their children. When generating new content, the aPCG should be able to take a desired difficulty rating and produce a new component or pattern that is within some acceptable margin of the target rating. If the available components are ranked by difficulty then this can be done by selecting a random normally-distributed value, where the mean of the distribution is the desired rating, and the variance is some appropriate value based upon the acceptable margins. The closest valid component to this new value can then be added to the existing model.
+[FIXME add pseudocode, mention \cite{smith2011launchpad}, which uses a grammar based generator too.]
 
 \subsection{Evaluator}
-Monitors this list of features about the player's behaviour:
+The evaluator module must continually monitor the game state, and use intelligent algorithms in order to process the information it recieves into a form usable by the generator. The evaluator may perform regression or classification statically after being trained on a previously collected data set, or there are a number of incremental learning algorithms that would be capable of updating themselves with each new piece of data from the participant. A selection of metrics that the monitor could use:
 \begin{description}
-\item[stuff]
+\item[The rating of each obstacle the player fails]
+\item[The rating of each obstacle the player completes]
+\item[The number of player successes]
+\item[The number of player deaths]
+\item[The overall velocity of the player]
+\item[The time taken to complete the level]
+\item[The length of the level]
 \end{description}
-and also these features of the current level:
-\begin{description}
-\item[more stuff]
-\end{description}
-Then, do use k-means discretisation with these features.
 
-\subsection{Interactions}
-[TODO: detail callbacks, between components/systems.]
-[Describe the entire quintuple model view controller system. I've already done this once somewhere, If I can find it. Don't know whether to put this in design, or as a realisation\ldots]
+If a sample data set is available, then one approach would be to discretise it into a number of groups using the K-means algorithm, and then train a multiclass SVM classifier on these groups. Classification during runtime would then consist of checking the current game state against the trained SVM.
+
+% \subsection{Interactions}
+% each module is detailed with observations about its specific challenges and interactions with the rest of the system. 
+% [TODO: detail callbacks, between components/systems.]
+% [Describe the entire quintuple model view controller system. I've already done this once somewhere, If I can find it. Don't know whether to put this in design, or as a realisation\ldots]
 
 \section{Feedback Interface}
-One of the advantages of using Java is that it provides the Swing GUI widget toolkit, which makes creating a simple interface allowing player feedback relatively simple. Four custom layouts are needed: 
+In addition to the game segments presenting the IPCG system, participant feedback screens will be necessary in order to collect non-observational data concerning the participant's context and thoughts about the system. One of the advantages of using Java is that it provides the Swing GUI widget toolkit, which makes creating a simple interface allowing player feedback relatively simple. Once the information has been collected, it will need to be sent back to a central location for later analysis. 
+
+\subsection{Panel Layouts}
+Four distinct custom panel layouts will be needed: 
 \begin{description}
-\item[Introductory text.] Used for the welcome screen with a brief overview of the experiment. Re-used for the interaction instructions. Re-used again for the final submission confirmation and thanks screen. [TODO: specify gridbag layout, forward and back buttons]
-\item[Introductory questions.] Initial mini-questionnaire containing two labelled five-point Likert items to query the participants' familiarity with games and 2D platform games. [TODO: specify layout and forward back buttons]
-\item[Level evaluation questions.] Used after each of the four levels to request player feedback. A single seven-point Likert item with label and explanatory text, possibly level / progress statistics. [TODO: you know the drill]
-\item[Final review and submission.] Penultimate screen. Provides a non-editable textbox containing all data to be submitted, and a final 'Submit' button for confirmation. [TODO: specify layout and forward back buttons]
+\item[Plain text panel.] Used for the welcome screen with a brief overview of the experiment. Re-used for the interaction instructions, and then again after the final submission confirmation, for the thanks screen.
+\item[Questionnaire panel.] Initial mini-questionnaire containing two labelled five-point Likert items to query the participants' familiarity with games and 2D platform games.
+\item[Level evaluation panel.] Used after each of the four levels to request player feedback. A single seven-point Likert item with label and explanatory text, possibly level / progress statistics.
+\item[Final submission panel.] The penultimate screen in the system. The submission panel shoud provide a non-editable textbox displaying all of the data to be submitted, and a final 'Submit' button for confirmation.
 \end{description}
 
-[TODO: discuss justification for using likert items, advantages of symmetry. Cite ideal use of likert items in surveys, justifying neutral presentation.]
+% [TODO: discuss justification for using likert items, advantages of symmetry. Cite ideal use of likert items in surveys, justifying neutral presentation.]
 
 \subsection{Logging and Submission}
-All of the player feeback and evaluator input and conclusions will need to be logged [if user permissions permit, to a file-backed stream of some kind]. The system itself can provide a global function for this. A YAML-like simple parseable format should be sufficient to represent the types of data needed. On the penultimate screen, users will be given a chance to review the data that has been logged, before submission. On submission, the applet will attempt to POST the data to a php script hosted on my personal webspace on ECS systems, which will save the data to a file. In case of error, the system will also attempt to save the data to a local file, and provide instructions on how to upload the file anonymously.
+To collect data useful for evaluation and future calibration of the system, all of the player feedback and evaluator input and conclusions will need to be logged. A YAML-like simple parseable format should be sufficient to represent the types of data needed, in a human-readable format without excessive overheads. On the penultimate screen of the system, users will be given a chance to review the data that has been logged, before submission. On submission, the applet will attempt to POST the data to a php script hosted on a centralised server, which will save the data to a file. In case of error, the system may also attempt to save the data to a local file, and provide instructions on how to upload the file anonymously.
 \subsection{Web Service}
-In order to receive data from participants running the system remotely and anonymously, a simple .php script will be running at a hard-coded location on the ECS servers. This will be able to receive POST data from the system, and after sanitising it save it to a file in a directory on the server. In case POST submission has failed, the script will also be linked to by a page that allows data file upload though a simple HTML form.
+each module is detailed with observations about its specific challenges and interactions with the rest of the system. 
+In order to receive data from participants running the system remotely and anonymously, a simple .php script will be running at a hard-coded location on a centralised server. This will be able to receive POST data from the system, and after sanitising it save it to a file in a directory on the server. In case sending POST data from the Java Applet has failed, the script will also be linked to by a page that allows data file upload though a plain HTML form.
 \subsection{Analysis}
+each module is detailed with observations about its specific challenges and interactions with the rest of the system. 
 In order to make use of the data collected, simple scripting can be used to parse the files into participant feedback data and participant interaction data. The feedback data can then be analysed using a mathematical tool such as Octave in order to evaluate the effectiveness of the system. Time permitting, the interaction data can be used to update the calibration data of the evaluator in order to improve its performance in preparation for a potential second survey. If necessary, it can also be inspected to determine the cause of any suspected anomalous feedback, or to give further insight into the veracity or cause of the results of analysis. 
 
 \chapter{System Implementation}
@@ -347,7 +345,7 @@ Use of Java, as it is my most well known language.
 
 
 \section{Approach}
-I used an agile methodology, with regular milestones and refactoring, and an aim of always having a working prototype at the end of each coding session. The overall system development intention was to follow a waterfall approach with regards to completing each module before moving onto the next, this proved to be fairly optimistic and na•ve, as for that to work the modules would have to be completely independent. While generality of that kind is desirable, there were practical limits to the amount of time available, and higher-priority features, and so development of the three modules each started independently but ended up being developed together roughly in parallel, particularly the generator ant the game base. In MVC terminology, the model is shared through the system, and then there are two views and two controllers. The game base's view renders the level to the screen, through the GameObject's \texttt{render()} function. In response, the player provides input to the system, handled by the game base's controller which applies gravity and collision checking, and occasionally calls upon the IPCG system to populate the model with more content. Within the IPCG system, the evaluator can be seen as a pure-data non-visual view, which queries the model using the GameObject's \texttt{rate()} function. Based on its classification, it passes input to the aPCG, which can be seen as a controller that modifies the model.
+I used an agile methodology, with regular milestones and refactoring, and an aim of always having a working prototype at the end of each coding session. The overall system development intention was to follow a waterfall approach with regards to completing each module before moving onto the next, this proved to be fairly optimistic and na\"ive, as for that to work the modules would have to be completely independent. While generality of that kind is desirable, there were practical limits to the amount of time available, and higher-priority features, and so development of the three modules each started independently but ended up being developed together roughly in parallel, particularly the generator ant the game base. In MVC terminology, the model is shared through the system, and then there are two views and two controllers. The game base's view renders the level to the screen, through the GameObject's \texttt{render()} function. In response, the player provides input to the system, handled by the game base's controller which applies gravity and collision checking, and occasionally calls upon the IPCG system to populate the model with more content. Within the IPCG system, the evaluator can be seen as a pure-data non-visual view, which queries the model using the GameObject's \texttt{rate()} function. Based on its classification, it passes input to the aPCG, which can be seen as a controller that modifies the model.
 
 \section{Game Base}
 Started with a similar base to previous Java projects: an applet containing a Canvas used for active rendering \cite{denault2007avoid}. Looking ahead to the need to link in with the PCG, began by implementing the hierarchical model described in \cite{compton2006procedural} using a pseudo-component model, using interfaces such as \texttt{Drawable}, \texttt{Rateable} and \texttt{Collideable} to represent components, each containing a static collection that kept track of all of its members. When it came to implementing collision and debug rendering, I noticed the similarities between the hierarchical model and the traditional scene graph pattern, and ended up refactoring the internal data structures to follow a more traditional inheritance model. Almost every object within the game inherits from the abstract \texttt{GameObject} base class, which provides the standard interface as shown in Listing~\ref{lst:gameobject}.
