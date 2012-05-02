@@ -5,7 +5,7 @@
 \usepackage{subfig}
 \usepackage[left=35mm, right=24mm, top=24mm, bottom=24mm]{geometry}
 \usepackage{listings}
- \setlength{\beforechapskip}{1.5cm}
+ \setlength{\beforechapskip}{1cm}
 \setlength{\afterchapskip}{0.5cm}
 \setlength{\parindent}{0cm}
 \setlength{\parskip}{0.4cm}
@@ -61,8 +61,8 @@ As the demand for ever larger and more varied computer game environments grows, 
 \pagebreak
 
 \tableofcontents
-% \pagebreak
-
+%  \pagebreak
+\newpage
 \chapter{Statement of Originality}
 % - You are strongly encouraged to include a one or two paragraph statement of originality
 % Ð Òthis is all my own workÓ is rarely true
@@ -383,7 +383,7 @@ One major disadvantage of using a one-dimensional SVM compared to the original t
 % In addition to the game segments presenting the IPCG system, participant feedback screens will be necessary in order to collect non-observational data concerning the participant's context and thoughts about the system. One of the advantages of using Java is that it provides the Swing GUI widget toolkit, which makes creating a simple interface allowing player feedback relatively simple. Once the information has been collected, it will need to be sent back to a central location for later analysis. 
 In contrast to the mathematically heavy implementations for the rendering, physics engine, generator and evaluator, the non-IPCG portions of the project were relatively simple. %[FIXME more here]
 \subsection{Panel Layouts}
-After experimenting with alternative layouts, it became apparent that the optimal design for the Swing portions of the program reinforced the goals of the interactive segments. Typically 2D platform games are designed so that the player character moves rightwards from the beginning of the level on the left, to the end of it at the far rightmost edge. In accordance with the non-functional requirement to avoid breaking videogame conventions, the IPCG segments of the program follow this tradition, and by mirroring this left-to-right flow throughout the user interface the Principle of Least Astonishment is preserved\footnote{http://en.wikipedia.org/wiki/Principle\_of\_least\_astonishment}.
+After experimenting with alternative layouts, it became apparent that the optimal design for the Swing portions of the program reinforced the goals of the interactive segments. Typically 2D platform games are designed so that the player character moves rightwards from the beginning of the level on the left, to the end of it at the far rightmost edge. In accordance with the non-functional requirement to avoid breaking videogame conventions, the IPCG segments of the program follow this tradition, and by mirroring this left-to-right flow throughout the user interface the Principle of Least Astonishment is preserved\footnote{http://www.faqs.org/docs/artu/ch11s01.html}.
 % [FIXME more about likert]
 % Four distinct custom panel layouts will be needed: 
 % \begin{description}
@@ -463,9 +463,10 @@ this is despite verbal feedback from several participants indicating that since 
 \subsection{Study Conclusions}
 Out of the four hypotheses that would indicate the effectiveness of the IPCG system, only one showed any positive evidence. Through observation of the results, three main conclusions have been reached:
 \begin{description}
-\item[1: The IPCG system is too aggressive.] In simplified terms, the system determines an optimal separation between obstacles that the player can manage, and obstacles that they cannot, and then repeatedly presents the player with obstacles from this region. However, in application, this causes problems as due to the nature of the algorithm, half of the time the player is presented with obstacles that the system believes are too hard -- occasionally, considerably so. This has lead to an IPCG version of the Peter Principle\footnote{http://en.wikipedia.org/wiki/Peter\_principle}; participants are raised precisely to their level of failure, rather than positioned a little below it.
-\item[2: The pre-generated levels, and most of the available obstacles, are too easy.] The majority of the obstacles within the expressive range of the aPCG seem to be too easy for most players, leaving little granularity within what might be termed the `interesting' or useful range. Informal feedback included suggestions about altering non-obstacle aspects of the game -- such as player speed or checkpoint density -- in order to further increase the variety within the appropriate range of challenge.
-\item[3: A wider range of participant ability is needed to properly test the system.] The vast majority of potential study participants would have been students of Computer Science or related fields, biasing the probability that they would self-report as `familiar' with computer games. This will have affected the results obtained from the study.
+\item[1: The IPCG system is too aggressive.] In simplified terms, the system determines an optimal separation between obstacles that the player can manage, and obstacles that they cannot, and then repeatedly presents the player with obstacles from this region. However, in application, this causes problems as due to the nature of the algorithm, half of the time the player is presented with obstacles that the system believes are too hard -- occasionally, considerably so. This has lead to an IPCG version of the Peter Principle \cite{pluchino2010peter}; participants are raised precisely to their level of failure, rather than positioned a little below it.
+\item[2: The pre-generated levels, and most of the obstacles, are too easy.] 
+The majority of the obstacles within the expressive range of the aPCG seem to be too easy for most players, leaving little granularity within what might be termed the `interesting' or useful range. Informal feedback included suggestions about altering non-obstacle aspects of the game -- such as player speed or checkpoint density -- in order to further increase the variety within the appropriate range of challenge.
+\item[3: A wider range of participants are needed to properly test the system.] The vast majority of potential study participants would have been students of Computer Science or related fields, biasing the probability that they would self-report as `familiar' with computer games. This will have affected the results obtained from the study.
 \end{description}
 None of these problems are inherent to the IPCG system developed. If the study were to be run again after calibrating the system in light of these results, it is entirely possibly that supporting evidence could be obtained for all four original hypotheses.
 
@@ -582,7 +583,7 @@ However, despite technically fulfilling the requirements, it has not managed to 
 \end{minipage}
 \end{figure}
 
-
+\clearpage
 \chapter{Conclusions and Future Work}
 % n. Conclusion and proposal of further work and ideas
 % - Conclusions and future work
@@ -611,7 +612,7 @@ Further work on the existing system should definitely include efforts to provide
 \renewcommand{\printchapternum}{\chapnumfont \thechapter: }
 %   \renewcommand{\afterchapternum}{: }
 
-
+\newpage
 \chapter{Project Brief}
 
 \begin{center}
@@ -633,7 +634,7 @@ Thomas Smith \linebreak
 %Given that the majority of my recent coding experience is in Java, and the wealth of 2D graphics support in Java, 
 % \end{document}
 
-
+\newpage
 \chapter{Questionnaire Script}
 \textit{These questions will be presented to participants during the course of the experiment:}
 \\
@@ -712,10 +713,47 @@ $\circ$ & $\circ$ & $\circ$ & $\circ$ & $\circ$ & $\circ$ & $\circ$
 
 
 \fbox{Submit $>>$}
-
+\newpage
 \chapter{CD Contents}
-- A software project, or a project with a significant software component should include a CD or DVD at the back of the report with the sources and executables. A short table of contents for the CD/DVD should be included as a printed appendix.
-TODO: once files are finalised. Possibly create a python script for this?
+% - A software project, or a project with a significant software component should include a CD or DVD at the back of the report with the sources and executables. A short table of contents for the CD/DVD should be included as a printed appendix.
+% TODO: once files are finalised. Possibly create a python script for this?
+\begin{tabular}{ll}
+/bin & GameApplet, java.policy.applet, Parser\\
+/bin/Core & Core classes: Controller, Evaluator, Generator, Model, View\\
+/bin/Model & ActivePart, CollisionTestHarness, Component, Constants\\
+/bin/Model & FinalComponent, FinalPlatformPart, FlatComponent\\
+/bin/Model & FlatPlatformPart, GameCollection, GameObject, GapComponent\\
+/bin/Model & GapPart, GapRatingTestHarness, Level, ObstacleComponent\\
+/bin/Model & ObstaclePart, Part, Pattern, Player, SimplePattern, SinglePattern\\
+/bin/UI & ConfirmPanel, FeedbackPanel, GameWindow, QuestionnairePanel\\
+/bin/UI & Screen, TextPanel\\
+/bin/Web & \\
+/data & 1335693754.txt, 1335696208.txt, 1335707945.txt, 1335708270.txt\\
+/data & 1335708900.txt, 1335709874.txt, 1335710086.txt, 1335710724.txt\\
+/data & 1335720808.txt, 1335730090.txt, 1335730651.txt, 1335730978.txt\\
+/data & 1335735408.txt, 1335735963.txt, 1335736558.txt, 1335736715.txt\\
+/data & 1335739370.txt, 1335739494.txt, 1335741014.txt, 1335771670.txt\\
+/data & 1335783028.txt, 1335783750.txt, 1335802212.txt, 1335809793.txt\\
+/data & 1335812551.txt, 1335815038.txt, 1335815317.txt, output.txt\\
+/Documents & done.pdf, Final Report.pdf, Final Report.tex, If.tex\\
+/Documents & Interim Report.pdf, Interim Report.tex, IPCG.bib\\
+/Documents & Project Brief.pdf, Project Brief.tex, Stripped Interim Report.pdf\\
+/Documents & system.pdf, system2.pdf, todo.png\\
+/src & GameApplet.java, Parser.java\\
+/src/Core & Controller.java, Evaluator.java, Generator.java, Model.java, View.java\\
+/src/Model & ActivePart.java, CollisionTestHarness.java, Component.java\\
+/src/Model & Constants.java, FinalComponent.java, FinalPlatformPart.java\\
+/src/Model & FlatComponent.java, FlatPlatformPart.java, GameCollection.java\\
+/src/Model & GameObject.java, GapComponent.java, GapPart.java\\
+/src/Model & Level.java, ObstacleComponent.java, ObstaclePart.java, Part.java\\
+/src/Model & Pattern.java, Player.java, SimplePattern.java, SinglePattern.java\\
+/src/UI & ConfirmPanel.java, FeedbackPanel.java, GameWindow.java\\
+/src/UI & QuestionnairePanel.java, Screen.java, TextPanel.java\\
+/src/Web & 3YP.html, basic.css, fallback.html, favicon.png, form.php, index.php\\
+/src/Web & info.php, IPCG-web.jar, java.php, java.policy.applet, submit.php\\
+\end{tabular}
+
+
  
 \end{document}
 

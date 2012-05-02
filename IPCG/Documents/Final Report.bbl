@@ -18,13 +18,6 @@ G.~Cauwenberghs and T.~Poggio.
 \newblock {\em Advances in neural information processing systems}, pages
   409--415, 2001.
 
-\bibitem{citeulike:7364450}
-Darryl Charles and Michaela Black.
-\newblock Dynamic player modelling: A framework for {Player-Centered} digital
-  games.
-\newblock In {\em Proceedings of International Conference on Computer Games:
-  Artificial Intelligence, Design and Education}, pages 29--35, November 2004.
-
 \bibitem{flow}
 J.~Chen.
 \newblock Flow in games (and everything else).
@@ -103,12 +96,6 @@ R.~Lopes and R.~Bidarra.
 \newblock {\em IEEE Transactions on Computational Intelligence and AI in
   Games}, 3(2):85--99, June 2011.
 
-\bibitem{mawhorter2010procedural}
-P.~Mawhorter and M.~Mateas.
-\newblock Procedural level generation using occupancy-regulated extension.
-\newblock In {\em 2010 IEEE Symposium on Computational Intelligence and Games
-  (CIG)}, pages 351--358. IEEE, 2010.
-
 \bibitem{missura2009player}
 O.~Missura and T.~G{\"a}rtner.
 \newblock Player modeling for intelligent difficulty adjustment.
@@ -150,6 +137,12 @@ M.~Persson.
 \newblock \textit{Infinite Mario Bros!}
 \newblock (Online Game), Mojang, 2008.
 
+\bibitem{pluchino2010peter}
+A.~Pluchino, A.~Rapisarda, and C.~Garofalo.
+\newblock The peter principle revisited: A computational study.
+\newblock {\em Physica A: Statistical Mechanics and its Applications},
+  389(3):467--472, 2010.
+
 \bibitem{borderlandsguns}
 A.~Robinson.
 \newblock {Gearbox Interview: Randy Pitchford on Borderlands' 17 Million Guns.}
@@ -164,23 +157,11 @@ N.~Shaker, G.N. Yannakakis, and J.~Togelius.
 \newblock In {\em Proceedings of the AAAI Conference on Artificial Intelligence
   and Interactive Digital Entertainment (AIIDE). AAAI Press}, 2010.
 
-\bibitem{smith2011inclusive}
-A.M. Smith, C.~Lewis, K.~Hullett, G.~Smith, and A.~Sullivan.
-\newblock An inclusive view of player modeling.
-\newblock In {\em Proceedings of the 6th International Conference on
-  Foundations of Digital Games (FDG 2011)}, 2011.
-
 \bibitem{smith2009rhythm}
 G.~Smith, M.~Treanor, J.~Whitehead, and M.~Mateas.
 \newblock Rhythm-based level generation for {2D} platformers.
 \newblock In {\em Proceedings of the 4th International Conference on
   Foundations of Digital Games}, pages 175--182. ACM, 2009.
-
-\bibitem{smith2010tanagra}
-G.~Smith, J.~Whitehead, and M.~Mateas.
-\newblock Tanagra: A mixed-initiative level design tool.
-\newblock In {\em Proceedings of the Fifth International Conference on the
-  Foundations of Digital Games}, pages 209--216. ACM, 2010.
 
 \bibitem{smith2011launchpad}
 G.~Smith, J.~Whitehead, M.~Mateas, M.~Treanor, J.~March, and M.~Cha.
@@ -193,13 +174,6 @@ N.~Sorenson and P.~Pasquier.
 \newblock Towards a generic framework for automated video game level creation.
 \newblock {\em Applications of Evolutionary Computation}, pages 131--140, 2010.
 
-\bibitem{sorenson2011generic}
-N.~Sorenson, P.~Pasquier, and S.~DiPaola.
-\newblock A generic approach to challenge modeling for the procedural creation
-  of video game levels.
-\newblock {\em IEEE Transactions on Computational Intelligence and AI in
-  Games}, 3(3):229--244, 2011.
-
 \bibitem{su2002training}
 Y.~Su, TM~Murali, V.~Pavlovic, and S.~Kasif.
 \newblock Training support vector machines in 1d.
@@ -211,15 +185,5 @@ J.~Togelius, E.~Kastbjerg, D.~Schedl, and G.N. Yannakakis.
 \newblock What is procedural content generation?: Mario on the borderline.
 \newblock In {\em Proceedings of the 2nd International Workshop on Procedural
   Content Generation in Games}, page~3. ACM, 2011.
-
-\bibitem{rogue}
-Wichman G. Arnold~K. Toy, M. and J~Lane.
-\newblock \textit{Rogue}.
-\newblock (PC Game), {A. I. Design}, 1980.
-
-\bibitem{spelunky}
-D~Yu.
-\newblock \textit{Spelunky}.
-\newblock (PC Game), Mossmouth LLC, 2009.
 
 \end{thebibliography}
