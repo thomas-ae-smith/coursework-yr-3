@@ -33,7 +33,8 @@ public class GameApplet extends JApplet implements ActionListener {
 			new FeedbackPanel(5, this),
 			new Controller(this, gen, eval, 0, 444),
 			new FeedbackPanel(6, this),
-			new ConfirmPanel(log, this), new TextPanel(2, this) };
+			new ConfirmPanel(log, this), 
+			new TextPanel(2, this) };
 	private int curr_screen = 0;
 
 
@@ -48,6 +49,11 @@ public class GameApplet extends JApplet implements ActionListener {
 		log.append("---\n# IPCG 3YP data file, v." + Constants.VERSION + "\n# taes1g09@ecs.soton.ac.uk\n");
 		// this.setIgnoreRepaint(true);
 
+		if (Constants.DRAW_DEBUG) {
+			screens[1] =  new Controller(this, gen, eval, 111, 666);
+			screens[2] =  new TextPanel(2, this);
+		}
+	
 		// Create and set up the content pane
 		this.add(screens[0].getView());
 

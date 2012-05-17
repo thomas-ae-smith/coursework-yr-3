@@ -8,12 +8,13 @@ import java.awt.geom.Point2D;
 //assuming a desired jump of 3.5w, 7h (224, 112):
 //a = (h^2)/56, and u = -a/(448/h)
 public abstract class Constants{
+	public static final boolean DRAW_DEBUG = true;	// causes object outlines to be drawn
+
 	public static final int TILE_WIDTH = 64;
 	public static final int TILE_HEIGHT = 16;
 	public static final int WINDOW_HEIGHT = 320;
 	public static final int WINDOW_WIDTH = 1024;
 	public static final Color[] DEBUG_COLOURS = { Color.RED, Color.GREEN, Color.BLUE, Color.MAGENTA, Color.BLACK};
-	public static final boolean DRAW_DEBUG = false;	// causes object outlines to be drawn
 //	public static final Point2D.Double MAX_VELOCITY = new Point2D.Double(336,2016); //max velocity in X & Y
 	public static final int MAX_VELOCITY = 336; //max velocity in X
 	public static final int GRAVITY = 2016; //acceleration in Y
