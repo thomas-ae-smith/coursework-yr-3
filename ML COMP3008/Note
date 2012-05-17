@@ -1,0 +1,9 @@
+Note
+This folder suffered from a hg mishap.
+The report has been restored from an external
+backup, but the contents of the .tex file used
+to generate it have been lost, as has the code 
+in pynn.py which shuffles the lines, then 
+selects the bottom 10% to use as testing data.
+
+This is a shame.

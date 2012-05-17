@@ -229,6 +229,7 @@ if 0.5 - minimum < maximum - 0.5:
 	displayHidden = displayHidden / maximum
 else:
 	displayHidden = displayHidden - minimum
+	displayHidden = displayHidden / (1-minimum*2)
 
 # print "minimum", minimum
 # print "maximum", maximum
